@@ -79,7 +79,7 @@
   }
 
   section {
-    @apply py-[75px]
+    @apply py-[75px] w-full;
   }
 }
 
@@ -89,11 +89,19 @@
   }
 
   .heading {
-    @apply text-[44px] leading-[54px] font-[700] 
+    @apply text-[44px] leading-[54px] font-[700]
+  }
+
+  .hero__bg {
+    @apply bg-[url('./assets/images/fingerPrintPattern.png')] bg-no-repeat bg-center bg-cover
   }
 
   .text__para {
-    @apply text-[16px] leading-[30px] font-[400] text-textColor mt-[18px]
+    @apply text-[16px] leading-[26px] font-[400] text-textColor mt-[18px]
+  }
+
+  .text__para__dim {
+    @apply text-[16px] leading-[26px] font-[400] text-[#606060] mt-[18px]
   }
 }
 
@@ -115,4 +123,68 @@
   .text__para {
     @apply text-[16px] leading-7 mt-3;
   }
+}
+
+.hero-img {
+  position: relative;
+  height: 487px;
+  @apply bg-[url('./assets/svg/heroImg.svg')] bg-no-repeat bg-center
+}
+
+.bouncing-image {
+  position: absolute;
+  cursor: pointer;
+}
+
+.top {
+  position: absolute;
+  top: 1px;
+}
+
+.left {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.right {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+@keyframes bounceAnimation {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+.bounce {
+  animation: bounceAnimation 1s infinite alternate;
+}
+
+
+
+#root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #F5F5F5;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Epilogue', sans-serif;
+  
+}
+
+.text-gradient {
+  background-image: linear-gradient(to bottom, #D25050, #900000);
+  -webkit-background-clip: text;
+  background-clip: text; 
+  color: transparent;
 }

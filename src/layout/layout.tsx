@@ -1,6 +1,7 @@
-import Footer from "@/components/Footer";
-import MenuNavigation from "@/components/MenuNavigation";
-import Routers from "@/routes/Routers";
+import React from "react";
+import MenuNavigation from "../components/shared/MenuNavigation";
+import Routers from "../routes/Routers";
+import Footer from "../components/shared/Footer";
 const Layout = () => {
   return (
     <>

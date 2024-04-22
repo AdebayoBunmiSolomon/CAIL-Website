@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -50,24 +49,23 @@
   }
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 10px;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background: #888;
   border-radius: 5px;
 }
 
-::-webkit-scrollbar-thumb:hover{
+::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
 
-::-webkit-scrollbar-track{
-  background: #F5F5F5;
-  border-radius: 5px
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 5px;
 }
-
 
 @layer base {
   * {
@@ -85,23 +83,23 @@
 
 @layer components {
   .container {
-    @apply max-w-[1280px] px-5 mx-auto
+    @apply max-w-[1280px] px-5 mx-auto;
   }
 
   .heading {
-    @apply text-[44px] leading-[54px] font-[700]
+    @apply text-[44px] leading-[54px] font-[700];
   }
 
   .hero__bg {
-    @apply bg-[url('./assets/images/fingerPrintPattern.png')] bg-no-repeat bg-center bg-cover
+    @apply bg-[url('./assets/images/fingerPrintPattern.png')] bg-no-repeat bg-center bg-cover;
   }
 
   .text__para {
-    @apply text-[16px] leading-[26px] font-[400] text-textColor mt-[18px]
+    @apply text-[16px] leading-[26px] font-[400] text-textColor mt-[18px];
   }
 
   .text__para__dim {
-    @apply text-[16px] leading-[26px] font-[400] text-[#606060] mt-[18px]
+    @apply text-[16px] leading-[26px] font-[400] text-[#606060] mt-[18px];
   }
 }
 
@@ -127,8 +125,8 @@
 
 .hero-img {
   position: relative;
-  height: 487px;
-  @apply bg-[url('./assets/svg/heroImg.svg')] bg-no-repeat bg-center
+  height: 700px;
+  @apply bg-[url('./assets/svg/heroImg.svg')] bg-no-repeat bg-center;
 }
 
 .bouncing-image {
@@ -167,28 +165,25 @@
   animation: bounceAnimation 1s infinite alternate;
 }
 
-
-
 #root {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Epilogue', sans-serif;
-  
+  font-family: "Epilogue", sans-serif;
 }
 
 .text-gradient {
-  background-image: linear-gradient(to bottom, #D25050, #900000);
+  background-image: linear-gradient(to bottom, #d25050, #900000);
   -webkit-background-clip: text;
-  background-clip: text; 
+  background-clip: text;
   color: transparent;
 }
 
 .slick-slide > div {
-  margin: 0 10px
+  margin: 0 10px;
 }

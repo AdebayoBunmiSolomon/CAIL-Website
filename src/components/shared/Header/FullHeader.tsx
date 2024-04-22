@@ -1,14 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../../ui/button";
 import { RiMenuLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import ClaLogo from "../../../assets/svg/ClaLogo";
 import { header } from "../../../assets/data/header";
 import { useSelectedHeader } from "../../../hooks/useSelectedHeader";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import { HeaderDropDown } from "./HeaderDropDown";
+import { usePathName } from "../../../hooks";
 
-const FullHeader = () => {
+export const FullHeader = () => {
   const { selectedHeaderIndex, setSelectedHeaderIndex } = useSelectedHeader();
+  const [nestedList, setNestedList] = useState<any>();
+  const { checkForPathName, selectedPath, pathname } = usePathName();
   const navigate = useNavigate();
 
   const openSelfService = () => {
@@ -16,37 +21,62 @@ const FullHeader = () => {
     window.open(externalUrl, "_blank");
   };
 
+  useEffect(() => {
+    checkForPathName(pathname);
+  }, [selectedPath, pathname]);
+
   return (
-    <div className='flex flex-row items-center justify-between pt-[30px] px-[100px] z-20 fixed  w-full backdrop-blur-[5px]'>
-      <div className='flex items-center justify-center'>
-        <div
-          className='w-[150px] cursor-pointer'
-          onClick={() => {
-            navigate("/");
-          }}>
-          <ClaLogo />
-        </div>
+    <div className='flex flex-row items-center justify-between pt-[30px] px-20 z-20 fixed w-full backdrop-blur-[5px]'>
+      <div
+        className='w-[150px] cursor-pointer'
+        onClick={() => {
+          navigate("/");
+        }}>
+        <ClaLogo />
       </div>
-      <ul className='flex flex-row gap-7 items-center bg-[white] px-3 py-2 rounded-[50px] overflow-hidden drop-shadow-xl'>
+      <ul
+        className='flex items-center gap-5 drop-shadow-xl bg-white px-3 py-2 rounded-full'
+        onMouseLeave={() => {
+          setSelectedHeaderIndex(selectedHeaderIndex);
+          setNestedList(null); // Reset nested list when leaving the ul
+        }}>
         {header &&
           header.map((items, index) => (
             <li
               key={index}
-              className={`hover:cursor-pointer py-3 px-3 rounded-3xl ${
-                index === selectedHeaderIndex
-                  ? "bg-[#900000] text-white"
+              className={`flex items-center relative py-2 px-3 hover:cursor-pointer rounded-3xl text-[12px] hover:font-semibold ${
+                selectedPath === items.page
+                  ? "bg-[#900000] text-white hover:text-white"
                   : undefined
               }`}
-              onClick={() => {
+              onMouseEnter={() => {
                 setSelectedHeaderIndex(index);
-                navigate(items.page);
+                setNestedList(items.nestedList && items.nestedList);
+              }}
+              onClick={() => {
+                if (items.nestedList) {
+                  setSelectedHeaderIndex(index);
+                } else {
+                  setSelectedHeaderIndex(index);
+                  navigate(items.page);
+                  checkForPathName(items.page);
+                }
               }}>
-              {items.title}
+              {items.title}{" "}
+              {items.nestedList !== null && (
+                <MdKeyboardArrowDown
+                  size={20}
+                  color={selectedHeaderIndex === index ? "white" : "black"}
+                />
+              )}
+              {selectedHeaderIndex === index && nestedList && (
+                <HeaderDropDown data={nestedList} parentRoute={items.page} />
+              )}
             </li>
           ))}
       </ul>
       <div className='hidden md:flex justify-items-center align-middle '>
-        <Button onClick={openSelfService} className=' h-[63px] px-[20px]'>
+        <Button onClick={openSelfService} className='py-6 px-[20px]'>
           Access Self-Service
         </Button>
       </div>
@@ -54,5 +84,3 @@ const FullHeader = () => {
     </div>
   );
 };
-
-export default FullHeader;

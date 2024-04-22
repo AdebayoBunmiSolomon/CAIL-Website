@@ -4,90 +4,293 @@ export const tabData: tabContentsType[] = [
   {
     id: 1,
     tabHeader: "Board of Directors",
+    title: "",
+    subTitle: "",
+    subTitle2: "",
+    description: "",
     tabData: [
       {
         id: 1,
         title: "Mr. Edeki Isujeh",
-        position: "Managing Director",
-        color: "",
+        description: "Managing Director",
+        position: "",
+        getQuote: "",
+        benefits: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
+        keyFeatures: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
       },
       {
         id: 2,
         title: "Mr. Kolawole Lamidi",
-        position: "Executive Director",
-        color: "",
+        description: "Executive Director",
+        position: "",
+        getQuote: "",
+        benefits: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
+        keyFeatures: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
       },
       {
         id: 3,
         title: "Mr. Ravi Sharma",
+        description: "",
         position: "",
-        color: "#90000",
+        getQuote: "",
+        benefits: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
+        keyFeatures: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
       },
       {
         id: 4,
         title: "Mr. Ademola Ajuwon",
+        description: "",
         position: "",
-        color: "",
+        getQuote: "",
+        benefits: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
+        keyFeatures: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
       },
       {
         id: 5,
         title: "Mr. Kofo Majekodunmi",
+        description: "",
         position: "",
-        color: "",
+        getQuote: "",
+        benefits: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
+        keyFeatures: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
       },
       {
         id: 6,
         title: "Mrs. Mimi Ade-Odiachi",
+        description: "",
         position: "",
-        color: "",
+        getQuote: "",
+        benefits: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
+        keyFeatures: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
       },
     ],
   },
   {
     id: 1,
     tabHeader: "Management Team",
+    title: "",
+    subTitle: "",
+    subTitle2: "",
+    description: "",
     tabData: [
       {
         id: 1,
         title: "Mr. Edeki Isujeh",
-        position: "Managing Director",
-        color: "",
+        description: "Managing Director",
+        position: "",
+        getQuote: "",
+        benefits: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
+        keyFeatures: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
       },
       {
         id: 2,
         title: "Mr. Kolawole Lamidi",
-        position: "Executive Director",
-        color: "",
+        description: "Executive Director",
+        position: "",
+        getQuote: "",
+        benefits: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
+        keyFeatures: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
       },
       {
         id: 3,
         title: "Mr. Abayomi Agiri",
-        position: "Head of Directorate-Human Resources",
-        color: "",
+        description: "Head of Directorate-Human Resources",
+        position: "",
+        getQuote: "",
+        benefits: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
+        keyFeatures: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
       },
       {
         id: 4,
         title: "Mr. Friday Nwachukwu",
-        position: "Chief Financial Officer",
-        color: "",
+        description: "Chief Financial Officer",
+        position: "",
+        getQuote: "",
+        benefits: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
+        keyFeatures: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
       },
       {
         id: 5,
         title: "Mr. Moses Ariyibi",
-        position: "Head, Engineering",
-        color: "",
+        description: "Head, Engineering",
+        position: "",
+        getQuote: "",
+        benefits: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
+        keyFeatures: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
       },
       {
         id: 6,
         title: "Mr. Olumide Awe",
-        position: "Head, Investment",
-        color: "",
+        description: "Head, Investment",
+        position: "",
+        getQuote: "",
+        benefits: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
+        keyFeatures: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
       },
       {
         id: 7,
         title: "Mrs. Kate Ojih",
-        position: "Head, Northern Region",
-        color: "",
+        description: "Head, Northern Region",
+        position: "",
+        getQuote: "",
+        benefits: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
+        keyFeatures: [
+          {
+            title: "",
+            description: "",
+            list: [""],
+          },
+        ],
       },
     ],
   },

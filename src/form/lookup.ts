@@ -11,7 +11,6 @@ export type personalInformationLookUpTypes = {
   state: string;
   identification_type: string;
   identification_number: string;
-  file: any;
 };
 
 export type carDetailsLookUpTypes = {

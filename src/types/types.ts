@@ -103,25 +103,13 @@ export interface inputProps {
   textArea?: boolean;
   type?: React.HTMLInputTypeAttribute;
   placeHolder: string;
-  label?: string;
   error?: string;
   value?: string;
-  disabled?: boolean;
-  min?: string | number;
   onChange?: (
     event:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => void;
-}
-
-export interface fileInputProps {
-  placeHolder: string;
-  label?: string;
-  error?: string;
-  value?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  defaultValue?: string;
 }
 
 export interface resourcesProps {

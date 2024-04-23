@@ -1,50 +1,84 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Controller } from "react-hook-form";
 import { SelectOptions, TextInput } from "../../components";
-import {
-  gender,
-  identificationType,
-  nigerianStates,
-  title,
-} from "../../assets/data/formOptionsData";
-import { useMotorForm } from "../../hooks/store/motor/useMotorForm";
-import { convertToDateTimeISO } from "../../helper/helper";
-import { FileInput } from "../../components/shared/FileInput";
 
 type personalInfoType = {
   useFormProps: any;
 };
 
+const gender = ["Male", "Female"];
+const nigerianStates = [
+  "Abia",
+  "Adamawa",
+  "Akwa Ibom",
+  "Anambra",
+  "Bauchi",
+  "Bayelsa",
+  "Benue",
+  "Borno",
+  "Cross River",
+  "Delta",
+  "Ebonyi",
+  "Edo",
+  "Ekiti",
+  "Enugu",
+  "Gombe",
+  "Imo",
+  "Jigawa",
+  "Kaduna",
+  "Kano",
+  "Katsina",
+  "Kebbi",
+  "Kogi",
+  "Kwara",
+  "Lagos",
+  "Nasarawa",
+  "Niger",
+  "Ogun",
+  "Ondo",
+  "Osun",
+  "Oyo",
+  "Plateau",
+  "Rivers",
+  "Sokoto",
+  "Taraba",
+  "Yobe",
+  "Zamfara",
+];
+
+const identificationType = [
+  "Driver's License",
+  "International Passport",
+  "National ID Card",
+];
+const title = [
+  "Miss",
+  "Master",
+  "Mister",
+  "Mr",
+  "Mrs",
+  "Dr",
+  "Prof",
+  "Chief",
+  "Alhaji",
+  "Pastor",
+  "Rev",
+];
+
 export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
   const props = useFormProps;
-  const { motorFormData, setMotorFormData } = useMotorForm();
-  const [fileName, setFileName] = useState<string>();
-
-  useEffect(() => {
-    const updateValueOfFileInputToRemoveErrorMsg = () => {
-      // if (!motorFormData.file) {
-      props?.setValues("file", motorFormData.file);
-      setFileName(motorFormData.file);
-    };
-    // };
-    updateValueOfFileInputToRemoveErrorMsg();
-  }, [motorFormData.file, fileName]);
 
   return (
     <div className='flex justify-center items-center'>
       <div className='w-[95%] bg-white rounded-md self-center p-6'>
-        <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
+        <div className='flex items-center gap-4 mb-3'>
           <Controller
             control={props?.control}
             render={({ field }) => (
               <SelectOptions
-                label='Select Title'
                 data={title}
                 selectedOption={field.value}
-                onChangeSelectedOption={(text) => {
-                  field.onChange(text);
-                  setMotorFormData({ ...motorFormData, title: text });
-                }}
+                onChangeSelectedOption={(text) => field.onChange(text)}
                 placeholder='Select Title'
                 error={!field.value ? props?.errors?.title?.message : undefined}
               />
@@ -57,16 +91,9 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
             render={({ field }) => (
               <TextInput
                 placeHolder='Surname'
-                label='Surname'
                 type='text'
                 value={field.value}
-                onChange={(event) => {
-                  field.onChange(event.target.value);
-                  setMotorFormData({
-                    ...motorFormData,
-                    surName: event.target.value,
-                  });
-                }}
+                onChange={(event) => field.onChange(event.target.value)}
                 error={props?.errors?.surname?.message}
               />
             )}
@@ -78,16 +105,9 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
             render={({ field }) => (
               <TextInput
                 placeHolder='First name'
-                label='First name'
                 type='text'
                 value={field.value}
-                onChange={(event) => {
-                  field.onChange(event.target.value);
-                  setMotorFormData({
-                    ...motorFormData,
-                    firstName: event.target.value,
-                  });
-                }}
+                onChange={(event) => field.onChange(event.target.value)}
                 error={props?.errors?.first_name?.message}
               />
             )}
@@ -95,22 +115,15 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
             defaultValue=''
           />
         </div>
-        <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
+        <div className='flex items-center gap-4 mb-3'>
           <Controller
             control={props?.control}
             render={({ field }) => (
               <TextInput
                 placeHolder='Email address'
-                label='Email Address'
                 type='email'
                 value={field.value}
-                onChange={(event) => {
-                  field.onChange(event.target.value);
-                  setMotorFormData({
-                    ...motorFormData,
-                    email: event.target.value,
-                  });
-                }}
+                onChange={(event) => field.onChange(event.target.value)}
                 error={props?.errors?.email_address?.message}
               />
             )}
@@ -122,15 +135,8 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
             render={({ field }) => (
               <TextInput
                 placeHolder='Mobile number'
-                label='Mobile Number'
                 value={field.value}
-                onChange={(event) => {
-                  field.onChange(event.target.value);
-                  setMotorFormData({
-                    ...motorFormData,
-                    phoneNumber: event.target.value,
-                  });
-                }}
+                onChange={(event) => field.onChange(event.target.value)}
                 error={props?.errors?.mobile_number?.message}
               />
             )}
@@ -142,17 +148,9 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
             render={({ field }) => (
               <TextInput
                 placeHolder='Date of birth'
-                label='Date Of Birth'
                 type='date'
                 value={field.value}
-                onChange={(event) => {
-                  const date = convertToDateTimeISO(event.target.value);
-                  field.onChange(event.target.value);
-                  setMotorFormData({
-                    ...motorFormData,
-                    birthDate: date,
-                  });
-                }}
+                onChange={(event) => field.onChange(event.target.value)}
                 error={props?.errors?.dob?.message}
               />
             )}
@@ -160,21 +158,14 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
             defaultValue=''
           />
         </div>
-        <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
+        <div className='flex items-center gap-4 mb-3'>
           <Controller
             control={props?.control}
             render={({ field }) => (
               <SelectOptions
-                label='Select Gender'
                 data={gender}
                 selectedOption={field.value}
-                onChangeSelectedOption={(text) => {
-                  field.onChange(text);
-                  setMotorFormData({
-                    ...motorFormData,
-                    gender: text,
-                  });
-                }}
+                onChangeSelectedOption={(text) => field.onChange(text)}
                 placeholder='Select gender'
                 error={
                   !field.value ? props?.errors?.gender?.message : undefined
@@ -188,16 +179,9 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
             control={props?.control}
             render={({ field }) => (
               <TextInput
-                label='Occupation'
                 placeHolder='occupation'
                 value={field.value}
-                onChange={(event) => {
-                  field.onChange(event.target.value);
-                  setMotorFormData({
-                    ...motorFormData,
-                    occupation: event.target.value,
-                  });
-                }}
+                onChange={(event) => field.onChange(event.target.value)}
                 error={props?.errors?.occupation?.message}
               />
             )}
@@ -208,16 +192,9 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
             control={props?.control}
             render={({ field }) => (
               <TextInput
-                label='Address'
                 placeHolder='Address'
                 value={field.value}
-                onChange={(event) => {
-                  field.onChange(event.target.value);
-                  setMotorFormData({
-                    ...motorFormData,
-                    address: event.target.value,
-                  });
-                }}
+                onChange={(event) => field.onChange(event.target.value)}
                 error={props?.errors?.address?.message}
               />
             )}
@@ -225,21 +202,14 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
             defaultValue=''
           />
         </div>
-        <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
+        <div className='flex items-center gap-4 mb-3'>
           <Controller
             control={props?.control}
             render={({ field }) => (
               <SelectOptions
-                label='Select State'
                 data={nigerianStates}
                 selectedOption={field.value}
-                onChangeSelectedOption={(text) => {
-                  field.onChange(text);
-                  setMotorFormData({
-                    ...motorFormData,
-                    state: text,
-                  });
-                }}
+                onChangeSelectedOption={(text) => field.onChange(text)}
                 placeholder='Select State'
                 error={!field.value ? props?.errors?.state?.message : undefined}
               />
@@ -251,16 +221,9 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
             control={props?.control}
             render={({ field }) => (
               <TextInput
-                label='Identification number'
                 placeHolder='Identification Number'
                 value={field.value}
-                onChange={(event) => {
-                  field.onChange(event.target.value);
-                  setMotorFormData({
-                    ...motorFormData,
-                    identification_number: event.target.value,
-                  });
-                }}
+                onChange={(event) => field.onChange(event.target.value)}
                 error={props?.errors?.identification_number?.message}
               />
             )}
@@ -271,16 +234,9 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
             control={props?.control}
             render={({ field }) => (
               <SelectOptions
-                label='Identification Type'
                 data={identificationType}
                 selectedOption={field.value}
-                onChangeSelectedOption={(text) => {
-                  field.onChange(text);
-                  setMotorFormData({
-                    ...motorFormData,
-                    identification_type: text,
-                  });
-                }}
+                onChangeSelectedOption={(text) => field.onChange(text)}
                 placeholder='Select identification type'
                 error={
                   !field.value
@@ -293,30 +249,6 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
             defaultValue=''
           />
         </div>
-        <Controller
-          control={props?.control}
-          render={({ field }) => (
-            <FileInput
-              label='Upload File'
-              placeHolder='Choose File'
-              defaultValue={fileName && fileName}
-              onChange={(event) => {
-                const target = event.target as HTMLInputElement;
-                if (target) {
-                  const selectedFile = target.files?.[0];
-                  console.log(selectedFile);
-                  setMotorFormData({
-                    ...motorFormData,
-                    file: selectedFile,
-                  });
-                }
-              }}
-              error={!field.value && props?.errors?.file?.message}
-            />
-          )}
-          name='file'
-          defaultValue=''
-        />
       </div>
     </div>
   );

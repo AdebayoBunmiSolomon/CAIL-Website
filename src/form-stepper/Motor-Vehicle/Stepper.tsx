@@ -17,21 +17,20 @@ import {
 } from "../../form/validationSchema";
 import { useFormStepper } from "../../hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { paymentsServices } from "../../api/services/payments/payments";
 
 export const MotorVehicle: React.FC<{}> = () => {
   const { activeStep, nextStep, prevStep } = useFormStepper(
     motorVehicleFormSteps
   );
-  const { initializePaysStackPayment, onClose, onSuccess } = paymentsServices();
-  // const [formData, setFormData] = useState<any>({});
+  const [formData, setFormData] = useState<any>({});
+  const [isValid, setIsValid] = useState<boolean>(false);
 
   const {
     control: personalControl,
     // handleSubmit: handlePersonalSubmit,
     formState: { errors: personalErrors },
     trigger: personalTrigger,
-    setValue: setPersonalInfoValues,
+    getValues: getPersonalValues,
   } = useForm<personalInformationLookUpTypes>({
     mode: "onChange",
     resolver: yupResolver(personalInformationValidationSchema),
@@ -42,7 +41,7 @@ export const MotorVehicle: React.FC<{}> = () => {
     // handleSubmit: handleCarSubmit,
     formState: { errors: carErrors },
     trigger: carTrigger,
-    setValue: setCarDetailsValues,
+    getValues: getCarDetailsValues,
   } = useForm<carDetailsLookUpTypes>({
     mode: "onChange",
     resolver: yupResolver(carDetailsValidationSchema),
@@ -52,41 +51,39 @@ export const MotorVehicle: React.FC<{}> = () => {
     let isValid = false;
     if (activeStep === 0) {
       isValid = await personalTrigger();
-      // setIsValid(isValid);
+      setIsValid(isValid);
       if (isValid) nextStep();
     } else if (activeStep === 1) {
       isValid = await carTrigger();
-      // setIsValid(isValid);
+      setIsValid(isValid);
       if (isValid) nextStep();
     } else if (activeStep === 2) {
       isValid = true;
-      // setIsValid(isValid);
-      if (isValid) {
-        initializePaysStackPayment({ onSuccess, onClose });
-      }
+      setIsValid(isValid);
+      setFormData({
+        ...getPersonalValues(),
+        ...getCarDetailsValues(),
+      });
+      console.log(getPersonalValues(), getCarDetailsValues());
     }
   };
+
+  useEffect(() => {
+    console.log(formData);
+  }, [activeStep]);
 
   const getActiveStepComponent = () => {
     switch (activeStep) {
       case 0:
         return (
           <PersonalInfo
-            useFormProps={{
-              control: personalControl,
-              errors: personalErrors,
-              setValues: setPersonalInfoValues,
-            }}
+            useFormProps={{ control: personalControl, errors: personalErrors }}
           />
         );
       case 1:
         return (
           <CarDetails
-            useFormProps={{
-              control: carControl,
-              errors: carErrors,
-              setValues: setCarDetailsValues,
-            }}
+            useFormProps={{ control: carControl, errors: carErrors }}
           />
         );
       case 2:
@@ -110,7 +107,7 @@ export const MotorVehicle: React.FC<{}> = () => {
           />
         )}
         <Button
-          text={activeStep === 2 ? "Buy Now" : "Next"}
+          text={activeStep === 2 ? "Submit" : "Next"}
           onPress={onSubmitNextStep}
           className='py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-5 flex rounded-lg hover:bg-[#900000d7] hover:duration-700'
           rightIcon={<GoArrowRight size={25} />}

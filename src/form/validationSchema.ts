@@ -15,16 +15,7 @@ export const personalInformationValidationSchema = yup.object().shape({
     .string()
     .required("mobile number required")
     .matches(/^[0-9]{11}$/, "invalid mobile number format"),
-  dob: yup
-    .string()
-    .required("DOB is required")
-    .test("minimumAge", "Must be at least 18 years old", (value) => {
-      const currentDate = new Date();
-      const selectedDate = new Date(value);
-      const minAgeDate = new Date();
-      minAgeDate.setFullYear(minAgeDate.getFullYear() - 18);
-      return selectedDate <= minAgeDate;
-    }),
+  dob: yup.string().required("DOB is required"),
   gender: yup.string().required("gender is required"),
   occupation: yup.string().required("occupation is required"),
   address: yup.string().required("address is required"),
@@ -32,8 +23,7 @@ export const personalInformationValidationSchema = yup.object().shape({
   identification_type: yup.string().required("identification type is required"),
   identification_number: yup
     .string()
-    .required("identification number is required"),
-  file: yup.string().required("file not selected"),
+    .required("identification type is required"),
 });
 export const carDetailsValidationSchema = yup.object().shape({
   cover_type: yup.string().required("cover type is required"),

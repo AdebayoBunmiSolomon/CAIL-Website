@@ -15,7 +15,7 @@ export const Products: React.FunctionComponent<{}> = () => {
       const findSelectedProducts = products.filter(
         (items) => items.tabHeader === selectedTabHeader
       );
-      console.log(findSelectedProducts[0].tabData);
+      // console.log(findSelectedProducts[0].tabData);
       setProductsData(findSelectedProducts);
     };
     loadProducts();
@@ -35,6 +35,7 @@ export const Products: React.FunctionComponent<{}> = () => {
         )}
         tabHeader={String(productsData && productsData[0].tabHeader)}
         routeName='/products-section'
+        navigateToProdSection
       />
     </>
   );

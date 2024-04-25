@@ -17,7 +17,7 @@ export const FullHeader = () => {
   const navigate = useNavigate();
 
   const openSelfService = () => {
-    const externalUrl = "http://ss-portal.cip-tech.org/";
+    const externalUrl = "https://ssp.custodianplc.com.ng/";
     window.open(externalUrl, "_blank");
   };
 

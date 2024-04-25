@@ -39,7 +39,8 @@ export const Home = () => {
         showDataDescription
         showExploreMore
         productsToShowPerPage={5}
-        routeName='/products'
+        routeName='/products-section'
+        navigateToProdSection
       />
       <LearnMore />
       <DownloadApp />

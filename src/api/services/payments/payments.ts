@@ -9,7 +9,7 @@ export const paymentsServices = () => {
     reference: new Date().getTime().toString(),
     email: motorFormData.email,
     amount: Number(calculatedPremFromAPI) * 100,
-    publicKey: "pk_test_d536259a2abfa993a7df0dac078667c39e61c0df",
+    publicKey: "pk_test_b412d48c21a7c347167d3ce3acbf747029b34de6",
   });
 
   // you can call this function anything

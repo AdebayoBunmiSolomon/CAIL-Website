@@ -1,14 +1,19 @@
-import React from "react";
-// import FullHeader from "../components/shared/Header/FullHeader";
+import React, { useEffect } from "react";
 import Routers from "../routes/Routers";
 import { Footer, MenuNavigation } from "../components";
-import ScrollToTop from "../helper/helper";
+import { useLocation } from "react-router-dom";
+import { scrollToTop } from "../helper/helper";
 const Layout = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    scrollToTop();
+  }, [pathname]);
+
   return (
     <>
       <MenuNavigation />
       <main>
-        <ScrollToTop />
         <Routers />
       </main>
       <Footer />

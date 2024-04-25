@@ -2,6 +2,7 @@ import React from "react";
 
 type selectOptionProps = {
   data?: any[];
+  label?: string;
   placeholder?: string;
   error: string;
   selectedOption: string;
@@ -11,6 +12,7 @@ type selectOptionProps = {
 
 export const SelectOptions: React.FC<selectOptionProps> = ({
   data,
+  label,
   selectedOption,
   loading,
   onChangeSelectedOption,
@@ -19,6 +21,14 @@ export const SelectOptions: React.FC<selectOptionProps> = ({
 }) => {
   return (
     <div className='flex flex-col w-full mb-4'>
+      {label && (
+        <p
+          className={`${
+            error ? "text-[crimson]" : "text-black"
+          } text-[15px] mb-2 font-medium`}>
+          {label}
+        </p>
+      )}
       <select
         className='block w-full py-3 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500'
         onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>

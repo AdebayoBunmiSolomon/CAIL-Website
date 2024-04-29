@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
-import { SelectOptions, TextInput } from "../../components";
+import { FormTitle, SelectOptions, TextInput } from "../../../components";
 import {
   gender,
   identificationType,
   nigerianStates,
   title,
-} from "../../assets/data/formOptionsData";
-import { useMotorForm } from "../../hooks/store/motor/useMotorForm";
-import { convertToDateTimeISO } from "../../helper/helper";
-import { FileInput } from "../../components/shared/FileInput";
+} from "../../../assets/data/formOptionsData";
+import { useMotorForm } from "../../../hooks/store/motor/useMotorForm";
+import { convertToDateTimeISO } from "../../../helper/helper";
+import { FileInput } from "../../../components/shared/FileInput";
 
 type personalInfoType = {
   useFormProps: any;
@@ -33,6 +33,7 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
   return (
     <div className='flex justify-center items-center'>
       <div className='w-[95%] bg-white rounded-md self-center p-6'>
+        <FormTitle title='Motor Vehicle Insurance' />
         <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
           <Controller
             control={props?.control}

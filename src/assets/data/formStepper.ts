@@ -3,3 +3,43 @@ export const motorVehicleFormSteps = [
   { label: "Car Details" },
   { label: "Summary" },
 ];
+
+export const machineryFormSteps = [{ label: "Step 1" }, { label: "Step 2" }];
+
+export const buildersLiabilitySteps = [
+  { label: "Step 1" },
+  { label: "Step 2" },
+];
+
+export const businessInterruptionSteps = [
+  { label: "Step 1" },
+  { label: "Step 2" },
+];
+
+export const burglarySteps = [{ label: "Step 1" }, { label: "Step 2" }];
+
+export const professionalIndemnitySteps = [
+  { label: "Step 1" },
+  { label: "Step 2" },
+];
+
+export const healthCareSteps = [
+  {
+    label: "Step 1",
+  },
+  {
+    label: "Step 2",
+  },
+];
+
+export const safetyPlusSteps = [
+  {
+    label: "Personal Information",
+  },
+  {
+    label: "Beneficiary Information",
+  },
+  {
+    label: "Summary",
+  },
+];

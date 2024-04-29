@@ -100,7 +100,7 @@ export interface sectionItemProps {
 export interface buttonProps {
   text?: string;
   className?: string;
-  onPress?: () => void;
+  onPress: () => void;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   disabled?: boolean;

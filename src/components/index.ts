@@ -9,6 +9,9 @@ export * from "./shared/Footer";
 export * from "./shared/Hero";
 export * from "./shared/Tab/Tab";
 export * from "./shared/SelectOptions";
+export * from "./shared/CheckBoxOptions";
+export * from "./shared/Thank-You";
+export * from "./shared/FormTitle";
 
 //landing page components
 export * from "./LandingPage/DownloadApp";

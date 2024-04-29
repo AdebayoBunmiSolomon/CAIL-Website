@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { PersonalInfo } from "./PersonalInfo";
-import { CarDetails } from "./CarDetails";
-import { Summary } from "./Summary";
-import { Button } from "../../components";
+import { PersonalInsurancePersonalInfo } from "./PersonalInfo";
+import { PersonalInsuranceCarDetails } from "./CarDetails";
+import { PersonalInsuranceSummary } from "./Summary";
+import { Button } from "../../../components";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import { Stepper } from "react-form-stepper";
-import { motorVehicleFormSteps } from "../../assets/data/formStepper";
+import { motorVehicleFormSteps } from "../../../assets/data/formStepper";
 import {
   carDetailsLookUpTypes,
   personalInformationLookUpTypes,
-} from "../../form/lookup";
+} from "../../../form-types/lookup";
 import { useForm } from "react-hook-form";
 import {
   carDetailsValidationSchema,
   personalInformationValidationSchema,
-} from "../../form/validationSchema";
-import { useFormStepper } from "../../hooks";
+} from "../../../form-types/validationSchema";
+import { useFormStepper } from "../../../hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { paymentsServices } from "../../api/services/payments/payments";
+import { paymentsServices } from "../../../api/services/payments/payments";
 
-export const MotorVehicle: React.FC<{}> = () => {
+export const PersonalInsuranceMotorStepper: React.FC<{}> = () => {
   const { activeStep, nextStep, prevStep } = useFormStepper(
     motorVehicleFormSteps
   );
@@ -71,7 +71,7 @@ export const MotorVehicle: React.FC<{}> = () => {
     switch (activeStep) {
       case 0:
         return (
-          <PersonalInfo
+          <PersonalInsurancePersonalInfo
             useFormProps={{
               control: personalControl,
               errors: personalErrors,
@@ -81,7 +81,7 @@ export const MotorVehicle: React.FC<{}> = () => {
         );
       case 1:
         return (
-          <CarDetails
+          <PersonalInsuranceCarDetails
             useFormProps={{
               control: carControl,
               errors: carErrors,
@@ -90,7 +90,7 @@ export const MotorVehicle: React.FC<{}> = () => {
           />
         );
       case 2:
-        return <Summary />;
+        return <PersonalInsuranceSummary />;
       default:
         return null;
     }

@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { createEnquiryTypes } from "../../form/Types";
+import { createEnquiryTypes } from "../../form-types/Types";
 import { TextInput } from "../shared/TextInput";
 import { Button } from "../shared/Button";
 import { GoArrowRight } from "react-icons/go";

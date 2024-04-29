@@ -17,7 +17,7 @@ export const TextInput: React.FC<inputProps> = ({
         {label && (
           <p
             className={`${
-              error ? "text-[crimson]" : "text-black"
+              error ? "text-black" : "text-black"
             } text-[15px] mb-2 font-medium`}>
             {label}
           </p>

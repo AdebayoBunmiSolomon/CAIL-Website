@@ -83,3 +83,41 @@ export const title = [
   "Pastor",
   "Rev",
 ];
+
+export const eventInvolvement = ["Organizer", "Manager", "Promoter", "Others"];
+
+export const eventType = [
+  "Conference",
+  "Festival",
+  "Sports",
+  "Religion",
+  "Political",
+  "Ceremony",
+  "Others",
+];
+
+export const eventLocation = [
+  "Indoors (Standard Structure)",
+  "Outdoors (Open air)",
+  "Under Canvass",
+  "Temporary Structure",
+  "Others",
+];
+
+export const noOfGuests = [
+  "<50",
+  "50-100",
+  "101-200",
+  "201-300",
+  "301-400",
+  "401-500",
+  ">500",
+];
+
+export const eventInsuranceCoverType = [
+  "Public Liability",
+  "Professional Indemnity",
+  "Event Equipment",
+  "Event Cancellation",
+  "Employee Accident Benefit",
+];

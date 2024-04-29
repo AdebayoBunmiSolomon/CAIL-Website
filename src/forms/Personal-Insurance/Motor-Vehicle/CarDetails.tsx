@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
-import { Button, SelectOptions, TextInput } from "../../components";
+import {
+  Button,
+  FormTitle,
+  SelectOptions,
+  TextInput,
+} from "../../../components";
 import {
   arrOfYears,
   bodyType,
@@ -8,20 +13,22 @@ import {
   paymentOptions,
   vehicleCategory,
   vehicleColor,
-} from "../../assets/data/formOptionsData";
+} from "../../../assets/data/formOptionsData";
 import {
   CalculateCostMotorService,
   VehicleMakeMotorService,
-} from "../../api/services/motor";
-import { useMotorForm } from "../../hooks/store/motor/useMotorForm";
-import { convertToDateTimeISO, formatAmount } from "../../helper/helper";
+} from "../../../api/services/motor";
+import { useMotorForm } from "../../../hooks/store/motor/useMotorForm";
+import { convertToDateTimeISO, formatAmount } from "../../../helper/helper";
 import { ToastContainer } from "react-toastify";
 
 type carDetailsType = {
   useFormProps: any;
 };
 
-export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
+export const PersonalInsuranceCarDetails: React.FC<carDetailsType> = ({
+  useFormProps,
+}) => {
   const props: any = useFormProps;
   const [selectedCoverType, setSelectedCoverType] = useState<string>(""); // helps to store selected vehicle type of the selected vehicle make.
   const { setMotorFormData, motorFormData } = useMotorForm(); // store to update form data
@@ -49,6 +56,7 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
       <ToastContainer />
       <div className='flex justify-center items-center'>
         <div className='w-[95%] bg-white rounded-md self-center p-6'>
+          <FormTitle title='Motor Vehicle Insurance' />
           <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
             <Controller
               control={props?.control}

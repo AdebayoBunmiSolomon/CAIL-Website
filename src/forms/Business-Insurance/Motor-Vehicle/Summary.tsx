@@ -1,7 +1,8 @@
 import React from "react";
-import { useCalcPremFromAPI, useMotorForm } from "../../hooks/store/motor";
-import { formatAmount } from "../../helper/helper";
+import { useCalcPremFromAPI, useMotorForm } from "../../../hooks/store/motor";
+import { formatAmount } from "../../../helper/helper";
 import { ToastContainer } from "react-toastify";
+import { FormTitle } from "../../../components";
 
 export const Summary: React.FC<{}> = () => {
   const { motorFormData } = useMotorForm();
@@ -12,6 +13,7 @@ export const Summary: React.FC<{}> = () => {
       <ToastContainer />
       <div className='flex justify-center items-center'>
         <div className='w-[95%] bg-white rounded-md self-center p-6'>
+          <FormTitle title='Motor Vehicle Summary' />
           <table className='min-w-full divide-y divide-gray-200'>
             <thead>
               <tr>

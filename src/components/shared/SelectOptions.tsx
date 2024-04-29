@@ -4,7 +4,7 @@ type selectOptionProps = {
   data?: any[];
   label?: string;
   placeholder?: string;
-  error: string;
+  error?: string;
   selectedOption: string;
   loading?: boolean;
   onChangeSelectedOption: (selectedOption: string) => void;
@@ -24,7 +24,7 @@ export const SelectOptions: React.FC<selectOptionProps> = ({
       {label && (
         <p
           className={`${
-            error ? "text-[crimson]" : "text-black"
+            error ? "text-black" : "text-black"
           } text-[15px] mb-2 font-medium`}>
           {label}
         </p>

@@ -1,0 +1,753 @@
+import * as yup from "yup";
+
+//motor-insurance
+export const personalInformationValidationSchema = yup.object().shape({
+  title: yup.string().required("title field is required"),
+  surname: yup.string().required("surname is required"),
+  first_name: yup.string().required("first name is required"),
+  email_address: yup
+    .string()
+    .required("email address is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  dob: yup
+    .string()
+    .required("DOB is required")
+    .test("minimumAge", "Must be at least 18 years old", (value) => {
+      const selectedDate = new Date(value);
+      const minAgeDate = new Date();
+      minAgeDate.setFullYear(minAgeDate.getFullYear() - 18);
+      return selectedDate <= minAgeDate;
+    }),
+  gender: yup.string().required("gender is required"),
+  occupation: yup.string().required("occupation is required"),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is requires"),
+  identification_type: yup.string().required("identification type is required"),
+  identification_number: yup
+    .string()
+    .required("identification number is required"),
+  file: yup.string().required("file not selected"),
+});
+export const carDetailsValidationSchema = yup.object().shape({
+  cover_type: yup.string().required("cover type is required"),
+  vehicle_category: yup.string().required("vehicle category is required"),
+  vehicle_value: yup
+    .string()
+    .required("vehicle value is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  payment_options: yup.string().required("payment options is required"),
+  vehicle_make: yup.string().required("vehicle make is required"),
+  vehicle_model: yup.string().required("vehicle model is required"),
+  registration_number: yup.string().required("registration number is required"),
+  chasis_number: yup.string().required("chasis number is required"),
+  engine_number: yup.string().required("engine number is required"),
+  year_of_make: yup.string().required("year of make is required"),
+  body_type: yup.string().required("body type is required"),
+  insurance_state_date: yup.string().required("insurance date is required"),
+  vehicle_color: yup.string().required("vehicle color is required"),
+  cost: yup.string().required("cost is required"),
+});
+
+//events-insurance
+export const eventsInsuranceValidationSchema = yup.object().shape({
+  first_name: yup.string().required("first name is required"),
+  surname: yup.string().required("surname is required"),
+  company_name: yup.string().required("company name is required"),
+  email: yup
+    .string()
+    .required("email address is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  sum_insured: yup
+    .string()
+    .required("cost is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  event_date: yup.string().required("event date is required"),
+  event_duration: yup
+    .string()
+    .required("event duration is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  event_involvement: yup.string().required("event involvement is required"),
+  event_type: yup.string().required("event type is required"),
+  event_location: yup.string().required("event location is required"),
+  no_of_guests: yup.string().required("no of guest is required"),
+  cover_type: yup
+    .array()
+    .of(yup.string().required("cover type is required"))
+    .required("Cover type is required"),
+});
+
+//machinery-breakdown
+export const machineryBreakdownValidationSchemaStep1 = yup.object().shape({
+  first_name: yup.string().required("first name is required"),
+  surname: yup.string().required("surname is required"),
+  company_name: yup.string().required("company name is required"),
+  email: yup
+    .string()
+    .required("email address is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  sum_insured: yup
+    .string()
+    .required("sum assured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  cover_type: yup.string().required("cover type is required"),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is required"),
+  id_type: yup.string().required("identification type is required"),
+  id_number: yup.string().required("identification number is required"),
+  means_of_id: yup.string().required("means of identification is required"),
+});
+
+export const machineryBreakdownValidationSchemaStep2 = yup.object().shape({
+  machine_category: yup.string().required("category is required"),
+  machine_value: yup
+    .string()
+    .required("value is is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  payment_option: yup.string().required("payment option is required"),
+  machine_maker: yup.string().required("maker is required"),
+  model_number: yup.string().required("model number is required"),
+  reg_number: yup.string().required("registration number is required"),
+  chasis_no: yup.string().required("chasis number is required"),
+  engine_no: yup.string().required("engine number is required"),
+  year_of_make: yup.string().required("year of make is required"),
+  body_type: yup.string().required("body type is required"),
+  insured_date: yup.string().required("insured date is required"),
+  machine_color: yup.string().required("color is required"),
+  cost: yup
+    .string()
+    .required("cost is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+});
+
+export const buildersLiabilityValidationSchema1 = yup.object().shape({
+  first_name: yup.string().required("first name is required"),
+  surname: yup.string().required("surname is required"),
+  company_name: yup.string().required("company name is required"),
+  email: yup
+    .string()
+    .required("email address is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  title: yup.string().required("title is required"),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is required"),
+  id_type: yup.string().required("identification type is required"),
+  id_number: yup.string().required("identification number is required"),
+  means_of_id: yup.string().required("means of id is required"),
+});
+
+export const buildersLiabilityValidationSchema2 = yup.object().shape({
+  payment_option: yup.string().required("payment option is required"),
+  year_of_make: yup.string().required("year of make is required"),
+  insured_date: yup.string().required("insured date is required"),
+  cost: yup
+    .string()
+    .required("cost is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  no_of_units: yup
+    .string()
+    .required("number of unit is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+});
+
+export const businessInterruptionValidationSchema1 = yup.object().shape({
+  first_name: yup.string().required("first name is required"),
+  surname: yup.string().required("surname is required"),
+  company_name: yup.string().required("company name is required"),
+  email: yup
+    .string()
+    .required("email address is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  cover_type: yup.string().required("cover type is required"),
+  title: yup.string().required("title is required"),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is required"),
+  means_of_id: yup.string().required("means of id is required"),
+  insured_date: yup.string().required("insured date is required"),
+});
+
+export const businessInterruptionValidationSchema2 = yup.object().shape({
+  cost: yup
+    .string()
+    .required("cost is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  no_of_units: yup
+    .string()
+    .required("number of unit is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+});
+
+export const burglaryValidationSchema1 = yup.object().shape({
+  title: yup.string().required("title is required"),
+  first_name: yup.string().required("first name is required"),
+  surname: yup.string().required("surname is required"),
+  house_type: yup.string().required("house type is required"),
+  email: yup
+    .string()
+    .required("email address is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  event_involvement: yup.string().required("event involvement is required"),
+  event_type: yup.string().required("event type is required"),
+  event_location: yup.string().required("event location is required"),
+  no_of_people: yup.string().required("number of people required"),
+  sum_insured: yup
+    .string()
+    .required("sum insured required")
+    .matches(/^[0-9]+$/, "invalid number format"),
+  event_date: yup.string().required("event date is required"),
+});
+
+export const burglaryValidationSchema2 = yup.object().shape({
+  cover_type: yup.string().required("cover type is required"),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is required"),
+});
+
+export const electronicEquipmentValidationSchema = yup.object().shape({
+  company_name: yup.string().required("company name is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  cover_type: yup.string().required("cover type is required"),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is required"),
+  id_type: yup.string().required("identification type is required"),
+  payment_option: yup.string().required("payment option is required"),
+  insured_date: yup.string().required("insured date is required"),
+  cost: yup
+    .string()
+    .required("cost is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+});
+
+export const moneyValidationSchema = yup.object().shape({
+  title: yup.string().required("title is required"),
+  first_name: yup.string().required("first name is required"),
+  surname: yup.string().required("first name is required"),
+  gender: yup.string().required("first name is required"),
+  dob: yup
+    .string()
+    .required("DOB is required")
+    .test("minimumAge", "Must be at least 18 years old", (value) => {
+      const selectedDate = new Date(value);
+      const minAgeDate = new Date();
+      minAgeDate.setFullYear(minAgeDate.getFullYear() - 18);
+      return selectedDate <= minAgeDate;
+    }),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  cover_type: yup.string().required("cover type is required"),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is required"),
+  id_type: yup.string().required("identification type is required"),
+  payment_option: yup.string().required("payment option is required"),
+});
+
+export const allRisksValidationSchema = yup.object().shape({
+  company_name: yup.string().required("company name is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number is required")
+    .matches(/^[0-9]{11}$/, "must be a number format"),
+  no_of_guests: yup.string().required("number of guests is required"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  cover_type: yup.string().required("cover type is required"),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is required"),
+});
+
+export const businessOwnersValidationSchema = yup.object().shape({
+  company_name: yup.string().required("company name is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  cover_type: yup.string().required("cover type is required"),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is required"),
+  payment_option: yup.string().required("payment option is required"),
+});
+
+export const boilerPressureValidationSchema = yup.object().shape({
+  company_name: yup.string().required("company name is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  event_involvement: yup.string().required("event involvement is required"),
+  event_type: yup.string().required("event type is required"),
+  event_location: yup.string().required("event location is required"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  cover_type: yup
+    .array()
+    .of(yup.string().required("cover type is required"))
+    .required("Cover type is required"),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is required"),
+  payment_option: yup.string().required("payment option is required"),
+});
+
+export const GITValidationSchema = yup.object().shape({
+  company_name: yup.string().required("company name is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  event_involvement: yup.string().required("event involvement is required"),
+  event_type: yup.string().required("event type is required"),
+  event_location: yup.string().required("event type is required"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  event_date: yup.string().required("event date is required"),
+  event_duration: yup
+    .string()
+    .required("event duration is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  cover_type: yup.string().required("cover type is required"),
+  state: yup.string().required("state is required"),
+  payment_option: yup.string().required("payment option is required"),
+});
+
+export const contractorsAllRiskValidationSchema = yup.object().shape({
+  first_name: yup.string().required("first name is required"),
+  surname: yup.string().required("surname is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  event_involvement: yup.string().required("event involvement is required"),
+  event_type: yup.string().required("event type is required"),
+  event_location: yup.string().required("event location is required"),
+  no_of_guests: yup.string().required("no of guests is required"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  payment_option: yup.string().required("payment option is required"),
+  event_date: yup.string().required("event date is required"),
+  event_duration: yup
+    .string()
+    .required("event duration is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  cover_type: yup.string().required("cover type is required"),
+});
+
+export const groupPersonalValidationSchema = yup.object().shape({
+  company_name: yup.string().required("company name is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  event_involvement: yup.string().required("event involvement is required"),
+  event_type: yup.string().required("event type is required"),
+  event_location: yup.string().required("event location is required"),
+  no_of_guests: yup.string().required("no of guests is required"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  event_date: yup.string().required("event date is required"),
+  event_duration: yup
+    .string()
+    .required("event duration is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is required"),
+  payment_option: yup.string().required("payment option is required"),
+});
+
+export const professionalIndemnityValidationSchema1 = yup.object().shape({
+  title: yup.string().required("title is required"),
+  first_name: yup.string().required("first name is required"),
+  surname: yup.string().required("surname is required"),
+  dob: yup
+    .string()
+    .required("DOB is required")
+    .test("minimumAge", "Must be at least 18 years old", (value) => {
+      const selectedDate = new Date(value);
+      const minAgeDate = new Date();
+      minAgeDate.setFullYear(minAgeDate.getFullYear() - 18);
+      return selectedDate <= minAgeDate;
+    }),
+  gender: yup.string().required("gender is required"),
+  occupation: yup.string().required("occupation is required"),
+  company_name: yup.string().required("company name is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is required"),
+});
+
+export const professionalIndemnityValidationSchema2 = yup.object().shape({
+  id_type: yup.string().required("identification type is required"),
+  id_number: yup.string().required("identification number is required"),
+  payment_option: yup.string().required("payment option required"),
+});
+
+export const publicLiabilityValidationSchema = yup.object().shape({
+  first_name: yup.string().required("first name is required"),
+  surname: yup.string().required("surname is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  insured_date: yup.string().required("insured start date is required"),
+  cover_type: yup.string().required("cover type is required"),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is required"),
+  id_type: yup.string().required("identification type is required"),
+  id_number: yup.string().required("identification number is required"),
+  payment_option: yup.string().required("payment option is required"),
+});
+
+export const marineCargoValidationSchema = yup.object().shape({
+  company_name: yup.string().required("company name is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  insured_date: yup.string().required("insured date is required"),
+  cover_type: yup.string().required("cover type is required"),
+  address: yup.string().required("company name is required"),
+  state: yup.string().required("state is required"),
+  payment_option: yup.string().required("payment option is required"),
+});
+
+export const marineHullValidationSchema = yup.object().shape({
+  company_name: yup.string().required("company name is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  insured_date: yup.string().required("insured date is required"),
+  cover_type: yup.string().required("cover type is required"),
+  address: yup.string().required("company name is required"),
+  state: yup.string().required("state is required"),
+  payment_option: yup.string().required("payment option is required"),
+});
+
+export const plantAllRiskValidationSchema = yup.object().shape({
+  company_name: yup.string().required("company name is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  insured_date: yup.string().required("insured date is required"),
+  cover_type: yup.string().required("cover type is required"),
+  address: yup.string().required("company name is required"),
+  state: yup.string().required("state is required"),
+  payment_option: yup.string().required("payment option is required"),
+});
+
+export const occupiersLiabilityValidationSchema = yup.object().shape({
+  title: yup.string().required("title is required"),
+  first_name: yup.string().required("first name is required"),
+  surname: yup.string().required("surname is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  event_involvement: yup.string().required("event involvement is required"),
+  event_type: yup.string().required("event type is required"),
+  event_location: yup.string().required("event location is required"),
+  event_duration: yup
+    .string()
+    .required("event duration is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  no_of_guests: yup.string().required("number of guests is required"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is required"),
+  payment_option: yup.string().required("payment option is required"),
+});
+
+export const healthCareValidationSchema1 = yup.object().shape({
+  title: yup.string().required("title is required"),
+  first_name: yup.string().required("first name is required"),
+  surname: yup.string().required("surname is required"),
+  gender: yup.string().required("gender is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  dob: yup
+    .string()
+    .required("date of birth is required")
+    .test("minimumAge", "Must be at least 18 years old", (value) => {
+      const selectedDate = new Date(value);
+      const minAgeDate = new Date();
+      minAgeDate.setFullYear(minAgeDate.getFullYear() - 18);
+      return selectedDate <= minAgeDate;
+    }),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is required"),
+  id_type: yup.string().required("identification type is required"),
+  id_number: yup.string().required("identification number is required"),
+  cover_type: yup.string().required("cover type is required"),
+});
+
+export const healthCareValidationSchema2 = yup.object().shape({
+  event_type: yup.string().required("event type is required"),
+  event_location: yup.string().required("event location is required"),
+  no_of_guests: yup.string().required("number of guests is required"),
+  sum_insured: yup
+    .string()
+    .required("sum insured is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+  payment_option: yup.string().required("payment option is required"),
+});
+
+export const safetyPlusValidationSchema1 = yup.object().shape({
+  title: yup.string().required("title is required"),
+  first_name: yup.string().required("first name is required"),
+  surname: yup.string().required("surname is required"),
+  dob: yup
+    .string()
+    .required("date of birth is required")
+    .test("minimumAge", "Must be at least 18 years old", (value) => {
+      const selectedDate = new Date(value);
+      const minAgeDate = new Date();
+      minAgeDate.setFullYear(minAgeDate.getFullYear() - 18);
+      return selectedDate <= minAgeDate;
+    }),
+  gender: yup.string().required("gender is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is required"),
+  occupation: yup.string().required("occupation is required"),
+  id_type: yup.string().required("identification type is required"),
+  id_number: yup.string().required("identification number is required"),
+  means_of_id: yup.string().required("means of identification is required"),
+});
+
+export const safetyPlusValidationSchema2 = yup.object().shape({
+  insured_date: yup.string().required("insured date is required"),
+  policy_period: yup.string().required("policy period is required"),
+  number_of_units: yup.string().required("number of units is required"),
+  premium: yup.string().required("premium is required"),
+  id_type: yup.string().required("identification type is required"),
+  id_number: yup.string().required("identification number is required"),
+  company_name: yup.string().required("company name is required"),
+  company_address: yup.string().required("company address is required"),
+  beneficiary_name: yup.string().required("beneficiary name is required"),
+  beneficiary_dob: yup.string().required("beneficiary dob is required"),
+  beneficiary_gender: yup
+    .string()
+    .required("beneficiary relationship is required"),
+  beneficiary_relationship: yup
+    .string()
+    .required("beneficiary relationship is required"),
+  means_of_id: yup.string().required("means of ID is required"),
+});

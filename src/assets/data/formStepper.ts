@@ -43,3 +43,15 @@ export const safetyPlusSteps = [
     label: "Summary",
   },
 ];
+
+export const homeShieldSteps = [
+  {
+    label: "Personal Information",
+  },
+  {
+    label: "Details",
+  },
+  {
+    label: "Summary (Finish)",
+  },
+];

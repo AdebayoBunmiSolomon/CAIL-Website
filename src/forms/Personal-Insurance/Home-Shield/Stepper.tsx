@@ -1,58 +1,46 @@
 import React from "react";
+import { HomeShieldSummary } from "./Summary";
 import { Button } from "../../../components";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import { Stepper } from "react-form-stepper";
-import { safetyPlusSteps } from "../../../assets/data/formStepper";
+import { homeShieldSteps } from "../../../assets/data/formStepper";
 import {
-  safetyPlusFormType1,
-  safetyPlusFormType2,
+  homeShieldFormType1,
+  homeShieldFormType2,
 } from "../../../form-types/lookup";
 import { useForm } from "react-hook-form";
 import {
-  safetyPlusValidationSchema1,
-  safetyPlusValidationSchema2,
+  homeShieldValidationSchema1,
+  homeShieldValidationSchema2,
 } from "../../../form-types/validationSchema";
 import { useFormStepper } from "../../../hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { SafetyPlusForm1 } from "./Form1";
-import { SafetyPlusForm2 } from "./Form2";
-import { SafetyPlusSummary } from "./Summary";
-import { CreateQuoteService } from "../../../api/services/safety-plus/CreateQuoteService";
+import { HomeShieldForm1 } from "./Form1";
+import { HomeShieldForm2 } from "./Form2";
+import { CreateQuoteService } from "../../../api/services/home-shield/CreateQuoteService";
 
-export const SafetyPlusStepper: React.FC<{}> = () => {
-  const { activeStep, nextStep, prevStep } = useFormStepper(safetyPlusSteps);
-  const { useCreateQuote, costLoading } = CreateQuoteService();
+export const HomeShieldStepper: React.FC<{}> = () => {
+  const { activeStep, nextStep, prevStep } = useFormStepper(homeShieldSteps);
+  const { useCreateQuote } = CreateQuoteService();
 
   const {
     control: stepOneControl,
     formState: { errors: stepOneErrors },
     trigger: stepOneTrigger,
     setValue: setStepOneValue,
-  } = useForm<safetyPlusFormType1>({
+  } = useForm<homeShieldFormType1>({
     mode: "onChange",
-    resolver: yupResolver(safetyPlusValidationSchema1),
+    resolver: yupResolver(homeShieldValidationSchema1),
   });
-
-  const getButtonLoadingState = () => {
-    if (activeStep !== 2) {
-      return "Next";
-    } else if (activeStep === 2) {
-      return "Buy Now";
-    } else if (costLoading.requestLoading === true) {
-      return "Loading";
-    } else if (costLoading.requestLoading === false) {
-      return "Continue";
-    }
-  };
 
   const {
     control: stepTwoControl,
     formState: { errors: stepTwoErrors },
     trigger: stepTwoTrigger,
-    setValue: setStepTwoValue,
-  } = useForm<safetyPlusFormType2>({
+    setValue: setStepTwoValues,
+  } = useForm<homeShieldFormType2>({
     mode: "onChange",
-    resolver: yupResolver(safetyPlusValidationSchema2),
+    resolver: yupResolver(homeShieldValidationSchema2),
   });
 
   const onSubmitNextStep = async () => {
@@ -75,7 +63,7 @@ export const SafetyPlusStepper: React.FC<{}> = () => {
     switch (activeStep) {
       case 0:
         return (
-          <SafetyPlusForm1
+          <HomeShieldForm1
             useFormProps={{
               control: stepOneControl,
               errors: stepOneErrors,
@@ -85,16 +73,16 @@ export const SafetyPlusStepper: React.FC<{}> = () => {
         );
       case 1:
         return (
-          <SafetyPlusForm2
+          <HomeShieldForm2
             useFormProps={{
               control: stepTwoControl,
               errors: stepTwoErrors,
-              setValues: setStepTwoValue,
+              setValues: setStepTwoValues,
             }}
           />
         );
       case 2:
-        return <SafetyPlusSummary />;
+        return <HomeShieldSummary />;
       default:
         return null;
     }
@@ -102,7 +90,7 @@ export const SafetyPlusStepper: React.FC<{}> = () => {
 
   return (
     <div className='pt-[200px] pb-20 px-20'>
-      <Stepper steps={safetyPlusSteps} activeStep={activeStep} />
+      <Stepper steps={homeShieldSteps} activeStep={activeStep} />
       {getActiveStepComponent()}
       <div className='flex items-center gap-5 justify-end pr-7 mt-5'>
         {activeStep > 0 && (
@@ -114,7 +102,7 @@ export const SafetyPlusStepper: React.FC<{}> = () => {
           />
         )}
         <Button
-          text={getButtonLoadingState()}
+          text={activeStep === 2 ? "Buy Now" : "Next"}
           onPress={onSubmitNextStep}
           className='py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-5 flex rounded-lg hover:bg-[#900000d7] hover:duration-700'
           rightIcon={<GoArrowRight size={25} />}

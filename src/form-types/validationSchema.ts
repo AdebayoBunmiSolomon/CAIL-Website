@@ -751,3 +751,49 @@ export const safetyPlusValidationSchema2 = yup.object().shape({
     .required("beneficiary relationship is required"),
   means_of_id: yup.string().required("means of ID is required"),
 });
+
+export const homeShieldValidationSchema1 = yup.object().shape({
+  title: yup.string().required("title is required"),
+  first_name: yup.string().required("first name is required"),
+  surname: yup.string().required("surname is required"),
+  dob: yup
+    .string()
+    .required("date of birth is required")
+    .test("minimumAge", "Must be at least 18 years old", (value) => {
+      const selectedDate = new Date(value);
+      const minAgeDate = new Date();
+      minAgeDate.setFullYear(minAgeDate.getFullYear() - 18);
+      return selectedDate <= minAgeDate;
+    }),
+  gender: yup.string().required("gender is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  address: yup.string().required("address is required"),
+  state: yup.string().required("state is required"),
+  occupation: yup.string().required("occupation is required"),
+  id_type: yup.string().required("identification type is required"),
+  id_number: yup.string().required("identification number is required"),
+  means_of_id: yup.string().required("means of identification is required"),
+});
+
+export const homeShieldValidationSchema2 = yup.object().shape({
+  insured_date: yup.string().required("insured date is required"),
+  policy_period: yup.string().required("policy period is required"),
+  no_of_units: yup.string().required("number of units is required"),
+  insured_property_address: yup
+    .string()
+    .required("property address is required"),
+  list_of_insured_property: yup
+    .string()
+    .required("list of insured property is required"),
+  premium: yup.string().required("premium is required"),
+});

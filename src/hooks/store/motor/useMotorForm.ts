@@ -1,7 +1,5 @@
 import { create } from "zustand";
 
-const currentDate = new Date();
-
 type motorFormType = {
   title: string;
   firstName: string;

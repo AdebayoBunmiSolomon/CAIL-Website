@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { PersonalInsurancePersonalInfo } from "./PersonalInfo";
 import { PersonalInsuranceCarDetails } from "./CarDetails";
 import { PersonalInsuranceSummary } from "./Summary";
@@ -18,17 +18,21 @@ import {
 import { useFormStepper } from "../../../hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { paymentsServices } from "../../../api/services/payments/payments";
+import { useCalcPremFromAPI, useMotorForm } from "../../../hooks/store/motor";
 
 export const PersonalInsuranceMotorStepper: React.FC<{}> = () => {
+  const { calculatedPremFromAPI } = useCalcPremFromAPI();
+  const { motorFormData } = useMotorForm();
   const { activeStep, nextStep, prevStep } = useFormStepper(
     motorVehicleFormSteps
   );
-  const { initializePaysStackPayment, onClose, onSuccess } = paymentsServices();
-  // const [formData, setFormData] = useState<any>({});
+  const { initializePaysStackPayment, onClose, onSuccess } = paymentsServices(
+    motorFormData.email,
+    calculatedPremFromAPI
+  );
 
   const {
     control: personalControl,
-    // handleSubmit: handlePersonalSubmit,
     formState: { errors: personalErrors },
     trigger: personalTrigger,
     setValue: setPersonalInfoValues,
@@ -39,7 +43,6 @@ export const PersonalInsuranceMotorStepper: React.FC<{}> = () => {
 
   const {
     control: carControl,
-    // handleSubmit: handleCarSubmit,
     formState: { errors: carErrors },
     trigger: carTrigger,
     setValue: setCarDetailsValues,
@@ -52,15 +55,12 @@ export const PersonalInsuranceMotorStepper: React.FC<{}> = () => {
     let isValid = false;
     if (activeStep === 0) {
       isValid = await personalTrigger();
-      // setIsValid(isValid);
       if (isValid) nextStep();
     } else if (activeStep === 1) {
       isValid = await carTrigger();
-      // setIsValid(isValid);
       if (isValid) nextStep();
     } else if (activeStep === 2) {
       isValid = true;
-      // setIsValid(isValid);
       if (isValid) {
         initializePaysStackPayment({ onSuccess, onClose });
       }

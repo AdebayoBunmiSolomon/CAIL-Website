@@ -1,18 +1,16 @@
 import React from "react";
-import { ToastContainer } from "react-toastify";
 import { FormTitle } from "../../../components";
-import { useSafetyPlusForm } from "../../../hooks/store/safety-plus/useSafetyPlusForm";
+import { useHomeShieldForm } from "../../../hooks/store/home-shield/useHomeShieldForm";
 import { formatAmount } from "../../../helper/helper";
 
-export const SafetyPlusSummary: React.FC<{}> = () => {
-  const { safetyPlusFormData } = useSafetyPlusForm();
+export const HomeShieldSummary: React.FC<{}> = () => {
+  const { homeShieldFormData, setHomeShieldFormData } = useHomeShieldForm();
   return (
     <>
-      <div>
-        <ToastContainer />
-        <div className='flex justify-center items-center'>
-          <div className='w-[95%] bg-white rounded-md self-center p-6'>
-            <FormTitle title='Safety Plus Summary' />
+      <div className='flex justify-center items-center'>
+        <div className='w-[95%] bg-white rounded-md self-center p-6'>
+          <FormTitle title='Home Shield Summary' />
+          <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
             <table className='min-w-full divide-y divide-gray-200'>
               <thead>
                 <tr>
@@ -32,9 +30,9 @@ export const SafetyPlusSummary: React.FC<{}> = () => {
                           Client Name
                         </div>
                         <div className='text-sm text-gray-500'>
-                          {safetyPlusFormData.surname +
+                          {homeShieldFormData.surname +
                             " " +
-                            safetyPlusFormData.first_name}
+                            homeShieldFormData.first_name}
                         </div>
                       </div>
                     </div>
@@ -48,12 +46,26 @@ export const SafetyPlusSummary: React.FC<{}> = () => {
                           Product Category
                         </div>
                         <div className='text-sm text-gray-500'>
-                          Safety Plus Insurance
+                          Home shield Insurance
                         </div>
                       </div>
                     </div>
                   </td>
                 </tr>
+                {/* <tr>
+                <td className='px-6 py-4 whitespace-nowrap'>
+                  <div className='flex items-center'>
+                    <div className='ml-4'>
+                      <div className='text-sm font-medium text-gray-900'>
+                        Product Name
+                      </div>
+                      <div className='text-sm text-gray-500'>
+                        Unknown
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr> */}
                 <tr>
                   <td className='px-6 py-4 whitespace-nowrap'>
                     <div className='flex items-center'>
@@ -62,7 +74,7 @@ export const SafetyPlusSummary: React.FC<{}> = () => {
                           Policy Frequency
                         </div>
                         <div className='text-sm text-gray-500'>
-                          {safetyPlusFormData.policy_period}
+                          {homeShieldFormData.policy_period}
                         </div>
                       </div>
                     </div>
@@ -76,7 +88,7 @@ export const SafetyPlusSummary: React.FC<{}> = () => {
                           Start Date
                         </div>
                         <div className='text-sm text-gray-500'>
-                          {safetyPlusFormData.insured_date}
+                          {homeShieldFormData.insured_date}
                         </div>
                       </div>
                     </div>
@@ -87,10 +99,10 @@ export const SafetyPlusSummary: React.FC<{}> = () => {
                     <div className='flex items-center'>
                       <div className='ml-4'>
                         <div className='text-sm font-medium text-gray-900'>
-                          Premium Value
+                          Vehicle Value
                         </div>
                         <div className='text-sm text-gray-500'>
-                          {formatAmount(Number(safetyPlusFormData.premium))}
+                          {formatAmount(Number(homeShieldFormData.premium))}
                         </div>
                       </div>
                     </div>
@@ -104,7 +116,7 @@ export const SafetyPlusSummary: React.FC<{}> = () => {
                           Premium Amount
                         </div>
                         <div className='text-sm text-gray-500'>
-                          {formatAmount(Number(safetyPlusFormData.premium))}
+                          {formatAmount(Number(homeShieldFormData.premium))}
                         </div>
                       </div>
                     </div>

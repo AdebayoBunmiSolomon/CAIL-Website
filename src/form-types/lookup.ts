@@ -183,7 +183,7 @@ export type safetyPlusFormType1 = {
   occupation: string;
   id_type: string;
   id_number: string;
-  means_of_id: string; //file
+  means_of_id: any; //file
 };
 
 export type safetyPlusFormType2 = {
@@ -199,5 +199,30 @@ export type safetyPlusFormType2 = {
   beneficiary_dob: string;
   beneficiary_gender: string;
   beneficiary_relationship: string;
-  means_of_id: string; //file
+  means_of_id: any; //file
+};
+
+export type homeShieldFormType1 = {
+  title: string;
+  surname: string;
+  first_name: string;
+  dob: string;
+  gender: string;
+  email: string;
+  mobile_number: string;
+  address: string;
+  state: string;
+  occupation: string;
+  id_type: string;
+  id_number: string;
+  means_of_id: any;
+};
+
+export type homeShieldFormType2 = {
+  insured_date: string;
+  policy_period: string;
+  no_of_units: string;
+  insured_property_address: string;
+  list_of_insured_property: string;
+  premium: string;
 };

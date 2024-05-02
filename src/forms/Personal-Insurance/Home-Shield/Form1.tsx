@@ -7,35 +7,33 @@ import {
   nigerianStates,
   title,
 } from "../../../assets/data/formOptionsData";
+import { useHomeShieldForm } from "../../../hooks/store/home-shield/useHomeShieldForm";
 import { convertToDateTimeISO } from "../../../helper/helper";
 import { FileInput } from "../../../components/shared/FileInput";
-import { useSafetyPlusForm } from "../../../hooks/store/safety-plus/useSafetyPlusForm";
 
 type formProps = {
   useFormProps: any;
 };
 
-export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
+export const HomeShieldForm1: React.FC<formProps> = ({ useFormProps }) => {
   const props = useFormProps;
-  console.log(props);
-  const { safetyPlusFormData, setSafetyPlusFormData } = useSafetyPlusForm();
+  const { homeShieldFormData, setHomeShieldFormData } = useHomeShieldForm();
   const [fileName, setFileName] = useState<string>("");
 
   useEffect(() => {
     const updateValueOfFileInputToRemoveErrorMsg = () => {
       // if (!motorFormData.file) {
-      props?.setValues("means_of_id", safetyPlusFormData.means_of_id);
-      setFileName(safetyPlusFormData.means_of_id);
+      props?.setValues("means_of_id", homeShieldFormData.means_of_id);
+      setFileName(homeShieldFormData.means_of_id);
     };
     // };
     updateValueOfFileInputToRemoveErrorMsg();
-  }, [safetyPlusFormData.means_of_id, fileName]);
-
+  }, [homeShieldFormData.means_of_id, fileName]);
   return (
     <>
       <div className='flex justify-center items-center'>
         <div className='w-[95%] bg-white rounded-md self-center p-6'>
-          <FormTitle title='Safety Plus Insurance' />
+          <FormTitle title='Home Shield Insurance' />
           <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
             <Controller
               control={props?.control}
@@ -46,8 +44,8 @@ export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
                     field.onChange(text);
-                    setSafetyPlusFormData({
-                      ...safetyPlusFormData,
+                    setHomeShieldFormData({
+                      ...homeShieldFormData,
                       title: text,
                     });
                   }}
@@ -70,8 +68,8 @@ export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
-                    setSafetyPlusFormData({
-                      ...safetyPlusFormData,
+                    setHomeShieldFormData({
+                      ...homeShieldFormData,
                       surname: event.target.value,
                     });
                   }}
@@ -91,8 +89,8 @@ export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
-                    setSafetyPlusFormData({
-                      ...safetyPlusFormData,
+                    setHomeShieldFormData({
+                      ...homeShieldFormData,
                       first_name: event.target.value,
                     });
                   }}
@@ -115,8 +113,8 @@ export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
                   onChange={(event) => {
                     const date = convertToDateTimeISO(event.target.value);
                     field.onChange(event.target.value);
-                    setSafetyPlusFormData({
-                      ...safetyPlusFormData,
+                    setHomeShieldFormData({
+                      ...homeShieldFormData,
                       dob: date,
                     });
                   }}
@@ -136,8 +134,8 @@ export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
                     field.onChange(text);
-                    setSafetyPlusFormData({
-                      ...safetyPlusFormData,
+                    setHomeShieldFormData({
+                      ...homeShieldFormData,
                       gender: text,
                     });
                   }}
@@ -161,8 +159,8 @@ export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
-                    setSafetyPlusFormData({
-                      ...safetyPlusFormData,
+                    setHomeShieldFormData({
+                      ...homeShieldFormData,
                       email: event.target.value,
                     });
                   }}
@@ -173,6 +171,7 @@ export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
               defaultValue=''
             />
           </div>
+
           <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
             <Controller
               control={props?.control}
@@ -183,8 +182,8 @@ export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
-                    setSafetyPlusFormData({
-                      ...safetyPlusFormData,
+                    setHomeShieldFormData({
+                      ...homeShieldFormData,
                       mobile_number: event.target.value,
                     });
                   }}
@@ -204,8 +203,8 @@ export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
-                    setSafetyPlusFormData({
-                      ...safetyPlusFormData,
+                    setHomeShieldFormData({
+                      ...homeShieldFormData,
                       address: event.target.value,
                     });
                   }}
@@ -225,8 +224,8 @@ export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
                     field.onChange(text);
-                    setSafetyPlusFormData({
-                      ...safetyPlusFormData,
+                    setHomeShieldFormData({
+                      ...homeShieldFormData,
                       state: text,
                     });
                   }}
@@ -250,8 +249,8 @@ export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
-                    setSafetyPlusFormData({
-                      ...safetyPlusFormData,
+                    setHomeShieldFormData({
+                      ...homeShieldFormData,
                       occupation: event.target.value,
                     });
                   }}
@@ -271,8 +270,8 @@ export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
                     field.onChange(text);
-                    setSafetyPlusFormData({
-                      ...safetyPlusFormData,
+                    setHomeShieldFormData({
+                      ...homeShieldFormData,
                       id_type: text,
                     });
                   }}
@@ -295,8 +294,8 @@ export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
-                    setSafetyPlusFormData({
-                      ...safetyPlusFormData,
+                    setHomeShieldFormData({
+                      ...homeShieldFormData,
                       id_number: event.target.value,
                     });
                   }}
@@ -320,8 +319,8 @@ export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
                     if (target) {
                       const selectedFile = target.files?.[0];
                       console.log(selectedFile);
-                      setSafetyPlusFormData({
-                        ...safetyPlusFormData,
+                      setHomeShieldFormData({
+                        ...homeShieldFormData,
                         means_of_id: selectedFile,
                       });
                     }

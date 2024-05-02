@@ -1,61 +1,56 @@
 import { useState } from "react";
 import { PostRequest } from "../../requests";
+import { useSafetyPlusForm } from "../../../hooks/store/safety-plus/useSafetyPlusForm";
 import { endpoints } from "../../enpoints";
-import { useMotorForm } from "../../../hooks/store/motor/useMotorForm";
-import { useCalcPremFromAPI } from "../../../hooks/store/motor";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { paymentsServices } from "../payments/payments";
 
 type costLoadingType = {
   btnDisabled: boolean;
   requestLoading: boolean;
 };
 
-export const CalculateCostMotorService = () => {
+export const CreateQuoteService = () => {
+  const { safetyPlusFormData } = useSafetyPlusForm();
   const [costLoading, setCostLoading] = useState<costLoadingType>({
-    btnDisabled: false,
-    requestLoading: false,
+    btnDisabled: true,
+    requestLoading: true,
   });
-  const { motorFormData } = useMotorForm();
-  const { calculatedPremFromAPI, setCalculatedPremFromAPI } =
-    useCalcPremFromAPI();
+  const { initializePaysStackPayment, onClose, onSuccess } = paymentsServices(
+    safetyPlusFormData.email,
+    safetyPlusFormData.premium
+  );
 
-  const toCalculateCostFormData = {
-    firstName: motorFormData.surName,
-    lastName: motorFormData.firstName,
-    email: motorFormData.email,
-    phoneNumber: motorFormData.phoneNumber,
-    address: motorFormData.address,
+  const formData = {
+    firstName: safetyPlusFormData.first_name,
+    lastName: safetyPlusFormData.surname,
+    email: safetyPlusFormData.email,
+    phoneNumber: safetyPlusFormData.mobile_number,
+    address: safetyPlusFormData.address,
     branch: "HO",
     businessSector: 4,
-    birthDate: motorFormData.birthDate,
-    sumInsured: motorFormData.vehicleValue,
-    coverType: motorFormData.coverTypeId,
+    birthDate: safetyPlusFormData.dob,
+    sumInsured: safetyPlusFormData.premium,
+    coverType: "1",
     insuredType: "B",
     subClass: "61",
-    startDate: motorFormData.startDate,
-    endDate: motorFormData.startDate,
-    motorPremium: {
-      typeOfUsage: motorFormData.vehicleCategory,
-      vehicleValue: motorFormData.vehicleValue,
-      premRate: 5,
-      tracking: false,
-      srcc: false,
-      flood: false,
-      excess: false,
+    startDate: safetyPlusFormData.insured_date,
+    endDate: safetyPlusFormData.insured_date,
+    safetyPlusPremium: {
+      units: Number(safetyPlusFormData.number_of_units),
     },
   };
 
-  const useCalculateCost = async () => {
+  const useCreateQuote = async () => {
     setCostLoading({
       ...costLoading,
       btnDisabled: true,
       requestLoading: true,
     });
-    console.log(toCalculateCostFormData);
-    const { data, status } = await PostRequest(
-      `${endpoints.calculateQuote}`,
-      toCalculateCostFormData,
+    console.log(formData);
+    const { data } = await PostRequest(
+      `${endpoints.safetyPlusQuote}`,
+      formData,
       {}
     );
     setCostLoading({
@@ -66,7 +61,6 @@ export const CalculateCostMotorService = () => {
     try {
       if (data.statusCode === 200) {
         console.log("Form data submitted successfully");
-        setCalculatedPremFromAPI(data.data.premium);
         setCostLoading({
           ...costLoading,
           btnDisabled: false,
@@ -78,6 +72,7 @@ export const CalculateCostMotorService = () => {
         });
       } else {
         console.log("Error submitting data");
+        initializePaysStackPayment({ onSuccess, onClose });
         setCostLoading({
           ...costLoading,
           btnDisabled: false,
@@ -87,7 +82,6 @@ export const CalculateCostMotorService = () => {
           type: "error",
           theme: "colored",
         });
-        setCalculatedPremFromAPI("");
       }
       // }
     } catch (err) {
@@ -101,8 +95,7 @@ export const CalculateCostMotorService = () => {
   };
 
   return {
+    useCreateQuote,
     costLoading,
-    useCalculateCost,
-    calculatedPremFromAPI,
   };
 };

@@ -121,3 +121,5 @@ export const eventInsuranceCoverType = [
   "Event Cancellation",
   "Employee Accident Benefit",
 ];
+
+export const policyPeriod = ["1", "2"];

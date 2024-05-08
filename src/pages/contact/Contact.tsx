@@ -16,7 +16,7 @@ export const ContactUs: React.FC<{}> = () => {
           <ContactForm />
         </div>
         <div className='w-[100%] md:w-[100%] lg:w-[40%]'>
-          <div className=' mt-[80px] p-[25px] flex flex-col gap-[25px] bg-[#F5F5F5] h-fit w-fit border-[4px] border-[#e5e5e5] rounded-[14px]'>
+          <div className='p-[25px] flex flex-col gap-[25px] bg-[#F5F5F5] h-fit w-fit border-[4px] border-[#e5e5e5] rounded-[14px]'>
             <div>
               <h1 className='font-semibold text-lg'>The Office</h1>
               <p className='text-sm'>

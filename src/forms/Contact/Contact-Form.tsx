@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { createEnquiryTypes } from "../../form-types/Types";
 import { TextInput } from "../../components/shared/TextInput";
@@ -10,9 +10,13 @@ import { CallBackForm, ContactMessage } from "../../components";
 export const ContactForm: React.FC<{}> = () => {
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const [callBckForm, setCallBackForm] = useState<boolean>(false);
+  const [policyHolderChecked, setPolicyHolderChecked] =
+    useState<boolean>(false);
   const {
     control,
     handleSubmit,
+    setValue,
+    getValues,
     formState: { errors },
   } = useForm<createEnquiryTypes>({ mode: "onChange" });
 
@@ -20,6 +24,14 @@ export const ContactForm: React.FC<{}> = () => {
     console.log(data);
     setShowMessage(!showMessage);
   };
+
+  useEffect(() => {
+    if (!policyHolderChecked) {
+      setValue("policy_number", "NIL");
+    } else {
+      setValue("policy_number", "");
+    }
+  }, [policyHolderChecked]);
 
   return (
     <>
@@ -72,26 +84,70 @@ export const ContactForm: React.FC<{}> = () => {
           defaultValue=''
         />
       </div>
-      <Controller
-        control={control}
-        render={({ field }) => (
-          <TextInput
-            placeHolder='Subject'
-            value={field.value}
-            onChange={(event) => field.onChange(event.target.value)}
-            error={errors.subject?.message}
-            type='text'
+      <div className='flex flex-col md:flex-col lg:flex-row justify-between items-center gap-3 w-[100%]'>
+        <Controller
+          control={control}
+          render={({ field }) => (
+            <TextInput
+              placeHolder='Subject'
+              value={field.value}
+              onChange={(event) => field.onChange(event.target.value)}
+              error={errors.subject?.message}
+              type='text'
+            />
+          )}
+          rules={{
+            required: {
+              value: true,
+              message: "Subject is required",
+            },
+          }}
+          name='subject'
+          defaultValue=''
+        />
+      </div>
+      <div className='flex flex-col gap-2'>
+        <div className='flex items-center'>
+          <input
+            type='checkbox'
+            id='policyHolder'
+            name='policyHolder'
+            className='h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded'
+            checked={policyHolderChecked}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setPolicyHolderChecked(event.target.checked)
+            }
           />
-        )}
-        rules={{
-          required: {
-            value: true,
-            message: "Subject is required",
-          },
-        }}
-        name='subject'
-        defaultValue=''
-      />
+          <label
+            htmlFor='policyHolder'
+            className='ml-2 block text-sm text-gray-900'>
+            Are you a policy holder
+          </label>
+        </div>
+        <div>
+          <Controller
+            control={control}
+            render={({ field }) => (
+              <TextInput
+                placeHolder=''
+                value={field.value}
+                onChange={(event) => field.onChange(event.target.value)}
+                error={errors.policy_number?.message}
+                type='text'
+                disabled={!policyHolderChecked ? true : false}
+              />
+            )}
+            rules={{
+              required: {
+                value: true,
+                message: "Policy number is required",
+              },
+            }}
+            name='policy_number'
+            defaultValue=''
+          />
+        </div>
+      </div>
       <Controller
         control={control}
         render={({ field }) => (

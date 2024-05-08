@@ -3,6 +3,7 @@ export type createEnquiryTypes = {
   email: string;
   subject: string;
   message: string;
+  policy_number: string;
 };
 
 export type motorVehicleFormTypes = {

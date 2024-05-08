@@ -98,7 +98,7 @@ export interface sectionItemProps {
 }
 
 export interface buttonProps {
-  text?: string;
+  text?: any;
   className?: string;
   onPress: () => void;
   leftIcon?: React.ReactNode;

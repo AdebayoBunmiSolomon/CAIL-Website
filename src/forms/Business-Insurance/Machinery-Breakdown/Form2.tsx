@@ -9,6 +9,7 @@ import {
   vehicleColor,
 } from "../../../assets/data/formOptionsData";
 import { convertToDateTimeISO } from "../../../helper/helper";
+import { useMachineryBreakdownForm } from "../../../hooks/store/machinery-breakdown/useMachineryBreakdownForm";
 
 type formProps = {
   useFormProps: any;
@@ -17,6 +18,8 @@ type formProps = {
 export const MachineryBreakdownForm2: React.FC<formProps> = ({
   useFormProps,
 }) => {
+  const { machineryBreakdownFormData, setMachineryBreakDownFormData } =
+    useMachineryBreakdownForm();
   const props = useFormProps;
   return (
     <>
@@ -34,6 +37,10 @@ export const MachineryBreakdownForm2: React.FC<formProps> = ({
                   onChangeSelectedOption={(text) => {
                     if (text !== "Select machine category") {
                       field.onChange(text);
+                      setMachineryBreakDownFormData({
+                        ...machineryBreakdownFormData,
+                        machine_category: text,
+                      });
                     }
                   }}
                   placeholder='Select machine category'
@@ -53,6 +60,10 @@ export const MachineryBreakdownForm2: React.FC<formProps> = ({
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      machine_value: event.target.value,
+                    });
                   }}
                   error={props?.errors?.machine_value?.message}
                 />
@@ -70,6 +81,10 @@ export const MachineryBreakdownForm2: React.FC<formProps> = ({
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
                     field.onChange(text);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      payment_option: text,
+                    });
                   }}
                   placeholder='Select payment options'
                   error={props?.errors?.payment_option?.message}
@@ -91,6 +106,10 @@ export const MachineryBreakdownForm2: React.FC<formProps> = ({
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      machine_maker: event.target.value,
+                    });
                   }}
                   error={props?.errors?.machine_maker?.message}
                 />
@@ -107,6 +126,10 @@ export const MachineryBreakdownForm2: React.FC<formProps> = ({
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      mobile_number: event.target.value,
+                    });
                   }}
                   error={props?.errors?.model_number?.message}
                 />
@@ -124,6 +147,10 @@ export const MachineryBreakdownForm2: React.FC<formProps> = ({
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      reg_number: event.target.value,
+                    });
                   }}
                   error={props?.errors?.reg_number?.message}
                 />
@@ -144,6 +171,10 @@ export const MachineryBreakdownForm2: React.FC<formProps> = ({
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      chasis_no: event.target.value,
+                    });
                   }}
                   error={props?.errors?.chasis_no?.message}
                 />
@@ -160,6 +191,10 @@ export const MachineryBreakdownForm2: React.FC<formProps> = ({
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      engine_no: event.target.value,
+                    });
                   }}
                   error={props?.errors?.engine_no?.message}
                 />
@@ -177,6 +212,10 @@ export const MachineryBreakdownForm2: React.FC<formProps> = ({
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
                     field.onChange(text);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      year_of_make: text,
+                    });
                   }}
                   placeholder='Select year'
                   error={props?.errors?.year_of_make?.message}
@@ -197,6 +236,10 @@ export const MachineryBreakdownForm2: React.FC<formProps> = ({
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
                     field.onChange(text);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      body_type: text,
+                    });
                   }}
                   placeholder='Select body type'
                   error={
@@ -219,6 +262,10 @@ export const MachineryBreakdownForm2: React.FC<formProps> = ({
                   onChange={(event) => {
                     const startDate = convertToDateTimeISO(event.target.value);
                     field.onChange(event.target.value);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      insured_date: startDate,
+                    });
                   }}
                   error={props?.errors?.insured_date?.message}
                 />
@@ -236,6 +283,10 @@ export const MachineryBreakdownForm2: React.FC<formProps> = ({
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
                     field.onChange(text);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      machine_color: text,
+                    });
                   }}
                   placeholder='Vehicle Color'
                   error={
@@ -259,6 +310,10 @@ export const MachineryBreakdownForm2: React.FC<formProps> = ({
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      cost: event.target.value,
+                    });
                   }}
                   error={props?.errors?.cost?.message}
                 />

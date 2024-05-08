@@ -8,8 +8,8 @@ export const enum formRoutes {
   motor_vehicle = "/products/forms/motor-vehicle",
   custodian_travel = "", // /products/forms/custodian-travel
   marine_boat = "", // /products/forms/marine-boat
-  home_shield = "", // /products/forms/home-shield
-  personal_accident = "", // /products/forms/personal-accident
+  home_shield = "/products/forms/home-shield",
+  personal_accident = "/products/forms/personal-accident",
   home_owners = "", // /products/forms/home-owners
   safety_plus = "/products/forms/safety_plus",
   machinery_breakdown = "/products/forms/machinery-breakdown",

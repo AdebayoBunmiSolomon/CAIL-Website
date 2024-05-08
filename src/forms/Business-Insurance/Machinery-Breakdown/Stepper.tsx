@@ -17,6 +17,7 @@ import { Stepper } from "react-form-stepper";
 import { Button } from "../../../components";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { MachineryBreakdownSummary } from "./Summary";
 
 export const MachineryStepper: React.FC<{}> = () => {
   const { activeStep, nextStep, prevStep } = useFormStepper(machineryFormSteps);
@@ -51,8 +52,10 @@ export const MachineryStepper: React.FC<{}> = () => {
       if (isValid) nextStep();
     } else if (activeStep === 1) {
       isValid = await stepTwoTrigger();
+      if (isValid) nextStep();
+    } else if (activeStep === 2) {
+      isValid = true;
       if (isValid) {
-        console.log("all forms filled");
         navigate("/thank-you");
       }
     }
@@ -80,6 +83,8 @@ export const MachineryStepper: React.FC<{}> = () => {
             }}
           />
         );
+      case 2:
+        return <MachineryBreakdownSummary />;
       default:
         return null;
     }

@@ -6,6 +6,7 @@ import {
   identificationType,
   nigerianStates,
 } from "../../../assets/data/formOptionsData";
+import { useMachineryBreakdownForm } from "../../../hooks/store/machinery-breakdown/useMachineryBreakdownForm";
 
 type formProps = {
   useFormProps: any;
@@ -14,6 +15,8 @@ type formProps = {
 export const MachineryBreakdownForm1: React.FC<formProps> = ({
   useFormProps,
 }) => {
+  const { machineryBreakdownFormData, setMachineryBreakDownFormData } =
+    useMachineryBreakdownForm();
   const props = useFormProps;
   return (
     <>
@@ -28,7 +31,13 @@ export const MachineryBreakdownForm1: React.FC<formProps> = ({
                   label='First name'
                   placeHolder='Enter first name'
                   value={field.value}
-                  onChange={(text) => field.onChange(text)}
+                  onChange={(event) => {
+                    field.onChange(event.target.value);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      first_name: event.target.value,
+                    });
+                  }}
                   error={props?.errors?.first_name?.message}
                 />
               )}
@@ -43,7 +52,13 @@ export const MachineryBreakdownForm1: React.FC<formProps> = ({
                   label='Surname'
                   placeHolder='Enter surname'
                   value={field.value}
-                  onChange={(text) => field.onChange(text)}
+                  onChange={(event) => {
+                    field.onChange(event);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      surname: event.target.value,
+                    });
+                  }}
                   error={props?.errors?.surname?.message}
                 />
               )}
@@ -58,7 +73,13 @@ export const MachineryBreakdownForm1: React.FC<formProps> = ({
                   label='Company name'
                   placeHolder='Enter company name'
                   value={field.value}
-                  onChange={(text) => field.onChange(text)}
+                  onChange={(event) => {
+                    field.onChange(event);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      company_name: event.target.value,
+                    });
+                  }}
                   error={props?.errors?.company_name?.message}
                 />
               )}
@@ -76,7 +97,13 @@ export const MachineryBreakdownForm1: React.FC<formProps> = ({
                   type='email'
                   placeHolder='Enter email'
                   value={field.value}
-                  onChange={(text) => field.onChange(text)}
+                  onChange={(event) => {
+                    field.onChange(event);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      email: event.target.value,
+                    });
+                  }}
                   error={props?.errors?.email?.message}
                 />
               )}
@@ -91,7 +118,13 @@ export const MachineryBreakdownForm1: React.FC<formProps> = ({
                   label='Mobile number'
                   placeHolder='000 0000 0000'
                   value={field.value}
-                  onChange={(text) => field.onChange(text)}
+                  onChange={(event) => {
+                    field.onChange(event);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      mobile_number: event.target.value,
+                    });
+                  }}
                   error={props?.errors?.mobile_number?.message}
                 />
               )}
@@ -106,7 +139,13 @@ export const MachineryBreakdownForm1: React.FC<formProps> = ({
                   label='Sum insured'
                   placeHolder='Enter sum insured'
                   value={field.value}
-                  onChange={(text) => field.onChange(text)}
+                  onChange={(event) => {
+                    field.onChange(event);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      sum_insured: event.target.value,
+                    });
+                  }}
                   error={props?.errors?.sum_insured?.message}
                 />
               )}
@@ -125,6 +164,10 @@ export const MachineryBreakdownForm1: React.FC<formProps> = ({
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
                     field.onChange(text);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      cover_type: text,
+                    });
                   }}
                   placeholder='Select cover type'
                   error={props?.errors?.cover_type?.message}
@@ -141,7 +184,13 @@ export const MachineryBreakdownForm1: React.FC<formProps> = ({
                   label='Address'
                   placeHolder='enter address'
                   value={field.value}
-                  onChange={(text) => field.onChange(text)}
+                  onChange={(event) => {
+                    field.onChange(event);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      address: event.target.value,
+                    });
+                  }}
                   error={props?.errors?.address?.message}
                 />
               )}
@@ -158,6 +207,10 @@ export const MachineryBreakdownForm1: React.FC<formProps> = ({
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
                     field.onChange(text);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      state: text,
+                    });
                   }}
                   placeholder='Select State'
                   error={
@@ -179,6 +232,10 @@ export const MachineryBreakdownForm1: React.FC<formProps> = ({
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
                     field.onChange(text);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      id_type: text,
+                    });
                   }}
                   placeholder='Select identification type'
                   error={
@@ -197,7 +254,13 @@ export const MachineryBreakdownForm1: React.FC<formProps> = ({
                   label='Identification number'
                   placeHolder='000 0000 0000'
                   value={field.value}
-                  onChange={(text) => field.onChange(text)}
+                  onChange={(event) => {
+                    field.onChange(event);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      id_number: event.target.value,
+                    });
+                  }}
                   error={props?.errors?.id_number?.message}
                 />
               )}
@@ -212,7 +275,13 @@ export const MachineryBreakdownForm1: React.FC<formProps> = ({
                   label='Means of Id'
                   placeHolder='enter means of id'
                   value={field.value}
-                  onChange={(text) => field.onChange(text)}
+                  onChange={(event) => {
+                    field.onChange(event);
+                    setMachineryBreakDownFormData({
+                      ...machineryBreakdownFormData,
+                      means_of_id: event.target.value,
+                    });
+                  }}
                   error={props?.errors?.means_of_id?.message}
                 />
               )}

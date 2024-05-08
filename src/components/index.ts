@@ -37,5 +37,7 @@ export * from "./Resources/Financials";
 export * from "./Resources/Downloads";
 
 //Contact-us components
-export * from "./Contact/Contact-Form";
-export * from "./Contact/Contact-Offices";
+export * from "../forms/Contact/Contact-Form";
+export * from "../forms/Contact/Contact-Offices";
+export * from "./Contact/Message";
+export * from "./Contact/CallBack-Form";

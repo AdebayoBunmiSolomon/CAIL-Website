@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { createEnquiryTypes } from "../../form-types/Types";
-import { TextInput } from "../shared/TextInput";
-import { Button } from "../shared/Button";
+import { TextInput } from "../../components/shared/TextInput";
+import { Button } from "../../components/shared/Button";
 import { GoArrowRight } from "react-icons/go";
 import { FaPhoneVolume } from "react-icons/fa6";
+import { CallBackForm, ContactMessage } from "../../components";
 
 export const ContactForm: React.FC<{}> = () => {
+  const [showMessage, setShowMessage] = useState<boolean>(false);
+  const [callBckForm, setCallBackForm] = useState<boolean>(false);
   const {
     control,
     handleSubmit,
@@ -15,6 +18,7 @@ export const ContactForm: React.FC<{}> = () => {
 
   const onSubmit = (data: createEnquiryTypes) => {
     console.log(data);
+    setShowMessage(!showMessage);
   };
 
   return (
@@ -118,11 +122,19 @@ export const ContactForm: React.FC<{}> = () => {
         />
         <Button
           text='Request call-back'
-          onPress={() => console.log("Request call back")}
+          onPress={() => setCallBackForm(!callBckForm)}
           className='py-[4px] md:py-[7px] lg:py-[10px] text-[#900000] px-10 flex bg-[white] drop-shadow-xl'
           rightIcon={<FaPhoneVolume size={20} />}
         />
       </div>
+      <ContactMessage
+        showMessage={showMessage}
+        closeModal={(value) => setShowMessage(value)}
+      />
+      <CallBackForm
+        showCallBackFrm={callBckForm}
+        closeModal={(value) => setCallBackForm(value)}
+      />
     </>
   );
 };

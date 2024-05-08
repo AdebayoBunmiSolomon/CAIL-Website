@@ -18,10 +18,12 @@ import { SafetyPlusForm1 } from "./Form1";
 import { SafetyPlusForm2 } from "./Form2";
 import { SafetyPlusSummary } from "./Summary";
 import { CreateQuoteService } from "../../../api/services/safety-plus/CreateQuoteService";
+import { getButtonBtnState } from "../../../helper/helper";
 
 export const SafetyPlusStepper: React.FC<{}> = () => {
   const { activeStep, nextStep, prevStep } = useFormStepper(safetyPlusSteps);
-  const { useCreateQuote, costLoading } = CreateQuoteService();
+  const { useCreateQuote, loading } = CreateQuoteService();
+  const buttonState = getButtonBtnState(activeStep, 2);
 
   const {
     control: stepOneControl,
@@ -32,18 +34,6 @@ export const SafetyPlusStepper: React.FC<{}> = () => {
     mode: "onChange",
     resolver: yupResolver(safetyPlusValidationSchema1),
   });
-
-  const getButtonLoadingState = () => {
-    if (activeStep !== 2) {
-      return "Next";
-    } else if (activeStep === 2) {
-      return "Buy Now";
-    } else if (costLoading.requestLoading === true) {
-      return "Loading";
-    } else if (costLoading.requestLoading === false) {
-      return "Continue";
-    }
-  };
 
   const {
     control: stepTwoControl,
@@ -114,7 +104,7 @@ export const SafetyPlusStepper: React.FC<{}> = () => {
           />
         )}
         <Button
-          text={getButtonLoadingState()}
+          text={loading === true ? "Loading" : buttonState}
           onPress={onSubmitNextStep}
           className='py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-5 flex rounded-lg hover:bg-[#900000d7] hover:duration-700'
           rightIcon={<GoArrowRight size={25} />}

@@ -18,13 +18,18 @@ import {
 import { useFormStepper } from "../../../hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { paymentsServices } from "../../../api/services/payments/payments";
+import { useCalcPremFromAPI, useMotorForm } from "../../../hooks/store/motor";
 
 export const MotorStepper: React.FC<{}> = () => {
+  const { calculatedPremFromAPI } = useCalcPremFromAPI();
   const { activeStep, nextStep, prevStep } = useFormStepper(
     motorVehicleFormSteps
   );
-  const { initializePaysStackPayment, onClose, onSuccess } = paymentsServices();
-  // const [formData, setFormData] = useState<any>({});
+  const { motorFormData } = useMotorForm();
+  const { initializePaysStackPayment, onClose, onSuccess } = paymentsServices(
+    motorFormData.email,
+    calculatedPremFromAPI
+  );
 
   const {
     control: personalControl,

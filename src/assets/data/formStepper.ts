@@ -4,7 +4,11 @@ export const motorVehicleFormSteps = [
   { label: "Summary" },
 ];
 
-export const machineryFormSteps = [{ label: "Step 1" }, { label: "Step 2" }];
+export const machineryFormSteps = [
+  { label: "Step 1" },
+  { label: "Step 2" },
+  { label: "Summary" },
+];
 
 export const buildersLiabilitySteps = [
   { label: "Step 1" },

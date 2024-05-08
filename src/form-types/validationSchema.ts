@@ -797,3 +797,28 @@ export const homeShieldValidationSchema2 = yup.object().shape({
     .required("list of insured property is required"),
   premium: yup.string().required("premium is required"),
 });
+
+export const personalAccidentValidationSchema = yup.object().shape({
+  full_name: yup.string().required("full name is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  subject: yup.string().required("subject is required"),
+  message: yup.string().required("message is required"),
+});
+
+export const requestCallBackValidationSchema = yup.object().shape({
+  full_name: yup.string().required("full name is required"),
+  mobile_number: yup
+    .string()
+    .required("mobile number is required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+});

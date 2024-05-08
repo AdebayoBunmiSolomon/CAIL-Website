@@ -47,3 +47,18 @@ export const convertToDateTimeISO = (value: any) => {
   console.log(dateIso);
   return dateIso;
 };
+
+/**
+ *
+ * @returns "Next" or "Buy Now" from the form stepper
+ */
+export const getButtonBtnState = (
+  activeStepNumb: number,
+  lastActiveStepValue: number
+) => {
+  if (activeStepNumb !== lastActiveStepValue) {
+    return "Next";
+  } else if (activeStepNumb === lastActiveStepValue) {
+    return "Buy Now";
+  }
+};

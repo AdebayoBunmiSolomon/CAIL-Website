@@ -230,3 +230,16 @@ export type occupiersLiabilityFormType = {
   state: string;
   payment_option: string;
 };
+
+export type personalAccidentFormType = {
+  full_name: string;
+  email: string;
+  mobile_number: string;
+  subject: string;
+  message: string;
+};
+
+export type requestCallBackFormType = {
+  full_name: string;
+  mobile_number: string;
+};

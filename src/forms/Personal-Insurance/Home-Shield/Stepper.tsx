@@ -18,10 +18,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { HomeShieldForm1 } from "./Form1";
 import { HomeShieldForm2 } from "./Form2";
 import { CreateQuoteService } from "../../../api/services/home-shield/CreateQuoteService";
+import { getButtonBtnState } from "../../../helper/helper";
 
 export const HomeShieldStepper: React.FC<{}> = () => {
   const { activeStep, nextStep, prevStep } = useFormStepper(homeShieldSteps);
-  const { useCreateQuote } = CreateQuoteService();
+  const { useCreateQuote, loading } = CreateQuoteService();
+  const buttonState = getButtonBtnState(activeStep, 2);
 
   const {
     control: stepOneControl,
@@ -102,7 +104,7 @@ export const HomeShieldStepper: React.FC<{}> = () => {
           />
         )}
         <Button
-          text={activeStep === 2 ? "Buy Now" : "Next"}
+          text={loading ? "Loading..." : buttonState}
           onPress={onSubmitNextStep}
           className='py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-5 flex rounded-lg hover:bg-[#900000d7] hover:duration-700'
           rightIcon={<GoArrowRight size={25} />}

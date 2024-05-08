@@ -4,4 +4,5 @@ export const enum endpoints {
   calculateQuote = "/api/motor",
   safetyPlusQuote = "/api/motor/create-safetyplus-quote",
   homeShieldQuote = "/api/motor/create-homeshield-quote",
+  personalAccident = "https://apidev.custodianplc.com.ng/v3/crm/quotes",
 }

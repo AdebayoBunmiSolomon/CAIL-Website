@@ -5,17 +5,9 @@ import { toast } from "react-toastify";
 import { paymentsServices } from "../payments/payments";
 import { useHomeShieldForm } from "../../../hooks/store/home-shield/useHomeShieldForm";
 
-type costLoadingType = {
-  btnDisabled: boolean;
-  requestLoading: boolean;
-};
-
 export const CreateQuoteService = () => {
   const { homeShieldFormData } = useHomeShieldForm();
-  const [costLoading, setCostLoading] = useState<costLoadingType>({
-    btnDisabled: true,
-    requestLoading: true,
-  });
+  const [loading, setLoading] = useState<boolean>(false);
   const { initializePaysStackPayment, onClose, onSuccess } = paymentsServices(
     homeShieldFormData.email,
     homeShieldFormData.premium
@@ -49,30 +41,18 @@ export const CreateQuoteService = () => {
   };
 
   const useCreateQuote = async () => {
-    setCostLoading({
-      ...costLoading,
-      btnDisabled: true,
-      requestLoading: true,
-    });
+    setLoading(true);
     console.log(formData);
     const { data } = await PostRequest(
       `${endpoints.homeShieldQuote}`,
       formData,
       {}
     );
-    setCostLoading({
-      ...costLoading,
-      btnDisabled: true,
-      requestLoading: true,
-    });
+    setLoading(true);
     try {
       if (data.statusCode === 200) {
         console.log("Form data submitted successfully");
-        setCostLoading({
-          ...costLoading,
-          btnDisabled: false,
-          requestLoading: false,
-        });
+        setLoading(false);
         toast(data.message, {
           type: "success",
           theme: "colored",
@@ -80,11 +60,7 @@ export const CreateQuoteService = () => {
       } else {
         console.log("Error submitting data");
         initializePaysStackPayment({ onSuccess, onClose });
-        setCostLoading({
-          ...costLoading,
-          btnDisabled: false,
-          requestLoading: false,
-        });
+        setLoading(false);
         toast(data.message, {
           type: "error",
           theme: "colored",
@@ -93,16 +69,12 @@ export const CreateQuoteService = () => {
       // }
     } catch (err) {
       console.log(err);
-      setCostLoading({
-        ...costLoading,
-        btnDisabled: false,
-        requestLoading: false,
-      });
+      setLoading(false);
     }
   };
 
   return {
     useCreateQuote,
-    costLoading,
+    loading,
   };
 };

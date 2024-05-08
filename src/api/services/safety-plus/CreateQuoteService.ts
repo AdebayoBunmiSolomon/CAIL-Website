@@ -12,10 +12,7 @@ type costLoadingType = {
 
 export const CreateQuoteService = () => {
   const { safetyPlusFormData } = useSafetyPlusForm();
-  const [costLoading, setCostLoading] = useState<costLoadingType>({
-    btnDisabled: true,
-    requestLoading: true,
-  });
+  const [loading, setLoading] = useState<boolean>(false);
   const { initializePaysStackPayment, onClose, onSuccess } = paymentsServices(
     safetyPlusFormData.email,
     safetyPlusFormData.premium
@@ -42,30 +39,18 @@ export const CreateQuoteService = () => {
   };
 
   const useCreateQuote = async () => {
-    setCostLoading({
-      ...costLoading,
-      btnDisabled: true,
-      requestLoading: true,
-    });
+    setLoading(true);
     console.log(formData);
     const { data } = await PostRequest(
       `${endpoints.safetyPlusQuote}`,
       formData,
       {}
     );
-    setCostLoading({
-      ...costLoading,
-      btnDisabled: true,
-      requestLoading: true,
-    });
+    setLoading(true);
     try {
       if (data.statusCode === 200) {
         console.log("Form data submitted successfully");
-        setCostLoading({
-          ...costLoading,
-          btnDisabled: false,
-          requestLoading: false,
-        });
+        setLoading(false);
         toast(data.message, {
           type: "success",
           theme: "colored",
@@ -73,11 +58,7 @@ export const CreateQuoteService = () => {
       } else {
         console.log("Error submitting data");
         initializePaysStackPayment({ onSuccess, onClose });
-        setCostLoading({
-          ...costLoading,
-          btnDisabled: false,
-          requestLoading: false,
-        });
+        setLoading(false);
         toast(data.message, {
           type: "error",
           theme: "colored",
@@ -86,16 +67,12 @@ export const CreateQuoteService = () => {
       // }
     } catch (err) {
       console.log(err);
-      setCostLoading({
-        ...costLoading,
-        btnDisabled: false,
-        requestLoading: false,
-      });
+      setLoading(false);
     }
   };
 
   return {
     useCreateQuote,
-    costLoading,
+    loading,
   };
 };

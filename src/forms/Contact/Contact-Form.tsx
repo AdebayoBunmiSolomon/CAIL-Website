@@ -21,17 +21,19 @@ export const ContactForm: React.FC<{}> = () => {
     control,
     handleSubmit,
     setValue,
-    getValues,
     formState: { errors },
   } = useForm<createEnquiryTypes>({ mode: "onChange" });
 
   const onSubmit = (data: createEnquiryTypes) => {
     console.log(data);
     useMakeEnquiry();
-    if (!loading) {
-      setShowMessage(!showMessage);
-    }
   };
+
+  useEffect(() => {
+    if (loading) {
+      setShowMessage(true);
+    }
+  }, [loading]);
 
   useEffect(() => {
     if (!policyHolderChecked) {
@@ -245,6 +247,7 @@ export const ContactForm: React.FC<{}> = () => {
       <ContactMessage
         showMessage={showMessage}
         closeModal={(value) => setShowMessage(value)}
+        loading={loading}
       />
       <CallBackForm
         showCallBackFrm={callBckForm}

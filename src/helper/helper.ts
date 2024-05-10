@@ -50,15 +50,17 @@ export const convertToDateTimeISO = (value: any) => {
 
 /**
  *
- * @returns "Next" or "Buy Now" from the form stepper
+ * @returns "Next" or "Buy Now" or Pre-defined value by the
+ * @lastBtnTextValue used to store the value from the form stepper
  */
 export const getButtonBtnState = (
   activeStepNumb: number,
-  lastActiveStepValue: number
+  lastActiveStepValue: number,
+  lastBtnTextValue?: string
 ) => {
   if (activeStepNumb !== lastActiveStepValue) {
     return "Next";
   } else if (activeStepNumb === lastActiveStepValue) {
-    return "Buy Now";
+    return lastBtnTextValue ? lastBtnTextValue : "Submit";
   }
 };

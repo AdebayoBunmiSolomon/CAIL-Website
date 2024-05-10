@@ -29,6 +29,7 @@ import { PersonalInsuranceMachineryStepper } from "../forms/Personal-Insurance/M
 import { SafetyPlusStepper } from "../forms/Personal-Insurance/Safety-Plus/Stepper";
 import { HomeShieldStepper } from "../forms/Personal-Insurance/Home-Shield/Stepper";
 import { PersonalAccidentForm } from "../forms/Personal-Insurance/Personal-Accident/Form";
+import { MakeAClaimStepper } from "../forms/Make-a-Claim/Stepper";
 
 type pagesProps = {
   path: string;
@@ -163,6 +164,14 @@ const pages: pagesProps[] = [
   {
     path: formRoutes.personal_accident,
     element: PersonalAccidentForm,
+  },
+  {
+    path: formRoutes.makeAClaim,
+    element: Pages.MakeAClaim,
+  },
+  {
+    path: formRoutes.makeAClaimStepper,
+    element: MakeAClaimStepper,
   },
 ];
 

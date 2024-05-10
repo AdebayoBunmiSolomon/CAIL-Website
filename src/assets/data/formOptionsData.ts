@@ -123,3 +123,7 @@ export const eventInsuranceCoverType = [
 ];
 
 export const policyPeriod = ["1", "2"];
+
+export const claimType = ["Theft", "Accident", "Fire", "Vandalization"];
+
+export const damageType = ["Total Loss", "Partial Loss"];

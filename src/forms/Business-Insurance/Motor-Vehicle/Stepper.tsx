@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { PersonalInfo } from "./PersonalInfo";
 import { CarDetails } from "./CarDetails";
 import { Summary } from "./Summary";

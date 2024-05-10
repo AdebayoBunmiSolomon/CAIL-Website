@@ -6,4 +6,5 @@ export const enum endpoints {
   homeShieldQuote = "/api/motor/create-homeshield-quote",
   personalAccident = "https://apidev.custodianplc.com.ng/v3/crm/quotes",
   makeEnquiry = "https://apidev.custodianplc.com.ng/v3/crm/cai/web-feedback",
+  makeAClaim = "https://apidev.custodianplc.com.ng/v3/crm/web/claims/cai-loss-notice",
 }

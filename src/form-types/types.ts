@@ -244,3 +244,20 @@ export type requestCallBackFormType = {
   full_name: string;
   mobile_number: string;
 };
+
+export type claimStatusTypes = {
+  policyNumber: string;
+  vehicleRegNumber: string;
+};
+
+export type claimDetailsTypes = {
+  policyHolderName: string;
+  // policyNumber: string;
+  // policyType: string;
+  vehicleRegNumber: string;
+  email: string;
+  mobile_number: string;
+  claimType: string;
+  damageType: string; //when it is accident
+  dateTimeOfLoss: string;
+};

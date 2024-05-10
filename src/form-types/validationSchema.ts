@@ -822,3 +822,29 @@ export const requestCallBackValidationSchema = yup.object().shape({
     .required("mobile number is required")
     .matches(/^[0-9]{11}$/, "invalid mobile number format"),
 });
+
+export const claimStatusValidationSchema = yup.object().shape({
+  policyNumber: yup.string().required("policy number required"),
+  vehicleRegNumber: yup.string().required("vehicle reg number required"),
+});
+
+export const claimDetailsValidationSchema = yup.object().shape({
+  policyHolderName: yup.string().required("policy holder name is required"),
+  // policyNumber: yup.string().required("policy number is required"),
+  // policyType: yup.string().required("policy type is required"),
+  vehicleRegNumber: yup.string().required("vehicle reg number is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  mobile_number: yup
+    .string()
+    .required("mobile number is required")
+    .matches(/^[0-9]{11}$/, "invalid mobile number format"),
+  claimType: yup.string().required("claim type is required"),
+  damageType: yup.string().required("damage type is required"),
+  dateTimeOfLoss: yup.string().required("date and time of loss is required"),
+});

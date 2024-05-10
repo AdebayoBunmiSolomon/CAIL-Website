@@ -32,4 +32,6 @@ export const enum formRoutes {
   healthcare_professional = "/products/forms/healthcare-professional",
   custodian_SME = "", // /products/forms/custodian-SME
   money = "/products/forms/money",
+  makeAClaim = "/forms/make-a-claim",
+  makeAClaimStepper = "/forms/make-a-claim/stepper",
 }

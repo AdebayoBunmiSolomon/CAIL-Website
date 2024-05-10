@@ -46,7 +46,7 @@ export const header: headerProps[] = [
   {
     id: 5,
     title: "Make a claim",
-    page: "/make-a-claim",
+    page: "/forms/make-a-claim",
     nestedList: null,
   },
   {

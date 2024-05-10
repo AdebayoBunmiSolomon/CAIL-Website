@@ -59,3 +59,12 @@ export const homeShieldSteps = [
     label: "Summary (Finish)",
   },
 ];
+
+export const claimsFormStepper = [
+  {
+    label: "Claim Details",
+  },
+  {
+    label: "Summary",
+  },
+];

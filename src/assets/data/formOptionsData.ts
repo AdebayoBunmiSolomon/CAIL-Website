@@ -127,3 +127,17 @@ export const policyPeriod = ["1", "2"];
 export const claimType = ["Theft", "Accident", "Fire", "Vandalization"];
 
 export const damageType = ["Total Loss", "Partial Loss"];
+
+export const hasAWitness = ["Yes", "No"];
+
+export const policeInformed = ["Yes", "No"];
+
+export const thirdPartyInvolved = [
+  "Yes (Insured Liable)",
+  "Yes (Third Party Liable)",
+  "No",
+];
+
+export const accidentClaimType = ["Burglary/Theft"];
+
+export const premiseOccupied = ["Yes", "No"];

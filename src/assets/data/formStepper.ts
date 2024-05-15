@@ -60,9 +60,60 @@ export const homeShieldSteps = [
   },
 ];
 
-export const claimsFormStepper = [
+export const motorClaimsFormStepper = [
   {
     label: "Claim Details",
+  },
+  {
+    label: "Circumstances",
+  },
+  {
+    label: "Required Documents",
+  },
+  {
+    label: "Summary",
+  },
+];
+
+export const accidentClaimsFormStepper = [
+  {
+    label: "Claim Details",
+  },
+  {
+    label: "Circumstances",
+  },
+  {
+    label: "Required Documents",
+  },
+  {
+    label: "Summary",
+  },
+];
+
+export const bondClaimsFormStepper = [
+  {
+    label: "Claim Details",
+  },
+  {
+    label: "Circumstances",
+  },
+  {
+    label: "Required Documents",
+  },
+  {
+    label: "Summary",
+  },
+];
+
+export const engineeringClaimsFormStepper = [
+  {
+    label: "Claim Details",
+  },
+  {
+    label: "Circumstances",
+  },
+  {
+    label: "Required Documents",
   },
   {
     label: "Summary",

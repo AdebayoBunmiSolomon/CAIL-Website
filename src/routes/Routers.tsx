@@ -29,7 +29,10 @@ import { PersonalInsuranceMachineryStepper } from "../forms/Personal-Insurance/M
 import { SafetyPlusStepper } from "../forms/Personal-Insurance/Safety-Plus/Stepper";
 import { HomeShieldStepper } from "../forms/Personal-Insurance/Home-Shield/Stepper";
 import { PersonalAccidentForm } from "../forms/Personal-Insurance/Personal-Accident/Form";
-import { MakeAClaimStepper } from "../forms/Make-a-Claim/Stepper";
+import { MotorClaimStepper } from "../forms/Make-a-Claim/Motor/Stepper";
+import { AccidentClaimStepper } from "../forms/Make-a-Claim/Accident/Stepper";
+import { BondClaimStepper } from "../forms/Make-a-Claim/Bond/Stepper";
+import { EngineeringClaimStepper } from "../forms/Make-a-Claim/Engineering/Stepper";
 
 type pagesProps = {
   path: string;
@@ -170,8 +173,20 @@ const pages: pagesProps[] = [
     element: Pages.MakeAClaim,
   },
   {
-    path: formRoutes.makeAClaimStepper,
-    element: MakeAClaimStepper,
+    path: formRoutes.makeMotorClaim,
+    element: MotorClaimStepper,
+  },
+  {
+    path: formRoutes.makeAccidentClaim,
+    element: AccidentClaimStepper,
+  },
+  {
+    path: formRoutes.makeBondClaim,
+    element: BondClaimStepper,
+  },
+  {
+    path: formRoutes.makeEngineeringClaim,
+    element: EngineeringClaimStepper,
   },
 ];
 

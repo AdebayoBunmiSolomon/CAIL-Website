@@ -1,15 +1,10 @@
 import { create } from "zustand";
 
 type makeAClaimFormType = {
-  policyNumber: string;
-  vehicleRegNumber: string;
-  policyHolderName: string;
-  policyType: string;
-  email: string;
-  mobile_number: string;
-  claimType: string;
-  damageType: string;
-  dateTimeOfLoss: string;
+  officeName: string;
+  policyId: string;
+  subRisk: string;
+  creationDate: string;
 };
 
 interface IMakeAClaimProps {
@@ -19,15 +14,10 @@ interface IMakeAClaimProps {
 
 export const useMakeAClaimForm = create<IMakeAClaimProps>()((set) => ({
   makeAClaimFormData: {
-    policyNumber: "",
-    vehicleRegNumber: "",
-    policyHolderName: "",
-    policyType: "",
-    email: "",
-    mobile_number: "",
-    claimType: "",
-    damageType: "",
-    dateTimeOfLoss: "",
+    officeName: "",
+    policyId: "",
+    subRisk: "",
+    creationDate: "",
   },
   setMakeAClaimFormData: (makeAClaimFormData) =>
     set({ makeAClaimFormData: makeAClaimFormData }),

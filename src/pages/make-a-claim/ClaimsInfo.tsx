@@ -4,6 +4,7 @@ import { GoArrowRight } from "react-icons/go";
 import { IoClose } from "react-icons/io5";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useMakeAClaimForm } from "../../hooks/store/make-a-claim/useMakeAClaim";
+import { ToastContainer } from "react-toastify";
 
 type callBackFormProps = {
   showClaimsInfo: boolean;
@@ -19,6 +20,7 @@ export const ClaimsInfo: React.FC<callBackFormProps> = ({
 
   return (
     <>
+      <ToastContainer />
       {showClaimsInfo && (
         <div className='flex flex-row justify-center items-center fixed bg-[#00000067] top-0 left-0 right-0 bottom-0 w-[100%] h-[100%] z-50'>
           <div className='w-[40%] py-4 bg-white rounded-xl z-50 fixed px-3'>
@@ -40,10 +42,10 @@ export const ClaimsInfo: React.FC<callBackFormProps> = ({
                       <div className='flex items-center'>
                         <div className='ml-4'>
                           <div className='text-sm font-medium text-gray-900'>
-                            Policy Number
+                            Insured Name
                           </div>
                           <div className='text-sm text-gray-500'>
-                            {makeAClaimFormData.policyNumber}
+                            {makeAClaimFormData.officeName}
                           </div>
                         </div>
                       </div>
@@ -54,10 +56,24 @@ export const ClaimsInfo: React.FC<callBackFormProps> = ({
                       <div className='flex items-center'>
                         <div className='ml-4'>
                           <div className='text-sm font-medium text-gray-900'>
-                            Product Type
+                            Policy Number
                           </div>
                           <div className='text-sm text-gray-500'>
-                            Private Car Insurance
+                            {makeAClaimFormData.policyId}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className='px-6 py-4 whitespace-nowrap'>
+                      <div className='flex items-center'>
+                        <div className='ml-4'>
+                          <div className='text-sm font-medium text-gray-900'>
+                            Policy Type
+                          </div>
+                          <div className='text-sm text-gray-500'>
+                            {makeAClaimFormData.subRisk}
                           </div>
                         </div>
                       </div>
@@ -68,7 +84,7 @@ export const ClaimsInfo: React.FC<callBackFormProps> = ({
               <div className='flex flex-row justify-center items-center gap-5 pt-5'>
                 <Button
                   text={"Next"}
-                  onPress={() => navigate("/forms/make-a-claim/stepper")}
+                  onPress={() => navigate("/forms/make-a-claim/engineering")}
                   className='py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-5 flex rounded-lg hover:bg-[#900000d7] hover:duration-700'
                   rightIcon={<GoArrowRight size={25} />}
                 />

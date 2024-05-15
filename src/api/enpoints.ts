@@ -7,4 +7,5 @@ export const enum endpoints {
   personalAccident = "https://apidev.custodianplc.com.ng/v3/crm/quotes",
   makeEnquiry = "https://apidev.custodianplc.com.ng/v3/crm/cai/web-feedback",
   makeAClaim = "https://apidev.custodianplc.com.ng/v3/crm/web/claims/cai-loss-notice",
+  checkPolicySummary = "https://absapi.custodianplc.com.ng/policy",
 }

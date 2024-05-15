@@ -64,3 +64,30 @@ export const getButtonBtnState = (
     return lastBtnTextValue ? lastBtnTextValue : "Submit";
   }
 };
+
+/**
+ *
+ * @param value takes the input of any value with slash e.g HO/4A/123
+ * @returns @value to H0/%2FA4A%2FA123
+ */
+export const convertToEncodedFormat = (value: string) => {
+  const encodedString = value.replace(/\//g, "%2F");
+  console.log(encodedString);
+  return encodedString;
+};
+
+export const validateCharacterAfterFirstSlash = (value: string) => {
+  const parts = value.toLowerCase().split("/"); // Split the string by slashes
+  if (parts.length >= 2) {
+    // Ensure there's at least one slash
+    const characterAfterFirstSlash = parts[1][0]; // Get the first character after the first slash
+    // Perform your validation here
+    if (characterAfterFirstSlash === "v") {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+};

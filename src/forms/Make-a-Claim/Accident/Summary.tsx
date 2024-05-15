@@ -1,16 +1,18 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
-import { FormTitle } from "../../components";
-import { useMakeAClaimForm } from "../../hooks/store/make-a-claim/useMakeAClaim";
+import { FormTitle } from "../../../components";
+import { useMotorClaimForm } from "../../../hooks/store/make-a-claim";
 
-export const ClaimSummary: React.FC<{}> = () => {
-  const { makeAClaimFormData } = useMakeAClaimForm();
+export const AccidentClaimSummary: React.FC<{}> = () => {
+  const { motorClaimFormData } = useMotorClaimForm();
+
+  console.log(motorClaimFormData.policyHolderName);
   return (
     <div>
       <ToastContainer />
       <div className='flex justify-center items-center'>
         <div className='w-[95%] bg-white rounded-md self-center p-6'>
-          <FormTitle title='Claims Summary' />
+          <FormTitle title='Motor Claims Summary' />
           <table className='min-w-full divide-y divide-gray-200'>
             <thead>
               <tr>
@@ -30,7 +32,7 @@ export const ClaimSummary: React.FC<{}> = () => {
                         Product Type
                       </div>
                       <div className='text-sm text-gray-500'>
-                        Private Car Insurance
+                        {motorClaimFormData.policyType}
                       </div>
                     </div>
                   </div>
@@ -44,7 +46,7 @@ export const ClaimSummary: React.FC<{}> = () => {
                         Policy Holder Name
                       </div>
                       <div className='text-sm text-gray-500'>
-                        {makeAClaimFormData.policyHolderName}
+                        {motorClaimFormData.policyHolderName}
                       </div>
                     </div>
                   </div>
@@ -58,7 +60,7 @@ export const ClaimSummary: React.FC<{}> = () => {
                         Claims Type
                       </div>
                       <div className='text-sm text-gray-500'>
-                        {makeAClaimFormData.claimType}
+                        {motorClaimFormData.claimType}
                       </div>
                     </div>
                   </div>
@@ -72,7 +74,7 @@ export const ClaimSummary: React.FC<{}> = () => {
                         Damage Type
                       </div>
                       <div className='text-sm text-gray-500'>
-                        {makeAClaimFormData.damageType}
+                        {motorClaimFormData.damageType}
                       </div>
                     </div>
                   </div>
@@ -86,7 +88,7 @@ export const ClaimSummary: React.FC<{}> = () => {
                         Date & Time of Loss
                       </div>
                       <div className='text-sm text-gray-500'>
-                        {makeAClaimFormData.dateTimeOfLoss}
+                        {motorClaimFormData.dateTimeOfLoss}
                       </div>
                     </div>
                   </div>

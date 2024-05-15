@@ -11,9 +11,9 @@ export const RegisterClaimService = () => {
   const navigate: NavigateFunction = useNavigate();
 
   const formData = {
-    incident_date: makeAClaimFormData.dateTimeOfLoss,
-    policy_number: makeAClaimFormData.policyNumber,
-    created_by: makeAClaimFormData.policyHolderName,
+    incident_date: "",
+    policy_number: "",
+    created_by: "",
   };
 
   const useMakeAClaim = async () => {

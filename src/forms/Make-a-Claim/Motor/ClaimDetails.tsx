@@ -1,75 +1,79 @@
 import React, { useEffect, useState } from "react";
-import { FormTitle, SelectOptions, TextInput } from "../../components";
+import { FormTitle, SelectOptions, TextInput } from "../../../components";
 import { Controller } from "react-hook-form";
-import { claimType, damageType } from "../../assets/data/formOptionsData";
-import { convertToDateTimeISO } from "../../helper/helper";
-import { useMakeAClaimForm } from "../../hooks/store/make-a-claim/useMakeAClaim";
+import { claimType, damageType } from "../../../assets/data/formOptionsData";
+import { convertToDateTimeISO } from "../../../helper/helper";
+import {
+  useMakeAClaimForm,
+  useMotorClaimForm,
+} from "../../../hooks/store/make-a-claim";
 
 type useFormProps = {
   useFormProps: any;
 };
 
-export const ClaimDetails: React.FC<useFormProps> = ({ useFormProps }) => {
+export const MotorClaimDetails: React.FC<useFormProps> = ({ useFormProps }) => {
   const [selectedClaimType, setSelectedClaimType] = useState<string>("");
   const props: any = useFormProps;
-  const { makeAClaimFormData, setMakeAClaimFormData } = useMakeAClaimForm();
-  console.log(props);
+  const { motorClaimFormData, setMotorClaimFormData } = useMotorClaimForm();
+  const { makeAClaimFormData } = useMakeAClaimForm();
 
   useEffect(() => {
     if (selectedClaimType !== "Accident") {
       props?.setValues("damageType", "NIL");
-      setMakeAClaimFormData({
-        ...makeAClaimFormData,
+      setMotorClaimFormData({
+        ...motorClaimFormData,
         damageType: "NIL",
       });
     } else {
       props?.setValues("damageType", "");
-      setMakeAClaimFormData({
-        ...makeAClaimFormData,
+      setMotorClaimFormData({
+        ...motorClaimFormData,
         policyHolderName: "",
       });
     }
   }, [selectedClaimType]);
 
+  useEffect(() => {
+    if (
+      makeAClaimFormData.officeName &&
+      makeAClaimFormData.policyId &&
+      makeAClaimFormData.subRisk
+    ) {
+      setMotorClaimFormData({
+        ...motorClaimFormData,
+        policyHolderName: makeAClaimFormData.officeName,
+        policyNumber: makeAClaimFormData.policyId,
+        policyType: makeAClaimFormData.subRisk,
+      });
+    }
+  }, [makeAClaimFormData]);
+
   return (
     <>
       <div className='flex justify-center items-center'>
         <div className='w-[95%] bg-white rounded-md self-center p-6'>
-          <FormTitle title='Claim Details' />
+          <FormTitle title='Motor Claim Details' />
           <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
-            <Controller
-              control={props?.control}
-              render={({ field }) => (
-                <TextInput
-                  placeHolder='john doe'
-                  label='Policy-holder Name'
-                  type='text'
-                  value={field.value}
-                  onChange={(event) => {
-                    field.onChange(event.target.value);
-                    setMakeAClaimFormData({
-                      ...makeAClaimFormData,
-                      policyHolderName: event.target.value,
-                    });
-                  }}
-                  error={props?.errors?.policyHolderName?.message}
-                />
-              )}
-              name='policyHolderName'
-              defaultValue=''
+            <TextInput
+              placeHolder='john doe'
+              label='Policy-holder Name'
+              type='text'
+              value={makeAClaimFormData.officeName}
+              disabled={true}
             />
             <TextInput
               placeHolder='000000000000'
               label='Policy number'
               type='text'
-              value={makeAClaimFormData.policyNumber}
+              value={makeAClaimFormData.policyId}
               disabled={true}
             />
             <TextInput
               placeHolder='private car insurance'
               label='Policy type'
               type='text'
-              value={"Private Car Insurance"}
+              value={makeAClaimFormData.subRisk}
               disabled={true}
             />
           </div>
@@ -84,8 +88,8 @@ export const ClaimDetails: React.FC<useFormProps> = ({ useFormProps }) => {
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
-                    setMakeAClaimFormData({
-                      ...makeAClaimFormData,
+                    setMotorClaimFormData({
+                      ...motorClaimFormData,
                       vehicleRegNumber: event.target.value,
                     });
                   }}
@@ -106,8 +110,8 @@ export const ClaimDetails: React.FC<useFormProps> = ({ useFormProps }) => {
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
-                    setMakeAClaimFormData({
-                      ...makeAClaimFormData,
+                    setMotorClaimFormData({
+                      ...motorClaimFormData,
                       email: event.target.value,
                     });
                   }}
@@ -128,15 +132,15 @@ export const ClaimDetails: React.FC<useFormProps> = ({ useFormProps }) => {
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
-                    setMakeAClaimFormData({
-                      ...makeAClaimFormData,
-                      mobile_number: event.target.value,
+                    setMotorClaimFormData({
+                      ...motorClaimFormData,
+                      mobileNumber: event.target.value,
                     });
                   }}
-                  error={props?.errors?.mobile_number?.message}
+                  error={props?.errors?.mobileNumber?.message}
                 />
               )}
-              name='mobile_number'
+              name='mobileNumber'
               defaultValue=''
             />
           </div>
@@ -151,8 +155,8 @@ export const ClaimDetails: React.FC<useFormProps> = ({ useFormProps }) => {
                   onChangeSelectedOption={(text) => {
                     field.onChange(text);
                     setSelectedClaimType(text);
-                    setMakeAClaimFormData({
-                      ...makeAClaimFormData,
+                    setMotorClaimFormData({
+                      ...motorClaimFormData,
                       claimType: text,
                     });
                   }}
@@ -176,8 +180,8 @@ export const ClaimDetails: React.FC<useFormProps> = ({ useFormProps }) => {
                     selectedOption={field.value}
                     onChangeSelectedOption={(text) => {
                       field.onChange(text);
-                      setMakeAClaimFormData({
-                        ...makeAClaimFormData,
+                      setMotorClaimFormData({
+                        ...motorClaimFormData,
                         damageType: text,
                       });
                     }}
@@ -205,8 +209,8 @@ export const ClaimDetails: React.FC<useFormProps> = ({ useFormProps }) => {
                   onChange={(event) => {
                     const date = convertToDateTimeISO(event.target.value);
                     field.onChange(event.target.value);
-                    setMakeAClaimFormData({
-                      ...makeAClaimFormData,
+                    setMotorClaimFormData({
+                      ...motorClaimFormData,
                       dateTimeOfLoss: date,
                     });
                   }}

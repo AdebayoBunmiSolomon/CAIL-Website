@@ -11,6 +11,8 @@ export const usePathName = () => {
       setSelectedPath("/products");
     } else if (selectedPath.includes("/resources")) {
       setSelectedPath("/resources");
+    } else if (selectedPath.includes("/forms/make-a-claim")) {
+      setSelectedPath("/forms/make-a-claim");
     } else {
       setSelectedPath(selectedPath);
     }

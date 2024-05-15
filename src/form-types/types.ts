@@ -250,14 +250,85 @@ export type claimStatusTypes = {
   vehicleRegNumber: string;
 };
 
-export type claimDetailsTypes = {
-  policyHolderName: string;
-  // policyNumber: string;
-  // policyType: string;
+export type motorClaimDetailsTypes = {
   vehicleRegNumber: string;
   email: string;
-  mobile_number: string;
+  mobileNumber: string;
   claimType: string;
   damageType: string; //when it is accident
   dateTimeOfLoss: string;
+};
+
+export type motorClaimCircumstances = {
+  descriptionOfIncident: string;
+  doYouHaveAWitness: string;
+  nameOfWitness: string;
+  witnessContactInfo: string;
+  whereCanTheVehicleBeInspected: string;
+  isThirdPartyInvolved: string;
+  hasThePoliceBeenInformed: string;
+  whenWasThePoliceInformed: string;
+  policeStationAddress: string;
+  thirdPartyInformation: string;
+  estimateOfRepairs: string;
+  claimsAmount: string;
+};
+
+export type accidentClaimDetailsTypes = {
+  claimType: string;
+  email: string;
+  phoneNumber: string;
+  dateTimeOfLoss: string;
+  wasThePremiseOccupiedAtTheTime: string;
+  dateLastOccupied: string;
+};
+
+export type accidentClaimCircumstances = {
+  descriptionOfIncident: string;
+  listOfStolenItems: string;
+  doYouHaveAWitness: string;
+  nameOfWitness: string;
+  witnessContactInfo: string;
+  hasThePoliceBeenInformed: string;
+  whenWasThePoliceInformed: string;
+  policeStationAddress: string;
+  claimsAmount: string;
+};
+
+export type bondClaimDetailsTypes = {
+  claimType: string;
+  email: string;
+  phoneNumber: string;
+  dateTimeOfIncident: string;
+};
+
+export type bondClaimCircumstances = {
+  descriptionOfIncident: string;
+  listOfStolenItems: string;
+  doYouHaveAWitness: string;
+  nameOfWitness: string;
+  witnessContactInfo: string;
+  hasThePoliceBeenInformed: string;
+  whenWasThePoliceInformed: string;
+  policeStationAddress: string;
+  claimsAmount: string;
+};
+
+export type engineeringClaimDetailsTypes = {
+  claimType: string;
+  email: string;
+  phoneNumber: string;
+  dateTimeOfIncident: string;
+};
+
+export type engineeringClaimCircumstances = {
+  descriptionOfIncident: string;
+  listOfStolenItems: string;
+  doYouHaveAWitness: string;
+  nameOfWitness: string;
+  witnessContactInfo: string;
+  hasThePoliceBeenInformed: string;
+  whenWasThePoliceInformed: string;
+  policeStationAddress: string;
+  claimsAmount: string;
 };

@@ -33,6 +33,7 @@ import { MotorClaimStepper } from "../forms/Make-a-Claim/Motor/Stepper";
 import { AccidentClaimStepper } from "../forms/Make-a-Claim/Accident/Stepper";
 import { BondClaimStepper } from "../forms/Make-a-Claim/Bond/Stepper";
 import { EngineeringClaimStepper } from "../forms/Make-a-Claim/Engineering/Stepper";
+import { FireClaimStepper } from "../forms/Make-a-Claim/Fire/Stepper";
 
 type pagesProps = {
   path: string;
@@ -187,6 +188,10 @@ const pages: pagesProps[] = [
   {
     path: formRoutes.makeEngineeringClaim,
     element: EngineeringClaimStepper,
+  },
+  {
+    path: formRoutes.makeFireClaim,
+    element: FireClaimStepper,
   },
 ];
 

@@ -130,6 +130,10 @@ export const damageType = ["Total Loss", "Partial Loss"];
 
 export const hasAWitness = ["Yes", "No"];
 
+export const fireServiceInformed = ["Yes", "No"];
+
+export const fireServiceReport = ["Yes", "No"];
+
 export const policeInformed = ["Yes", "No"];
 
 export const thirdPartyInvolved = [
@@ -141,3 +145,13 @@ export const thirdPartyInvolved = [
 export const accidentClaimType = ["Burglary/Theft"];
 
 export const premiseOccupied = ["Yes", "No"];
+
+export const fireClaimType = [
+  "Fire/Explosion",
+  "Malicious Damage",
+  "Material Damage",
+  "Flood/Storm",
+  "Escape of Water from Tank",
+  "Impact by Road Vehicle Animal or Aerial Devices",
+  "Strike Riot & Civil Commotion",
+];

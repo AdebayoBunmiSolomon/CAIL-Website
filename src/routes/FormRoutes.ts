@@ -37,4 +37,5 @@ export const enum formRoutes {
   makeAccidentClaim = "/forms/make-a-claim/accident",
   makeBondClaim = "/forms/make-a-claim/bond",
   makeEngineeringClaim = "/forms/make-a-claim/engineering",
+  makeFireClaim = "/forms/make-a-claim/fire",
 }

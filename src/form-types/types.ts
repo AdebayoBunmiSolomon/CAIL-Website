@@ -332,3 +332,25 @@ export type engineeringClaimCircumstances = {
   policeStationAddress: string;
   claimsAmount: string;
 };
+
+export type fireClaimDetailsTypes = {
+  claimType: string;
+  email: string;
+  phoneNumber: string;
+  dateTimeOfLoss: string;
+};
+
+export type fireClaimCircumstances = {
+  descriptionOfIncident: string;
+  listOfStolenItems: string;
+  doYouHaveAWitness: string;
+  nameOfWitness: string;
+  witnessContactInfo: string;
+  hasTheFireServiceBeenInformed: string;
+  fireServiceStationAddress: string;
+  doYouHaveAFireServiceReport: string;
+  hasThePoliceBeenInformed: string;
+  whenWasThePoliceInformed: string;
+  policeStationAddress: string;
+  claimsAmount: string;
+};

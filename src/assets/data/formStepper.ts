@@ -119,3 +119,18 @@ export const engineeringClaimsFormStepper = [
     label: "Summary",
   },
 ];
+
+export const fireClaimsFormStepper = [
+  {
+    label: "Claim Details",
+  },
+  {
+    label: "Circumstances",
+  },
+  {
+    label: "Required Documents",
+  },
+  {
+    label: "Summary",
+  },
+];

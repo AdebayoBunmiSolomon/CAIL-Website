@@ -50,6 +50,24 @@ export const convertToDateTimeISO = (value: any) => {
 
 /**
  *
+ * converts selected date values from ISo type i.e. 2024-04-19T00:00:00.000Z to HTML date value i.e. 2024-04-19
+ */
+export const convertDateTimeISOtoHTMLDate = (value: string) => {
+  const dateString = value;
+  const dateObject = new Date(dateString);
+
+  // Extract year, month, and day components
+  const year = dateObject.getFullYear();
+  const month = String(dateObject.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed, so add 1
+  const day = String(dateObject.getDate()).padStart(2, "0");
+
+  // Format as YYYY-MM-DD
+  const formattedDate = `${year}-${month}-${day}`;
+  return formattedDate;
+};
+
+/**
+ *
  * @returns "Next" or "Buy Now" or Pre-defined value by the
  * @lastBtnTextValue used to store the value from the form stepper
  */
@@ -76,6 +94,10 @@ export const convertToEncodedFormat = (value: string) => {
   return encodedString;
 };
 
+/**
+ *
+ * @param value as "V" if it is a motor or vehicle insurance from the policy number provided
+ */
 export const validateCharacterAfterFirstSlash = (value: string) => {
   const parts = value.toLowerCase().split("/"); // Split the string by slashes
   if (parts.length >= 2) {
@@ -87,6 +109,19 @@ export const validateCharacterAfterFirstSlash = (value: string) => {
     } else {
       return false;
     }
+  } else {
+    return false;
+  }
+};
+
+/**
+ *
+ * @return true or false if Yes or No
+ */
+export const getBooleanFromYesOrNo = (value: string) => {
+  const valueToLowerCase = value.toLowerCase();
+  if (valueToLowerCase === "yes") {
+    return true;
   } else {
     return false;
   }

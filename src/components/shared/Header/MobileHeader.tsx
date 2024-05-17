@@ -48,6 +48,7 @@ export const MobileHeader: React.FC<{}> = () => {
                     hasThePoliceBeenInformed: false,
                     claimType: "",
                     thirdPartyInvolved: "",
+                    policyNumber: "",
                   });
                 }}>
                 {items.title}

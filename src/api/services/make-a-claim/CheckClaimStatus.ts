@@ -4,15 +4,18 @@ import { endpoints } from "../../enpoints";
 import { useMakeAClaimForm } from "../../../hooks/store/make-a-claim/useMakeAClaim";
 import { convertToEncodedFormat } from "../../../helper/helper";
 import { toast } from "react-toastify";
+import { useGlobalStore } from "../../../hooks/store/make-a-claim";
 
 export const CheckClaimStatusService = () => {
   const { setMakeAClaimFormData, makeAClaimFormData } = useMakeAClaimForm();
   const [loading, setLoading] = useState<boolean>(false);
+  const { setGlobalData, globalData } = useGlobalStore();
   const [showClaimInfo, setShowClaimInfo] = useState<boolean>(false);
   const useCheckClaimStatus = async (policyNumber: any) => {
-    const formattedPolicyNumber = convertToEncodedFormat(policyNumber);
     setLoading(true);
     try {
+      const formattedPolicyNumber = convertToEncodedFormat(policyNumber);
+      console.log(formattedPolicyNumber);
       setLoading(true);
       setShowClaimInfo(false);
       const { data } = await GetRequest(
@@ -32,11 +35,26 @@ export const CheckClaimStatusService = () => {
           subRisk: data.data.subRisk,
           creationDate: data.data.creationDate,
         });
+        setGlobalData({
+          ...globalData,
+          policyNumber: data.data.policyId,
+        });
         toast(data.message, {
           type: "success",
           theme: "colored",
         });
       } else {
+        setMakeAClaimFormData({
+          ...makeAClaimFormData,
+          policyId: "",
+          officeName: "",
+          subRisk: "",
+          creationDate: "",
+        });
+        setGlobalData({
+          ...globalData,
+          policyNumber: "",
+        });
         toast("No Policy item found", {
           type: "success",
           theme: "colored",
@@ -44,6 +62,17 @@ export const CheckClaimStatusService = () => {
         setLoading(false);
       }
     } catch (err: any) {
+      setMakeAClaimFormData({
+        ...makeAClaimFormData,
+        policyId: "",
+        officeName: "",
+        subRisk: "",
+        creationDate: "",
+      });
+      setGlobalData({
+        ...globalData,
+        policyNumber: "",
+      });
       console.log(err);
       setLoading(false);
       setShowClaimInfo(false);

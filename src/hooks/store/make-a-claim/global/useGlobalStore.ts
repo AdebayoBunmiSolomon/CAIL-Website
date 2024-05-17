@@ -6,6 +6,7 @@ type globalType = {
   hasThePoliceBeenInformed: boolean;
   claimType: string;
   thirdPartyInvolved: string;
+  policyNumber: string;
 };
 
 interface IGlobalProps {
@@ -20,6 +21,7 @@ export const useGlobalStore = create<IGlobalProps>()((set) => ({
     hasThePoliceBeenInformed: false,
     claimType: "",
     thirdPartyInvolved: "",
+    policyNumber: "",
   },
   setGlobalData: (globalData) => set({ globalData: globalData }),
 }));

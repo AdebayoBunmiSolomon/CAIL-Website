@@ -10,7 +10,6 @@ import { CheckClaimStatusService } from "../../api/services/make-a-claim";
 import { validateCharacterAfterFirstSlash } from "../../helper/helper";
 
 export const MakeAClaim: React.FC<{}> = () => {
-  const [policyNumber, setPolicyNumber] = useState<string>("");
   const [motorPolicy, setMotorPolicy] = useState<boolean>(false);
   const { useCheckClaimStatus, loading, showClaimInfo, setShowClaimInfo } =
     CheckClaimStatusService();
@@ -26,7 +25,7 @@ export const MakeAClaim: React.FC<{}> = () => {
 
   const onSubmit = (data: claimStatusTypes) => {
     if (data) {
-      useCheckClaimStatus(policyNumber);
+      useCheckClaimStatus(data.policyNumber);
     }
   };
 
@@ -58,7 +57,6 @@ export const MakeAClaim: React.FC<{}> = () => {
                         event.target.value
                       );
                       field.onChange(event.target.value);
-                      setPolicyNumber(event.target.value);
                       setMotorPolicy(isValid);
                     }}
                     error={errors?.policyNumber?.message}

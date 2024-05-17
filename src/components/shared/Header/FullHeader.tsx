@@ -65,6 +65,7 @@ export const FullHeader = () => {
                     hasThePoliceBeenInformed: false,
                     claimType: "",
                     thirdPartyInvolved: "",
+                    policyNumber: "",
                   });
                 } else {
                   setSelectedHeaderIndex(index);

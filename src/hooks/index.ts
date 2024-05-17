@@ -6,3 +6,4 @@ export * from "./usePathName";
 export * from "./useFormStepper";
 export * from "./useVehicleSelection";
 export * from "./useRequestCallBack";
+export * from "./useProtectedMakeAClaim";

@@ -48,6 +48,7 @@ export const ProductCard: React.FC<productCardProps> = ({
                 onPress={() => {
                   if (navigateToProdSection) {
                     navigate(`${routeName}/${tabHeader}`);
+                    console.log(tabHeader);
                     setSelectedProdSection(String(items.title));
                   } else {
                     navigate(`${routeName}/${tabHeader}`);

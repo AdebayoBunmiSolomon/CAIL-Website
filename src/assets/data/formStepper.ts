@@ -134,3 +134,63 @@ export const fireClaimsFormStepper = [
     label: "Summary",
   },
 ];
+
+export const aviationFormStepper = [
+  {
+    label: "Claim Details",
+  },
+  {
+    label: "Circumstances",
+  },
+  {
+    label: "Required Documents",
+  },
+  {
+    label: "Summary",
+  },
+];
+
+export const marineFormStepper = [
+  {
+    label: "Claim Details",
+  },
+  {
+    label: "Circumstances",
+  },
+  {
+    label: "Required Documents",
+  },
+  {
+    label: "Summary",
+  },
+];
+
+export const oilAndGasFormStepper = [
+  {
+    label: "Claim Details",
+  },
+  {
+    label: "Circumstances",
+  },
+  {
+    label: "Required Documents",
+  },
+  {
+    label: "Summary",
+  },
+];
+
+export const packagedPolicyFormStepper = [
+  {
+    label: "Claim Details",
+  },
+  {
+    label: "Circumstances",
+  },
+  {
+    label: "Required Documents",
+  },
+  {
+    label: "Summary",
+  },
+];

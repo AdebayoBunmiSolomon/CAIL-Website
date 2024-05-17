@@ -1035,3 +1035,143 @@ export const fireClaimCircumstancesValidationSchema = yup.object().shape({
     .required("claims amount is required")
     .matches(/^[0-9]+$/, "must be a number format"),
 });
+
+export const aviationClaimDetailsValidationSchema = yup.object().shape({
+  claimType: yup.string().required("claim type is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  phoneNumber: yup
+    .string()
+    .required("phone number is required")
+    .matches(/^[0-9]{11}$/, "must be a number format"),
+  dateTimeOfIncident: yup.string().required("date of incident not selected"),
+});
+
+export const aviationClaimCircumstancesValidationSchema = yup.object().shape({
+  descriptionOfIncident: yup
+    .string()
+    .required("incident description is required"),
+  listOfStolenItems: yup.string().required("list of stolen items is required"),
+  doYouHaveAWitness: yup.string().required("this field is required"),
+  nameOfWitness: yup.string().required("name of witness is required"),
+  witnessContactInfo: yup.string().required("witness contact info is required"),
+  hasThePoliceBeenInformed: yup.string().required("this field is required"),
+  whenWasThePoliceInformed: yup.string().required("this field is required"),
+  policeStationAddress: yup
+    .string()
+    .required("police station address is required"),
+  claimsAmount: yup
+    .string()
+    .required("claims amount is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+});
+
+export const marineClaimDetailsValidationSchema = yup.object().shape({
+  claimType: yup.string().required("claim type is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  phoneNumber: yup
+    .string()
+    .required("phone number is required")
+    .matches(/^[0-9]{11}$/, "must be a number format"),
+  dateTimeOfIncident: yup.string().required("date of incident not selected"),
+});
+
+export const marineClaimCircumstancesValidationSchema = yup.object().shape({
+  descriptionOfIncident: yup
+    .string()
+    .required("incident description is required"),
+  listOfStolenItems: yup.string().required("list of stolen items is required"),
+  doYouHaveAWitness: yup.string().required("this field is required"),
+  nameOfWitness: yup.string().required("name of witness is required"),
+  witnessContactInfo: yup.string().required("witness contact info is required"),
+  hasThePoliceBeenInformed: yup.string().required("this field is required"),
+  whenWasThePoliceInformed: yup.string().required("this field is required"),
+  policeStationAddress: yup
+    .string()
+    .required("police station address is required"),
+  claimsAmount: yup
+    .string()
+    .required("claims amount is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+});
+
+export const oilAndGasClaimDetailsValidationSchema = yup.object().shape({
+  claimType: yup.string().required("claim type is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  phoneNumber: yup
+    .string()
+    .required("phone number is required")
+    .matches(/^[0-9]{11}$/, "must be a number format"),
+  dateTimeOfIncident: yup.string().required("date of incident not selected"),
+});
+
+export const oilAndGasClaimCircumstancesValidationSchema = yup.object().shape({
+  descriptionOfIncident: yup
+    .string()
+    .required("incident description is required"),
+  listOfStolenItems: yup.string().required("list of stolen items is required"),
+  doYouHaveAWitness: yup.string().required("this field is required"),
+  nameOfWitness: yup.string().required("name of witness is required"),
+  witnessContactInfo: yup.string().required("witness contact info is required"),
+  hasThePoliceBeenInformed: yup.string().required("this field is required"),
+  whenWasThePoliceInformed: yup.string().required("this field is required"),
+  policeStationAddress: yup
+    .string()
+    .required("police station address is required"),
+  claimsAmount: yup
+    .string()
+    .required("claims amount is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+});
+
+export const packagedPolicyClaimDetailsValidationSchema = yup.object().shape({
+  claimType: yup.string().required("claim type is required"),
+  email: yup
+    .string()
+    .required("email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
+  phoneNumber: yup
+    .string()
+    .required("phone number is required")
+    .matches(/^[0-9]{11}$/, "must be a number format"),
+  dateTimeOfIncident: yup.string().required("date of incident not selected"),
+});
+
+export const packagedPolicyCircumstancesValidationSchema = yup.object().shape({
+  descriptionOfIncident: yup
+    .string()
+    .required("incident description is required"),
+  listOfStolenItems: yup.string().required("list of stolen items is required"),
+  doYouHaveAWitness: yup.string().required("this field is required"),
+  nameOfWitness: yup.string().required("name of witness is required"),
+  witnessContactInfo: yup.string().required("witness contact info is required"),
+  hasThePoliceBeenInformed: yup.string().required("this field is required"),
+  whenWasThePoliceInformed: yup.string().required("this field is required"),
+  policeStationAddress: yup
+    .string()
+    .required("police station address is required"),
+  claimsAmount: yup
+    .string()
+    .required("claims amount is required")
+    .matches(/^[0-9]+$/, "must be a number format"),
+});

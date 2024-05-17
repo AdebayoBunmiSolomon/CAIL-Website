@@ -105,12 +105,20 @@ export const validateCharacterAfterFirstSlash = (value: string) => {
     const characterAfterFirstSlash = parts[1][0]; // Get the first character after the first slash
     // Perform your validation here
     if (characterAfterFirstSlash === "v") {
-      return true;
+      return {
+        isValid: true,
+        character: characterAfterFirstSlash,
+      };
     } else {
-      return false;
+      return {
+        isValid: false,
+        character: characterAfterFirstSlash,
+      };
     }
   } else {
-    return false;
+    return {
+      isValid: false,
+    };
   }
 };
 
@@ -124,5 +132,35 @@ export const getBooleanFromYesOrNo = (value: string) => {
     return true;
   } else {
     return false;
+  }
+};
+
+/**
+ *
+ * @returns the policy class based on the policyNumber supplied
+ */
+export const getPolicyClassType = (policyNumber: string) => {
+  const { character } = validateCharacterAfterFirstSlash(policyNumber);
+  switch (character) {
+    case "a":
+      return "accident";
+    case "b":
+      return "bond";
+    case "e":
+      return "engineering";
+    case "f":
+      return "fire";
+    case "h":
+      return "aviation";
+    case "m":
+      return "marine";
+    case "v":
+      return "motor";
+    case "z":
+      return "oil-and-gas";
+    case "p":
+      return "packaged-policy";
+    default:
+      return null;
   }
 };

@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { FormTitle, SelectOptions, TextInput } from "../../../components";
 import { Controller } from "react-hook-form";
-import { convertToDateTimeISO } from "../../../helper/helper";
+import {
+  convertToDateTimeISO,
+  getBooleanFromYesOrNo,
+} from "../../../helper/helper";
 import {
   hasAWitness,
   policeInformed,
 } from "../../../assets/data/formOptionsData";
-import { useBondClaimForm } from "../../../hooks/store/make-a-claim";
+import {
+  useBondClaimForm,
+  useGlobalStore,
+} from "../../../hooks/store/make-a-claim";
 
 type useFormProps = {
   useFormProps: any;
@@ -15,29 +21,37 @@ type useFormProps = {
 export const BondClaimCircumstances: React.FC<useFormProps> = ({
   useFormProps,
 }) => {
-  const [haveAWitness, setHaveAWitness] = useState<string>("No");
-  const [isPoliceInformed, setIsPoliceInformed] = useState<string>("No");
   const { bondClaimFormData, setBondClaimFormData } = useBondClaimForm();
+  const { setGlobalData, globalData } = useGlobalStore();
   const props = useFormProps;
 
   useEffect(() => {
-    if (haveAWitness === "Yes") {
-      props?.setValues("nameOfWitness", "");
-      props?.setValues("witnessContactInfo", "");
+    if (globalData.doYouHaveAWitness === true) {
+      props?.setValues("nameOfWitness", bondClaimFormData.nameOfWitness);
+      props?.setValues(
+        "witnessContactInfo",
+        bondClaimFormData.witnessContactInfo
+      );
       return;
     } else {
       props?.setValues("nameOfWitness", "NULL");
       props?.setValues("witnessContactInfo", "NULL");
     }
-    if (isPoliceInformed === "Yes") {
-      props?.setValues("policeStationAddress", "");
+  }, [globalData.doYouHaveAWitness]);
+
+  useEffect(() => {
+    if (globalData.hasThePoliceBeenInformed === true) {
+      props?.setValues(
+        "policeStationAddress",
+        bondClaimFormData.policeStationAddress
+      );
       props?.setValues("whenWasThePoliceInformed", "");
       return;
     } else {
       props?.setValues("policeStationAddress", "NULL");
       props?.setValues("whenWasThePoliceInformed", "NULL");
     }
-  }, [haveAWitness, isPoliceInformed]);
+  }, [globalData.hasThePoliceBeenInformed]);
 
   return (
     <>
@@ -98,11 +112,15 @@ export const BondClaimCircumstances: React.FC<useFormProps> = ({
                   data={hasAWitness}
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
+                    const booleanValue = getBooleanFromYesOrNo(text);
                     field.onChange(text);
-                    setHaveAWitness(text);
                     setBondClaimFormData({
                       ...bondClaimFormData,
                       doYouHaveAWitness: text,
+                    });
+                    setGlobalData({
+                      ...globalData,
+                      doYouHaveAWitness: booleanValue,
                     });
                   }}
                   placeholder='Select witness'
@@ -116,7 +134,7 @@ export const BondClaimCircumstances: React.FC<useFormProps> = ({
               name='doYouHaveAWitness'
               defaultValue=''
             />
-            {haveAWitness === "Yes" ? (
+            {globalData.doYouHaveAWitness === true ? (
               <>
                 <Controller
                   control={props?.control}
@@ -170,11 +188,15 @@ export const BondClaimCircumstances: React.FC<useFormProps> = ({
                   data={policeInformed}
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
+                    const booleanValue = getBooleanFromYesOrNo(text);
                     field.onChange(text);
-                    setIsPoliceInformed(text);
                     setBondClaimFormData({
                       ...bondClaimFormData,
                       hasThePoliceBeenInformed: text,
+                    });
+                    setGlobalData({
+                      ...globalData,
+                      hasThePoliceBeenInformed: booleanValue,
                     });
                   }}
                   placeholder='Select option'
@@ -188,7 +210,7 @@ export const BondClaimCircumstances: React.FC<useFormProps> = ({
               name='hasThePoliceBeenInformed'
               defaultValue=''
             />
-            {isPoliceInformed === "Yes" ? (
+            {globalData.hasThePoliceBeenInformed === true ? (
               <>
                 <Controller
                   control={props?.control}

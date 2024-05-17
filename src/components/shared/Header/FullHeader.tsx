@@ -9,11 +9,13 @@ import { useSelectedHeader } from "../../../hooks/useSelectedHeader";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { HeaderDropDown } from "./HeaderDropDown";
 import { usePathName } from "../../../hooks";
+import { useGlobalStore } from "../../../hooks/store/make-a-claim";
 
 export const FullHeader = () => {
   const { selectedHeaderIndex, setSelectedHeaderIndex } = useSelectedHeader();
   const [nestedList, setNestedList] = useState<any>();
   const { checkForPathName, selectedPath, pathname } = usePathName();
+  const { setGlobalData, globalData } = useGlobalStore();
   const navigate = useNavigate();
 
   const openSelfService = () => {
@@ -56,6 +58,14 @@ export const FullHeader = () => {
               onClick={() => {
                 if (items.nestedList) {
                   setSelectedHeaderIndex(index);
+                  setGlobalData({
+                    ...globalData,
+                    doYouHaveAWitness: false,
+                    hasTheFireServiceBeenInformed: false,
+                    hasThePoliceBeenInformed: false,
+                    claimType: "",
+                    thirdPartyInvolved: "",
+                  });
                 } else {
                   setSelectedHeaderIndex(index);
                   navigate(items.page);

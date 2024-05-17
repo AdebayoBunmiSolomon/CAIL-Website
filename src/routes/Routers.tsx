@@ -34,6 +34,10 @@ import { AccidentClaimStepper } from "../forms/Make-a-Claim/Accident/Stepper";
 import { BondClaimStepper } from "../forms/Make-a-Claim/Bond/Stepper";
 import { EngineeringClaimStepper } from "../forms/Make-a-Claim/Engineering/Stepper";
 import { FireClaimStepper } from "../forms/Make-a-Claim/Fire/Stepper";
+import { AviationClaimStepper } from "../forms/Make-a-Claim/Aviation/Stepper";
+import { MarineClaimStepper } from "../forms/Make-a-Claim/Marine/Stepper";
+import { OilAndGasClaimStepper } from "../forms/Make-a-Claim/Oil-and-Gas/Stepper";
+import { PackagedPolicyClaimStepper } from "../forms/Make-a-Claim/Packaged/Stepper";
 
 type pagesProps = {
   path: string;
@@ -192,6 +196,22 @@ const pages: pagesProps[] = [
   {
     path: formRoutes.makeFireClaim,
     element: FireClaimStepper,
+  },
+  {
+    path: formRoutes.makeAviationClaim,
+    element: AviationClaimStepper,
+  },
+  {
+    path: formRoutes.makeMarineClaim,
+    element: MarineClaimStepper,
+  },
+  {
+    path: formRoutes.makeOilAndGasClaim,
+    element: OilAndGasClaimStepper,
+  },
+  {
+    path: formRoutes.makePackagedPolicyClaim,
+    element: PackagedPolicyClaimStepper,
   },
 ];
 

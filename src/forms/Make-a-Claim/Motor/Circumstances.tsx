@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { FormTitle, SelectOptions, TextInput } from "../../../components";
 import { Controller } from "react-hook-form";
 import {
@@ -6,8 +6,15 @@ import {
   policeInformed,
   thirdPartyInvolved,
 } from "../../../assets/data/formOptionsData";
-import { convertToDateTimeISO } from "../../../helper/helper";
-import { useMotorClaimForm } from "../../../hooks/store/make-a-claim";
+import {
+  convertDateTimeISOtoHTMLDate,
+  convertToDateTimeISO,
+  getBooleanFromYesOrNo,
+} from "../../../helper/helper";
+import {
+  useGlobalStore,
+  useMotorClaimForm,
+} from "../../../hooks/store/make-a-claim";
 
 type useFormProps = {
   useFormProps: any;
@@ -17,58 +24,67 @@ export const MotorClaimCircumstances: React.FC<useFormProps> = ({
   useFormProps,
 }) => {
   const props: any = useFormProps;
+  const { setGlobalData, globalData } = useGlobalStore();
   const { motorClaimFormData, setMotorClaimFormData } = useMotorClaimForm();
-  const [haveAWitness, setHaveAWitness] = useState<string>("No");
-  const [isPoliceInformed, setIsPoliceInformed] = useState<string>("No");
-  const [isThirdPartyInvolved, setIsThirdPartyInvolved] =
-    useState<string>("Yes");
   console.log(props);
 
   useEffect(() => {
-    if (haveAWitness === "No") {
+    if (globalData.doYouHaveAWitness === false) {
       props?.setValues("nameOfWitness", "NULL");
-      props?.setValues("nameOfWitness", "NULL");
+      props?.setValues("witnessContactInfo", "NULL");
     } else {
-      props?.setValues("nameOfWitness", "");
-      props?.setValues("nameOfWitness", "");
+      props?.setValues("nameOfWitness", motorClaimFormData.nameOfWitness);
+      props?.setValues(
+        "witnessContactInfo",
+        motorClaimFormData.witnessContactInfo
+      );
     }
+  }, [globalData.doYouHaveAWitness]);
 
-    if (isPoliceInformed === "No") {
+  useEffect(() => {
+    if (globalData.hasThePoliceBeenInformed === false) {
       props?.setValues("policeStationAddress", "NULL");
       props?.setValues("whenWasThePoliceInformed", "NULL");
     } else {
-      props?.setValues("policeStationAddress", "");
+      props?.setValues(
+        "policeStationAddress",
+        motorClaimFormData.policeStationAddress
+      );
       props?.setValues("whenWasThePoliceInformed", "");
     }
+  }, [globalData.hasThePoliceBeenInformed]);
 
-    if (isThirdPartyInvolved !== "No") {
-      props?.setValues("thirdPartyInformation", "");
+  useEffect(() => {
+    if (
+      globalData.thirdPartyInvolved === "Yes (Insured Liable)" ||
+      globalData.thirdPartyInvolved === "Yes (Third Party Liable)"
+    ) {
+      props?.setValues(
+        "thirdPartyInformation",
+        motorClaimFormData.thirdPartyInformation
+      );
     } else {
       props?.setValues("thirdPartyInformation", "NULL");
     }
+  }, [globalData.thirdPartyInvolved]);
 
+  useEffect(() => {
     if (
       motorClaimFormData.claimType === "Accident" &&
       motorClaimFormData.damageType === "Total Loss"
     ) {
-      props?.setValues("claimsAmount", "");
+      props?.setValues("claimsAmount", motorClaimFormData.claimsAmount);
     } else if (
       motorClaimFormData.claimType === "Fire" &&
       motorClaimFormData.damageType === "Total Loss"
     ) {
-      props.setValues("claimsAmount", "");
+      props.setValues("claimsAmount", motorClaimFormData.claimsAmount);
     } else if (motorClaimFormData.claimType === "Theft") {
-      props?.setValues("claimsAmount", "");
+      props?.setValues("claimsAmount", motorClaimFormData.claimsAmount);
     } else {
       props.setValues("claimsAmount", "0");
     }
-  }, [
-    haveAWitness,
-    isPoliceInformed,
-    isThirdPartyInvolved,
-    motorClaimFormData.claimType,
-    motorClaimFormData.damageType,
-  ]);
+  }, [motorClaimFormData.claimType, motorClaimFormData.damageType]);
 
   return (
     <>
@@ -101,15 +117,19 @@ export const MotorClaimCircumstances: React.FC<useFormProps> = ({
               control={props?.control}
               render={({ field }) => (
                 <SelectOptions
-                  label='Witness confirmed?'
+                  label='Do you have a witness?'
                   data={hasAWitness}
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
+                    const booleanValue = getBooleanFromYesOrNo(text);
                     field.onChange(text);
-                    setHaveAWitness(text);
                     setMotorClaimFormData({
                       ...motorClaimFormData,
                       doYouHaveAWitness: text,
+                    });
+                    setGlobalData({
+                      ...globalData,
+                      doYouHaveAWitness: booleanValue,
                     });
                   }}
                   placeholder='Select witness'
@@ -125,7 +145,7 @@ export const MotorClaimCircumstances: React.FC<useFormProps> = ({
             />
           </div>
           <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
-            {haveAWitness === "Yes" ? (
+            {globalData.doYouHaveAWitness === true ? (
               <>
                 <Controller
                   control={props?.control}
@@ -178,11 +198,15 @@ export const MotorClaimCircumstances: React.FC<useFormProps> = ({
                   data={policeInformed}
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
+                    const booleanValue = getBooleanFromYesOrNo(text);
                     field.onChange(text);
-                    setIsPoliceInformed(text);
                     setMotorClaimFormData({
                       ...motorClaimFormData,
                       hasThePoliceBeenInformed: text,
+                    });
+                    setGlobalData({
+                      ...globalData,
+                      hasThePoliceBeenInformed: booleanValue,
                     });
                   }}
                   placeholder='Select option'
@@ -199,7 +223,7 @@ export const MotorClaimCircumstances: React.FC<useFormProps> = ({
           </div>
 
           <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
-            {isPoliceInformed === "Yes" ? (
+            {globalData.hasThePoliceBeenInformed === true ? (
               <>
                 <Controller
                   control={props?.control}
@@ -253,7 +277,7 @@ export const MotorClaimCircumstances: React.FC<useFormProps> = ({
               render={({ field }) => (
                 <TextInput
                   placeHolder='Lagos, Nigeria'
-                  label='Where can the vehicle be inspected?'
+                  label='Where can the vehicle be inspected'
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
@@ -278,10 +302,13 @@ export const MotorClaimCircumstances: React.FC<useFormProps> = ({
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
                     field.onChange(text);
-                    setIsThirdPartyInvolved(text);
                     setMotorClaimFormData({
                       ...motorClaimFormData,
                       isThirdPartyInvolved: text,
+                    });
+                    setGlobalData({
+                      ...globalData,
+                      thirdPartyInvolved: text,
                     });
                   }}
                   placeholder='Select options'
@@ -318,7 +345,8 @@ export const MotorClaimCircumstances: React.FC<useFormProps> = ({
             />
           </div>
           <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
-            {isThirdPartyInvolved !== "No" ? (
+            {globalData.thirdPartyInvolved === "Yes (Insured Liable)" ||
+            globalData.thirdPartyInvolved === "Yes (Third Party Liable)" ? (
               <Controller
                 control={props?.control}
                 render={({ field }) => (

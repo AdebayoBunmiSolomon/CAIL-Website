@@ -354,3 +354,79 @@ export type fireClaimCircumstances = {
   policeStationAddress: string;
   claimsAmount: string;
 };
+
+export type aviationClaimDetailsTypes = {
+  claimType: string;
+  email: string;
+  phoneNumber: string;
+  dateTimeOfIncident: string;
+};
+
+export type aviationClaimCircumstances = {
+  descriptionOfIncident: string;
+  listOfStolenItems: string;
+  doYouHaveAWitness: string;
+  nameOfWitness: string;
+  witnessContactInfo: string;
+  hasThePoliceBeenInformed: string;
+  whenWasThePoliceInformed: string;
+  policeStationAddress: string;
+  claimsAmount: string;
+};
+
+export type marineClaimDetailsTypes = {
+  claimType: string;
+  email: string;
+  phoneNumber: string;
+  dateTimeOfIncident: string;
+};
+
+export type marineClaimCircumstances = {
+  descriptionOfIncident: string;
+  listOfStolenItems: string;
+  doYouHaveAWitness: string;
+  nameOfWitness: string;
+  witnessContactInfo: string;
+  hasThePoliceBeenInformed: string;
+  whenWasThePoliceInformed: string;
+  policeStationAddress: string;
+  claimsAmount: string;
+};
+
+export type oilAndGasClaimDetailsTypes = {
+  claimType: string;
+  email: string;
+  phoneNumber: string;
+  dateTimeOfIncident: string;
+};
+
+export type oilAndGasClaimCircumstances = {
+  descriptionOfIncident: string;
+  listOfStolenItems: string;
+  doYouHaveAWitness: string;
+  nameOfWitness: string;
+  witnessContactInfo: string;
+  hasThePoliceBeenInformed: string;
+  whenWasThePoliceInformed: string;
+  policeStationAddress: string;
+  claimsAmount: string;
+};
+
+export type packagedPolicyClaimDetailsTypes = {
+  claimType: string;
+  email: string;
+  phoneNumber: string;
+  dateTimeOfIncident: string;
+};
+
+export type packagedPolicyClaimCircumstances = {
+  descriptionOfIncident: string;
+  listOfStolenItems: string;
+  doYouHaveAWitness: string;
+  nameOfWitness: string;
+  witnessContactInfo: string;
+  hasThePoliceBeenInformed: string;
+  whenWasThePoliceInformed: string;
+  policeStationAddress: string;
+  claimsAmount: string;
+};

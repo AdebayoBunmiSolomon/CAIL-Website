@@ -6,33 +6,31 @@ import {
   getBooleanFromYesOrNo,
 } from "../../../helper/helper";
 import {
-  fireServiceInformed,
-  fireServiceReport,
   hasAWitness,
   policeInformed,
 } from "../../../assets/data/formOptionsData";
 import {
-  useFireClaimForm,
   useGlobalStore,
+  useMarineClaimForm,
 } from "../../../hooks/store/make-a-claim";
 
 type useFormProps = {
   useFormProps: any;
 };
 
-export const FireClaimCircumstances: React.FC<useFormProps> = ({
+export const MarineClaimCircumstances: React.FC<useFormProps> = ({
   useFormProps,
 }) => {
-  const { setFireClaimFormData, fireClaimFormData } = useFireClaimForm();
+  const { marineClaimFormData, setMarineClaimFormData } = useMarineClaimForm();
   const { setGlobalData, globalData } = useGlobalStore();
   const props = useFormProps;
 
   useEffect(() => {
     if (globalData.doYouHaveAWitness === true) {
-      props?.setValues("nameOfWitness", fireClaimFormData.nameOfWitness);
+      props?.setValues("nameOfWitness", marineClaimFormData.nameOfWitness);
       props?.setValues(
         "witnessContactInfo",
-        fireClaimFormData.witnessContactInfo
+        marineClaimFormData.witnessContactInfo
       );
       return;
     } else {
@@ -45,7 +43,7 @@ export const FireClaimCircumstances: React.FC<useFormProps> = ({
     if (globalData.hasThePoliceBeenInformed === true) {
       props?.setValues(
         "policeStationAddress",
-        fireClaimFormData.policeStationAddress
+        marineClaimFormData.policeStationAddress
       );
       props?.setValues("whenWasThePoliceInformed", "");
       return;
@@ -55,38 +53,11 @@ export const FireClaimCircumstances: React.FC<useFormProps> = ({
     }
   }, [globalData.hasThePoliceBeenInformed]);
 
-  useEffect(() => {
-    if (fireClaimFormData.claimType === "Fire/Explosion") {
-      props?.setValues(
-        "hasTheFireServiceBeenInformed",
-        fireClaimFormData.hasTheFireServiceBeenInformed
-      );
-    } else {
-      props?.setValues("hasTheFireServiceBeenInformed", "NULL");
-    }
-  }, [fireClaimFormData.claimType]);
-
-  useEffect(() => {
-    if (globalData.hasTheFireServiceBeenInformed === true) {
-      props?.setValues(
-        "fireServiceStationAddress",
-        fireClaimFormData.fireServiceStationAddress
-      );
-      props?.setValues(
-        "doYouHaveAFireServiceReport",
-        fireClaimFormData.doYouHaveAFireServiceReport
-      );
-    } else {
-      props?.setValues("fireServiceStationAddress", "NULL");
-      props?.setValues("doYouHaveAFireServiceReport", "NULL");
-    }
-  }, [globalData.hasTheFireServiceBeenInformed]);
-
   return (
     <>
       <div className='flex justify-center items-center'>
         <div className='w-[95%] bg-white rounded-md self-center p-6'>
-          <FormTitle title='Fire Claim Circumstances' />
+          <FormTitle title='Aviation Claim Circumstances' />
           <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
             <Controller
               control={props?.control}
@@ -98,8 +69,8 @@ export const FireClaimCircumstances: React.FC<useFormProps> = ({
                   textArea
                   onChange={(event) => {
                     field.onChange(event.target.value);
-                    setFireClaimFormData({
-                      ...fireClaimFormData,
+                    setMarineClaimFormData({
+                      ...marineClaimFormData,
                       descriptionOfIncident: event.target.value,
                     });
                   }}
@@ -120,8 +91,8 @@ export const FireClaimCircumstances: React.FC<useFormProps> = ({
                   textArea
                   onChange={(event) => {
                     field.onChange(event.target.value);
-                    setFireClaimFormData({
-                      ...fireClaimFormData,
+                    setMarineClaimFormData({
+                      ...marineClaimFormData,
                       listOfStolenItems: event.target.value,
                     });
                   }}
@@ -143,8 +114,8 @@ export const FireClaimCircumstances: React.FC<useFormProps> = ({
                   onChangeSelectedOption={(text) => {
                     field.onChange(text);
                     const booleanValue = getBooleanFromYesOrNo(text);
-                    setFireClaimFormData({
-                      ...fireClaimFormData,
+                    setMarineClaimFormData({
+                      ...marineClaimFormData,
                       doYouHaveAWitness: text,
                     });
                     setGlobalData({
@@ -174,8 +145,8 @@ export const FireClaimCircumstances: React.FC<useFormProps> = ({
                       value={field.value}
                       onChange={(event) => {
                         field.onChange(event.target.value);
-                        setFireClaimFormData({
-                          ...fireClaimFormData,
+                        setMarineClaimFormData({
+                          ...marineClaimFormData,
                           nameOfWitness: event.target.value,
                         });
                       }}
@@ -194,8 +165,8 @@ export const FireClaimCircumstances: React.FC<useFormProps> = ({
                       value={field.value}
                       onChange={(event) => {
                         field.onChange(event.target.value);
-                        setFireClaimFormData({
-                          ...fireClaimFormData,
+                        setMarineClaimFormData({
+                          ...marineClaimFormData,
                           witnessContactInfo: event.target.value,
                         });
                       }}
@@ -203,89 +174,6 @@ export const FireClaimCircumstances: React.FC<useFormProps> = ({
                     />
                   )}
                   name='witnessContactInfo'
-                  defaultValue=''
-                />
-              </>
-            ) : null}
-          </div>
-          <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
-            {fireClaimFormData.claimType === "Fire/Explosion" ? (
-              <Controller
-                control={props?.control}
-                render={({ field }) => (
-                  <SelectOptions
-                    label='Has the fire service been informed?'
-                    data={fireServiceInformed}
-                    selectedOption={field.value}
-                    onChangeSelectedOption={(text) => {
-                      const booleanValue = getBooleanFromYesOrNo(text);
-                      setGlobalData({
-                        ...globalData,
-                        hasTheFireServiceBeenInformed: booleanValue,
-                      });
-                      field.onChange(text);
-                      setFireClaimFormData({
-                        ...fireClaimFormData,
-                        hasTheFireServiceBeenInformed: text,
-                      });
-                    }}
-                    placeholder='Select option'
-                    error={
-                      !field.value
-                        ? props?.errors?.hasTheFireServiceBeenInformed?.message
-                        : undefined
-                    }
-                  />
-                )}
-                name='hasTheFireServiceBeenInformed'
-                defaultValue=''
-              />
-            ) : null}
-            {globalData.hasTheFireServiceBeenInformed === true ? (
-              <>
-                <Controller
-                  control={props?.control}
-                  render={({ field }) => (
-                    <TextInput
-                      placeHolder='Lagos, Nigeria'
-                      label='Fire Service Station Address'
-                      value={field.value}
-                      onChange={(event) => {
-                        field.onChange(event.target.value);
-                        setFireClaimFormData({
-                          ...fireClaimFormData,
-                          fireServiceStationAddress: event.target.value,
-                        });
-                      }}
-                      error={props?.errors?.fireServiceStationAddress?.message}
-                    />
-                  )}
-                  name='fireServiceStationAddress'
-                  defaultValue=''
-                />
-                <Controller
-                  control={props?.control}
-                  render={({ field }) => (
-                    <SelectOptions
-                      label='Do you have a fire service report?'
-                      data={fireServiceReport}
-                      selectedOption={field.value}
-                      onChangeSelectedOption={(text) => {
-                        field.onChange(text);
-                        setFireClaimFormData({
-                          ...fireClaimFormData,
-                          doYouHaveAFireServiceReport: text,
-                        });
-                      }}
-                      placeholder='Select option'
-                      error={
-                        !field.value
-                          ? props?.errors?.doYouHaveAFireServiceReport?.message
-                          : undefined
-                      }
-                    />
-                  )}
-                  name='doYouHaveAFireServiceReport'
                   defaultValue=''
                 />
               </>
@@ -306,8 +194,8 @@ export const FireClaimCircumstances: React.FC<useFormProps> = ({
                       hasThePoliceBeenInformed: booleanValue,
                     });
                     field.onChange(text);
-                    setFireClaimFormData({
-                      ...fireClaimFormData,
+                    setMarineClaimFormData({
+                      ...marineClaimFormData,
                       hasThePoliceBeenInformed: text,
                     });
                   }}
@@ -333,8 +221,8 @@ export const FireClaimCircumstances: React.FC<useFormProps> = ({
                       value={field.value}
                       onChange={(event) => {
                         field.onChange(event.target.value);
-                        setFireClaimFormData({
-                          ...fireClaimFormData,
+                        setMarineClaimFormData({
+                          ...marineClaimFormData,
                           policeStationAddress: event.target.value,
                         });
                       }}
@@ -355,8 +243,8 @@ export const FireClaimCircumstances: React.FC<useFormProps> = ({
                       onChange={(event) => {
                         const date = convertToDateTimeISO(event.target.value);
                         field.onChange(event.target.value);
-                        setFireClaimFormData({
-                          ...fireClaimFormData,
+                        setMarineClaimFormData({
+                          ...marineClaimFormData,
                           whenWasThePoliceInformed: date,
                         });
                       }}
@@ -379,8 +267,8 @@ export const FireClaimCircumstances: React.FC<useFormProps> = ({
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
-                    setFireClaimFormData({
-                      ...fireClaimFormData,
+                    setMarineClaimFormData({
+                      ...marineClaimFormData,
                       claimsAmount: event.target.value,
                     });
                   }}

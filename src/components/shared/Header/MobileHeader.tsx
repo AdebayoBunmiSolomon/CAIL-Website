@@ -4,11 +4,13 @@ import { useSelectedHeader } from "../../../hooks/useSelectedHeader";
 import ClaLogo from "../../../assets/svg/ClaLogo";
 import { useNavigate } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
+import { useGlobalStore } from "../../../hooks/store/make-a-claim";
 
 export const MobileHeader: React.FC<{}> = () => {
   const navigate = useNavigate();
   const { selectedHeaderIndex, setSelectedHeaderIndex } = useSelectedHeader();
   const [showDropDown, setShowDropDown] = useState<boolean>(false);
+  const { setGlobalData, globalData } = useGlobalStore();
   return (
     <div className='w-[100%] py-3 fixed top-0 right-0 left-0 z-10 backdrop-blur-[5px]'>
       <div className='flex flex-row items-center justify-between w-full'>
@@ -39,6 +41,14 @@ export const MobileHeader: React.FC<{}> = () => {
                 onClick={() => {
                   setSelectedHeaderIndex(index);
                   navigate(items.page);
+                  setGlobalData({
+                    ...globalData,
+                    doYouHaveAWitness: false,
+                    hasTheFireServiceBeenInformed: false,
+                    hasThePoliceBeenInformed: false,
+                    claimType: "",
+                    thirdPartyInvolved: "",
+                  });
                 }}>
                 {items.title}
               </li>

@@ -54,12 +54,12 @@ export const MakeAClaim: React.FC<{}> = () => {
                     type='text'
                     value={field.value}
                     onChange={(event) => {
-                      const isMotor = validateCharacterAfterFirstSlash(
+                      const { isValid } = validateCharacterAfterFirstSlash(
                         event.target.value
                       );
                       field.onChange(event.target.value);
                       setPolicyNumber(event.target.value);
-                      setMotorPolicy(isMotor);
+                      setMotorPolicy(isValid);
                     }}
                     error={errors?.policyNumber?.message}
                   />

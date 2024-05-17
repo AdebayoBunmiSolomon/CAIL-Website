@@ -5,6 +5,7 @@ import { IoClose } from "react-icons/io5";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useMakeAClaimForm } from "../../hooks/store/make-a-claim/useMakeAClaim";
 import { ToastContainer } from "react-toastify";
+import { getPolicyClassType } from "../../helper/helper";
 
 type callBackFormProps = {
   showClaimsInfo: boolean;
@@ -17,6 +18,7 @@ export const ClaimsInfo: React.FC<callBackFormProps> = ({
 }) => {
   const navigate: NavigateFunction = useNavigate();
   const { makeAClaimFormData } = useMakeAClaimForm();
+  const policyType = getPolicyClassType(makeAClaimFormData.policyId);
 
   return (
     <>
@@ -84,7 +86,11 @@ export const ClaimsInfo: React.FC<callBackFormProps> = ({
               <div className='flex flex-row justify-center items-center gap-5 pt-5'>
                 <Button
                   text={"Next"}
-                  onPress={() => navigate("/forms/make-a-claim/fire")}
+                  onPress={() => {
+                    if (policyType) {
+                      navigate(`/forms/make-a-claim/${policyType}`);
+                    }
+                  }}
                   className='py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-5 flex rounded-lg hover:bg-[#900000d7] hover:duration-700'
                   rightIcon={<GoArrowRight size={25} />}
                 />

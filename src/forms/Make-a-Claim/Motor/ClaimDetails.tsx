@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { FormTitle, SelectOptions, TextInput } from "../../../components";
 import { Controller } from "react-hook-form";
 import { claimType, damageType } from "../../../assets/data/formOptionsData";
 import { convertToDateTimeISO } from "../../../helper/helper";
 import {
+  useGlobalStore,
   useMakeAClaimForm,
   useMotorClaimForm,
 } from "../../../hooks/store/make-a-claim";
@@ -13,26 +14,18 @@ type useFormProps = {
 };
 
 export const MotorClaimDetails: React.FC<useFormProps> = ({ useFormProps }) => {
-  const [selectedClaimType, setSelectedClaimType] = useState<string>("");
   const props: any = useFormProps;
   const { motorClaimFormData, setMotorClaimFormData } = useMotorClaimForm();
   const { makeAClaimFormData } = useMakeAClaimForm();
+  const { setGlobalData, globalData } = useGlobalStore();
 
   useEffect(() => {
-    if (selectedClaimType !== "Accident") {
-      props?.setValues("damageType", "NIL");
-      setMotorClaimFormData({
-        ...motorClaimFormData,
-        damageType: "NIL",
-      });
+    if (globalData.claimType !== "Accident") {
+      props?.setValues("damageType", "NULL");
     } else {
-      props?.setValues("damageType", "");
-      setMotorClaimFormData({
-        ...motorClaimFormData,
-        policyHolderName: "",
-      });
+      props?.setValues("damageType", motorClaimFormData.damageType);
     }
-  }, [selectedClaimType]);
+  }, [globalData.claimType]);
 
   useEffect(() => {
     if (
@@ -154,9 +147,12 @@ export const MotorClaimDetails: React.FC<useFormProps> = ({ useFormProps }) => {
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
                     field.onChange(text);
-                    setSelectedClaimType(text);
                     setMotorClaimFormData({
                       ...motorClaimFormData,
+                      claimType: text,
+                    });
+                    setGlobalData({
+                      ...globalData,
                       claimType: text,
                     });
                   }}
@@ -170,7 +166,7 @@ export const MotorClaimDetails: React.FC<useFormProps> = ({ useFormProps }) => {
               defaultValue=''
             />
 
-            {selectedClaimType === "Accident" && (
+            {globalData.claimType === "Accident" && (
               <Controller
                 control={props?.control}
                 render={({ field }) => (

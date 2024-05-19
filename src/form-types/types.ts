@@ -295,6 +295,14 @@ export type accidentClaimCircumstances = {
   claimsAmount: string;
 };
 
+export type accidentReqDoc = {
+  purchaseOrReplacementInvoice: any;
+  evidenceUpload1: any;
+  evidenceUpload2: any;
+  eyeWitnessReport: any;
+  policeReport: any;
+};
+
 export type bondClaimDetailsTypes = {
   claimType: string;
   email: string;
@@ -314,6 +322,15 @@ export type bondClaimCircumstances = {
   claimsAmount: string;
 };
 
+export type bondClaimReqDoc = {
+  evidenceUpload1: any;
+  evidenceUpload2: any;
+  evidenceUpload3: any;
+  evidenceUpload4: any;
+  eyeWitnessReport: any;
+  policeReport: any;
+};
+
 export type engineeringClaimDetailsTypes = {
   claimType: string;
   email: string;
@@ -331,6 +348,15 @@ export type engineeringClaimCircumstances = {
   whenWasThePoliceInformed: string;
   policeStationAddress: string;
   claimsAmount: string;
+};
+
+export type engineeringClaimReqDoc = {
+  evidenceUpload1: any;
+  evidenceUpload2: any;
+  evidenceUpload3: any;
+  evidenceUpload4: any;
+  eyeWitnessReport: any;
+  policeReport: any;
 };
 
 export type fireClaimDetailsTypes = {
@@ -374,6 +400,15 @@ export type aviationClaimCircumstances = {
   claimsAmount: string;
 };
 
+export type aviationClaimReqDoc = {
+  evidenceUpload1: any;
+  evidenceUpload2: any;
+  evidenceUpload3: any;
+  evidenceUpload4: any;
+  eyeWitnessReport: any;
+  policeReport: any;
+};
+
 export type marineClaimDetailsTypes = {
   claimType: string;
   email: string;
@@ -391,6 +426,15 @@ export type marineClaimCircumstances = {
   whenWasThePoliceInformed: string;
   policeStationAddress: string;
   claimsAmount: string;
+};
+
+export type marineClaimReqDoc = {
+  evidenceUpload1: any;
+  evidenceUpload2: any;
+  evidenceUpload3: any;
+  evidenceUpload4: any;
+  eyeWitnessReport: any;
+  policeReport: any;
 };
 
 export type oilAndGasClaimDetailsTypes = {
@@ -412,6 +456,15 @@ export type oilAndGasClaimCircumstances = {
   claimsAmount: string;
 };
 
+export type oilAndGasClaimReqDoc = {
+  evidenceUpload1: any;
+  evidenceUpload2: any;
+  evidenceUpload3: any;
+  evidenceUpload4: any;
+  eyeWitnessReport: any;
+  policeReport: any;
+};
+
 export type packagedPolicyClaimDetailsTypes = {
   claimType: string;
   email: string;
@@ -429,4 +482,13 @@ export type packagedPolicyClaimCircumstances = {
   whenWasThePoliceInformed: string;
   policeStationAddress: string;
   claimsAmount: string;
+};
+
+export type packagedPolicyClaimReqDoc = {
+  evidenceUpload1: any;
+  evidenceUpload2: any;
+  evidenceUpload3: any;
+  evidenceUpload4: any;
+  eyeWitnessReport: any;
+  policeReport: any;
 };

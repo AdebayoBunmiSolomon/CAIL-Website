@@ -57,7 +57,7 @@ export const MarineClaimCircumstances: React.FC<useFormProps> = ({
     <>
       <div className='flex justify-center items-center'>
         <div className='w-[95%] bg-white rounded-md self-center p-6'>
-          <FormTitle title='Aviation Claim Circumstances' />
+          <FormTitle title='Marine Claim Circumstances' />
           <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
             <Controller
               control={props?.control}

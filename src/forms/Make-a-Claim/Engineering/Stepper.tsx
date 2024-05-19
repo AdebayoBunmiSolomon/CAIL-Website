@@ -9,10 +9,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   engineeringClaimCircumstances,
   engineeringClaimDetailsTypes,
+  engineeringClaimReqDoc,
 } from "../../../form-types/Types";
 import {
   engineeringClaimCircumstancesValidationSchema,
   engineeringClaimDetailsValidationSchema,
+  engineeringClaimReqDocValidationSchema,
 } from "../../../form-types/validationSchema";
 import { EngineeringClaimDetails } from "./ClaimDetails";
 import { EngineeringClaimSummary } from "./Summary";
@@ -51,6 +53,17 @@ export const EngineeringClaimStepper: React.FC<{}> = () => {
     resolver: yupResolver(engineeringClaimCircumstancesValidationSchema),
   });
 
+  const {
+    control: engineeringClaimReqDocControl,
+    formState: { errors: engineeringClaimReqDocErrors },
+    trigger: engineeringClaimReqDocTrigger,
+    setValue: setEngineeringClaimReqDocValues,
+    setError: setEngineeringClaimReqDocError,
+  } = useForm<engineeringClaimReqDoc>({
+    mode: "onChange",
+    resolver: yupResolver(engineeringClaimReqDocValidationSchema),
+  });
+
   const onSubmitNextStep = async () => {
     let isValid = false;
     if (activeStep === 0) {
@@ -60,6 +73,13 @@ export const EngineeringClaimStepper: React.FC<{}> = () => {
       isValid = await engineeringClaimCircumstancesTrigger();
       if (isValid) nextStep();
     } else if (activeStep === 2) {
+      isValid = await engineeringClaimReqDocTrigger();
+      if (isValid) nextStep();
+    } else if (activeStep === 3) {
+      isValid = true;
+      if (isValid) {
+        //perform submit operation
+      }
     }
   };
 
@@ -86,7 +106,16 @@ export const EngineeringClaimStepper: React.FC<{}> = () => {
           />
         );
       case 2:
-        return <EngineeringClaimRequiredDocumentsDetails useFormProps={{}} />;
+        return (
+          <EngineeringClaimRequiredDocumentsDetails
+            useFormProps={{
+              control: engineeringClaimReqDocControl,
+              errors: engineeringClaimReqDocErrors,
+              setValues: setEngineeringClaimReqDocValues,
+              setError: setEngineeringClaimReqDocError,
+            }}
+          />
+        );
       case 3:
         return <EngineeringClaimSummary />;
       default:

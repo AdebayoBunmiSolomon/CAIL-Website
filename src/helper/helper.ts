@@ -164,3 +164,16 @@ export const getPolicyClassType = (policyNumber: string) => {
       return null;
   }
 };
+
+/**
+ * returns true if file size is <= 2MB else false
+ */
+export const getFileSize = (fileSize: any) => {
+  const defaultFileSize = 2 * 1024 * 1024; //2MB
+  if (fileSize > defaultFileSize) {
+    return false;
+  } else if (fileSize <= defaultFileSize) {
+    return true;
+  }
+};
+export const FILE_SIZE = 2 * 1024 * 1024;

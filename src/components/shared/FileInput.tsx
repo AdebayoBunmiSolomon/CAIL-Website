@@ -23,7 +23,8 @@ export const FileInput: React.FC<fileInputProps> = ({
           className='py-3 rounded-lg px-2 h-12 placeholder:text-slate-400 border border-slate-300 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1'
           placeholder={placeHolder}
           {...props}
-          accept='image/*'
+          accept='.mp4,.jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf,video/mp4'
+          aria-describedby='file_input_help'
         />
         {error && (
           <p className='font-medium text-[crimson] text-sm h-5'>{error}</p>

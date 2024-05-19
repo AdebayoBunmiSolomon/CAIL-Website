@@ -9,10 +9,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   marineClaimCircumstances,
   marineClaimDetailsTypes,
+  marineClaimReqDoc,
 } from "../../../form-types/Types";
 import {
   marineClaimCircumstancesValidationSchema,
   marineClaimDetailsValidationSchema,
+  marineClaimReqDocValidationSchema,
 } from "../../../form-types/validationSchema";
 import { MarineClaimDetails } from "./ClaimDetails";
 import { MarineClaimSummary } from "./Summary";
@@ -46,6 +48,17 @@ export const MarineClaimStepper: React.FC<{}> = () => {
     resolver: yupResolver(marineClaimCircumstancesValidationSchema),
   });
 
+  const {
+    control: marineClaimReqDocControl,
+    formState: { errors: marineClaimReqDocErrors },
+    trigger: marineClaimReqDocTrigger,
+    setValue: setMarineClaimReqDocValues,
+    setError: setMarineClaimReqDocError,
+  } = useForm<marineClaimReqDoc>({
+    mode: "onChange",
+    resolver: yupResolver(marineClaimReqDocValidationSchema),
+  });
+
   const onSubmitNextStep = async () => {
     let isValid = false;
     if (activeStep === 0) {
@@ -55,6 +68,13 @@ export const MarineClaimStepper: React.FC<{}> = () => {
       isValid = await marineClaimCircumstancesTrigger();
       if (isValid) nextStep();
     } else if (activeStep === 2) {
+      isValid = await marineClaimReqDocTrigger();
+      if (isValid) nextStep();
+    } else if (activeStep === 3) {
+      isValid = true;
+      if (isValid) {
+        //perform submit operation
+      }
     }
   };
 
@@ -81,7 +101,16 @@ export const MarineClaimStepper: React.FC<{}> = () => {
           />
         );
       case 2:
-        return <MarineClaimRequiredDocumentsDetails useFormProps={{}} />;
+        return (
+          <MarineClaimRequiredDocumentsDetails
+            useFormProps={{
+              control: marineClaimReqDocControl,
+              errors: marineClaimReqDocErrors,
+              setValues: setMarineClaimReqDocValues,
+              setError: setMarineClaimReqDocError,
+            }}
+          />
+        );
       case 3:
         return <MarineClaimSummary />;
       default:

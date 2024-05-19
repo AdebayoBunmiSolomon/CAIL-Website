@@ -9,10 +9,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   packagedPolicyClaimCircumstances,
   packagedPolicyClaimDetailsTypes,
+  packagedPolicyClaimReqDoc,
 } from "../../../form-types/Types";
 import {
   packagedPolicyCircumstancesValidationSchema,
   packagedPolicyClaimDetailsValidationSchema,
+  packagedPolicyClaimReqDocValidationSchema,
 } from "../../../form-types/validationSchema";
 import { PackagedPolicyClaimDetails } from "./ClaimDetails";
 import { RegisterClaimService } from "../../../api/services/make-a-claim";
@@ -51,6 +53,17 @@ export const PackagedPolicyClaimStepper: React.FC<{}> = () => {
     resolver: yupResolver(packagedPolicyCircumstancesValidationSchema),
   });
 
+  const {
+    control: packagedPolicyClaimReqDocControl,
+    formState: { errors: packagedPolicyClaimReqDocErrors },
+    trigger: packagedPolicyClaimReqDocTrigger,
+    setValue: setPackagedPolicyClaimReqDocValues,
+    setError: setPackagedPolicyClaimReqDocError,
+  } = useForm<packagedPolicyClaimReqDoc>({
+    mode: "onChange",
+    resolver: yupResolver(packagedPolicyClaimReqDocValidationSchema),
+  });
+
   const onSubmitNextStep = async () => {
     let isValid = false;
     if (activeStep === 0) {
@@ -60,6 +73,13 @@ export const PackagedPolicyClaimStepper: React.FC<{}> = () => {
       isValid = await packagedPolicyClaimCircumstancesTrigger();
       if (isValid) nextStep();
     } else if (activeStep === 2) {
+      isValid = await packagedPolicyClaimReqDocTrigger();
+      if (isValid) nextStep();
+    } else if (activeStep === 3) {
+      isValid = true;
+      if (isValid) {
+        //perform submit operations here
+      }
     }
   };
 
@@ -87,7 +107,14 @@ export const PackagedPolicyClaimStepper: React.FC<{}> = () => {
         );
       case 2:
         return (
-          <PackagedPolicyClaimRequiredDocumentsDetails useFormProps={{}} />
+          <PackagedPolicyClaimRequiredDocumentsDetails
+            useFormProps={{
+              control: packagedPolicyClaimReqDocControl,
+              errors: packagedPolicyClaimReqDocErrors,
+              setValues: setPackagedPolicyClaimReqDocValues,
+              setError: setPackagedPolicyClaimReqDocError,
+            }}
+          />
         );
       case 3:
         return <PackagedPolicyClaimSummary />;

@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { FILE_SIZE } from "../helper/helper";
 
 //motor-insurance
 export const personalInformationValidationSchema = yup.object().shape({
@@ -1174,4 +1175,66 @@ export const packagedPolicyCircumstancesValidationSchema = yup.object().shape({
     .string()
     .required("claims amount is required")
     .matches(/^[0-9]+$/, "must be a number format"),
+});
+
+export const accidentClaimReqDocValidationSchema = yup.object().shape({
+  purchaseOrReplacementInvoice: yup.string().required("This file is required"),
+  evidenceUpload1: yup.string().required("This file is required"),
+  evidenceUpload2: yup.string().required("This file is required"),
+  eyeWitnessReport: yup.string().required("This file is required"),
+  policeReport: yup.string().required("This file is required"),
+});
+
+export const bondClaimReqDocValidationSchema = yup.object().shape({
+  evidenceUpload1: yup.string().required("This file is required"),
+  evidenceUpload2: yup.string().required("This file is required"),
+  evidenceUpload3: yup.string().required("This file is required"),
+  evidenceUpload4: yup.string().required("This file is required"),
+  eyeWitnessReport: yup.string().required("This file is required"),
+  policeReport: yup.string().required("This file is required"),
+});
+
+export const aviationClaimReqDocValidationSchema = yup.object().shape({
+  evidenceUpload1: yup.string().required("This file is required"),
+  evidenceUpload2: yup.string().required("This file is required"),
+  evidenceUpload3: yup.string().required("This file is required"),
+  evidenceUpload4: yup.string().required("This file is required"),
+  eyeWitnessReport: yup.string().required("This file is required"),
+  policeReport: yup.string().required("This file is required"),
+});
+
+export const engineeringClaimReqDocValidationSchema = yup.object().shape({
+  evidenceUpload1: yup.string().required("This file is required"),
+  evidenceUpload2: yup.string().required("This file is required"),
+  evidenceUpload3: yup.string().required("This file is required"),
+  evidenceUpload4: yup.string().required("This file is required"),
+  eyeWitnessReport: yup.string().required("This file is required"),
+  policeReport: yup.string().required("This file is required"),
+});
+
+export const marineClaimReqDocValidationSchema = yup.object().shape({
+  evidenceUpload1: yup.string().required("This file is required"),
+  evidenceUpload2: yup.string().required("This file is required"),
+  evidenceUpload3: yup.string().required("This file is required"),
+  evidenceUpload4: yup.string().required("This file is required"),
+  eyeWitnessReport: yup.string().required("This file is required"),
+  policeReport: yup.string().required("This file is required"),
+});
+
+export const oliAndGasClaimReqDocValidationSchema = yup.object().shape({
+  evidenceUpload1: yup.string().required("This file is required"),
+  evidenceUpload2: yup.string().required("This file is required"),
+  evidenceUpload3: yup.string().required("This file is required"),
+  evidenceUpload4: yup.string().required("This file is required"),
+  eyeWitnessReport: yup.string().required("This file is required"),
+  policeReport: yup.string().required("This file is required"),
+});
+
+export const packagedPolicyClaimReqDocValidationSchema = yup.object().shape({
+  evidenceUpload1: yup.string().required("This file is required"),
+  evidenceUpload2: yup.string().required("This file is required"),
+  evidenceUpload3: yup.string().required("This file is required"),
+  evidenceUpload4: yup.string().required("This file is required"),
+  eyeWitnessReport: yup.string().required("This file is required"),
+  policeReport: yup.string().required("This file is required"),
 });

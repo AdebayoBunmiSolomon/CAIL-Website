@@ -14,6 +14,12 @@ type marineClaimFormType = {
   whenWasThePoliceInformed: string;
   policeStationAddress: string;
   claimsAmount: string;
+  evidenceUpload1: any;
+  evidenceUpload2: any;
+  evidenceUpload3: any;
+  evidenceUpload4: any;
+  eyeWitnessReport: any;
+  policeReport: any;
 };
 
 interface IMarineClaimFormProps {
@@ -36,6 +42,12 @@ export const useMarineClaimForm = create<IMarineClaimFormProps>()((set) => ({
     policeStationAddress: "",
     claimsAmount: "",
     dateTimeOfIncident: "",
+    evidenceUpload1: null,
+    evidenceUpload2: null,
+    evidenceUpload3: null,
+    evidenceUpload4: null,
+    eyeWitnessReport: null,
+    policeReport: null,
   },
   setMarineClaimFormData: (marineClaimFormData) =>
     set({

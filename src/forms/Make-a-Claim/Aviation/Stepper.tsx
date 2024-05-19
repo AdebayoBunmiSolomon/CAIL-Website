@@ -9,10 +9,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   aviationClaimCircumstances,
   aviationClaimDetailsTypes,
+  aviationClaimReqDoc,
 } from "../../../form-types/Types";
 import {
   aviationClaimCircumstancesValidationSchema,
   aviationClaimDetailsValidationSchema,
+  aviationClaimReqDocValidationSchema,
 } from "../../../form-types/validationSchema";
 import { AviationClaimDetails } from "./ClaimDetails";
 import { AviationClaimSummary } from "./Summary";
@@ -47,6 +49,17 @@ export const AviationClaimStepper: React.FC<{}> = () => {
     resolver: yupResolver(aviationClaimCircumstancesValidationSchema),
   });
 
+  const {
+    control: aviationClaimReqDocControl,
+    formState: { errors: aviationClaimReqDocErrors },
+    trigger: aviationClaimReqDocTrigger,
+    setValue: setAviationClaimReqDocValues,
+    setError: setAviationClaimReqDocError,
+  } = useForm<aviationClaimReqDoc>({
+    mode: "onChange",
+    resolver: yupResolver(aviationClaimReqDocValidationSchema),
+  });
+
   const onSubmitNextStep = async () => {
     let isValid = false;
     if (activeStep === 0) {
@@ -56,6 +69,13 @@ export const AviationClaimStepper: React.FC<{}> = () => {
       isValid = await aviationClaimCircumstancesTrigger();
       if (isValid) nextStep();
     } else if (activeStep === 2) {
+      isValid = await aviationClaimReqDocTrigger();
+      if (isValid) nextStep();
+    } else if (activeStep === 3) {
+      isValid = true;
+      if (isValid) {
+        //perform submit operation here
+      }
     }
   };
 
@@ -82,7 +102,16 @@ export const AviationClaimStepper: React.FC<{}> = () => {
           />
         );
       case 2:
-        return <AviationClaimRequiredDocumentsDetails useFormProps={{}} />;
+        return (
+          <AviationClaimRequiredDocumentsDetails
+            useFormProps={{
+              control: aviationClaimReqDocControl,
+              errors: aviationClaimReqDocErrors,
+              setValues: setAviationClaimReqDocValues,
+              setError: setAviationClaimReqDocError,
+            }}
+          />
+        );
       case 3:
         return <AviationClaimSummary />;
       default:

@@ -12,7 +12,7 @@ export const AccidentClaimSummary: React.FC<{}> = () => {
       <ToastContainer />
       <div className='flex justify-center items-center'>
         <div className='w-[95%] bg-white rounded-md self-center p-6'>
-          <FormTitle title='Motor Claims Summary' />
+          <FormTitle title='Accident Claims Summary' />
           <table className='min-w-full divide-y divide-gray-200'>
             <thead>
               <tr>

@@ -9,10 +9,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   oilAndGasClaimCircumstances,
   oilAndGasClaimDetailsTypes,
+  oilAndGasClaimReqDoc,
 } from "../../../form-types/Types";
 import {
   oilAndGasClaimCircumstancesValidationSchema,
   oilAndGasClaimDetailsValidationSchema,
+  oliAndGasClaimReqDocValidationSchema,
 } from "../../../form-types/validationSchema";
 import { OliAndGasClaimDetails } from "./ClaimDetails";
 import { OilAndGasClaimSummary } from "./Summary";
@@ -41,6 +43,17 @@ export const OilAndGasClaimStepper: React.FC<{}> = () => {
   });
 
   const {
+    control: oilAndGasClaimReqDocControl,
+    formState: { errors: oilAndGasClaimReqDocErrors },
+    trigger: oilAndGasClaimReqDocTrigger,
+    setValue: setOilAndGasClaimReqDocValues,
+    setError: setOilAndGasClaimReqDocError,
+  } = useForm<oilAndGasClaimReqDoc>({
+    mode: "onChange",
+    resolver: yupResolver(oliAndGasClaimReqDocValidationSchema),
+  });
+
+  const {
     control: oilAndGasClaimCircumstancesControl,
     formState: { errors: oilAndGasClaimCircumstancesErrors },
     trigger: oilAndGasClaimCircumstancesTrigger,
@@ -59,6 +72,13 @@ export const OilAndGasClaimStepper: React.FC<{}> = () => {
       isValid = await oilAndGasClaimCircumstancesTrigger();
       if (isValid) nextStep();
     } else if (activeStep === 2) {
+      isValid = await oilAndGasClaimReqDocTrigger();
+      if (isValid) nextStep();
+    } else if (activeStep === 3) {
+      isValid = true;
+      if (isValid) {
+        //perform submit operation
+      }
     }
   };
 
@@ -85,7 +105,16 @@ export const OilAndGasClaimStepper: React.FC<{}> = () => {
           />
         );
       case 2:
-        return <OilAndGasClaimRequiredDocumentsDetails useFormProps={{}} />;
+        return (
+          <OilAndGasClaimRequiredDocumentsDetails
+            useFormProps={{
+              control: oilAndGasClaimReqDocControl,
+              errors: oilAndGasClaimReqDocErrors,
+              setValues: setOilAndGasClaimReqDocValues,
+              setError: setOilAndGasClaimReqDocError,
+            }}
+          />
+        );
       case 3:
         return <OilAndGasClaimSummary />;
       default:

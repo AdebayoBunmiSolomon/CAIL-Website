@@ -14,6 +14,12 @@ type packagedPolicyClaimFormType = {
   whenWasThePoliceInformed: string;
   policeStationAddress: string;
   claimsAmount: string;
+  evidenceUpload1: any;
+  evidenceUpload2: any;
+  evidenceUpload3: any;
+  evidenceUpload4: any;
+  eyeWitnessReport: any;
+  policeReport: any;
 };
 
 interface IPackagedPolicyClaimFormProps {
@@ -37,6 +43,12 @@ export const usePackagedPolicyClaimForm =
       policeStationAddress: "",
       claimsAmount: "",
       dateTimeOfIncident: "",
+      evidenceUpload1: "",
+      evidenceUpload2: "",
+      evidenceUpload3: "",
+      evidenceUpload4: "",
+      eyeWitnessReport: "",
+      policeReport: "",
     },
     setPackagedPolicyClaimFormData: (packagedPolicyClaimFormData) =>
       set({

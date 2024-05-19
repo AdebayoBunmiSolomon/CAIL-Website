@@ -9,10 +9,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   accidentClaimCircumstances,
   accidentClaimDetailsTypes,
+  accidentReqDoc,
 } from "../../../form-types/Types";
 import {
   accidentClaimCircumstancesValidationSchema,
   accidentClaimDetailsValidationSchema,
+  accidentClaimReqDocValidationSchema,
 } from "../../../form-types/validationSchema";
 import { AccidentClaimDetails } from "./ClaimDetails";
 import { AccidentClaimSummary } from "./Summary";
@@ -51,6 +53,17 @@ export const AccidentClaimStepper: React.FC<{}> = () => {
     resolver: yupResolver(accidentClaimCircumstancesValidationSchema),
   });
 
+  const {
+    control: accidentClaimReqDocControl,
+    formState: { errors: accidentClaimReqDocErrors },
+    trigger: accidentClaimReqDocTrigger,
+    setValue: setAccidentClaimReqDocValues,
+    setError: setAccidentClaimReqDocError,
+  } = useForm<accidentReqDoc>({
+    mode: "onChange",
+    resolver: yupResolver(accidentClaimReqDocValidationSchema),
+  });
+
   const onSubmitNextStep = async () => {
     let isValid = false;
     if (activeStep === 0) {
@@ -60,6 +73,13 @@ export const AccidentClaimStepper: React.FC<{}> = () => {
       isValid = await accidentClaimCircumstancesTrigger();
       if (isValid) nextStep();
     } else if (activeStep === 2) {
+      isValid = await accidentClaimReqDocTrigger();
+      if (isValid) nextStep();
+    } else if (activeStep === 3) {
+      isValid = true;
+      if (isValid) {
+        //perform submit operation here
+      }
     }
   };
 
@@ -86,7 +106,16 @@ export const AccidentClaimStepper: React.FC<{}> = () => {
           />
         );
       case 2:
-        return <AccidentClaimRequiredDocuments useFormProps={{}} />;
+        return (
+          <AccidentClaimRequiredDocuments
+            useFormProps={{
+              control: accidentClaimReqDocControl,
+              errors: accidentClaimReqDocErrors,
+              setValues: setAccidentClaimReqDocValues,
+              setError: setAccidentClaimReqDocError,
+            }}
+          />
+        );
       case 3:
         return <AccidentClaimSummary />;
       default:

@@ -16,6 +16,11 @@ type accidentClaimFormType = {
   whenWasThePoliceInformed: string;
   policeStationAddress: string;
   claimsAmount: string;
+  purchaseOrReplacementInvoice: any;
+  evidenceUpload1: any;
+  evidenceUpload2: any;
+  eyeWitnessReport: any;
+  policeReport: any;
 };
 
 interface IAccidentClaimFormProps {
@@ -41,6 +46,11 @@ export const useAccidentClaimForm = create<IAccidentClaimFormProps>()(
       whenWasThePoliceInformed: "",
       policeStationAddress: "",
       claimsAmount: "",
+      purchaseOrReplacementInvoice: null,
+      evidenceUpload1: null,
+      evidenceUpload2: null,
+      eyeWitnessReport: null,
+      policeReport: null,
     },
     setAccidentClaimFormData: (accidentClaimFormData) =>
       set({

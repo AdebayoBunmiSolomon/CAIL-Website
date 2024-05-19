@@ -9,10 +9,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   bondClaimCircumstances,
   bondClaimDetailsTypes,
+  bondClaimReqDoc,
 } from "../../../form-types/Types";
 import {
   bondClaimCircumstancesValidationSchema,
   bondClaimDetailsValidationSchema,
+  bondClaimReqDocValidationSchema,
 } from "../../../form-types/validationSchema";
 import { BondClaimDetails } from "./ClaimDetails";
 import { BondClaimSummary } from "./Summary";
@@ -51,6 +53,17 @@ export const BondClaimStepper: React.FC<{}> = () => {
     resolver: yupResolver(bondClaimCircumstancesValidationSchema),
   });
 
+  const {
+    control: bondClaimReqDocControl,
+    formState: { errors: bondClaimReqDocErrors },
+    trigger: bondClaimReqDocTrigger,
+    setValue: setBondClaimReqDocValues,
+    setError: setBondClaimReqDocError,
+  } = useForm<bondClaimReqDoc>({
+    mode: "onChange",
+    resolver: yupResolver(bondClaimReqDocValidationSchema),
+  });
+
   const onSubmitNextStep = async () => {
     let isValid = false;
     if (activeStep === 0) {
@@ -60,6 +73,13 @@ export const BondClaimStepper: React.FC<{}> = () => {
       isValid = await bondClaimCircumstancesTrigger();
       if (isValid) nextStep();
     } else if (activeStep === 2) {
+      isValid = await bondClaimReqDocTrigger();
+      if (isValid) nextStep();
+    } else if (activeStep === 3) {
+      isValid = true;
+      if (isValid) {
+        //perform submit operation
+      }
     }
   };
 
@@ -86,7 +106,16 @@ export const BondClaimStepper: React.FC<{}> = () => {
           />
         );
       case 2:
-        return <BondClaimRequiredDocumentsDetails useFormProps={{}} />;
+        return (
+          <BondClaimRequiredDocumentsDetails
+            useFormProps={{
+              control: bondClaimReqDocControl,
+              errors: bondClaimReqDocErrors,
+              setValues: setBondClaimReqDocValues,
+              setError: setBondClaimReqDocError,
+            }}
+          />
+        );
       case 3:
         return <BondClaimSummary />;
       default:

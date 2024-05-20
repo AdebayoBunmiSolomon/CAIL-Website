@@ -22,6 +22,20 @@ type motorClaimFormType = {
   thirdPartyInformation: string;
   estimateOfRepairs: string;
   claimsAmount: string;
+  purchaseOrReplacementInvoice: any;
+  uploadScannedVehicleLicense: any;
+  uploadInsuranceCertificate: any;
+  policeReport: any;
+  eyeWitnessReport: any;
+  thirdPartyEvidenceOfInsuranceCover: any;
+  thirdPartyRepairEstimate: any;
+  thirdPartyDamageEvidence1: any;
+  thirdPartyDamageEvidence2: any;
+  repairEstimateInvoice: any;
+  vehicleFrontView: any;
+  vehicleRearView: any;
+  vehicleLeftView: any;
+  vehicleRightView: any;
 };
 
 interface IMotorClaimFormProps {
@@ -52,6 +66,20 @@ export const useMotorClaimForm = create<IMotorClaimFormProps>()((set) => ({
     thirdPartyInformation: "",
     estimateOfRepairs: "",
     claimsAmount: "",
+    purchaseOrReplacementInvoice: null,
+    uploadScannedVehicleLicense: null,
+    uploadInsuranceCertificate: null,
+    policeReport: null,
+    eyeWitnessReport: null,
+    thirdPartyEvidenceOfInsuranceCover: null,
+    thirdPartyRepairEstimate: null,
+    thirdPartyDamageEvidence1: null,
+    thirdPartyDamageEvidence2: null,
+    repairEstimateInvoice: null,
+    vehicleFrontView: null,
+    vehicleRearView: null,
+    vehicleLeftView: null,
+    vehicleRightView: null,
   },
   setMotorClaimFormData: (motorClaimFormData) =>
     set({

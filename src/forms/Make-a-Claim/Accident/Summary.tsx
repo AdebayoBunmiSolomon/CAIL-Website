@@ -1,12 +1,15 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import { FormTitle } from "../../../components";
-import { useMotorClaimForm } from "../../../hooks/store/make-a-claim";
+import {
+  useAccidentClaimForm,
+  useMakeAClaimForm,
+} from "../../../hooks/store/make-a-claim";
+import { formatAmount } from "../../../helper/helper";
 
 export const AccidentClaimSummary: React.FC<{}> = () => {
-  const { motorClaimFormData } = useMotorClaimForm();
-
-  console.log(motorClaimFormData.policyHolderName);
+  const { accidentClaimFormData } = useAccidentClaimForm();
+  const { makeAClaimFormData } = useMakeAClaimForm();
   return (
     <div>
       <ToastContainer />
@@ -32,7 +35,7 @@ export const AccidentClaimSummary: React.FC<{}> = () => {
                         Product Type
                       </div>
                       <div className='text-sm text-gray-500'>
-                        {motorClaimFormData.policyType}
+                        {makeAClaimFormData.subRisk}
                       </div>
                     </div>
                   </div>
@@ -46,7 +49,7 @@ export const AccidentClaimSummary: React.FC<{}> = () => {
                         Policy Holder Name
                       </div>
                       <div className='text-sm text-gray-500'>
-                        {motorClaimFormData.policyHolderName}
+                        {makeAClaimFormData.officeName}
                       </div>
                     </div>
                   </div>
@@ -60,7 +63,7 @@ export const AccidentClaimSummary: React.FC<{}> = () => {
                         Claims Type
                       </div>
                       <div className='text-sm text-gray-500'>
-                        {motorClaimFormData.claimType}
+                        {accidentClaimFormData.claimType}
                       </div>
                     </div>
                   </div>
@@ -71,10 +74,24 @@ export const AccidentClaimSummary: React.FC<{}> = () => {
                   <div className='flex items-center'>
                     <div className='ml-4'>
                       <div className='text-sm font-medium text-gray-900'>
-                        Damage Type
+                        Police Informed
                       </div>
                       <div className='text-sm text-gray-500'>
-                        {motorClaimFormData.damageType}
+                        {accidentClaimFormData.hasThePoliceBeenInformed}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td className='px-6 py-4 whitespace-nowrap'>
+                  <div className='flex items-center'>
+                    <div className='ml-4'>
+                      <div className='text-sm font-medium text-gray-900'>
+                        Witness Present
+                      </div>
+                      <div className='text-sm text-gray-500'>
+                        {accidentClaimFormData.doYouHaveAWitness}
                       </div>
                     </div>
                   </div>
@@ -88,7 +105,23 @@ export const AccidentClaimSummary: React.FC<{}> = () => {
                         Date & Time of Loss
                       </div>
                       <div className='text-sm text-gray-500'>
-                        {motorClaimFormData.dateTimeOfLoss}
+                        {accidentClaimFormData.dateTimeOfLoss}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td className='px-6 py-4 whitespace-nowrap'>
+                  <div className='flex items-center'>
+                    <div className='ml-4'>
+                      <div className='text-sm font-medium text-gray-900'>
+                        Claims Amount
+                      </div>
+                      <div className='text-sm text-gray-500'>
+                        {formatAmount(
+                          Number(accidentClaimFormData.claimsAmount)
+                        )}
                       </div>
                     </div>
                   </div>

@@ -30,7 +30,7 @@ export const PackagedPolicyClaimStepper: React.FC<{}> = () => {
   const { loading } = RegisterClaimService();
   const buttonState = getButtonBtnState(
     activeStep,
-    packagedPolicyFormStepper.length
+    packagedPolicyFormStepper.length - 1
   );
 
   const {

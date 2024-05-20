@@ -9,10 +9,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   fireClaimCircumstances,
   fireClaimDetailsTypes,
+  fireClaimReqDoc,
 } from "../../../form-types/Types";
 import {
   fireClaimCircumstancesValidationSchema,
   fireClaimDetailsValidationSchema,
+  fireClaimReqDocValidationSchema,
 } from "../../../form-types/validationSchema";
 import { FireClaimDetails } from "./ClaimDetails";
 import { FireClaimSummary } from "./Summary";
@@ -28,7 +30,7 @@ export const FireClaimStepper: React.FC<{}> = () => {
   const { loading } = RegisterClaimService();
   const buttonState = getButtonBtnState(
     activeStep,
-    fireClaimsFormStepper.length
+    fireClaimsFormStepper.length - 1
   );
 
   const {
@@ -51,6 +53,17 @@ export const FireClaimStepper: React.FC<{}> = () => {
     resolver: yupResolver(fireClaimCircumstancesValidationSchema),
   });
 
+  const {
+    control: fireClaimReqDocControl,
+    formState: { errors: fireClaimReqDocErrors },
+    trigger: fireClaimReqDocTrigger,
+    setValue: setFireClaimReqDocValues,
+    setError: setFireClaimReqDocError,
+  } = useForm<fireClaimReqDoc>({
+    mode: "onChange",
+    resolver: yupResolver(fireClaimReqDocValidationSchema),
+  });
+
   const onSubmitNextStep = async () => {
     let isValid = false;
     if (activeStep === 0) {
@@ -60,6 +73,13 @@ export const FireClaimStepper: React.FC<{}> = () => {
       isValid = await fireClaimCircumstancesTrigger();
       if (isValid) nextStep();
     } else if (activeStep === 2) {
+      isValid = await fireClaimReqDocTrigger();
+      if (isValid) nextStep();
+    } else if (activeStep === 3) {
+      isValid = true;
+      if (isValid) {
+        //perform submit operation
+      }
     }
   };
 
@@ -86,7 +106,16 @@ export const FireClaimStepper: React.FC<{}> = () => {
           />
         );
       case 2:
-        return <FireClaimRequiredDocumentsDetails useFormProps={{}} />;
+        return (
+          <FireClaimRequiredDocumentsDetails
+            useFormProps={{
+              control: fireClaimReqDocControl,
+              errors: fireClaimReqDocErrors,
+              setValues: setFireClaimReqDocValues,
+              setError: setFireClaimReqDocError,
+            }}
+          />
+        );
       case 3:
         return <FireClaimSummary />;
       default:

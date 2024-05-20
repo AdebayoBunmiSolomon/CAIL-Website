@@ -41,7 +41,7 @@ export const MakeAClaim: React.FC<{}> = () => {
     <>
       <div className='pt-[200px] pb-20 px-20'>
         <div className='flex justify-center items-center'>
-          <div className='w-[50%] bg-white rounded-md self-center p-6'>
+          <div className='w-[50%] bg-white rounded-lg self-center p-6 shadow-xl'>
             <FormTitle title='Claim Status' />
             <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
               <Controller

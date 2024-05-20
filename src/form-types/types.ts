@@ -274,6 +274,23 @@ export type motorClaimCircumstances = {
   claimsAmount: string;
 };
 
+export type motorClaimReqDoc = {
+  purchaseOrReplacementInvoice: any;
+  uploadScannedVehicleLicense: any;
+  uploadInsuranceCertificate: any;
+  policeReport: any;
+  eyeWitnessReport: any;
+  thirdPartyEvidenceOfInsuranceCover: any;
+  thirdPartyRepairEstimate: any;
+  thirdPartyDamageEvidence1: any;
+  thirdPartyDamageEvidence2: any;
+  repairEstimateInvoice: any;
+  vehicleFrontView: any;
+  vehicleRearView: any;
+  vehicleLeftView: any;
+  vehicleRightView: any;
+};
+
 export type accidentClaimDetailsTypes = {
   claimType: string;
   email: string;
@@ -379,6 +396,17 @@ export type fireClaimCircumstances = {
   whenWasThePoliceInformed: string;
   policeStationAddress: string;
   claimsAmount: string;
+};
+
+export type fireClaimReqDoc = {
+  purchaseOrReplacementInvoice: any;
+  uploadDamagePic1: any;
+  uploadDamagePic2: any;
+  uploadDamagePic3: any;
+  uploadDamagePic4: any;
+  eyeWitnessReport: any;
+  policeReport: any;
+  fireServiceReport: any;
 };
 
 export type aviationClaimDetailsTypes = {

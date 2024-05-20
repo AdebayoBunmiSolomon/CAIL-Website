@@ -73,12 +73,14 @@ export const convertDateTimeISOtoHTMLDate = (value: string) => {
  */
 export const getButtonBtnState = (
   activeStepNumb: number,
-  lastActiveStepValue: number,
+  arrLengthVal: number,
   lastBtnTextValue?: string
 ) => {
-  if (activeStepNumb !== lastActiveStepValue) {
+  if (activeStepNumb !== arrLengthVal) {
+    console.log(activeStepNumb);
+    console.log(arrLengthVal);
     return "Next";
-  } else if (activeStepNumb === lastActiveStepValue) {
+  } else if (activeStepNumb === arrLengthVal) {
     return lastBtnTextValue ? lastBtnTextValue : "Submit";
   }
 };

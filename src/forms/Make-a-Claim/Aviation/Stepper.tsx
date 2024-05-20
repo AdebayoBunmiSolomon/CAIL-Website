@@ -27,7 +27,10 @@ export const AviationClaimStepper: React.FC<{}> = () => {
   const { activeStep, nextStep, prevStep } =
     useFormStepper(aviationFormStepper);
   const { loading } = RegisterClaimService();
-  const buttonState = getButtonBtnState(activeStep, aviationFormStepper.length);
+  const buttonState = getButtonBtnState(
+    activeStep,
+    aviationFormStepper.length - 1
+  );
 
   const {
     control: aviationClaimDetailsControl,

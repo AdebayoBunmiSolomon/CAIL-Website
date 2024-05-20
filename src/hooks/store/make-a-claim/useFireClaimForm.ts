@@ -17,6 +17,14 @@ type fireClaimFormType = {
   whenWasThePoliceInformed: string;
   policeStationAddress: string;
   claimsAmount: string;
+  purchaseOrReplacementInvoice: any;
+  uploadDamagePic1: any;
+  uploadDamagePic2: any;
+  uploadDamagePic3: any;
+  uploadDamagePic4: any;
+  eyeWitnessReport: any;
+  policeReport: any;
+  fireServiceReport: any;
 };
 
 interface IFireClaimFormProps {
@@ -42,6 +50,14 @@ export const useFireClaimForm = create<IFireClaimFormProps>()((set) => ({
     hasTheFireServiceBeenInformed: "",
     fireServiceStationAddress: "",
     doYouHaveAFireServiceReport: "",
+    purchaseOrReplacementInvoice: null,
+    uploadDamagePic1: null,
+    uploadDamagePic2: null,
+    uploadDamagePic3: null,
+    uploadDamagePic4: null,
+    eyeWitnessReport: null,
+    policeReport: null,
+    fireServiceReport: null,
   },
   setFireClaimFormData: (fireClaimFormData) =>
     set({

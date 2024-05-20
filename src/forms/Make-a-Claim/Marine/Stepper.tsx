@@ -26,7 +26,10 @@ import { MarineClaimRequiredDocumentsDetails } from "./RequiredDocuments";
 export const MarineClaimStepper: React.FC<{}> = () => {
   const { activeStep, nextStep, prevStep } = useFormStepper(marineFormStepper);
   const { loading } = RegisterClaimService();
-  const buttonState = getButtonBtnState(activeStep, marineFormStepper.length);
+  const buttonState = getButtonBtnState(
+    activeStep,
+    marineFormStepper.length - 1
+  );
 
   const {
     control: marineClaimDetailsControl,

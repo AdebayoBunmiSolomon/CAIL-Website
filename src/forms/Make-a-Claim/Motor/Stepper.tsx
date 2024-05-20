@@ -9,10 +9,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   motorClaimCircumstances,
   motorClaimDetailsTypes,
+  motorClaimReqDoc,
 } from "../../../form-types/Types";
 import {
   motorClaimCircumstanceValidationSchema,
   motorClaimDetailsValidationSchema,
+  motorClaimReqDocValidationSchema,
 } from "../../../form-types/validationSchema";
 import { MotorClaimDetails } from "./ClaimDetails";
 import { MotorClaimSummary } from "./Summary";
@@ -28,7 +30,7 @@ export const MotorClaimStepper: React.FC<{}> = () => {
   const { loading } = RegisterClaimService();
   const buttonState = getButtonBtnState(
     activeStep,
-    motorClaimsFormStepper.length
+    motorClaimsFormStepper.length - 1
   );
 
   const {
@@ -49,6 +51,17 @@ export const MotorClaimStepper: React.FC<{}> = () => {
   } = useForm<motorClaimCircumstances>({
     mode: "onChange",
     resolver: yupResolver(motorClaimCircumstanceValidationSchema),
+  });
+
+  const {
+    control: motorClaimReqDocControl,
+    formState: { errors: motorClaimReqDocErrors },
+    trigger: motorClaimReqDocTrigger,
+    setValue: setMotorClaimReqDocValues,
+    setError: setMotorClaimReqDocError,
+  } = useForm<motorClaimReqDoc>({
+    mode: "onChange",
+    resolver: yupResolver(motorClaimReqDocValidationSchema),
   });
 
   const onSubmitNextStep = async () => {
@@ -86,7 +99,16 @@ export const MotorClaimStepper: React.FC<{}> = () => {
           />
         );
       case 2:
-        return <MotorClaimRequiredDocuments useFormProps={{}} />;
+        return (
+          <MotorClaimRequiredDocuments
+            useFormProps={{
+              control: motorClaimReqDocControl,
+              errors: motorClaimReqDocErrors,
+              setValues: setMotorClaimReqDocValues,
+              setError: setMotorClaimReqDocError,
+            }}
+          />
+        );
       case 3:
         return <MotorClaimSummary />;
       default:

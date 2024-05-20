@@ -1238,3 +1238,33 @@ export const packagedPolicyClaimReqDocValidationSchema = yup.object().shape({
   eyeWitnessReport: yup.string().required("This file is required"),
   policeReport: yup.string().required("This file is required"),
 });
+
+export const fireClaimReqDocValidationSchema = yup.object().shape({
+  purchaseOrReplacementInvoice: yup.string().required("This file is required"),
+  uploadDamagePic1: yup.string().required("This file is required"),
+  uploadDamagePic2: yup.string().required("This file is required"),
+  uploadDamagePic3: yup.string().required("This file is required"),
+  uploadDamagePic4: yup.string().required("This file is required"),
+  eyeWitnessReport: yup.string().required("This file is required"),
+  policeReport: yup.string().required("This file is required"),
+  fireServiceReport: yup.string().required("This file is required"),
+});
+
+export const motorClaimReqDocValidationSchema = yup.object().shape({
+  purchaseOrReplacementInvoice: yup.string().required("This file is required"),
+  uploadScannedVehicleLicense: yup.string().required("This file is required"),
+  uploadInsuranceCertificate: yup.string().required("This file is required"),
+  policeReport: yup.string().required("This file is required"),
+  eyeWitnessReport: yup.string().required("This file is required"),
+  thirdPartyEvidenceOfInsuranceCover: yup
+    .string()
+    .required("This file is required"),
+  thirdPartyRepairEstimate: yup.string().required("This file is required"),
+  thirdPartyDamageEvidence1: yup.string().required("This file is required"),
+  thirdPartyDamageEvidence2: yup.string().required("This file is required"),
+  repairEstimateInvoice: yup.string().required("This file is required"),
+  vehicleFrontView: yup.string().required("This file is required"),
+  vehicleRearView: yup.string().required("This file is required"),
+  vehicleLeftView: yup.string().required("This file is required"),
+  vehicleRightView: yup.string().required("This file is required"),
+});

@@ -30,7 +30,7 @@ export const BondClaimStepper: React.FC<{}> = () => {
   const { loading } = RegisterClaimService();
   const buttonState = getButtonBtnState(
     activeStep,
-    bondClaimsFormStepper.length
+    bondClaimsFormStepper.length - 1
   );
 
   const {

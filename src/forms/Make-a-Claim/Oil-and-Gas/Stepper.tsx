@@ -29,7 +29,7 @@ export const OilAndGasClaimStepper: React.FC<{}> = () => {
   const { loading } = RegisterClaimService();
   const buttonState = getButtonBtnState(
     activeStep,
-    oilAndGasFormStepper.length
+    oilAndGasFormStepper.length - 1
   );
 
   const {

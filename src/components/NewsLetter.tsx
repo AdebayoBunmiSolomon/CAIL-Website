@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { Button } from "../components/ui/button";
+// import { Button } from "../components/ui/button";
 
 export const NewsLetter = () => {
   const [email, setEmail] = useState<any>("");
   return (
     <div className='flex flex-col w-full  '>
-      <div className=' text-xl md:text-3xl lg:text-5xl font-bold flex justify-start my-2'>
+      {/* <div className=' text-xl md:text-3xl lg:text-5xl font-bold flex justify-start my-2'>
         <p>Subscribe to our Newsletter</p>
       </div>
       <div className=' w-full flex items-center py-2 justify-between pl-4 pr-2 rounded-full border border-solid border-[#6C8396] h-[70px] '>
@@ -26,8 +26,8 @@ export const NewsLetter = () => {
           }}
           className='bg-[#900000]  h-full'>
           Subscribe
-        </Button>
-      </div>
+        </Button> 
+      </div>*/}
     </div>
   );
 };

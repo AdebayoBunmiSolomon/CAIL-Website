@@ -43,12 +43,12 @@ export const header: headerProps[] = [
   //   page: "/media",
   //   nestedList: null,
   // },
-  {
-    id: 5,
-    title: "Make a claim",
-    page: "/forms/make-a-claim",
-    nestedList: null,
-  },
+  // {
+  //   id: 5,
+  //   title: "Make a claim",
+  //   page: "/forms/make-a-claim",
+  //   nestedList: null,
+  // },
   {
     id: 6,
     title: "Resources",

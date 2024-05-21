@@ -9,9 +9,7 @@ import {
 import { products } from "../../assets/data/products";
 import { tabDataType } from "../../types/types";
 import { useSelectedTabData } from "../../hooks/useSelectedTabData";
-import { NavigateFunction, useNavigate } from "react-router-dom";
 export const Home = () => {
-  const navigate: NavigateFunction = useNavigate();
   const { setTabData, setTabHeader, tabData, tabHeader } = useSelectedTabData();
 
   const loadInitialTabData = (tabData: tabDataType[]) => {

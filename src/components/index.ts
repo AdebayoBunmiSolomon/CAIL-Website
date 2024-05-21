@@ -12,6 +12,7 @@ export * from "./shared/SelectOptions";
 export * from "./shared/CheckBoxOptions";
 export * from "./shared/Thank-You";
 export * from "./shared/FormTitle";
+export * from "./shared/ComingSoon";
 
 //landing page components
 export * from "./LandingPage/DownloadApp";

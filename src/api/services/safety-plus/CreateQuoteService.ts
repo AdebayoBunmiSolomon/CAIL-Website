@@ -5,11 +5,6 @@ import { endpoints } from "../../enpoints";
 import { toast } from "react-toastify";
 import { paymentsServices } from "../payments/payments";
 
-type costLoadingType = {
-  btnDisabled: boolean;
-  requestLoading: boolean;
-};
-
 export const CreateQuoteService = () => {
   const { safetyPlusFormData } = useSafetyPlusForm();
   const [loading, setLoading] = useState<boolean>(false);

@@ -8,6 +8,7 @@ import { GrLinkDown } from "react-icons/gr";
 
 export const Resources: React.FunctionComponent<{}> = () => {
   const { id } = useParams<string>();
+  console.log(id);
   const [archiveView, setArchiveView] = useState<boolean>(false);
 
   //reference to a particular section of a page
@@ -15,20 +16,25 @@ export const Resources: React.FunctionComponent<{}> = () => {
   const financialsRef = useRef<any>(null);
   const downloadsRef = useRef<any>(null);
 
-  useEffect(() => {
-    executeScroll();
-  }, [id]);
-
   //scroll to particular section of a page
   const executeScroll = () => {
     if (id === "faqs") {
-      faqRef.current.scrollIntoView();
+      faqRef?.current?.scrollIntoView({ behavior: "smooth" });
     } else if (id === "financials") {
-      financialsRef.current.scrollIntoView();
+      financialsRef?.current?.scrollIntoView({ behavior: "smooth" });
     } else if (id === "downloads") {
-      downloadsRef.current.scrollIntoView();
+      downloadsRef?.current?.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  useEffect(() => {
+    // Adding a delay to ensure that components are rendered before scrolling
+    const timeoutId = setTimeout(() => {
+      executeScroll();
+    }, 200); // Adjust the delay as necessary
+
+    return () => clearTimeout(timeoutId);
+  }, [id]);
   return (
     <>
       <Hero

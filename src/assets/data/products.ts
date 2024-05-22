@@ -50,7 +50,7 @@ export const products: tabContentsType[] = [
         description:
           "Our Motor Vehicle Insurance Our Motor Vehicle Insurance covers Nigerian registered private motor vehicles, commercial vehicles, motorcycles, trucks and trailers.It offers the following cover:Comprehensive Cover: covers against unforeseen accidents, loss, theft and fire damage to vehicles. It also provides cover for accidental injury or death to third party as well as damage to third party property.Third Party Fire & Theft Cover: covers against theft and fire damage to vehicles. It also provides cover for accidental injury or death to third party as well as damage to third party property. It however, does not cover accidental damage to the Insured vehicle.Third Party Cover: covers the Insured against accidental injury or death to third party as well as damage to third party property.Optional Cover Vehicle sound/radio and accessories must be specified and are covered for loss or damage. Out-of-Nigeria covers your vehicle where it is temporarily used either for business or private outside NIGERIA BUT WITHIN THE WEST AFRICAN shores provided notice is given to us and the necessary document obtained i.e. The Brown Card. It covers you for your liability to other people where an accident causes death or injury to them or damage to their property and attracts additional premium",
         position: "",
-        getQuote: "", //formRoutes.motor_vehicle,
+        getQuote: formRoutes.motor_vehicle,
         keyFeatures: [
           {
             title: "",
@@ -671,7 +671,7 @@ export const products: tabContentsType[] = [
         description:
           "Our Motor Vehicle Insurance covers Nigerian registered private motor vehicles, commercial vehicles, motorcycles, mechanically propelled plant or trailers. It offers the following cover:Comprehensive Cover which covers your vehicle for accidental damage, theft and hijack as well injury to other people or damage to their property",
         position: "",
-        getQuote: "", //formRoutes.motor_vehicle,
+        getQuote: formRoutes.motor_vehicle,
         benefits: [
           {
             title: "Limited Cover",
@@ -782,7 +782,7 @@ export const products: tabContentsType[] = [
         description:
           "Custodian Home Shield protects policyholders against loss or damage to their home contents or properties, which includes household contents and personal effects. The cover also extends to the properties or personal effects of any member of the family normally living with the Insured.",
         position: "",
-        getQuote: "", //formRoutes.home_shield,
+        getQuote: formRoutes.home_shield,
         benefits: [
           {
             title: "",
@@ -934,7 +934,7 @@ export const products: tabContentsType[] = [
         description:
           "Accidents do happen; when they do the victims are less burdened when they do not have to worry about the medical expenses that come as a result of such.",
         position: "",
-        getQuote: "", //formRoutes.safety_plus,
+        getQuote: formRoutes.safety_plus,
         benefits: [
           {
             title: "",

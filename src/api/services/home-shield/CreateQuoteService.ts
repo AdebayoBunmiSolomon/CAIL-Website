@@ -57,9 +57,9 @@ export const CreateQuoteService = () => {
           type: "success",
           theme: "colored",
         });
+        initializePaysStackPayment({ onSuccess, onClose });
       } else {
         console.log("Error submitting data");
-        initializePaysStackPayment({ onSuccess, onClose });
         setLoading(false);
         toast(data.message, {
           type: "error",

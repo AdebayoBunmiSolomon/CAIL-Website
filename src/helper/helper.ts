@@ -98,6 +98,26 @@ export const convertToEncodedFormat = (value: string) => {
 
 /**
  *
+ * @param policyValue
+ * @returns True or false if policy is a correct policy number
+ */
+export const validatePolicyNumber = (policyValue: string) => {
+  const policyPattern = /^[a-zA-Z]{2}\/[a-zA-Z]\/[0-9]{2}\/[a-zA-Z0-9]{8}$/;
+  //HO/A/03/T0000226
+  const policyPatternTest = policyPattern.test(policyValue);
+  if (policyPatternTest) {
+    return {
+      isPolicyValid: true,
+    };
+  } else {
+    return {
+      isPolicyValid: false,
+    };
+  }
+};
+
+/**
+ *
  * @param value as "V" if it is a motor or vehicle insurance from the policy number provided
  */
 export const validateCharacterAfterFirstSlash = (value: string) => {

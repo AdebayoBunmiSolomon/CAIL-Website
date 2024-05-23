@@ -7,10 +7,14 @@ import { claimStatusValidationSchema } from "../../form-types/validationSchema";
 import { GoArrowRight } from "react-icons/go";
 import { ClaimsInfo } from "./ClaimsInfo";
 import { CheckClaimStatusService } from "../../api/services/make-a-claim";
-import { validateCharacterAfterFirstSlash } from "../../helper/helper";
+import {
+  validateCharacterAfterFirstSlash,
+  validatePolicyNumber,
+} from "../../helper/helper";
 
 export const MakeAClaim: React.FC<{}> = () => {
   const [motorPolicy, setMotorPolicy] = useState<boolean>(false);
+  const [policyValid, setPolicyValid] = useState<boolean>(false);
   const { useCheckClaimStatus, loading, showClaimInfo, setShowClaimInfo } =
     CheckClaimStatusService();
   const {
@@ -56,8 +60,13 @@ export const MakeAClaim: React.FC<{}> = () => {
                       const { isValid } = validateCharacterAfterFirstSlash(
                         event.target.value
                       );
+                      const { isPolicyValid } = validatePolicyNumber(
+                        event.target.value
+                      );
+                      console.log(isPolicyValid);
                       field.onChange(event.target.value);
                       setMotorPolicy(isValid);
+                      setPolicyValid(isPolicyValid);
                     }}
                     error={errors?.policyNumber?.message}
                   />
@@ -66,7 +75,7 @@ export const MakeAClaim: React.FC<{}> = () => {
                 defaultValue=''
               />
             </div>
-            {motorPolicy && (
+            {policyValid && motorPolicy && (
               <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
                 <Controller
                   control={control}
@@ -113,8 +122,11 @@ export const MakeAClaim: React.FC<{}> = () => {
               )
             }
             onPress={handleSubmit(onSubmit)}
-            className='py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-5 flex rounded-lg hover:bg-[#900000d7] hover:duration-700'
+            className={`py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-5 flex rounded-lg ${
+              !policyValid ? "" : "hover:bg-[#900000d7]"
+            } hover:duration-700`}
             rightIcon={<GoArrowRight size={25} />}
+            disabled={policyValid ? false : true}
           />
         </div>
       </div>

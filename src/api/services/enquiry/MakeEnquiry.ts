@@ -20,7 +20,7 @@ export const MakeEnquiry = () => {
     setLoading(true);
     console.log(formData);
     const { data, status } = await PostRequest(
-      `${endpoints.makeEnquiry}`,
+      `${endpoints.MAKE_ENQUIRY}`,
       formData,
       {}
     );

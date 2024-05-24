@@ -54,7 +54,7 @@ export const CalculateCostMotorService = () => {
     });
     console.log(toCalculateCostFormData);
     const { data, status } = await PostRequest(
-      `${endpoints.calculateQuote}`,
+      `${endpoints.GET_MOTOR_POLICY_QUOTE}`,
       toCalculateCostFormData,
       {}
     );

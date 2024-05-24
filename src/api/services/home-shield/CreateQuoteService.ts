@@ -44,7 +44,7 @@ export const CreateQuoteService = () => {
     setLoading(true);
     console.log(formData);
     const { data } = await PostRequest(
-      `${endpoints.homeShieldQuote}`,
+      `${endpoints.GET_HOME_SHIELD_QUOTE}`,
       formData,
       {}
     );

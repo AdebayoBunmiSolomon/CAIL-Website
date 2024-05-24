@@ -199,3 +199,10 @@ export const getFileSize = (fileSize: any) => {
   }
 };
 export const FILE_SIZE = 2 * 1024 * 1024;
+
+export const getDateTimeLocalMaxVal = () => {
+  const currentDateTime = new Date().toISOString().split(".")[0]; // Format as "YYYY-MM-DDTHH:mm:ss"
+  const currentDate =
+    currentDateTime.split(":")[0] + ":" + currentDateTime.split(":")[1]; // Remove seconds for datetime-local
+  return currentDate;
+};

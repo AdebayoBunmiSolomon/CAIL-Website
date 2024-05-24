@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { FormTitle, SelectOptions, TextInput } from "../../../components";
 import { Controller } from "react-hook-form";
 import { claimType, damageType } from "../../../assets/data/formOptionsData";
-import { convertToDateTimeISO } from "../../../helper/helper";
+import {
+  convertToDateTimeISO,
+  getDateTimeLocalMaxVal,
+} from "../../../helper/helper";
 import {
   useGlobalStore,
   useMakeAClaimForm,
@@ -121,7 +124,7 @@ export const MotorClaimDetails: React.FC<useFormProps> = ({ useFormProps }) => {
                 <TextInput
                   placeHolder='0800 000 0000'
                   label='Mobile number'
-                  type='text'
+                  type='number'
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
@@ -201,6 +204,7 @@ export const MotorClaimDetails: React.FC<useFormProps> = ({ useFormProps }) => {
                   placeHolder=''
                   label='Date & Time Loss'
                   type='date'
+                  max={getDateTimeLocalMaxVal()}
                   value={field.value}
                   onChange={(event) => {
                     const date = convertToDateTimeISO(event.target.value);

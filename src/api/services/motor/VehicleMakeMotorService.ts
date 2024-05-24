@@ -14,8 +14,8 @@ export const VehicleMakeMotorService = () => {
     getVehicleType,
   } = useVehicleSelection();
   const getVehicleMake = async () => {
-    const { status, data, loading } = await GetRequest(
-      `${baseUrl1}/${endpoints.getAllCars}`,
+    const { status, data } = await GetRequest(
+      `${baseUrl1}/${endpoints.GET_ALL_CARS}`,
       {},
       {}
     );

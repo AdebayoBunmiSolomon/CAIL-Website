@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import { PageContainer } from "../../pages/PageContainer";
 import { Button } from "../shared/Button";
 
-export const GetStarted = () => {
+type getStartedProps = {
+  getAQuote: () => void;
+  takeARecommendationQuiz: () => void;
+};
+
+export const GetStarted: React.FC<getStartedProps> = ({
+  takeARecommendationQuiz,
+  getAQuote,
+}) => {
   return (
     <PageContainer>
       <section className='bg-[#FBF9F9]'>
@@ -28,10 +36,16 @@ export const GetStarted = () => {
                   <Button
                     text='Get a Quote'
                     className='px-10 hover:bg-[#900000b3] duration-700 text-[#FFFFFF]'
+                    onPress={() => {
+                      getAQuote();
+                    }}
                   />
                   <Button
-                    text='Take a recommendation quiz'
+                    text='Learn More'
                     className='px-10 hover:bg-[#f4e6e6d4] bg-[#f4e6e6] duration-700 text-[#900000]'
+                    onPress={() => {
+                      takeARecommendationQuiz();
+                    }}
                   />
                 </div>
               </div>

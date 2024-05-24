@@ -37,7 +37,7 @@ export const CreateQuoteService = () => {
     setLoading(true);
     console.log(formData);
     const { data } = await PostRequest(
-      `${endpoints.safetyPlusQuote}`,
+      `${endpoints.GET_SAFETY_PLUS_QUOTE}`,
       formData,
       {}
     );

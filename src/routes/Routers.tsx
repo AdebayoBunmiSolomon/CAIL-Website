@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import React from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { PagesRoutes } from "./Pages-Routes";
 import { ThankYou } from "../components";
 import { makeAClaimFormRoutes, policyFormRoutes } from "./Form-Routes";

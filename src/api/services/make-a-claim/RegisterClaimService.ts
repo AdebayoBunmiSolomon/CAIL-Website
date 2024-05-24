@@ -20,7 +20,7 @@ export const RegisterClaimService = () => {
     setLoading(true);
     console.log(formData);
     const { data, status } = await PostRequest(
-      `${endpoints.makeAClaim}`,
+      `${endpoints.MAKE_A_CLAIM}`,
       formData,
       {}
     );

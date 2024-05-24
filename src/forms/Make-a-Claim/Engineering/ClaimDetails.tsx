@@ -5,7 +5,10 @@ import {
   useMakeAClaimForm,
 } from "../../../hooks/store/make-a-claim";
 import { Controller } from "react-hook-form";
-import { convertToDateTimeISO } from "../../../helper/helper";
+import {
+  convertToDateTimeISO,
+  getDateTimeLocalMaxVal,
+} from "../../../helper/helper";
 
 type useFormProps = {
   useFormProps: any;
@@ -95,6 +98,7 @@ export const EngineeringClaimDetails: React.FC<useFormProps> = ({
                 <TextInput
                   placeHolder='080 000 0000'
                   label='Phone number'
+                  type='number'
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
@@ -118,6 +122,7 @@ export const EngineeringClaimDetails: React.FC<useFormProps> = ({
                   placeHolder=''
                   label='Date & Time of Incident'
                   type='datetime-local'
+                  max={getDateTimeLocalMaxVal()}
                   value={field.value}
                   onChange={(event) => {
                     const date = convertToDateTimeISO(event.target.value);

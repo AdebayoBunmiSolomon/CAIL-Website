@@ -127,6 +127,7 @@ export interface inputProps {
   value?: string;
   disabled?: boolean;
   min?: string | number;
+  max?: string | number;
   onChange?: (
     event:
       | React.ChangeEvent<HTMLInputElement>

@@ -19,7 +19,7 @@ export const CheckClaimStatusService = () => {
       setLoading(true);
       setShowClaimInfo(false);
       const { data } = await GetRequest(
-        `${endpoints.checkPolicySummary}/${formattedPolicyNumber}/policy-summary`,
+        `${endpoints.GET_POLICY_SUMMARY}/${formattedPolicyNumber}/policy-summary`,
         null,
         {}
       );

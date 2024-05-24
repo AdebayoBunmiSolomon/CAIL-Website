@@ -247,7 +247,7 @@ export type requestCallBackFormType = {
 
 export type claimStatusTypes = {
   policyNumber: string;
-  vehicleRegNumber: string;
+  // vehicleRegNumber: string;
 };
 
 export type motorClaimDetailsTypes = {

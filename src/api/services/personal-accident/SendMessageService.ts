@@ -21,7 +21,7 @@ export const sendPersonalAccidentMsg = () => {
     setLoading(true);
     console.log(formData);
     const { data, status } = await PostRequest(
-      `${endpoints.personalAccident}`,
+      `${endpoints.POST_PERSONAL_ACCIDENT}`,
       formData,
       {}
     );

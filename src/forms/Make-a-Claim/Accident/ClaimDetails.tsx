@@ -9,7 +9,10 @@ import {
   accidentClaimType,
   premiseOccupied,
 } from "../../../assets/data/formOptionsData";
-import { convertToDateTimeISO } from "../../../helper/helper";
+import {
+  convertToDateTimeISO,
+  getDateTimeLocalMaxVal,
+} from "../../../helper/helper";
 
 type useFormProps = {
   useFormProps: any;
@@ -112,6 +115,7 @@ export const AccidentClaimDetails: React.FC<useFormProps> = ({
                 <TextInput
                   placeHolder='080 000 0000'
                   label='Phone number'
+                  type='number'
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
@@ -136,6 +140,7 @@ export const AccidentClaimDetails: React.FC<useFormProps> = ({
                   label='Date & Time of Loss'
                   type='datetime-local'
                   value={field.value}
+                  max={getDateTimeLocalMaxVal()}
                   onChange={(event) => {
                     const date = convertToDateTimeISO(event.target.value);
                     field.onChange(event.target.value);

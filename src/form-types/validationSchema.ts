@@ -826,7 +826,7 @@ export const requestCallBackValidationSchema = yup.object().shape({
 
 export const claimStatusValidationSchema = yup.object().shape({
   policyNumber: yup.string().required("policy number required"),
-  vehicleRegNumber: yup.string().required("vehicle reg number required"),
+  // vehicleRegNumber: yup.string().required("vehicle reg number required"),
 });
 
 export const motorClaimDetailsValidationSchema = yup.object().shape({

@@ -4,6 +4,8 @@ import { PagesRoutes } from "./Pages-Routes";
 import { ThankYou } from "../components";
 import { makeAClaimFormRoutes, policyFormRoutes } from "./Form-Routes";
 import { useProtectedMakeAClaim } from "../hooks";
+import { PrivatePolicy } from "../common/Privacy-Policy";
+import { TermsNConditions } from "../common/Terms-N-Condition";
 
 const Routers = () => {
   const { isPolicyNumberStored } = useProtectedMakeAClaim();
@@ -28,10 +30,12 @@ const Routers = () => {
       ) : (
         <Route
           path='*'
-          element={<Navigate to={PagesRoutes[6].path} replace />}
+          element={<Navigate to={PagesRoutes[0].path} replace />}
         />
       )}
       <Route path='/thank-you' element={<ThankYou />} />
+      <Route path='/privacy-policy' element={<PrivatePolicy />} />
+      <Route path='/terms&conditions' element={<TermsNConditions />} />
     </Routes>
   );
 };

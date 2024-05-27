@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { BottomSectionItem, Button, TopSectionItem } from "../../components";
+import {
+  BottomSectionItem,
+  Button,
+  ComingSoon,
+  TopSectionItem,
+} from "../../components";
 import { singleProdDataProps, tabDataType } from "../../types/types";
 import { NavigateFunction, useNavigate, useParams } from "react-router-dom";
 import { products } from "../../assets/data/products";
@@ -14,6 +19,7 @@ export const ProductSection: React.FC<{}> = () => {
   const [initialIndex, setInitialIndex] = useState<number>(0);
   const { id } = useParams();
   const { selectedProdSection } = useSelectedProdSection();
+  const [showComingSoon, setShowComingSoon] = useState<boolean>(false);
   const tabHeader = id;
 
   const nextBtn = () => {
@@ -95,14 +101,20 @@ export const ProductSection: React.FC<{}> = () => {
                   <BottomSectionItem keyIndex={index} items={items} />
                 ))}
             </div>
-            {singleProdData?.[0].getQuote && (
-              <Button
-                text='Get a quote'
-                className='py-[5px] md:py-[7px] lg:py-[10px] px-[15px] text-[white] duration-700 hover:bg-[#900000c7]'
-                rightIcon={<GoArrowRight size={20} color={"text-[#FFFFFF]"} />}
-                onPress={() => navigate(`${singleProdData?.[0].getQuote}`)}
-              />
-            )}
+            <Button
+              text='Get a quote'
+              className='py-[5px] md:py-[7px] lg:py-[10px] px-[15px] text-[white] duration-700 hover:bg-[#900000c7]'
+              rightIcon={<GoArrowRight size={20} color={"text-[#FFFFFF]"} />}
+              onPress={() => {
+                //navigate(`${singleProdData?.[0].getQuote}`)
+                if (singleProdData?.[0].getQuote) {
+                  navigate(`${singleProdData?.[0].getQuote}`);
+                  setShowComingSoon(!showComingSoon);
+                } else {
+                  setShowComingSoon(!showComingSoon);
+                }
+              }}
+            />
           </div>
         </section>
       ) : (
@@ -132,18 +144,19 @@ export const ProductSection: React.FC<{}> = () => {
                   <BottomSectionItem keyIndex={index} items={items} />
                 ))}
             </div>
-            {productsData?.[initialIndex].getQuote && (
-              <Button
-                text='Get a quote'
-                className='py-[5px] md:py-[7px] lg:py-[10px] px-[15px] text-[white] duration-700 hover:bg-[#900000c7]'
-                rightIcon={<GoArrowRight size={20} color={"text-[#FFFFFF]"} />}
-                onPress={() => {
-                  if (productsData?.[initialIndex].getQuote) {
-                    navigate(`${productsData?.[initialIndex].getQuote}`);
-                  }
-                }}
-              />
-            )}
+            <Button
+              text='Get a quote'
+              className='py-[5px] md:py-[7px] lg:py-[10px] px-[15px] text-[white] duration-700 hover:bg-[#900000c7]'
+              rightIcon={<GoArrowRight size={20} color={"text-[#FFFFFF]"} />}
+              onPress={() => {
+                if (productsData?.[initialIndex].getQuote) {
+                  navigate(`${productsData?.[initialIndex].getQuote}`);
+                  setShowComingSoon(!showComingSoon);
+                } else {
+                  setShowComingSoon(!showComingSoon);
+                }
+              }}
+            />
           </div>
           <div className='flex flex-row justify-center items-center gap-2 pt-5'>
             <Button
@@ -174,6 +187,10 @@ export const ProductSection: React.FC<{}> = () => {
           </div>
         </section>
       )}
+      <ComingSoon
+        showComingSoon={showComingSoon}
+        closeModal={(value) => setShowComingSoon(value)}
+      />
     </>
   );
 };

@@ -46,7 +46,7 @@ export const FullHeader = () => {
           header.map((items, index) => (
             <li
               key={index}
-              className={`flex items-center relative py-2 px-3 hover:cursor-pointer rounded-3xl text-[12px] hover:font-semibold ${
+              className={`flex items-center relative py-2 px-3 hover:cursor-pointer rounded-3xl  text-sm hover:font-semibold ${
                 selectedPath === items.page
                   ? "bg-[#900000] text-white hover:text-white"
                   : undefined

@@ -9,6 +9,7 @@ import { CallBackForm, ContactMessage } from "../../components";
 import { useEnquiryForm } from "../../hooks/store/enquiry";
 import { MakeEnquiry } from "../../api/services/enquiry/MakeEnquiry";
 import { ToastContainer } from "react-toastify";
+import { validatePolicyNumber } from "../../helper/helper";
 
 export const ContactForm: React.FC<{}> = () => {
   const { loading, useMakeEnquiry } = MakeEnquiry();
@@ -21,12 +22,18 @@ export const ContactForm: React.FC<{}> = () => {
     control,
     handleSubmit,
     setValue,
+    setError,
     formState: { errors },
   } = useForm<createEnquiryTypes>({ mode: "onChange" });
 
   const onSubmit = (data: createEnquiryTypes) => {
     console.log(data);
-    useMakeEnquiry();
+    const { isPolicyValid } = validatePolicyNumber(data.policy_number);
+    if (!isPolicyValid) {
+      setError("policy_number", { message: "Invalid policy number" });
+    } else {
+      useMakeEnquiry();
+    }
   };
 
   useEffect(() => {
@@ -71,6 +78,10 @@ export const ContactForm: React.FC<{}> = () => {
             required: {
               value: true,
               message: "Full name is required",
+            },
+            pattern: {
+              value: /^[a-zA-Z\s]*$/,
+              message: "Only letters and spaces are allowed",
             },
           }}
           name='full_name'
@@ -129,6 +140,10 @@ export const ContactForm: React.FC<{}> = () => {
             required: {
               value: true,
               message: "Subject is required",
+            },
+            pattern: {
+              value: /^[a-zA-Z\s]*$/,
+              message: "Only letters and spaces are allowed",
             },
           }}
           name='subject'
@@ -205,6 +220,10 @@ export const ContactForm: React.FC<{}> = () => {
           required: {
             value: true,
             message: "Message is required",
+          },
+          pattern: {
+            value: /^[a-zA-Z\s]*$/,
+            message: "Only letters and spaces are allowed",
           },
         }}
         name='message'

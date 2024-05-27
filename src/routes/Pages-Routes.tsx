@@ -34,8 +34,8 @@ export const PagesRoutes: pagesRouteProps[] = [
     path: "/contact-us",
     element: Pages.ContactUs,
   },
-  {
-    path: formRoutes.makeAClaim,
-    element: Pages.MakeAClaim,
-  },
+  // {
+  //   path: formRoutes.makeAClaim,
+  //   element: Pages.MakeAClaim,
+  // },
 ];

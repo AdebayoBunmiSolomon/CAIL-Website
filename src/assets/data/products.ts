@@ -782,7 +782,7 @@ export const products: tabContentsType[] = [
         description:
           "Custodian Home Shield protects policyholders against loss or damage to their home contents or properties, which includes household contents and personal effects. The cover also extends to the properties or personal effects of any member of the family normally living with the Insured.",
         position: "",
-        getQuote: formRoutes.home_shield,
+        getQuote: "", //formRoutes.home_shield,
         benefits: [
           {
             title: "",
@@ -934,7 +934,7 @@ export const products: tabContentsType[] = [
         description:
           "Accidents do happen; when they do the victims are less burdened when they do not have to worry about the medical expenses that come as a result of such.",
         position: "",
-        getQuote: formRoutes.safety_plus,
+        getQuote: "", //formRoutes.safety_plus,
         benefits: [
           {
             title: "",

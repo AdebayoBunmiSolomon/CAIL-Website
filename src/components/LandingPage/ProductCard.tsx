@@ -6,7 +6,6 @@ import { useSelectedHeader } from "../../hooks/useSelectedHeader";
 import { truncateLargeText } from "../../helper/helper";
 import { Button } from "../shared/Button";
 import { useSelectedProdSection } from "../../hooks/store/useSelectedProdSection";
-import { ComingSoon } from "../shared/ComingSoon";
 
 export const ProductCard: React.FC<productCardProps> = ({
   data,
@@ -20,7 +19,6 @@ export const ProductCard: React.FC<productCardProps> = ({
   const { setSelectedHeaderIndex } = useSelectedHeader();
   const navigate: NavigateFunction = useNavigate();
   const { setSelectedProdSection } = useSelectedProdSection();
-  const [showComingSoon, setShowComingSoon] = useState<boolean>(false);
   return (
     <>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 bg-[#FFFFFF] py-5 px-20'>
@@ -50,18 +48,10 @@ export const ProductCard: React.FC<productCardProps> = ({
                   rightIcon={<GoArrowRight size={20} color='#900000' />}
                   onPress={() => {
                     if (navigateToProdSection) {
-                      if (items.getQuote) {
-                        navigate(`${routeName}/${tabHeader}`);
-                        setSelectedProdSection(String(items.title));
-                      } else {
-                        setShowComingSoon(true);
-                      }
+                      navigate(`${routeName}/${tabHeader}`);
+                      setSelectedProdSection(String(items.title));
                     } else {
-                      if (items.getQuote) {
-                        navigate(`${routeName}/${tabHeader}`);
-                      } else {
-                        setShowComingSoon(true);
-                      }
+                      navigate(`${routeName}/${tabHeader}`);
                     }
                   }}
                 />
@@ -86,10 +76,6 @@ export const ProductCard: React.FC<productCardProps> = ({
           </div>
         )}
       </div>
-      <ComingSoon
-        showComingSoon={showComingSoon}
-        closeModal={(value) => setShowComingSoon(value)}
-      />
     </>
   );
 };

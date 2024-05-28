@@ -65,7 +65,7 @@ export const CalculateCostMotorService = () => {
     });
     try {
       if (data.statusCode === 200) {
-        console.log("Form data submitted successfully");
+        console.log(data.data.premium);
         setCalculatedPremFromAPI(data.data.premium);
         setCostLoading({
           ...costLoading,

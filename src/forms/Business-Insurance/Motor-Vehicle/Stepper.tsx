@@ -57,15 +57,12 @@ export const MotorStepper: React.FC<{}> = () => {
     let isValid = false;
     if (activeStep === 0) {
       isValid = await personalTrigger();
-      // setIsValid(isValid);
       if (isValid) nextStep();
     } else if (activeStep === 1) {
       isValid = await carTrigger();
-      // setIsValid(isValid);
       if (isValid) nextStep();
     } else if (activeStep === 2) {
       isValid = true;
-      // setIsValid(isValid);
       if (isValid) {
         initializePaysStackPayment({ onSuccess, onClose });
       }

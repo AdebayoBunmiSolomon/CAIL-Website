@@ -5,10 +5,13 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 
 export const paymentsServices = (email: string, amount: string) => {
   const navigate: NavigateFunction = useNavigate();
+  const paidAmount = Number(amount) * 100;
   const initializePaysStackPayment = usePaystackPayment({
-    reference: new Date().getTime().toString(),
+    reference: `${new Date().getTime().toString()}_${Math.random()
+      .toString(36)
+      .substring(2, 9)}`,
     email: email,
-    amount: Number(amount) * 100,
+    amount: paidAmount,
     publicKey: "pk_test_b412d48c21a7c347167d3ce3acbf747029b34de6",
   });
 
@@ -26,7 +29,7 @@ export const paymentsServices = (email: string, amount: string) => {
   // you can call this function anything
   const onClose = () => {
     // implementation for  whatever you want to do when the Paystack dialog closed.
-    console.log("closed");
+    console.log(amount, email);
     toast("Payment canceled", {
       type: "error",
       theme: "colored",

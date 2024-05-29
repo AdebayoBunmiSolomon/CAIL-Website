@@ -17,8 +17,10 @@ import {
 } from "../../../form-types/validationSchema";
 import { useFormStepper } from "../../../hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { paymentsServices } from "../../../api/services/payments/payments";
+import { PaymentServices } from "../../../api/services/payments/payments";
 import { useCalcPremFromAPI, useMotorForm } from "../../../hooks/store/motor";
+import { NewQuoteTransaction } from "../../../api/services/core/NewQuoteTransaction";
+import { endpoints } from "../../../api/enpoints";
 
 export const MotorStepper: React.FC<{}> = () => {
   const { calculatedPremFromAPI } = useCalcPremFromAPI();
@@ -26,9 +28,14 @@ export const MotorStepper: React.FC<{}> = () => {
     motorVehicleFormSteps
   );
   const { motorFormData } = useMotorForm();
-  const { initializePaysStackPayment, onClose, onSuccess } = paymentsServices(
+  const { useMakePaymentWithPaystack } = PaymentServices(
     motorFormData.email,
     calculatedPremFromAPI
+  );
+  const { useGetAQuote } = NewQuoteTransaction(
+    motorFormData,
+    endpoints.POST_MOTOR_FORM_DATA,
+    {}
   );
 
   const {
@@ -64,7 +71,8 @@ export const MotorStepper: React.FC<{}> = () => {
     } else if (activeStep === 2) {
       isValid = true;
       if (isValid) {
-        initializePaysStackPayment({ onSuccess, onClose });
+        // useMakePaymentWithPaystack();
+        useGetAQuote();
       }
     }
   };

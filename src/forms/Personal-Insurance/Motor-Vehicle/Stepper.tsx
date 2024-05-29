@@ -17,7 +17,7 @@ import {
 } from "../../../form-types/validationSchema";
 import { useFormStepper } from "../../../hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { paymentsServices } from "../../../api/services/payments/payments";
+import { PaymentServices } from "../../../api/services/payments/payments";
 import { useCalcPremFromAPI, useMotorForm } from "../../../hooks/store/motor";
 
 export const PersonalInsuranceMotorStepper: React.FC<{}> = () => {
@@ -26,7 +26,7 @@ export const PersonalInsuranceMotorStepper: React.FC<{}> = () => {
   const { activeStep, nextStep, prevStep } = useFormStepper(
     motorVehicleFormSteps
   );
-  const { initializePaysStackPayment, onClose, onSuccess } = paymentsServices(
+  const { useMakePaymentWithPaystack } = PaymentServices(
     motorFormData.email,
     calculatedPremFromAPI
   );
@@ -62,7 +62,7 @@ export const PersonalInsuranceMotorStepper: React.FC<{}> = () => {
     } else if (activeStep === 2) {
       isValid = true;
       if (isValid) {
-        initializePaysStackPayment({ onSuccess, onClose });
+        useMakePaymentWithPaystack();
       }
     }
   };

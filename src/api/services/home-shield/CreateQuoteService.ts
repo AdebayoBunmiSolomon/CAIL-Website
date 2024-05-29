@@ -2,13 +2,13 @@ import { useState } from "react";
 import { PostRequest } from "../../requests";
 import { endpoints } from "../../enpoints";
 import { toast } from "react-toastify";
-import { paymentsServices } from "../payments/payments";
+import { PaymentServices } from "../payments/payments";
 import { useHomeShieldForm } from "../../../hooks/store/home-shield/useHomeShieldForm";
 
 export const CreateQuoteService = () => {
   const { homeShieldFormData } = useHomeShieldForm();
   const [loading, setLoading] = useState<boolean>(false);
-  const { initializePaysStackPayment, onClose, onSuccess } = paymentsServices(
+  const { useMakePaymentWithPaystack } = PaymentServices(
     homeShieldFormData.email,
     homeShieldFormData.premium
   );
@@ -57,7 +57,7 @@ export const CreateQuoteService = () => {
           type: "success",
           theme: "colored",
         });
-        initializePaysStackPayment({ onSuccess, onClose });
+        useMakePaymentWithPaystack();
       } else {
         console.log("Error submitting data");
         setLoading(false);

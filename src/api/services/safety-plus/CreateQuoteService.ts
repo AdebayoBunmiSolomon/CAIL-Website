@@ -3,12 +3,12 @@ import { PostRequest } from "../../requests";
 import { useSafetyPlusForm } from "../../../hooks/store/safety-plus/useSafetyPlusForm";
 import { endpoints } from "../../enpoints";
 import { toast } from "react-toastify";
-import { paymentsServices } from "../payments/payments";
+import { PaymentServices } from "../payments/payments";
 
 export const CreateQuoteService = () => {
   const { safetyPlusFormData } = useSafetyPlusForm();
   const [loading, setLoading] = useState<boolean>(false);
-  const { initializePaysStackPayment, onClose, onSuccess } = paymentsServices(
+  const { useMakePaymentWithPaystack } = PaymentServices(
     safetyPlusFormData.email,
     safetyPlusFormData.premium
   );
@@ -46,13 +46,13 @@ export const CreateQuoteService = () => {
       if (data.statusCode === 200) {
         console.log("Form data submitted successfully");
         setLoading(false);
+        useMakePaymentWithPaystack();
         toast(data.message, {
           type: "success",
           theme: "colored",
         });
       } else {
         console.log("Error submitting data");
-        initializePaysStackPayment({ onSuccess, onClose });
         setLoading(false);
         toast(data.message, {
           type: "error",

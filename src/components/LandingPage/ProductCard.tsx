@@ -43,7 +43,7 @@ export const ProductCard: React.FC<productCardProps> = ({
                 <div className='flex flex-col h-full items-start justify-end'>
                   <Button
                     text='Learn More'
-                    className='flex text-[#900000] font-semibold bg-transparent px-0'
+                    className='flex text-[#900000] font-semibold bg-transparent mx-[-40px]'
                     rightIcon={<GoArrowRight size={20} color='#900000' />}
                     onPress={() => {
                       if (navigateToProdSection) {

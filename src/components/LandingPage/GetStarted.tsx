@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { PageContainer } from "../../pages/PageContainer";
 import { Button } from "../shared/Button";
+import heroImg from "../../assets/images/CAIL_Logo.png";
 
 type getStartedProps = {
   getAQuote: () => void;
@@ -13,36 +14,36 @@ export const GetStarted: React.FC<getStartedProps> = ({
 }) => {
   return (
     <PageContainer>
-      <section className='bg-[#FBF9F9]'>
-        <div className='w-full items-start justify-center'>
-          <div className='flex flex-col items-center justify-center md:flex-col md:items-center md:justify-center lg:flex-row lg:justify-between lg:items-center px-20'>
+      <section className='bg-[#FBF9F9] py-10'>
+        <div className='container mx-auto px-20'>
+          <div className='flex flex-col lg:flex-row items-center justify-between gap-5'>
             {/* Hero Content Left */}
-            <div className='w-[100%] md:w-[100%] lg:w-[50%] space-y-[50px]'>
-              <div className='space-y-[30px]'>
+            <div className='w-full lg:w-1/2 space-y-8'>
+              <div className='space-y-6'>
                 <div>
-                  <span className=' text-[38px] md:text-[48px] lg:text-[58px]  leading-[68px] text-primaryColor font-[700]'>
+                  <span className='text-[38px] md:text-[48px] lg:text-[58px] leading-tight text-primaryColor font-bold'>
                     Insurance solutions
                   </span>
-                  <h1 className='text-[38px] md:text-[48px] lg:text-[58px] leading-[68px] text-black font-[700]'>
+                  <h1 className='text-[38px] md:text-[48px] lg:text-[58px] leading-tight text-black font-bold'>
                     crafted to fit your special needs
                   </h1>
                 </div>
-                <p className='text-[16px] md:text-[20px] lg:text-[24px] leading-[34px] font-[400] text-justify'>
+                <p className='text-[16px] md:text-[20px] lg:text-[24px] leading-relaxed font-medium text-justify'>
                   Discover how our insurance product can provide you with peace
                   of mind and security, all while contributing to a profitable
-                  and sustainable future
+                  and sustainable future.
                 </p>
-                <div className='flex flex-col md:flex-col lg:flex-row gap-5'>
+                <div className='flex flex-col lg:flex-row gap-5'>
                   <Button
                     text='Get a Quote'
-                    className='px-10 hover:bg-[#900000b3] duration-700 text-[#FFFFFF]'
+                    className='px-10 py-2 hover:bg-[#900000b3] duration-700 text-white bg-primaryColor'
                     onPress={() => {
                       getAQuote();
                     }}
                   />
                   <Button
                     text='Learn More'
-                    className='px-10 hover:bg-[#f4e6e6d4] bg-[#f4e6e6] duration-700 text-[#900000]'
+                    className='px-10 py-2 hover:bg-[#f4e6e6d4] bg-[#f4e6e6] duration-700 text-[#900000]'
                     onPress={() => {
                       takeARecommendationQuiz();
                     }}
@@ -52,8 +53,14 @@ export const GetStarted: React.FC<getStartedProps> = ({
             </div>
 
             {/* Hero Image Right */}
-            <div className='w-[95vw] md:w-[100%] lg:w-[50%] overflow-hidden'>
-              <div className='w-[550px] 2xl:w-[650px] hero-img'></div>
+            <div className='w-full lg:w-1/2 mt-10 lg:mt-0'>
+              <div className='w-full h-auto'>
+                <img
+                  src={heroImg}
+                  alt='Hero'
+                  className='w-full h-full object-cover rounded-xl'
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -71,8 +71,8 @@ export const MotorStepper: React.FC<{}> = () => {
     } else if (activeStep === 2) {
       isValid = true;
       if (isValid) {
-        // useMakePaymentWithPaystack();
-        useGetAQuote();
+        useMakePaymentWithPaystack();
+        // useGetAQuote();
       }
     }
   };
@@ -107,10 +107,10 @@ export const MotorStepper: React.FC<{}> = () => {
   };
 
   return (
-    <div className='pt-[200px] pb-20 px-20'>
+    <div className='pt-[200px] pb-20 px-5 md:px-10 lg:px-20'>
       <Stepper steps={motorVehicleFormSteps} activeStep={activeStep} />
       {getActiveStepComponent()}
-      <div className='flex items-center gap-5 justify-end pr-7 mt-5'>
+      <div className='flex items-center gap-5 justify-end pr-0 mt-5'>
         {activeStep > 0 && (
           <Button
             text='Prev'

@@ -8,18 +8,18 @@ export const Hero: React.FC<heroProps> = ({
   subtitle2,
 }) => {
   return (
-    <section className='pt-[200px] h-[100dvh] bg-[#FBF9F9] hero__bg'>
-      <div className='container flex flex-col items-center justify-center h-[85%]'>
-        <h1 className='lg:text-[68px] lg:leading-[80px] md:text-[3.75rem] md:leading-[4.375rem] font-[700]'>
+    <section className='pt-20 h-screen bg-[#FBF9F9] hero__bg'>
+      <div className='container mx-auto flex flex-col items-center justify-center h-full px-4'>
+        <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-center'>
           {title}
         </h1>
-        <p className='text-primaryColor lg:text-[68px] lg:leading-[80px] md:text-[3.75rem] md:leading-[4.375rem] font-[700]'>
+        <p className='text-primaryColor text-4xl md:text-5xl lg:text-6xl font-bold text-center mt-4'>
           {subtitle}
         </p>
-        <p className='lg:text-[68px] lg:leading-[80px] md:text-[3.75rem] md:leading-[4.375rem] font-[700]'>
+        <p className='text-4xl md:text-5xl lg:text-6xl font-bold text-center mt-4'>
           {subtitle2}
         </p>
-        <p className='text-[21px] leading-[38px] font-[400] text-[#3F3F3F] text-center max-w-[700px] mt-[20px]'>
+        <p className='text-lg md:text-xl lg:text-2xl font-normal text-[#3F3F3F] text-center max-w-[700px] mt-6'>
           {description}
         </p>
       </div>

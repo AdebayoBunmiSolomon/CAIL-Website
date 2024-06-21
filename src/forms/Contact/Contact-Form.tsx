@@ -29,7 +29,7 @@ export const ContactForm: React.FC<{}> = () => {
   const onSubmit = (data: createEnquiryTypes) => {
     console.log(data);
     const { isPolicyValid } = validatePolicyNumber(data.policy_number);
-    if (!isPolicyValid) {
+    if (policyHolderChecked && !isPolicyValid) {
       setError("policy_number", { message: "Invalid policy number" });
     } else {
       useMakeEnquiry();

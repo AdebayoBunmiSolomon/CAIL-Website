@@ -817,7 +817,10 @@ export const personalAccidentValidationSchema = yup.object().shape({
 });
 
 export const requestCallBackValidationSchema = yup.object().shape({
-  full_name: yup.string().required("full name is required"),
+  full_name: yup
+    .string()
+    .required("full name is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters and spaces are allowed"),
   mobile_number: yup
     .string()
     .required("mobile number is required")

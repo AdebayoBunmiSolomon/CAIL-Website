@@ -30,36 +30,35 @@ export const ContactMessage: React.FC<messageProps> = ({
       {loading
         ? null
         : showMessage && (
-            <div className='flex flex-row justify-center items-center fixed bg-[#00000067] top-0 left-0 right-0 bottom-0 w-[100%] h-[100%] z-50'>
+            <div className='fixed top-0 left-0 right-0 bottom-0 w-full h-full flex justify-center items-center bg-[#00000067] z-50'>
               {requestCallBack ? (
-                <div className='w-[40%] py-4 bg-white rounded-xl z-50 fixed px-3'>
+                <div className='w-full max-w-md md:w-2/3 lg:w-1/2 py-4 bg-white rounded-xl z-50 fixed px-3'>
                   <div className='flex flex-row items-end justify-end py-1'>
                     <button onClick={() => closeModal(!showMessage)}>
                       <MdClose color='black' size={20} />
                     </button>
                   </div>
-                  <div className='flex flex-row justify-center'>
+                  <div className='flex justify-center mb-5'>
                     <figure>
                       <img
                         src={balloon}
-                        alt=''
-                        className='w-[50px] h-[50px] mb-[20px]'
+                        alt='Balloon'
+                        className='w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 mb-5'
                       />
                     </figure>
                   </div>
-                  <p className='text-primaryColor font-medium text-center text-sm mb-3'>
+                  <p className='text-primaryColor font-medium text-center text-sm md:text-base mb-3'>
                     Call back requested successfully
                   </p>
-
-                  <p className='text-slate-600 font-normal text-center text-[13px]'>
-                    you have successfully requested a call back, we will reach
-                    out to you soon
+                  <p className='text-slate-600 font-normal text-center text-xs md:text-sm lg:text-base'>
+                    You have successfully requested a call back, we will reach
+                    out to you soon.
                   </p>
                 </div>
               ) : (
-                <div className='w-[40%] py-5 bg-white rounded-xl z-50 fixed px-3'>
-                  <div className='flex flex-row items-center justify-between border-b-[1px] py-1'>
-                    <p className='font-medium text-[15px]'>
+                <div className='w-full max-w-md md:w-2/3 lg:w-1/2 py-5 bg-white rounded-xl z-50 fixed px-3'>
+                  <div className='flex items-center justify-between border-b py-1'>
+                    <p className='font-medium text-sm md:text-base lg:text-lg'>
                       Message Sent Successfully
                     </p>
                     <button
@@ -70,27 +69,25 @@ export const ContactMessage: React.FC<messageProps> = ({
                       <MdClose color='black' size={20} />
                     </button>
                   </div>
-                  <div className=' py-5'>
-                    <p className='text-slate-600 font-normal text-center text-[13px]'>
-                      Your message has been successfully sent to us via mail, do
-                      you want to request a call back?{" "}
+                  <div className='py-5'>
+                    <p className='text-slate-600 font-normal text-center text-xs md:text-sm lg:text-base'>
+                      Your message has been successfully sent to us via mail. Do
+                      you want to request a call back?
                     </p>
                   </div>
-                  <div className='flex flex-row justify-evenly items-center '>
+                  <div className='flex flex-row justify-evenly items-center'>
                     <Button
                       text='No'
                       onPress={() => {
                         closeModal(!showMessage);
                         setRequestCallBack(false);
                       }}
-                      className='py-[4px] md:py-[7px] lg:py-[7px] text-[#900000] px-15 flex bg-[white] drop-shadow-xl'
+                      className='py-2 md:py-3 lg:py-4 text-[#900000] px-5 md:px-8 lg:px-10 bg-white drop-shadow-xl'
                     />
                     <Button
                       text='Request Call back'
-                      onPress={() => {
-                        setRequestCallBack(true);
-                      }}
-                      className='py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-7 flex'
+                      onPress={() => setRequestCallBack(true)}
+                      className='py-2 md:py-3 lg:py-4 text-white px-5 md:px-8 lg:px-10 bg-primaryColor'
                     />
                   </div>
                 </div>

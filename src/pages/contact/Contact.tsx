@@ -3,6 +3,9 @@ import { ContactForm, Hero, ContactOffices } from "../../components";
 import { IoIosArrowForward } from "react-icons/io";
 
 export const ContactUs: React.FC<{}> = () => {
+  const takeAQuickSurvey = () => {
+    window.open("https://t.ly/xK6Lp", "_blank");
+  };
   return (
     <>
       <Hero
@@ -34,7 +37,9 @@ export const ContactUs: React.FC<{}> = () => {
               <p className='text-sm'>Sunday: Closed</p>
             </div>
 
-            <button className='bg-[#900000] font-medium bg-gradient-to-b from-[#D25050] via-[#900000] to-[#900000] items-center text-white rounded-lg justify-between flex px-4 py-6'>
+            <button
+              className='bg-[#900000] font-medium bg-gradient-to-b from-[#D25050] via-[#900000] to-[#900000] items-center text-white rounded-lg justify-between flex px-4 py-6'
+              onClick={() => takeAQuickSurvey()}>
               <h4>Take a quick survey</h4>
               <IoIosArrowForward />
             </button>

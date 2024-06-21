@@ -15,7 +15,6 @@ export const CheckClaimStatusService = () => {
     setLoading(true);
     try {
       const formattedPolicyNumber = convertToEncodedFormat(policyNumber);
-      console.log(formattedPolicyNumber);
       setLoading(true);
       setShowClaimInfo(false);
       const { data } = await GetRequest(

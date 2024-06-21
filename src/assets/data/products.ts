@@ -50,7 +50,7 @@ export const products: tabContentsType[] = [
         description:
           "Our Motor Vehicle Insurance Our Motor Vehicle Insurance covers Nigerian registered private motor vehicles, commercial vehicles, motorcycles, trucks and trailers.It offers the following cover:Comprehensive Cover: covers against unforeseen accidents, loss, theft and fire damage to vehicles. It also provides cover for accidental injury or death to third party as well as damage to third party property.Third Party Fire & Theft Cover: covers against theft and fire damage to vehicles. It also provides cover for accidental injury or death to third party as well as damage to third party property. It however, does not cover accidental damage to the Insured vehicle.Third Party Cover: covers the Insured against accidental injury or death to third party as well as damage to third party property.Optional Cover Vehicle sound/radio and accessories must be specified and are covered for loss or damage. Out-of-Nigeria covers your vehicle where it is temporarily used either for business or private outside NIGERIA BUT WITHIN THE WEST AFRICAN shores provided notice is given to us and the necessary document obtained i.e. The Brown Card. It covers you for your liability to other people where an accident causes death or injury to them or damage to their property and attracts additional premium",
         position: "",
-        getQuote: formRoutes.motor_vehicle,
+        getQuote: "", //formRoutes.motor_vehicle,
         keyFeatures: [
           {
             title: "",

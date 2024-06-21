@@ -1,6 +1,4 @@
-import { useState } from "react";
 import axios from "axios";
-import { error } from "console";
 
 export const PostRequest = async (url: string, payload: any, headers: any) => {
   try {

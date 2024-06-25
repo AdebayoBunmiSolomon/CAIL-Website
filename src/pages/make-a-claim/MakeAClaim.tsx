@@ -38,17 +38,17 @@ export const MakeAClaim: React.FC<{}> = () => {
 
   return (
     <>
-      <div className='pt-[200px] pb-20 px-20'>
+      <div className='pt-[200px] pb-20 px-2 md:px-10 lg:px-20'>
         <div className='flex justify-center items-center'>
-          <div className='w-[50%] bg-white rounded-lg self-center p-6 shadow-xl'>
-            <FormTitle title='Claim Status' />
+          <div className='w-[90%] md:w-[70%] lg:w-[50%] bg-white rounded-lg self-center p-6 shadow-xl'>
+            <FormTitle title='Make Claim' />
             <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
               <Controller
                 control={control}
                 render={({ field }) => (
                   <TextInput
                     label='Policy number'
-                    placeHolder='21807392928292'
+                    placeHolder='enter policy number here...'
                     type='text'
                     value={field.value}
                     onChange={(event) => {
@@ -89,7 +89,7 @@ export const MakeAClaim: React.FC<{}> = () => {
             )} */}
           </div>
         </div>
-        <div className='flex justify-end items-center w-[79%] px-14 md:px-12 lg:px-10 pt-5 pb-20'>
+        <div className='flex justify-end items-center w-[79%] px-2 md:px-5 lg:px-10 pt-5 pb-20'>
           <Button
             text={
               loading ? (

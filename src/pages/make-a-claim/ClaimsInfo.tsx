@@ -25,8 +25,8 @@ export const ClaimsInfo: React.FC<callBackFormProps> = ({
       <ToastContainer />
       {showClaimsInfo && (
         <div className='flex flex-row justify-center items-center fixed bg-[#00000067] top-0 left-0 right-0 bottom-0 w-[100%] h-[100%] z-50'>
-          <div className='w-[40%] py-4 bg-white rounded-xl z-50 fixed px-3'>
-            <div className='w-[100%] bg-white rounded-md self-center p-6'>
+          <div className='w-[80%] md:w-[60%] lg:w-[40%] py-4 bg-white rounded-xl z-50 fixed px-3'>
+            <div className='w-[100%] bg-white rounded-md self-center items-center'>
               <FormTitle title='Claims Info' />
               <table className='min-w-full divide-y divide-gray-200'>
                 <thead>

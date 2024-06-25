@@ -9,4 +9,5 @@ export const enum endpoints {
   MAKE_A_CLAIM = "https://apidev.custodianplc.com.ng/v3/crm/web/claims/cai-loss-notice",
   GET_POLICY_SUMMARY = "https://absapi.custodianplc.com.ng/policy",
   POST_MOTOR_FORM_DATA = "",
+  POST_CLAIM = "https://192.168.10.59:8073/api/Claims/cai/makeclaims",
 }

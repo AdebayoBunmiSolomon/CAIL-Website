@@ -96,12 +96,9 @@ export const Footer = () => {
                 <p className='cursor-pointer'>Terms and Conditions</p>
               </span>
 
-              <a
-                href={"https://www.custodianplc.com.ng/complaints-procedure"}
-                target='_blank'
-                rel='noopener noreferrer'>
-                <p className=' '>Complaints and Procedure</p>
-              </a>
+              <span onClick={() => navigate("/complaints-procedure")}>
+                <p className='cursor-pointer'>Complaints and Procedure</p>
+              </span>
             </div>
           </div>
           <div className='mt-10 md:mt-0'>

@@ -22,16 +22,22 @@ import { RegisterClaimService } from "../../../api/services/make-a-claim";
 import { getButtonBtnState } from "../../../helper/helper";
 import { BondClaimCircumstances } from "./Circumstances";
 import { BondClaimRequiredDocumentsDetails } from "./RequiredDocuments";
+import {
+  useBondClaimForm,
+  useMakeAClaimForm,
+} from "../../../hooks/store/make-a-claim";
 
 export const BondClaimStepper: React.FC<{}> = () => {
   const { activeStep, nextStep, prevStep } = useFormStepper(
     bondClaimsFormStepper
   );
-  const { loading } = RegisterClaimService();
+  const { loading, makeAClaim } = RegisterClaimService();
   const buttonState = getButtonBtnState(
     activeStep,
     bondClaimsFormStepper.length - 1
   );
+  const { makeAClaimFormData } = useMakeAClaimForm();
+  const { bondClaimFormData } = useBondClaimForm();
 
   const {
     control: bondClaimDetailsControl,
@@ -65,6 +71,33 @@ export const BondClaimStepper: React.FC<{}> = () => {
   });
 
   const onSubmitNextStep = async () => {
+    const formData = {
+      policyHolderName: makeAClaimFormData.officeName,
+      policyNumber: makeAClaimFormData.policyId,
+      subRisk: makeAClaimFormData.subRisk,
+      creationDate: makeAClaimFormData.creationDate,
+      claimType: bondClaimFormData.claimType,
+      email: bondClaimFormData.email,
+      phoneNumber: bondClaimFormData.phoneNumber,
+      dateTimeOfIncident: bondClaimFormData.dateTimeOfIncident,
+      descriptionOfIncident: bondClaimFormData.descriptionOfIncident,
+      listOfStolenItems: bondClaimFormData.listOfStolenItems,
+      doYouHaveAWitness: bondClaimFormData.doYouHaveAWitness,
+      nameOfWitness: bondClaimFormData.nameOfWitness,
+      witnessContactInfo: bondClaimFormData.witnessContactInfo,
+      hasThePoliceBeenInformed: bondClaimFormData.hasThePoliceBeenInformed,
+      whenWasThePoliceInformed: bondClaimFormData.whenWasThePoliceInformed,
+      policeStationAddress: bondClaimFormData.policeStationAddress,
+      claimsAmount: bondClaimFormData.claimsAmount,
+    };
+    const fileData = {
+      evidenceUpload1: bondClaimFormData.evidenceUpload1,
+      evidenceUpload2: bondClaimFormData.evidenceUpload2,
+      evidenceUpload3: bondClaimFormData.evidenceUpload3,
+      evidenceUpload4: bondClaimFormData.evidenceUpload4,
+      eyeWitnessReport: bondClaimFormData.eyeWitnessReport,
+      policeReport: bondClaimFormData.policeReport,
+    };
     let isValid = false;
     if (activeStep === 0) {
       isValid = await bondClaimDetailsTrigger();
@@ -78,7 +111,7 @@ export const BondClaimStepper: React.FC<{}> = () => {
     } else if (activeStep === 3) {
       isValid = true;
       if (isValid) {
-        //perform submit operation
+        makeAClaim(formData, fileData);
       }
     }
   };
@@ -124,7 +157,7 @@ export const BondClaimStepper: React.FC<{}> = () => {
   };
 
   return (
-    <div className='pt-[200px] pb-20 px-20'>
+    <div className='pt-[200px] pb-20 px-2 md:px-10 lg:px-20'>
       <Stepper steps={bondClaimsFormStepper} activeStep={activeStep} />
       {getActiveStepComponent()}
       <div className='flex items-center gap-5 justify-end pr-7 mt-5'>

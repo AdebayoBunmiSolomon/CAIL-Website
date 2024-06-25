@@ -22,16 +22,22 @@ import { RegisterClaimService } from "../../../api/services/make-a-claim";
 import { getButtonBtnState } from "../../../helper/helper";
 import { MotorClaimCircumstances } from "./Circumstances";
 import { MotorClaimRequiredDocuments } from "./RequiredDocuments";
+import {
+  useMakeAClaimForm,
+  useMotorClaimForm,
+} from "../../../hooks/store/make-a-claim";
 
 export const MotorClaimStepper: React.FC<{}> = () => {
   const { activeStep, nextStep, prevStep } = useFormStepper(
     motorClaimsFormStepper
   );
-  const { loading } = RegisterClaimService();
+  const { loading, makeAClaim } = RegisterClaimService();
   const buttonState = getButtonBtnState(
     activeStep,
     motorClaimsFormStepper.length - 1
   );
+  const { makeAClaimFormData } = useMakeAClaimForm();
+  const { motorClaimFormData } = useMotorClaimForm();
 
   const {
     control: motorClaimDetailsControl,
@@ -65,6 +71,51 @@ export const MotorClaimStepper: React.FC<{}> = () => {
   });
 
   const onSubmitNextStep = async () => {
+    const formData = {
+      policyHolderName: makeAClaimFormData.officeName,
+      policyNumber: makeAClaimFormData.policyId,
+      subRisk: makeAClaimFormData.subRisk,
+      creationDate: makeAClaimFormData.creationDate,
+      policyType: motorClaimFormData.policyType,
+      vehicleRegNumber: motorClaimFormData.vehicleRegNumber,
+      email: motorClaimFormData.email,
+      mobileNumber: motorClaimFormData.mobileNumber,
+      claimType: motorClaimFormData.claimType,
+      damageType: motorClaimFormData.damageType,
+      dateTimeOfLoss: motorClaimFormData.dateTimeOfLoss,
+      descriptionOfIncident: motorClaimFormData.descriptionOfIncident,
+      doYouHaveAWitness: motorClaimFormData.doYouHaveAWitness,
+      nameOfWitness: motorClaimFormData.nameOfWitness,
+      witnessContactInfo: motorClaimFormData.witnessContactInfo,
+      whereCanTheVehicleBeInspected:
+        motorClaimFormData.whereCanTheVehicleBeInspected,
+      isThirdPartyInvolved: motorClaimFormData.isThirdPartyInvolved,
+      hasThePoliceBeenInformed: motorClaimFormData.hasThePoliceBeenInformed,
+      whenWasThePoliceInformed: motorClaimFormData.whenWasThePoliceInformed,
+      policeStationAddress: motorClaimFormData.policeStationAddress,
+      thirdPartyInformation: motorClaimFormData.thirdPartyInformation,
+      estimateOfRepairs: motorClaimFormData.estimateOfRepairs,
+      claimsAmount: motorClaimFormData.claimsAmount,
+    };
+    const fileData = {
+      purchaseOrReplacementInvoice:
+        motorClaimFormData.purchaseOrReplacementInvoice,
+      uploadScannedVehicleLicense:
+        motorClaimFormData.uploadScannedVehicleLicense,
+      uploadInsuranceCertificate: motorClaimFormData.uploadInsuranceCertificate,
+      policeReport: motorClaimFormData.policeReport,
+      eyeWitnessReport: motorClaimFormData.eyeWitnessReport,
+      thirdPartyEvidenceOfInsuranceCover:
+        motorClaimFormData.thirdPartyEvidenceOfInsuranceCover,
+      thirdPartyRepairEstimate: motorClaimFormData.thirdPartyRepairEstimate,
+      thirdPartyDamageEvidence1: motorClaimFormData.thirdPartyDamageEvidence1,
+      thirdPartyDamageEvidence2: motorClaimFormData.thirdPartyDamageEvidence2,
+      repairEstimateInvoice: motorClaimFormData.repairEstimateInvoice,
+      vehicleFrontView: motorClaimFormData.vehicleFrontView,
+      vehicleRearView: motorClaimFormData.vehicleRearView,
+      vehicleLeftView: motorClaimFormData.vehicleLeftView,
+      vehicleRightView: motorClaimFormData.vehicleRightView,
+    };
     let isValid = false;
     if (activeStep === 0) {
       isValid = await motorClaimDetailsTrigger();
@@ -73,6 +124,10 @@ export const MotorClaimStepper: React.FC<{}> = () => {
       isValid = await motorClaimCircumstancesTrigger();
       if (isValid) nextStep();
     } else if (activeStep === 2) {
+      isValid = await motorClaimReqDocTrigger();
+      if (isValid) {
+        makeAClaim(formData, fileData);
+      }
     }
   };
 
@@ -117,7 +172,7 @@ export const MotorClaimStepper: React.FC<{}> = () => {
   };
 
   return (
-    <div className='pt-[200px] pb-20 px-20'>
+    <div className='pt-[200px] pb-20 px-2 md:px-10 lg:px-20'>
       <Stepper steps={motorClaimsFormStepper} activeStep={activeStep} />
       {getActiveStepComponent()}
       <div className='flex items-center gap-5 justify-end pr-7 mt-5'>

@@ -1,5 +1,4 @@
 import * as Pages from "../pages";
-import { formRoutes } from "./FormRoutes";
 
 type pagesRouteProps = {
   path: string;

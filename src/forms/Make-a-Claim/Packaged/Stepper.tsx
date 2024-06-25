@@ -22,16 +22,22 @@ import { getButtonBtnState } from "../../../helper/helper";
 import { PackagedPolicyClaimCircumstances } from "./Circumstances";
 import { PackagedPolicyClaimRequiredDocumentsDetails } from "./RequiredDocuments";
 import { PackagedPolicyClaimSummary } from "./Summary";
+import {
+  useMakeAClaimForm,
+  usePackagedPolicyClaimForm,
+} from "../../../hooks/store/make-a-claim";
 
 export const PackagedPolicyClaimStepper: React.FC<{}> = () => {
   const { activeStep, nextStep, prevStep } = useFormStepper(
     packagedPolicyFormStepper
   );
-  const { loading } = RegisterClaimService();
+  const { loading, makeAClaim } = RegisterClaimService();
   const buttonState = getButtonBtnState(
     activeStep,
     packagedPolicyFormStepper.length - 1
   );
+  const { makeAClaimFormData } = useMakeAClaimForm();
+  const { packagedPolicyClaimFormData } = usePackagedPolicyClaimForm();
 
   const {
     control: packagedPolicyClaimDetailsControl,
@@ -65,6 +71,35 @@ export const PackagedPolicyClaimStepper: React.FC<{}> = () => {
   });
 
   const onSubmitNextStep = async () => {
+    const formData = {
+      policyHolderName: makeAClaimFormData.officeName,
+      policyNumber: makeAClaimFormData.policyId,
+      subRisk: makeAClaimFormData.subRisk,
+      creationDate: makeAClaimFormData.creationDate,
+      claimType: packagedPolicyClaimFormData.claimType,
+      email: packagedPolicyClaimFormData.email,
+      phoneNumber: packagedPolicyClaimFormData.phoneNumber,
+      dateTimeOfIncident: packagedPolicyClaimFormData.dateTimeOfIncident,
+      descriptionOfIncident: packagedPolicyClaimFormData.descriptionOfIncident,
+      listOfStolenItems: packagedPolicyClaimFormData.listOfStolenItems,
+      doYouHaveAWitness: packagedPolicyClaimFormData.doYouHaveAWitness,
+      nameOfWitness: packagedPolicyClaimFormData.nameOfWitness,
+      witnessContactInfo: packagedPolicyClaimFormData.witnessContactInfo,
+      hasThePoliceBeenInformed:
+        packagedPolicyClaimFormData.hasThePoliceBeenInformed,
+      whenWasThePoliceInformed:
+        packagedPolicyClaimFormData.whenWasThePoliceInformed,
+      policeStationAddress: packagedPolicyClaimFormData.policeStationAddress,
+      claimsAmount: packagedPolicyClaimFormData.claimsAmount,
+    };
+    const fileData = {
+      evidenceUpload1: packagedPolicyClaimFormData.evidenceUpload1,
+      evidenceUpload2: packagedPolicyClaimFormData.evidenceUpload2,
+      evidenceUpload3: packagedPolicyClaimFormData.evidenceUpload3,
+      evidenceUpload4: packagedPolicyClaimFormData.evidenceUpload4,
+      eyeWitnessReport: packagedPolicyClaimFormData.eyeWitnessReport,
+      policeReport: packagedPolicyClaimFormData.policeReport,
+    };
     let isValid = false;
     if (activeStep === 0) {
       isValid = await packagedPolicyClaimDetailsTrigger();
@@ -78,7 +113,7 @@ export const PackagedPolicyClaimStepper: React.FC<{}> = () => {
     } else if (activeStep === 3) {
       isValid = true;
       if (isValid) {
-        //perform submit operations here
+        makeAClaim(formData, fileData);
       }
     }
   };
@@ -124,7 +159,7 @@ export const PackagedPolicyClaimStepper: React.FC<{}> = () => {
   };
 
   return (
-    <div className='pt-[200px] pb-20 px-20'>
+    <div className='pt-[200px] pb-20 px-2 md:px-10 lg:px-20'>
       <Stepper steps={packagedPolicyFormStepper} activeStep={activeStep} />
       {getActiveStepComponent()}
       <div className='flex items-center gap-5 justify-end pr-7 mt-5'>

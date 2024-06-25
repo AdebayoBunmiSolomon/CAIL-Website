@@ -6,10 +6,10 @@ import { makeAClaimFormRoutes, policyFormRoutes } from "./Form-Routes";
 import { useProtectedMakeAClaim } from "../hooks";
 import { PrivatePolicy } from "../common/Privacy-Policy";
 import { TermsNConditions } from "../common/Terms-N-Condition";
+import { ComplaintsProcedure } from "../common/Complaints-Procedure";
 
 const Routers = () => {
   const { isPolicyNumberStored } = useProtectedMakeAClaim();
-  console.log(isPolicyNumberStored);
 
   return (
     <Routes>
@@ -36,6 +36,7 @@ const Routers = () => {
       <Route path='/thank-you' element={<ThankYou />} />
       <Route path='/privacy-policy' element={<PrivatePolicy />} />
       <Route path='/terms&conditions' element={<TermsNConditions />} />
+      <Route path='/complaints-procedure' element={<ComplaintsProcedure />} />
     </Routes>
   );
 };

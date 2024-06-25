@@ -148,10 +148,10 @@ export const policyFormRoutes: formRouteProps[] = [
     path: formRoutes.personal_accident,
     element: PersonalAccidentForm,
   },
-  // {
-  //   path: formRoutes.makeAClaim,
-  //   element: Pages.MakeAClaim,
-  // },
+  {
+    path: formRoutes.makeAClaim,
+    element: Pages.MakeAClaim,
+  },
 ];
 
 /**

@@ -1,92 +1,62 @@
 import React, { useState } from "react";
-import { Button, FormTitle, TextInput } from "../../components";
+import { Button, FormTitle, TextInput } from "../../../components";
 import { Controller, useForm } from "react-hook-form";
-import { claimStatusTypes } from "../../form-types/Types";
+import { claimStatusTypes2 } from "../../../form-types/Types";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { claimStatusValidationSchema } from "../../form-types/validationSchema";
+import { claimStatusValidationSchema2 } from "../../../form-types/validationSchema";
 import { GoArrowRight } from "react-icons/go";
-import { ClaimsInfo } from "./ClaimsInfo";
-import { CheckClaimStatusService } from "../../api/services/make-a-claim";
-import { validatePolicyNumber } from "../../helper/helper";
+// import { validateClaimsNumber } from "../../../helper/helper";
+import { CheckClaimStatusService } from "../../../api/services/make-a-claim";
+import { ClaimsInfo } from "../ClaimsInfo";
 
-export const MakeAClaim: React.FC<{}> = () => {
-  const [policyValid, setPolicyValid] = useState<boolean>(false);
-  const { useCheckClaimStatus, loading, showClaimInfo, setShowClaimInfo } =
+export const ClaimStatus: React.FC<{}> = () => {
+  const [claimValid, setClaimValid] = useState<boolean>(false);
+  const { getClaimStatus, loading, showClaimInfo, setShowClaimInfo } =
     CheckClaimStatusService();
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<claimStatusTypes>({
+  } = useForm<claimStatusTypes2>({
     mode: "onChange",
-    resolver: yupResolver(claimStatusValidationSchema),
+    resolver: yupResolver(claimStatusValidationSchema2),
   });
 
-  const onSubmit = (data: claimStatusTypes) => {
+  const onSubmit = (data: claimStatusTypes2) => {
     if (data) {
-      useCheckClaimStatus(data.policyNumber);
+      getClaimStatus(data.claimNumber);
     }
   };
 
-  // useEffect(() => {
-  //   if (motorPolicy === true) {
-  //     setValue("vehicleRegNumber", "");
-  //   } else {
-  //     setValue("vehicleRegNumber", "NIL");
-  //   }
-  // }, [motorPolicy]);
-
   return (
     <>
-      <div className='pt-[200px] pb-20 px-2 md:px-10 lg:px-20'>
+      <div className='px-2 md:px-10 lg:px-20'>
         <div className='flex justify-center items-center'>
           <div className='w-[90%] md:w-[70%] lg:w-[50%] bg-white rounded-lg self-center p-6 shadow-xl'>
-            <FormTitle title='Make Claim' />
+            <FormTitle title='Claim Status' />
             <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
               <Controller
                 control={control}
                 render={({ field }) => (
                   <TextInput
-                    label='Policy number'
-                    placeHolder='enter policy number here...'
+                    label='Claims number'
+                    placeHolder='enter claims number here...'
                     type='text'
                     value={field.value}
                     onChange={(event) => {
-                      const { isPolicyValid } = validatePolicyNumber(
-                        event.target.value
-                      );
-                      console.log(isPolicyValid);
+                      // const { isClaimsValid } = validateClaimsNumber(
+                      //   event?.target.value
+                      // );
                       field.onChange(event.target.value);
-                      setPolicyValid(isPolicyValid);
+                      setClaimValid(event.target.value ? true : false);
                     }}
-                    error={errors?.policyNumber?.message}
+                    error={errors?.claimNumber?.message}
                   />
                 )}
-                name='policyNumber'
+                name='claimNumber'
                 defaultValue=''
               />
             </div>
-            {/* {policyValid && motorPolicy && (
-              <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
-                <Controller
-                  control={control}
-                  render={({ field }) => (
-                    <TextInput
-                      label='Vehicle Reg NO'
-                      placeHolder='Registration number'
-                      type='text'
-                      value={field.value}
-                      onChange={(event) => {
-                        field.onChange(event.target.value);
-                      }}
-                      error={errors?.vehicleRegNumber?.message}
-                    />
-                  )}
-                  name='vehicleRegNumber'
-                  defaultValue=''
-                />
-              </div>
-            )} */}
           </div>
         </div>
         <div className='flex justify-end items-center w-[79%] px-2 md:px-5 lg:px-10 pt-5 pb-20'>
@@ -113,17 +83,16 @@ export const MakeAClaim: React.FC<{}> = () => {
               )
             }
             onPress={handleSubmit(onSubmit)}
-            className={`py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-5 flex rounded-lg ${
-              !policyValid ? "" : "hover:bg-[#900000d7]"
-            } hover:duration-700`}
+            className={`py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-5 flex rounded-lg hover:duration-700`}
             rightIcon={<GoArrowRight size={25} />}
-            disabled={policyValid ? false : true}
+            disabled={claimValid ? false : true}
           />
         </div>
       </div>
       <ClaimsInfo
         showClaimsInfo={showClaimInfo}
         closeModal={(value) => setShowClaimInfo(value)}
+        statusForm
       />
     </>
   );

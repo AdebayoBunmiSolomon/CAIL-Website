@@ -4,10 +4,14 @@ import { endpoints } from "../../enpoints";
 import { useMakeAClaimForm } from "../../../hooks/store/make-a-claim/useMakeAClaim";
 import { convertToEncodedFormat } from "../../../helper/helper";
 import { toast } from "react-toastify";
-import { useGlobalStore } from "../../../hooks/store/make-a-claim";
+import {
+  useClaimStatusForm,
+  useGlobalStore,
+} from "../../../hooks/store/make-a-claim";
 
 export const CheckClaimStatusService = () => {
   const { setMakeAClaimFormData, makeAClaimFormData } = useMakeAClaimForm();
+  const { claimStatusFormData, setClaimStatusFormData } = useClaimStatusForm();
   const [loading, setLoading] = useState<boolean>(false);
   const { setGlobalData, globalData } = useGlobalStore();
   const [showClaimInfo, setShowClaimInfo] = useState<boolean>(false);
@@ -24,8 +28,7 @@ export const CheckClaimStatusService = () => {
       );
       setLoading(true);
       setShowClaimInfo(false);
-      if (data.status === 200) {
-        console.log(data);
+      if (data) {
         setLoading(false);
         setMakeAClaimFormData({
           ...makeAClaimFormData,
@@ -55,7 +58,7 @@ export const CheckClaimStatusService = () => {
           policyNumber: "",
         });
         toast("No Policy item found", {
-          type: "success",
+          type: "error",
           theme: "colored",
         });
         setLoading(false);
@@ -80,10 +83,60 @@ export const CheckClaimStatusService = () => {
       setShowClaimInfo(true);
     }
   };
+
+  const getClaimStatus = async (claimsNumber: string) => {
+    setLoading(true);
+    try {
+      // const formattedClaimsNumber = convertToEncodedFormat(claimsNumber);
+      const { data } = await GetRequest(
+        `${endpoints.GET_CLAIMS_INFO}${claimsNumber}`,
+        null,
+        {}
+      );
+      if (data.success === true) {
+        setClaimStatusFormData({
+          ...claimStatusFormData,
+          policyNumber: data.data.policyNumber,
+          policyType: data.data.policyType,
+          status: data.data.status,
+        });
+        toast(data.message, {
+          type: "success",
+          theme: "colored",
+        });
+        setShowClaimInfo(true);
+      } else {
+        console.log("Error getting claims information");
+        setClaimStatusFormData({
+          ...claimStatusFormData,
+          policyNumber: "",
+          policyType: "",
+          status: "",
+        });
+        toast(data.message, {
+          type: "error",
+          theme: "colored",
+        });
+        setShowClaimInfo(false);
+      }
+    } catch (err: any) {
+      setClaimStatusFormData({
+        ...claimStatusFormData,
+        policyNumber: "",
+        policyType: "",
+        status: "",
+      });
+      console.log("Error", err);
+      setShowClaimInfo(false);
+    } finally {
+      setLoading(false);
+    }
+  };
   return {
     loading,
     useCheckClaimStatus,
     showClaimInfo,
     setShowClaimInfo,
+    getClaimStatus,
   };
 };

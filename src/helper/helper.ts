@@ -1,3 +1,5 @@
+import { statusColors } from "../assets/data/statusColor";
+
 export const truncateText = (str: string) => {
   return str.length > 15 ? str.substring(0, 10) + "...." : str;
 };
@@ -98,7 +100,6 @@ export const convertToEncodedFormat = (value: string) => {
 
 /**
  *
- * @param policyValue
  * @returns True or false if policy is a correct policy number
  */
 export const validatePolicyNumber = (policyValue: string) => {
@@ -112,6 +113,24 @@ export const validatePolicyNumber = (policyValue: string) => {
   } else {
     return {
       isPolicyValid: false,
+    };
+  }
+};
+
+/**
+ *
+ * @returns True or false if claims is a correct claims number
+ */
+export const validateClaimsNumber = (claimsValue: string) => {
+  const claimsPattern = /^(CL|cl)\/[^\/]+\/[^\/]+\/[^\/]+$/;
+  const claimsPatternTest = claimsPattern.test(claimsValue);
+  if (claimsPatternTest) {
+    return {
+      isClaimsValid: true,
+    };
+  } else {
+    return {
+      isClaimsValid: false,
     };
   }
 };
@@ -205,4 +224,11 @@ export const getDateTimeLocalMaxVal = () => {
   const currentDate =
     currentDateTime.split(":")[0] + ":" + currentDateTime.split(":")[1]; // Remove seconds for datetime-local
   return currentDate;
+};
+
+/**
+ * returns the colors {bg,text-color} of the status depending on the status provided
+ */
+export const getStatusColors = (status: string) => {
+  return status ? statusColors[status] : statusColors.info;
 };

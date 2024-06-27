@@ -832,8 +832,15 @@ export const claimStatusValidationSchema = yup.object().shape({
   // vehicleRegNumber: yup.string().required("vehicle reg number required"),
 });
 
+export const claimStatusValidationSchema2 = yup.object().shape({
+  claimNumber: yup.string().required("claims number required"),
+});
+
 export const motorClaimDetailsValidationSchema = yup.object().shape({
-  vehicleRegNumber: yup.string().required("vehicle reg number is required"),
+  vehicleRegNumber: yup
+    .string()
+    .required("vehicle reg number is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   email: yup
     .string()
     .required("email is required")
@@ -845,17 +852,30 @@ export const motorClaimDetailsValidationSchema = yup.object().shape({
     .string()
     .required("mobile number is required")
     .matches(/^[0-9]{11}$/, "invalid mobile number format"),
-  claimType: yup.string().required("claim type is required"),
-  damageType: yup.string().required("damage type is required"),
+  claimType: yup
+    .string()
+    .required("claim type is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
+  damageType: yup
+    .string()
+    .required("damage type is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   dateTimeOfLoss: yup.string().required("date and time of loss is required"),
 });
 
 export const motorClaimCircumstanceValidationSchema = yup.object().shape({
   descriptionOfIncident: yup
     .string()
-    .required("incident description is required"),
-  doYouHaveAWitness: yup.string().required("this field is required"),
-  nameOfWitness: yup.string().required("name of witness is required"),
+    .required("incident description is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
+  doYouHaveAWitness: yup
+    .string()
+    .required("this field is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
+  nameOfWitness: yup
+    .string()
+    .required("name of witness is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   witnessContactInfo: yup.string().required("witness contact info is required"),
   whereCanTheVehicleBeInspected: yup
     .string()
@@ -906,10 +926,17 @@ export const accidentClaimDetailsValidationSchema = yup.object().shape({
 export const accidentClaimCircumstancesValidationSchema = yup.object().shape({
   descriptionOfIncident: yup
     .string()
-    .required("incident description is required"),
-  listOfStolenItems: yup.string().required("list of stolen items is required"),
+    .required("incident description is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
+  listOfStolenItems: yup
+    .string()
+    .required("list of stolen items is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   doYouHaveAWitness: yup.string().required("this field is required"),
-  nameOfWitness: yup.string().required("name of witness is required"),
+  nameOfWitness: yup
+    .string()
+    .required("name of witness is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   witnessContactInfo: yup.string().required("witness contact info is required"),
   hasThePoliceBeenInformed: yup.string().required("this field is required"),
   whenWasThePoliceInformed: yup.string().required("this field is required"),
@@ -923,7 +950,10 @@ export const accidentClaimCircumstancesValidationSchema = yup.object().shape({
 });
 
 export const bondClaimDetailsValidationSchema = yup.object().shape({
-  claimType: yup.string().required("claim type is required"),
+  claimType: yup
+    .string()
+    .required("claim type is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   email: yup
     .string()
     .required("email is required")
@@ -941,8 +971,12 @@ export const bondClaimDetailsValidationSchema = yup.object().shape({
 export const bondClaimCircumstancesValidationSchema = yup.object().shape({
   descriptionOfIncident: yup
     .string()
-    .required("incident description is required"),
-  listOfStolenItems: yup.string().required("list of stolen items is required"),
+    .required("incident description is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
+  listOfStolenItems: yup
+    .string()
+    .required("list of stolen items is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   doYouHaveAWitness: yup.string().required("this field is required"),
   nameOfWitness: yup.string().required("name of witness is required"),
   witnessContactInfo: yup.string().required("witness contact info is required"),
@@ -958,7 +992,10 @@ export const bondClaimCircumstancesValidationSchema = yup.object().shape({
 });
 
 export const engineeringClaimDetailsValidationSchema = yup.object().shape({
-  claimType: yup.string().required("claim type is required"),
+  claimType: yup
+    .string()
+    .required("claim type is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   email: yup
     .string()
     .required("email is required")
@@ -978,12 +1015,17 @@ export const engineeringClaimCircumstancesValidationSchema = yup
   .shape({
     descriptionOfIncident: yup
       .string()
-      .required("incident description is required"),
+      .required("incident description is required")
+      .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
     listOfStolenItems: yup
       .string()
-      .required("list of stolen items is required"),
+      .required("list of stolen items is required")
+      .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
     doYouHaveAWitness: yup.string().required("this field is required"),
-    nameOfWitness: yup.string().required("name of witness is required"),
+    nameOfWitness: yup
+      .string()
+      .required("name of witness is required")
+      .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
     witnessContactInfo: yup
       .string()
       .required("witness contact info is required"),
@@ -999,7 +1041,10 @@ export const engineeringClaimCircumstancesValidationSchema = yup
   });
 
 export const fireClaimDetailsValidationSchema = yup.object().shape({
-  claimType: yup.string().required("claim type is required"),
+  claimType: yup
+    .string()
+    .required("claim type is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   email: yup
     .string()
     .required("email is required")
@@ -1017,8 +1062,12 @@ export const fireClaimDetailsValidationSchema = yup.object().shape({
 export const fireClaimCircumstancesValidationSchema = yup.object().shape({
   descriptionOfIncident: yup
     .string()
-    .required("incident description is required"),
-  listOfStolenItems: yup.string().required("list of stolen items is required"),
+    .required("incident description is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
+  listOfStolenItems: yup
+    .string()
+    .required("list of stolen items is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   doYouHaveAWitness: yup.string().required("this field is required"),
   nameOfWitness: yup.string().required("name of witness is required"),
   witnessContactInfo: yup.string().required("witness contact info is required"),
@@ -1041,7 +1090,10 @@ export const fireClaimCircumstancesValidationSchema = yup.object().shape({
 });
 
 export const aviationClaimDetailsValidationSchema = yup.object().shape({
-  claimType: yup.string().required("claim type is required"),
+  claimType: yup
+    .string()
+    .required("claim type is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   email: yup
     .string()
     .required("email is required")
@@ -1059,10 +1111,17 @@ export const aviationClaimDetailsValidationSchema = yup.object().shape({
 export const aviationClaimCircumstancesValidationSchema = yup.object().shape({
   descriptionOfIncident: yup
     .string()
-    .required("incident description is required"),
-  listOfStolenItems: yup.string().required("list of stolen items is required"),
+    .required("incident description is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
+  listOfStolenItems: yup
+    .string()
+    .required("list of stolen items is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   doYouHaveAWitness: yup.string().required("this field is required"),
-  nameOfWitness: yup.string().required("name of witness is required"),
+  nameOfWitness: yup
+    .string()
+    .required("name of witness is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   witnessContactInfo: yup.string().required("witness contact info is required"),
   hasThePoliceBeenInformed: yup.string().required("this field is required"),
   whenWasThePoliceInformed: yup.string().required("this field is required"),
@@ -1076,7 +1135,10 @@ export const aviationClaimCircumstancesValidationSchema = yup.object().shape({
 });
 
 export const marineClaimDetailsValidationSchema = yup.object().shape({
-  claimType: yup.string().required("claim type is required"),
+  claimType: yup
+    .string()
+    .required("claim type is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   email: yup
     .string()
     .required("email is required")
@@ -1094,10 +1156,17 @@ export const marineClaimDetailsValidationSchema = yup.object().shape({
 export const marineClaimCircumstancesValidationSchema = yup.object().shape({
   descriptionOfIncident: yup
     .string()
-    .required("incident description is required"),
-  listOfStolenItems: yup.string().required("list of stolen items is required"),
+    .required("incident description is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
+  listOfStolenItems: yup
+    .string()
+    .required("list of stolen items is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   doYouHaveAWitness: yup.string().required("this field is required"),
-  nameOfWitness: yup.string().required("name of witness is required"),
+  nameOfWitness: yup
+    .string()
+    .required("name of witness is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   witnessContactInfo: yup.string().required("witness contact info is required"),
   hasThePoliceBeenInformed: yup.string().required("this field is required"),
   whenWasThePoliceInformed: yup.string().required("this field is required"),
@@ -1111,7 +1180,10 @@ export const marineClaimCircumstancesValidationSchema = yup.object().shape({
 });
 
 export const oilAndGasClaimDetailsValidationSchema = yup.object().shape({
-  claimType: yup.string().required("claim type is required"),
+  claimType: yup
+    .string()
+    .required("claim type is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   email: yup
     .string()
     .required("email is required")
@@ -1129,9 +1201,16 @@ export const oilAndGasClaimDetailsValidationSchema = yup.object().shape({
 export const oilAndGasClaimCircumstancesValidationSchema = yup.object().shape({
   descriptionOfIncident: yup
     .string()
-    .required("incident description is required"),
-  listOfStolenItems: yup.string().required("list of stolen items is required"),
-  doYouHaveAWitness: yup.string().required("this field is required"),
+    .required("incident description is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
+  listOfStolenItems: yup
+    .string()
+    .required("list of stolen items is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
+  doYouHaveAWitness: yup
+    .string()
+    .required("this field is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   nameOfWitness: yup.string().required("name of witness is required"),
   witnessContactInfo: yup.string().required("witness contact info is required"),
   hasThePoliceBeenInformed: yup.string().required("this field is required"),
@@ -1146,7 +1225,10 @@ export const oilAndGasClaimCircumstancesValidationSchema = yup.object().shape({
 });
 
 export const packagedPolicyClaimDetailsValidationSchema = yup.object().shape({
-  claimType: yup.string().required("claim type is required"),
+  claimType: yup
+    .string()
+    .required("claim type is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   email: yup
     .string()
     .required("email is required")
@@ -1164,10 +1246,17 @@ export const packagedPolicyClaimDetailsValidationSchema = yup.object().shape({
 export const packagedPolicyCircumstancesValidationSchema = yup.object().shape({
   descriptionOfIncident: yup
     .string()
-    .required("incident description is required"),
-  listOfStolenItems: yup.string().required("list of stolen items is required"),
+    .required("incident description is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
+  listOfStolenItems: yup
+    .string()
+    .required("list of stolen items is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   doYouHaveAWitness: yup.string().required("this field is required"),
-  nameOfWitness: yup.string().required("name of witness is required"),
+  nameOfWitness: yup
+    .string()
+    .required("name of witness is required")
+    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
   witnessContactInfo: yup.string().required("witness contact info is required"),
   hasThePoliceBeenInformed: yup.string().required("this field is required"),
   whenWasThePoliceInformed: yup.string().required("this field is required"),

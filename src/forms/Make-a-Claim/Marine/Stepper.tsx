@@ -26,10 +26,12 @@ import {
   useMakeAClaimForm,
   useMarineClaimForm,
 } from "../../../hooks/store/make-a-claim";
+import { ClaimsNumber } from "../../../common/Claims-Number";
 
 export const MarineClaimStepper: React.FC<{}> = () => {
   const { activeStep, nextStep, prevStep } = useFormStepper(marineFormStepper);
-  const { loading, makeAClaim } = RegisterClaimService();
+  const { loading, makeAClaim, showClaims, setShowClaims } =
+    RegisterClaimService();
   const buttonState = getButtonBtnState(
     activeStep,
     marineFormStepper.length - 1
@@ -155,25 +157,38 @@ export const MarineClaimStepper: React.FC<{}> = () => {
   };
 
   return (
-    <div className='pt-[200px] pb-20 px-2 md:px-10 lg:px-20'>
-      <Stepper steps={marineFormStepper} activeStep={activeStep} />
-      {getActiveStepComponent()}
-      <div className='flex items-center gap-5 justify-end pr-7 mt-5'>
-        {activeStep > 0 && (
+    <>
+      <div className='pt-[200px] pb-20 px-2 md:px-10 lg:px-20'>
+        <Stepper steps={marineFormStepper} activeStep={activeStep} />
+        {getActiveStepComponent()}
+        <div className='flex items-center gap-5 justify-end pr-7 mt-5'>
+          {activeStep > 0 && (
+            <Button
+              text='Prev'
+              onPress={() => prevStep()}
+              className='py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-5 flex rounded-lg hover:bg-[#900000d7] hover:duration-700'
+              leftIcon={<GoArrowLeft size={25} />}
+            />
+          )}
           <Button
-            text='Prev'
-            onPress={() => prevStep()}
+            text={loading === true ? "Loading" : buttonState}
+            onPress={onSubmitNextStep}
             className='py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-5 flex rounded-lg hover:bg-[#900000d7] hover:duration-700'
-            leftIcon={<GoArrowLeft size={25} />}
+            rightIcon={<GoArrowRight size={25} />}
           />
-        )}
-        <Button
-          text={loading === true ? "Loading" : buttonState}
-          onPress={onSubmitNextStep}
-          className='py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-5 flex rounded-lg hover:bg-[#900000d7] hover:duration-700'
-          rightIcon={<GoArrowRight size={25} />}
-        />
+        </div>
       </div>
-    </div>
+      <ClaimsNumber
+        showForm={showClaims.visible}
+        claimNumber={showClaims.claimsNumber}
+        closeForm={() =>
+          setShowClaims({
+            ...showClaims,
+            visible: false,
+            claimsNumber: "",
+          })
+        }
+      />
+    </>
   );
 };

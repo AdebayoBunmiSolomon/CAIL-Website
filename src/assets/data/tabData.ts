@@ -295,3 +295,24 @@ export const tabData: tabContentsType[] = [
     ],
   },
 ];
+
+export const claimsEntryTabHeader: tabContentsType[] = [
+  {
+    id: 1,
+    tabHeader: "Make a Claim",
+    title: "",
+    subTitle: "",
+    subTitle2: "",
+    description: "",
+    tabData: [],
+  },
+  {
+    id: 2,
+    tabHeader: "Claim Status",
+    title: "",
+    subTitle: "",
+    subTitle2: "",
+    description: "",
+    tabData: [],
+  },
+];

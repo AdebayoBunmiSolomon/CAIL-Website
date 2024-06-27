@@ -10,4 +10,5 @@ export const enum endpoints {
   GET_POLICY_SUMMARY = "https://absapi.custodianplc.com.ng/policy",
   POST_MOTOR_FORM_DATA = "",
   POST_CLAIM = "https://192.168.10.59:8073/api/Claims/cai/makeclaims",
+  GET_CLAIMS_INFO = "https://192.168.10.59:8073/api/Claims/cai/check-claims-status?claimId=",
 }

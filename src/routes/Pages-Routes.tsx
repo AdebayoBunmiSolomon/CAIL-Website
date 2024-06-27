@@ -1,4 +1,5 @@
 import * as Pages from "../pages";
+import { formRoutes } from "./FormRoutes";
 
 type pagesRouteProps = {
   path: string;
@@ -33,8 +34,8 @@ export const PagesRoutes: pagesRouteProps[] = [
     path: "/contact-us",
     element: Pages.ContactUs,
   },
-  // {
-  //   path: formRoutes.makeAClaim,
-  //   element: Pages.MakeAClaim,
-  // },
+  {
+    path: formRoutes.makeAClaim,
+    element: Pages.ClaimsEntry,
+  },
 ];

@@ -9,6 +9,7 @@ export const enum endpoints {
   MAKE_A_CLAIM = "https://apidev.custodianplc.com.ng/v3/crm/web/claims/cai-loss-notice",
   GET_POLICY_SUMMARY = "https://absapi.custodianplc.com.ng/policy",
   POST_MOTOR_FORM_DATA = "",
-  POST_CLAIM = "https://192.168.10.59:8073/api/Claims/cai/makeclaims",
-  GET_CLAIMS_INFO = "https://192.168.10.59:8073/api/Claims/cai/check-claims-status?claimId=",
+  POST_CLAIM = "/api/Claims/cai/makeclaims",
+  GET_CLAIMS_INFO = "/api/Claims/cai/check-claims-status?claimId=",
+  SUBSCRIBE_TO_NEWS_LETTER = "/api/subscription/subscribe",
 }

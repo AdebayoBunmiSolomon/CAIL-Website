@@ -5,7 +5,7 @@ import { claimStatusTypes2 } from "../../../form-types/Types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { claimStatusValidationSchema2 } from "../../../form-types/validationSchema";
 import { GoArrowRight } from "react-icons/go";
-// import { validateClaimsNumber } from "../../../helper/helper";
+import { validateClaimsNumber } from "../../../helper/helper";
 import { CheckClaimStatusService } from "../../../api/services/make-a-claim";
 import { ClaimsInfo } from "../ClaimsInfo";
 
@@ -44,11 +44,11 @@ export const ClaimStatus: React.FC<{}> = () => {
                     type='text'
                     value={field.value}
                     onChange={(event) => {
-                      // const { isClaimsValid } = validateClaimsNumber(
-                      //   event?.target.value
-                      // );
+                      const { isClaimsValid } = validateClaimsNumber(
+                        event?.target.value
+                      );
                       field.onChange(event.target.value);
-                      setClaimValid(event.target.value ? true : false);
+                      setClaimValid(isClaimsValid);
                     }}
                     error={errors?.claimNumber?.message}
                   />

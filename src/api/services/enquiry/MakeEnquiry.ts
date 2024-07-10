@@ -18,14 +18,13 @@ export const MakeEnquiry = () => {
 
   const useMakeEnquiry = async () => {
     setLoading(true);
-    console.log(formData);
-    const { data, status } = await PostRequest(
-      `${endpoints.MAKE_ENQUIRY}`,
-      formData,
-      {}
-    );
-    setLoading(true);
     try {
+      setLoading(true);
+      const { data, status } = await PostRequest(
+        `${endpoints.MAKE_ENQUIRY}`,
+        formData,
+        {}
+      );
       if (status === 200) {
         setLoading(false);
         console.log("Form submitted successfully");

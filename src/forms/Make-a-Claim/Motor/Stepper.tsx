@@ -128,7 +128,7 @@ export const MotorClaimStepper: React.FC<{}> = () => {
     } else if (activeStep === 2) {
       isValid = await motorClaimReqDocTrigger();
       if (isValid) {
-        makeAClaim(formData, fileData);
+        makeAClaim(formData, fileData, formData.policyNumber);
       }
     }
   };

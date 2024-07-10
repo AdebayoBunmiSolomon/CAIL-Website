@@ -16,11 +16,16 @@ export const RegisterClaimService = () => {
     claimsNumber: "",
   });
 
-  const makeAClaim = async (formData: object, fileData: object) => {
+  const makeAClaim = async (
+    formData: object,
+    fileData: object,
+    policyNumber: string
+  ) => {
     setLoading(true);
     const formValue = new FormData();
     formValue.append("data", JSON.stringify(formData));
     formValue.append("file", JSON.stringify(fileData));
+    formValue.append("policyNumber", JSON.stringify(policyNumber));
     try {
       const { status, data } = await PostRequest(
         `${endpoints.POST_CLAIM}`,
@@ -28,10 +33,9 @@ export const RegisterClaimService = () => {
         claimsHeaderConfiguration
       );
       setLoading(true);
-      if (status === 200) {
+      if (data) {
         console.log(data);
-        console.log("Claim data submitted successfully");
-        toast("Claim data saved successfully", {
+        toast(data.message, {
           type: "success",
           theme: "colored",
         });
@@ -41,7 +45,6 @@ export const RegisterClaimService = () => {
           claimsNumber: data.data.claimsNumber,
         });
       } else {
-        console.log("Error submitting claim data");
         toast("Error saving claims data", {
           type: "error",
           theme: "colored",

@@ -12,9 +12,7 @@ export const PostRequest = async (url: string, payload: any, headers: any) => {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx
 
-      console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);
+      console.log(error.response);
 
       return { status: error.request.status, data: null };
     } else if (error.request) {
@@ -28,6 +26,5 @@ export const PostRequest = async (url: string, payload: any, headers: any) => {
       console.log("Error", error.message);
       return { status: error.request.status, data: null };
     }
-    // console.log(error.config);
   }
 };

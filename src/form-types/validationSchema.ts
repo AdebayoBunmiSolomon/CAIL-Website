@@ -799,7 +799,7 @@ export const homeShieldValidationSchema2 = yup.object().shape({
   premium: yup.string().required("premium is required"),
 });
 
-export const personalAccidentValidationSchema = yup.object().shape({
+export const businessInsuranceValidationSchema = yup.object().shape({
   full_name: yup.string().required("full name is required"),
   email: yup
     .string()
@@ -1359,4 +1359,14 @@ export const motorClaimReqDocValidationSchema = yup.object().shape({
   vehicleRearView: yup.string().required("This file is required"),
   vehicleLeftView: yup.string().required("This file is required"),
   vehicleRightView: yup.string().required("This file is required"),
+});
+
+export const newsLetterValidationSchema = yup.object().shape({
+  email: yup
+    .string()
+    .required("Email is required")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+      "invalid email format"
+    ),
 });

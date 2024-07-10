@@ -255,12 +255,14 @@ export const ContactForm: React.FC<{}> = () => {
           onPress={handleSubmit(onSubmit)}
           className='py-[4px] md:py-[7px] lg:py-[10px] text-[white] px-10 flex'
           rightIcon={<GoArrowRight size={25} />}
+          disabled={loading ? true : false}
         />
         <Button
           text='Request call-back'
           onPress={() => setCallBackForm(!callBckForm)}
           className='py-[4px] md:py-[7px] lg:py-[10px] text-[#900000] px-10 flex bg-[white] drop-shadow-xl'
           rightIcon={<FaPhoneVolume size={20} />}
+          disabled={loading ? true : false}
         />
       </div>
       <ContactMessage

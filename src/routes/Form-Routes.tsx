@@ -1,31 +1,31 @@
 import { AllRisksForm } from "../forms/Business-Insurance/All-Risks/Form";
 import { BoilerPressurePlantForm } from "../forms/Business-Insurance/Boiler-Pressure/Form";
-import { BuildersLiabilityStepper } from "../forms/Business-Insurance/Builders-Liability/Stepper";
-import { BurglaryStepper } from "../forms/Business-Insurance/Burglary/Stepper";
-import { BusinessInterruptionStepper } from "../forms/Business-Insurance/Business-Interruption/Stepper";
-import { BusinessOwnersForm } from "../forms/Business-Insurance/Business-Owners/Form";
+import { BuildersLiabilityForm } from "../forms/Business-Insurance/Builders-Liability/Form";
+import { MarineBoatOwnerForm } from "../forms/Personal-Insurance/Marine-Boat-Owner/Form";
+import { BurglaryForm } from "../forms/Business-Insurance/Burglary/Form";
+import { BusinessInterruptionForm } from "../forms/Business-Insurance/Business-Interruption/Form";
+import { BusinessOwnersForms } from "../forms/Business-Insurance/Business-Owners/Form";
 import { ContractorAllRiskForm } from "../forms/Business-Insurance/Contractors-All-Risk/Form";
 import { ElectricForm } from "../forms/Business-Insurance/Electronic/Form";
 import { GITForm } from "../forms/Business-Insurance/GIT/Form";
 import { GroupPersonalAccidentForm } from "../forms/Business-Insurance/Group-Personal-Accident/Form";
-import { HealthCareStepper } from "../forms/Business-Insurance/Healthcare/Stepper";
-import { MachineryStepper } from "../forms/Business-Insurance/Machinery-Breakdown/Stepper";
+import { HealthCareForm } from "../forms/Business-Insurance/Healthcare/Form";
+import { MachineryBreakDownForm } from "../forms/Business-Insurance/Machinery-Breakdown/Form";
 import { MarineCargoForm } from "../forms/Business-Insurance/Marine-Cargo/Form";
 import { MarineHullForm } from "../forms/Business-Insurance/Marine-Hull/Form";
 import { MoneyForm } from "../forms/Business-Insurance/Money/Form";
 import { MotorStepper } from "../forms/Business-Insurance/Motor-Vehicle/Stepper";
 import { OccupiersLiabilityForm } from "../forms/Business-Insurance/Occupiers-Liability/Form";
 import { PlantAllRiskForm } from "../forms/Business-Insurance/Plant-All-Risk/Form";
-import { ProfessionalIndemnityStepper } from "../forms/Business-Insurance/Professional-Indemnity/Stepper";
+import { ProfessionalIndemnityForm } from "../forms/Business-Insurance/Professional-Indemnity/Form";
 import { PublicLiabilityForm } from "../forms/Business-Insurance/Public-Liability/Form";
 import { Events } from "../forms/Business-Insurance/custodian-events/Events";
 import { PersonalInsuranceEventsForm } from "../forms/Personal-Insurance/Custodian-Events/Events";
 import { HomeShieldStepper } from "../forms/Personal-Insurance/Home-Shield/Stepper";
-import { PersonalInsuranceMachineryStepper } from "../forms/Personal-Insurance/Machinery-Breakdown/Stepper";
+import { PersonalInsuranceMachineryBreakDownForm } from "../forms/Personal-Insurance/Machinery-Breakdown/Form";
 import { PersonalAccidentForm } from "../forms/Personal-Insurance/Personal-Accident/Form";
 import { SafetyPlusStepper } from "../forms/Personal-Insurance/Safety-Plus/Stepper";
 import { formRoutes } from "./FormRoutes";
-import * as Pages from "../pages";
 import { MotorClaimStepper } from "../forms/Make-a-Claim/Motor/Stepper";
 import { AccidentClaimStepper } from "../forms/Make-a-Claim/Accident/Stepper";
 import { BondClaimStepper } from "../forms/Make-a-Claim/Bond/Stepper";
@@ -35,6 +35,8 @@ import { AviationClaimStepper } from "../forms/Make-a-Claim/Aviation/Stepper";
 import { MarineClaimStepper } from "../forms/Make-a-Claim/Marine/Stepper";
 import { OilAndGasClaimStepper } from "../forms/Make-a-Claim/Oil-and-Gas/Stepper";
 import { PackagedPolicyClaimStepper } from "../forms/Make-a-Claim/Packaged/Stepper";
+import { CustodianSMEForm } from "../forms/Business-Insurance/Custodian-SME/Form";
+import { HomeOwnersForm } from "../forms/Personal-Insurance/Home-Owners/Form";
 
 type formRouteProps = {
   path: string;
@@ -49,28 +51,36 @@ export const policyFormRoutes: formRouteProps[] = [
     element: MotorStepper,
   },
   {
+    path: formRoutes.home_owners,
+    element: HomeOwnersForm,
+  },
+  {
     path: formRoutes.custodian_events,
     element: Events,
   },
   {
     path: formRoutes.machinery_breakdown,
-    element: MachineryStepper,
+    element: MachineryBreakDownForm,
   },
   {
     path: formRoutes.builders_liability,
-    element: BuildersLiabilityStepper,
+    element: BuildersLiabilityForm,
   },
   {
     path: formRoutes.business_interruption,
-    element: BusinessInterruptionStepper,
+    element: BusinessInterruptionForm,
   },
   {
     path: formRoutes.burglary_housebreaking,
-    element: BurglaryStepper,
+    element: BurglaryForm,
   },
   {
     path: formRoutes.electronic_equipment,
     element: ElectricForm,
+  },
+  {
+    path: formRoutes.custodian_SME,
+    element: CustodianSMEForm,
   },
   {
     path: formRoutes.money,
@@ -82,7 +92,7 @@ export const policyFormRoutes: formRouteProps[] = [
   },
   {
     path: formRoutes.business_owners,
-    element: BusinessOwnersForm,
+    element: BusinessOwnersForms,
   },
   {
     path: formRoutes.boiler_pressure_plant,
@@ -102,7 +112,7 @@ export const policyFormRoutes: formRouteProps[] = [
   },
   {
     path: formRoutes.professional_indemnity,
-    element: ProfessionalIndemnityStepper,
+    element: ProfessionalIndemnityForm,
   },
   {
     path: formRoutes.public_liability,
@@ -126,7 +136,7 @@ export const policyFormRoutes: formRouteProps[] = [
   },
   {
     path: formRoutes.healthcare_professional,
-    element: HealthCareStepper,
+    element: HealthCareForm,
   },
   {
     path: formRoutes.custodian_events,
@@ -134,7 +144,7 @@ export const policyFormRoutes: formRouteProps[] = [
   },
   {
     path: formRoutes.machinery_breakdown,
-    element: PersonalInsuranceMachineryStepper,
+    element: PersonalInsuranceMachineryBreakDownForm,
   },
   {
     path: formRoutes.safety_plus,
@@ -149,9 +159,13 @@ export const policyFormRoutes: formRouteProps[] = [
     element: PersonalAccidentForm,
   },
   {
-    path: formRoutes.makeAClaim,
-    element: Pages.MakeAClaim,
+    path: formRoutes.marine_boat_owner,
+    element: MarineBoatOwnerForm,
   },
+  // {
+  //   path: formRoutes.makeAClaim,
+  //   element: Pages.MakeAClaim,
+  // },
 ];
 
 /**

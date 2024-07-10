@@ -4,23 +4,22 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import fbIcon from "../../assets/images/fb_icon.png";
 import igIcon from "../../assets/images/IG_icon.png";
 import linkedInIcon from "../../assets/images/LinkedIn_icon.png";
+import { NewLetter } from "./Newsletter";
 
 export const Footer = () => {
   const navigate: NavigateFunction = useNavigate();
   return (
     <div className='bg-[#061D30]'>
       <div className='flex flex-col px-10 md:px-24 pt-5 text-white'>
-        {/* <div className=" flex w-[100%] md:pt-5">
-          <NewsLetter />
-        </div> */}
+        <div className=' flex w-[100%] md:pt-5'>
+          <NewLetter />
+        </div>
         <div className='flex flex-col md:flex-row items-start justify-between py-10 text-[18px]'>
           <div className=''>
             <h3 className='text-[#9DADB9]'>QUICK LINKS</h3>
             <div className='flex gap-[10px] flex-col mt-7 text-[12px] leading-[30px] font-[500] md:text-[16px] '>
               <a
-                href={
-                  "https://custodianplc.com.ng/custodian-and-allied-insurance-limited"
-                }
+                href={"https://custodianplc.com.ng"}
                 target='_blank'
                 rel='noopener noreferrer'>
                 <p className='  '>Custodian Investment Plc</p>

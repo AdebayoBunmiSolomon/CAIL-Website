@@ -7,10 +7,10 @@ export const enum formRoutes {
   custodian_events = "/products/forms/custodian-events",
   motor_vehicle = "/products/forms/motor-vehicle",
   custodian_travel = "", // /products/forms/custodian-travel
-  marine_boat = "", // /products/forms/marine-boat
+  marine_boat_owner = "/products/forms/marine-boat",
   home_shield = "/products/forms/home-shield",
   personal_accident = "/products/forms/personal-accident",
-  home_owners = "", // /products/forms/home-owners
+  home_owners = "/products/forms/home-owners",
   safety_plus = "/products/forms/safety_plus",
   machinery_breakdown = "/products/forms/machinery-breakdown",
   builders_liability = "/products/forms/builders-liability",
@@ -30,7 +30,7 @@ export const enum formRoutes {
   plant_all_risk = "/products/forms/plant-all-risk",
   occupiers_liability = "/products/forms/occupiers-liability",
   healthcare_professional = "/products/forms/healthcare-professional",
-  custodian_SME = "", // /products/forms/custodian-SME
+  custodian_SME = "/products/forms/custodian-SME",
   money = "/products/forms/money",
   makeAClaim = "/forms/make-a-claim",
   makeMotorClaim = "/forms/make-a-claim/motor",

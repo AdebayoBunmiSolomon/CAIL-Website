@@ -1,29 +1,37 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { personalAccidentFormType } from "../../../form-types/Types";
+import { businessInsuranceAccidentFormType } from "../../../form-types/Types";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { personalAccidentValidationSchema } from "../../../form-types/validationSchema";
+import { businessInsuranceValidationSchema } from "../../../form-types/validationSchema";
 import { Button, FormTitle, TextInput } from "../../../components";
 import { GoArrowRight } from "react-icons/go";
-import { usePersonalAccidentForm } from "../../../hooks/store/personal-accident/usePersonalAccidentForm";
-import { sendPersonalAccidentMsg } from "../../../api/services/personal-accident/SendMessageService";
+import { useBusinessInsuranceForm } from "../../../hooks/store/personal-accident/useBusinessInsuranceForm";
+import { sendQuoteMsg } from "../../../api/services/Business-Insurance/SendMessageService";
 import { ToastContainer } from "react-toastify";
 
 export const PersonalAccidentForm: React.FC<{}> = () => {
-  const { personalAccidentFormData, setPersonalAccidentFormData } =
-    usePersonalAccidentForm();
-  const { useSendMsg, loading } = sendPersonalAccidentMsg();
+  const { businessInsuranceFormData, setBusinessInsuranceFormData } =
+    useBusinessInsuranceForm();
+  const { sendMsg, loading } = sendQuoteMsg();
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<personalAccidentFormType>({
+  } = useForm<businessInsuranceAccidentFormType>({
     mode: "onChange",
-    resolver: yupResolver(personalAccidentValidationSchema),
+    resolver: yupResolver(businessInsuranceValidationSchema),
   });
 
-  const onsubmit = (data: personalAccidentFormType) => {
-    useSendMsg();
+  const onsubmit = (data: businessInsuranceAccidentFormType) => {
+    const formData = {
+      firstName: businessInsuranceFormData.full_name,
+      email: businessInsuranceFormData.email,
+      mobile_number: businessInsuranceFormData.mobile_number,
+      subject: businessInsuranceFormData.subject,
+      message: businessInsuranceFormData.message,
+      product_class: "10",
+    };
+    sendMsg(formData);
     console.log(data);
   };
 
@@ -43,8 +51,8 @@ export const PersonalAccidentForm: React.FC<{}> = () => {
                   value={field.value}
                   onChange={(text) => {
                     field.onChange(text.target.value);
-                    setPersonalAccidentFormData({
-                      ...personalAccidentFormData,
+                    setBusinessInsuranceFormData({
+                      ...businessInsuranceFormData,
                       full_name: text.target.value,
                     });
                   }}
@@ -65,8 +73,8 @@ export const PersonalAccidentForm: React.FC<{}> = () => {
                   type='email'
                   onChange={(text) => {
                     field.onChange(text.target.value);
-                    setPersonalAccidentFormData({
-                      ...personalAccidentFormData,
+                    setBusinessInsuranceFormData({
+                      ...businessInsuranceFormData,
                       email: text.target.value,
                     });
                   }}
@@ -87,8 +95,8 @@ export const PersonalAccidentForm: React.FC<{}> = () => {
                   value={field.value}
                   onChange={(text) => {
                     field.onChange(text.target.value);
-                    setPersonalAccidentFormData({
-                      ...personalAccidentFormData,
+                    setBusinessInsuranceFormData({
+                      ...businessInsuranceFormData,
                       mobile_number: text.target.value,
                     });
                   }}
@@ -108,8 +116,8 @@ export const PersonalAccidentForm: React.FC<{}> = () => {
                   value={field.value}
                   onChange={(text) => {
                     field.onChange(text.target.value);
-                    setPersonalAccidentFormData({
-                      ...personalAccidentFormData,
+                    setBusinessInsuranceFormData({
+                      ...businessInsuranceFormData,
                       subject: text.target.value,
                     });
                   }}
@@ -131,8 +139,8 @@ export const PersonalAccidentForm: React.FC<{}> = () => {
                   textArea
                   onChange={(text) => {
                     field.onChange(text.target.value);
-                    setPersonalAccidentFormData({
-                      ...personalAccidentFormData,
+                    setBusinessInsuranceFormData({
+                      ...businessInsuranceFormData,
                       message: text.target.value,
                     });
                   }}

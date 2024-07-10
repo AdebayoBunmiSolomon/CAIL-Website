@@ -232,7 +232,7 @@ export type occupiersLiabilityFormType = {
   payment_option: string;
 };
 
-export type personalAccidentFormType = {
+export type businessInsuranceAccidentFormType = {
   full_name: string;
   email: string;
   mobile_number: string;
@@ -522,4 +522,8 @@ export type packagedPolicyClaimReqDoc = {
   evidenceUpload4: any;
   eyeWitnessReport: any;
   policeReport: any;
+};
+
+export type newsLetter = {
+  email: string;
 };

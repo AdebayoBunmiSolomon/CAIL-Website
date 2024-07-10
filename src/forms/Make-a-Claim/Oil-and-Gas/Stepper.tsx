@@ -112,7 +112,7 @@ export const OilAndGasClaimStepper: React.FC<{}> = () => {
     } else if (activeStep === 3) {
       isValid = true;
       if (isValid) {
-        makeAClaim(formData, fileData);
+        makeAClaim(formData, fileData, formData.policyNumber);
       }
     }
   };

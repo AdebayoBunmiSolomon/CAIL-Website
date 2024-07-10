@@ -16,7 +16,7 @@ export const products: tabContentsType[] = [
         description:
           "Hosting an event is a big investment; one that comes with many uncertainties no matter how well you plan the event. Custodian Events Insurance can help you secure this investment as it protects the policy holder from any unforeseen circumstances which could lead to public liability claims, accidental injuries to guests, loss or damage of event equipment, professional liability claims as well as employee liability claims.Furthermore, Custodian Events Insurance can be extended to cover event cancellation due to specified causes and also litigation cost incurred by the Insured with the consent of the Insurer.",
         position: "",
-        getQuote: "", //formRoutes.custodian_events,
+        getQuote: formRoutes.custodian_events,
         benefits: [
           {
             title: "Benefits",
@@ -50,7 +50,7 @@ export const products: tabContentsType[] = [
         description:
           "Our Motor Vehicle Insurance Our Motor Vehicle Insurance covers Nigerian registered private motor vehicles, commercial vehicles, motorcycles, trucks and trailers.It offers the following cover:Comprehensive Cover: covers against unforeseen accidents, loss, theft and fire damage to vehicles. It also provides cover for accidental injury or death to third party as well as damage to third party property.Third Party Fire & Theft Cover: covers against theft and fire damage to vehicles. It also provides cover for accidental injury or death to third party as well as damage to third party property. It however, does not cover accidental damage to the Insured vehicle.Third Party Cover: covers the Insured against accidental injury or death to third party as well as damage to third party property.Optional Cover Vehicle sound/radio and accessories must be specified and are covered for loss or damage. Out-of-Nigeria covers your vehicle where it is temporarily used either for business or private outside NIGERIA BUT WITHIN THE WEST AFRICAN shores provided notice is given to us and the necessary document obtained i.e. The Brown Card. It covers you for your liability to other people where an accident causes death or injury to them or damage to their property and attracts additional premium",
         position: "",
-        getQuote: "", //formRoutes.motor_vehicle,
+        getQuote: formRoutes.motor_vehicle,
         keyFeatures: [
           {
             title: "",
@@ -81,7 +81,7 @@ export const products: tabContentsType[] = [
         description:
           "Machinery Breakdown insurance is an ideal cover for stationery plant and machinery which covers cost of repairs or replacement of damage parts as a result of accidental Electrical and Mechanical Breakdown.Cover is against loss or damage from any unforeseen and sudden physical loss or damage from causes such as defects in casting and materials, faulty design, faults at workshop/factory or in erection, bad workmanship/lack of skill, carelessness, shortage of water in boilers, physical explosion, tearing apart on account of centrifugal force, short circuit, storm or from any other cause not specifically excluded by the policy.All types of Machinery, Plants, Mechanical Equipment and Apparatus are covered. Examples are Power generating plants (Boilers, Turbines, and Generators), Power Distribution Plants (Transformers, High & Low-Tension equipment), Production Machinery in Factories and Ancillary equipment like Elevators etc.",
         position: "",
-        getQuote: "", //formRoutes.machinery_breakdown,
+        getQuote: formRoutes.machinery_breakdown,
         benefits: [
           {
             title: "",
@@ -103,7 +103,7 @@ export const products: tabContentsType[] = [
         description:
           "Builders’ Liability Insurance: This a compulsory Insurance by Law and it covers all buildings under construction with more than two floors against all construction risks resulting from the Builder’s negligence or the negligence of the Builder’s servants, agents or consultants which negligence may result in bodily injury or loss of life or damage to the property.The policy commences with the movement of the Contractor/Builder to the Contract Site to the end of the maintenance period and it is in two (2) sections:",
         position: "",
-        getQuote: "", //formRoutes.builders_liability,
+        getQuote: formRoutes.builders_liability,
         benefits: [
           {
             title: "Section - I Builders Liability",
@@ -135,7 +135,7 @@ export const products: tabContentsType[] = [
         description:
           "if any building or other property used by the Insured at their Premises for the purpose of their Business be destroyed or damaged by any of the Perils listed below during the Period of Insurance and in consequence the business carried on by the Insured at the Premises be interrupted or interfered with then the company will pay to the insured the amount of loss resulting from such interruption or interference.",
         position: "",
-        getQuote: "", //formRoutes.business_interruption,
+        getQuote: formRoutes.business_interruption,
         benefits: [
           {
             title: "Perils",
@@ -182,7 +182,7 @@ export const products: tabContentsType[] = [
         description:
           "The insurance will pay compensation for loss, destruction or damage following the occurrence of burglary and/or housebreaking accompanied by actual forcible and violent breaking into or exit from the premises insured. Cover will extend to include damage to doors and window or other parts of the building as a result of the theft or attempted theft. Cover can be extended to Larceny (loss without actual forcible and violent breaking into or exit from the premises) at an additional cost. Items covered include movable property which is inside your office premises or which is outside and designed to exist or operate externally.",
         position: "",
-        getQuote: "", //formRoutes.burglary_housebreaking,
+        getQuote: formRoutes.burglary_housebreaking,
         benefits: [
           {
             title: "",
@@ -204,7 +204,7 @@ export const products: tabContentsType[] = [
         description:
           "The insurance covers your electronic business equipment including computers, licensed software, scanners, printers, copiers and fax machines against loss or damage by fire, theft or any other accidental damage or misfortune. Costs of data restoration can also be covered.",
         position: "",
-        getQuote: "", //formRoutes.electronic_equipment,
+        getQuote: formRoutes.electronic_equipment,
         benefits: [
           {
             title: "",
@@ -226,7 +226,7 @@ export const products: tabContentsType[] = [
         description:
           "The insurance covers negotiable instruments including cash, cheques, money orders, postage and revenue stamps against loss from business premises and during transit. Cover can also be provided for in personal custody of senior employees, cash in safe as well as damage to safe.ts of data restoration can also be covered.",
         position: "",
-        getQuote: "", //formRoutes.money,
+        getQuote: formRoutes.money,
         benefits: [
           {
             title: "",
@@ -248,7 +248,7 @@ export const products: tabContentsType[] = [
         description:
           "The insurance covers loss or damage to property by any cause not specifically excluded in the policy in respect of specified items: Jewelries, Watches, Cameras, Trophies, Gold & Silver articles, Work of Art and other Personal valuables and effects, Computers, Accounting and other portable Office Machines, Scales, Survey Equipment etc. Cover could be limited to Nigeria or extended on worldwide basis.",
         position: "",
-        getQuote: "", //formRoutes.all_risks,
+        getQuote: formRoutes.all_risks,
         benefits: [
           {
             title: "",
@@ -270,7 +270,7 @@ export const products: tabContentsType[] = [
         description:
           "The insurance covers Loss of or damage as a result of Fire, Lightning, Explosion, and Other Exterior Perils to:",
         position: "",
-        getQuote: "", //formRoutes.business_owners,
+        getQuote: formRoutes.business_owners,
         benefits: [
           {
             title: "",
@@ -296,7 +296,7 @@ export const products: tabContentsType[] = [
         title: "Boiler and Pressure Plant Insurance",
         description: "",
         position: "",
-        getQuote: "", //formRoutes.boiler_pressure_plant,
+        getQuote: formRoutes.boiler_pressure_plant,
         benefits: [
           {
             title: "",
@@ -320,7 +320,7 @@ export const products: tabContentsType[] = [
         description:
           "This provides cover for loss or damage to Insured’s goods by any accident or misfortune while in transit within the Territorial Limits. Goods can be carried in either owned or hired vehicle",
         position: "",
-        getQuote: "", //formRoutes.goods_in_transit,
+        getQuote: formRoutes.goods_in_transit,
         benefits: [
           {
             title: "",
@@ -341,7 +341,7 @@ export const products: tabContentsType[] = [
         title: "Contractors' All Risks Insurance",
         description: "",
         position: "",
-        getQuote: "", //formRoutes.contractors_all_risks,
+        getQuote: formRoutes.contractors_all_risks,
         benefits: [
           {
             title: "",
@@ -371,7 +371,7 @@ export const products: tabContentsType[] = [
         description:
           "This is a Benefit Policy and it is used as a Welfare Scheme to encourage and motivate employees. It also saves the employer the embarrassment of having to bear the burden of medical or death expenses each time such incident occur to a staff.Our cover includes:Death or Bodily injury (permanent or temporary) caused solely and directly by accidental, violent and visible means on 24 hours basis anywhere in the world Medical expenses",
         position: "",
-        getQuote: "", //formRoutes.group_personal_accident,
+        getQuote: formRoutes.group_personal_accident,
         benefits: [
           {
             title: "Benefits",
@@ -398,7 +398,7 @@ export const products: tabContentsType[] = [
         description:
           "The insurance covers the Insured in respect of any loss arising from any claim for breach of duty which may be made against them by reason of any neglect, error or omission whenever or wherever committed or alleged to have been committed in the conduct of the Insured's business in the professional capacity provided that the act are negligence, error or omission shall have been committed during the Insured period.",
         position: "",
-        getQuote: "", //formRoutes.professional_indemnity,
+        getQuote: formRoutes.professional_indemnity,
         benefits: [
           {
             title: "",
@@ -420,7 +420,7 @@ export const products: tabContentsType[] = [
         description:
           "The policy will indemnify the Insured against all sums which the Insured shall become legally liable to pay in respect: death, illness or bodily injury to any person damage to property belonging to someone else as a result of the use of your business premises or work away from your premises. In addition, the policy will also pay all cost and expenses incurred with their written consent.",
         position: "",
-        getQuote: "", //formRoutes.public_liability,
+        getQuote: formRoutes.public_liability,
         benefits: [
           {
             title: "",
@@ -442,7 +442,7 @@ export const products: tabContentsType[] = [
         description:
           "Although three (3) basic covers exist under this policy namely; Institute Cargo Clause A Institute Cargo Clause B Institute Cargo Clause C",
         position: "",
-        getQuote: "", //formRoutes.marine_cargo,
+        getQuote: formRoutes.marine_cargo,
         benefits: [
           {
             title: "CLAUSE A",
@@ -492,7 +492,7 @@ export const products: tabContentsType[] = [
         description:
           " Covers any hull or ship, motorboat, houseboat (including their machinery, equipment, standard fittings and accessories therein).This covers:Accident Theft Fire, explosion and earthquake Storm, hail and flood Salvage costs Medical expenses for injuries to people caused while using the craft Liability to other people",
         position: "",
-        getQuote: "", //formRoutes.marine_hull,
+        getQuote: formRoutes.marine_hull,
         benefits: [
           {
             title: "",
@@ -514,7 +514,7 @@ export const products: tabContentsType[] = [
         description:
           "Covers any unforeseen and sudden physical loss or damage to the movable Plants and machineries from any cause not specifically excluded in a manner necessitating repair or replacement, cash (at their own option).It also applies whether the Insured items are at work or at rest, or being dismantled for the purpose of cleaning or overhauling, or in the course of the aforesaid operations",
         position: "",
-        getQuote: "", //formRoutes.plant_all_risk,
+        getQuote: formRoutes.plant_all_risk,
         benefits: [
           {
             title: "",
@@ -535,7 +535,7 @@ export const products: tabContentsType[] = [
         title: "Occupiers Liability Insurance",
         description: "",
         position: "",
-        getQuote: "", //formRoutes.occupiers_liability,
+        getQuote: formRoutes.occupiers_liability,
         benefits: [
           {
             title: "",
@@ -576,7 +576,7 @@ export const products: tabContentsType[] = [
         title: "Healthcare Professional Indemnity Insurance",
         description: "",
         position: "",
-        getQuote: "", //formRoutes.healthcare_professional,
+        getQuote: formRoutes.healthcare_professional,
         benefits: [
           {
             title: "",
@@ -604,7 +604,7 @@ export const products: tabContentsType[] = [
         description:
           "The SME Insurance Policy is a combined and flexible insurance plan that protects the business owner and organisation from fortuitous loss, suffered as a result of perils that are insured against; whilst carrying out its operations in strict adherence to the laws of the country.How It WorksThe SME Insurance Policy offers the business owner the choice of selecting some or all of the insurance plans that meets the need of their business. Some of the classes of insurance covers through the Custodian SME Insurance policy include the following:Fire and Special Perils InsuranceThe policy will provide compensation if the property/asset suffers loss or damage caused by fire or any of the perils listed below.The Perils covered are:Fire Lightning, Explosion, Aircraft damage Riot strike and malicious damage Storm, tempest, flood, inundation, hurricane, cyclone, typhoon, and tornado Subsidence/landslide including rockslide Bursting and or overflowing of water tanks and apparatus Bush fireBurglary InsuranceThis policy covers loss or damage to the insured’s property resulting from actual forcible and violent entry into or exit of the insured’s business premises.Group Life and Personal Accident InsuranceAt inception, an immediate estate is created for the dependent (s) which is available upon premature death. The policy provides:A 24-hour mortality cover devoid of geographical limitations Cover against death from any source Instant financial assistance for dependents of the deceased Death cover of twice the sum assured in the case of accidental death (if the option is chosen) Permanent disability benefit equal to the sum assured in case the employee is totally and permanently disabled with a medical expense limit of N50, 000 Temporary total disability benefit equal 2% annual salary for a maximum of 104 weeks with a medical expense limit of N50, 000 A wholesome package that meets the requirements of the statutory group life policy under 4(5) of the Pension Reform Act, 2014",
         position: "",
-        getQuote: "", //formRoutes.custodian_SME,
+        getQuote: formRoutes.custodian_SME,
         benefits: [
           {
             title: "",
@@ -636,7 +636,7 @@ export const products: tabContentsType[] = [
         description:
           "Hosting an event is a big investment; one that comes with many uncertainties no matter how well you plan the event. Custodian Events Insurance can help you secure this investment as it protects the policy holder from any unforeseen circumstances which could lead to public liability claims, accidental injuries to guests, loss or damage of event equipment, professional liability claims as well as employee liability claims.Furthermore, Custodian Events Insurance can be extended to cover event cancellation due to specified causes and also litigation cost incurred by the Insured with the consent of the Insurer.",
         position: "",
-        getQuote: "", //formRoutes.custodian_events,
+        getQuote: formRoutes.custodian_events,
         benefits: [
           {
             title: "Benefits",
@@ -719,7 +719,7 @@ export const products: tabContentsType[] = [
         description:
           "Our Travel Insurance provides cover for emergency medical expenses, financial and other losses incurred and other unforeseen events as listed below while travelling outside the country of residence",
         position: "",
-        getQuote: "", //formRoutes.custodian_travel,
+        getQuote: formRoutes.custodian_travel,
         benefits: [
           {
             title: "",
@@ -752,7 +752,7 @@ export const products: tabContentsType[] = [
         description:
           "This insurance covers any motorboat, ski boat or wet bike (including the hull, motors, machinery, equipment, standard fittings and accessories).",
         position: "",
-        getQuote: "", //formRoutes.marine_boat,
+        getQuote: formRoutes.marine_boat_owner,
         benefits: [
           {
             title: "",
@@ -782,7 +782,7 @@ export const products: tabContentsType[] = [
         description:
           "Custodian Home Shield protects policyholders against loss or damage to their home contents or properties, which includes household contents and personal effects. The cover also extends to the properties or personal effects of any member of the family normally living with the Insured.",
         position: "",
-        getQuote: "", //formRoutes.home_shield,
+        getQuote: formRoutes.home_shield,
         benefits: [
           {
             title: "",
@@ -873,7 +873,7 @@ export const products: tabContentsType[] = [
         description:
           "House Owner Insurance Covers the immovable structures on your property; these are all the permanent fixtures, fittings and improvements (such as walls, roofs, your swimming pool, gates and gate motors, underground pipes and cables).",
         position: "",
-        getQuote: "", //formRoutes.home_owners,
+        getQuote: formRoutes.home_owners,
         benefits: [
           {
             title: "",
@@ -934,7 +934,7 @@ export const products: tabContentsType[] = [
         description:
           "Accidents do happen; when they do the victims are less burdened when they do not have to worry about the medical expenses that come as a result of such.",
         position: "",
-        getQuote: "", //formRoutes.safety_plus,
+        getQuote: formRoutes.safety_plus,
         benefits: [
           {
             title: "",

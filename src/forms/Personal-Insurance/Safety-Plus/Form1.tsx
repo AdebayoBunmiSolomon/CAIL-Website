@@ -17,7 +17,7 @@ type formProps = {
 
 export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
   const props = useFormProps;
-  console.log(props);
+  // console.log(props);
   const { safetyPlusFormData, setSafetyPlusFormData } = useSafetyPlusForm();
   const [fileName, setFileName] = useState<string>("");
 
@@ -319,7 +319,7 @@ export const SafetyPlusForm1: React.FC<formProps> = ({ useFormProps }) => {
                     const target = event.target as HTMLInputElement;
                     if (target) {
                       const selectedFile = target.files?.[0];
-                      console.log(selectedFile);
+                      // console.log(selectedFile);
                       setSafetyPlusFormData({
                         ...safetyPlusFormData,
                         means_of_id: selectedFile,

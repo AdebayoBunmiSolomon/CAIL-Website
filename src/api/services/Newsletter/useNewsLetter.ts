@@ -18,7 +18,7 @@ export const useNewsLetter = () => {
         },
         {}
       );
-      console.log(data);
+      // console.log(data);
       if (data) {
         if (data.statusCode === 200) {
           toast(data.message, {
@@ -41,7 +41,7 @@ export const useNewsLetter = () => {
         setIsError(true);
       }
     } catch (err: any) {
-      console.log("Error", err);
+      // console.log("Error", err);
       setIsError(true);
     } finally {
       setLoading(false);

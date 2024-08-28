@@ -2,12 +2,16 @@ import { getYears } from "../../helper/helper";
 
 export const coverType = [
   "Third Party",
-  "Third Party Fire and Theft",
-  "Comprehensive",
+  // "Third Party Fire and Theft",
+  // "Comprehensive",
 ];
 export const vehicleMake = [""];
 export const vehicleType = [""];
-export const vehicleCategory = ["Commercial", "Private"];
+export const vehicleCategory = [
+  "Private",
+  "Commercial",
+  "Commercial (Truck/General Cartage)",
+];
 export const paymentOptions = ["Annually", "Bi-Annually", "Quartely"];
 export const bodyType = ["Saloon Car", "SUV (Jeep)"];
 export const arrOfYears = getYears();

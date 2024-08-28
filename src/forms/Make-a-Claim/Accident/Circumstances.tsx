@@ -25,7 +25,7 @@ export const AccidentClaimsCircumstances: React.FC<useFormProps> = ({
   const { accidentClaimFormData, setAccidentClaimFormData } =
     useAccidentClaimForm();
   const { globalData, setGlobalData } = useGlobalStore();
-  console.log(props);
+  // console.log(props);
 
   useEffect(() => {
     if (globalData.doYouHaveAWitness === true) {

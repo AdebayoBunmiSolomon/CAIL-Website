@@ -1,16 +1,13 @@
 import React from "react";
 import { useCalcPremFromAPI, useMotorForm } from "../../../hooks/store/motor";
 import { formatAmount } from "../../../helper/helper";
-import { ToastContainer } from "react-toastify";
 import { FormTitle } from "../../../components";
 
 export const Summary: React.FC<{}> = () => {
   const { motorFormData } = useMotorForm();
-  const { calculatedPremFromAPI } = useCalcPremFromAPI();
 
   return (
     <div>
-      <ToastContainer />
       <div className='flex justify-center items-center'>
         <div className='w-full bg-white rounded-md self-center p-6 overflow-x-auto'>
           <FormTitle title='Motor Vehicle Summary' />
@@ -90,7 +87,7 @@ export const Summary: React.FC<{}> = () => {
                       Premium Amount
                     </div>
                     <div className='text-sm text-gray-500'>
-                      {formatAmount(Number(calculatedPremFromAPI))}
+                      {formatAmount(Number(motorFormData.cost))}
                     </div>
                   </td>
                 </tr>

@@ -18,6 +18,7 @@ export const FireClaimRequiredDocumentsDetails: React.FC<useFormProps> = ({
   const props = useFormProps;
   const { fireClaimFormData, setFireClaimFormData } = useFireClaimForm();
   const { globalFileData, setGlobalFileData } = useGlobalFileStore();
+  // console.log("Props", props);
 
   useEffect(() => {
     if (fireClaimFormData.doYouHaveAWitness === "Yes") {

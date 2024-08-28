@@ -24,19 +24,17 @@ export const PersonalInsurancePersonalInfo: React.FC<personalInfoType> = ({
 
   useEffect(() => {
     const updateValueOfFileInputToRemoveErrorMsg = () => {
-      // if (!motorFormData.file) {
       props?.setValues("file", motorFormData.file);
       setFileName(motorFormData.file);
     };
-    // };
     updateValueOfFileInputToRemoveErrorMsg();
   }, [motorFormData.file, fileName]);
 
   return (
     <div className='flex justify-center items-center'>
-      <div className='w-[95%] bg-white rounded-md self-center p-6'>
+      <div className='w-full bg-white p-6 shadow-xl rounded-lg'>
         <FormTitle title='Motor Vehicle Insurance' />
-        <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-3'>
           <Controller
             control={props?.control}
             render={({ field }) => (
@@ -97,8 +95,6 @@ export const PersonalInsurancePersonalInfo: React.FC<personalInfoType> = ({
             name='first_name'
             defaultValue=''
           />
-        </div>
-        <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
           <Controller
             control={props?.control}
             render={({ field }) => (
@@ -162,8 +158,6 @@ export const PersonalInsurancePersonalInfo: React.FC<personalInfoType> = ({
             name='dob'
             defaultValue=''
           />
-        </div>
-        <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
           <Controller
             control={props?.control}
             render={({ field }) => (
@@ -227,8 +221,6 @@ export const PersonalInsurancePersonalInfo: React.FC<personalInfoType> = ({
             name='address'
             defaultValue=''
           />
-        </div>
-        <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
           <Controller
             control={props?.control}
             render={({ field }) => (
@@ -300,14 +292,14 @@ export const PersonalInsurancePersonalInfo: React.FC<personalInfoType> = ({
           control={props?.control}
           render={({ field }) => (
             <FileInput
-              label='Upload File'
+              label='Upload Means of Identification'
               placeHolder='Choose File'
               defaultValue={fileName && fileName}
               onChange={(event) => {
                 const target = event.target as HTMLInputElement;
                 if (target) {
                   const selectedFile = target.files?.[0];
-                  console.log(selectedFile);
+                  // console.log(selectedFile);
                   setMotorFormData({
                     ...motorFormData,
                     file: selectedFile,

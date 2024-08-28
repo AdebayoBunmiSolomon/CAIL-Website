@@ -20,7 +20,6 @@ import {
 } from "../../../api/services/motor";
 import { useMotorForm } from "../../../hooks/store/motor/useMotorForm";
 import { convertToDateTimeISO, formatAmount } from "../../../helper/helper";
-import { ToastContainer } from "react-toastify";
 
 type carDetailsType = {
   useFormProps: any;
@@ -30,28 +29,53 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
   const props: any = useFormProps;
   const [selectedCoverType, setSelectedCoverType] = useState<string>(""); // helps to store selected vehicle type of the selected vehicle make.
   const { setMotorFormData, motorFormData } = useMotorForm(); // store to update form data
-  const { costLoading, useCalculateCost, calculatedPremFromAPI } =
-    CalculateCostMotorService(); // API service to calculate cost
+  // const { costLoading, useCalculateCost, calculatedPremFromAPI } =
+  //   CalculateCostMotorService(); // API service to calculate cost
   const { vehicleMake, loading, getVehicleMake, getVehicleType } =
     VehicleMakeMotorService(); // function to perform vehicle make selection and vehicle type selection
   const [selectedVehicleMake, setSelectedVehicleMake] = useState<string>(""); // helps to store selected vehicle make for filtering vehicle type of the selected vehicle make
+  const [quotePrice, setQuotePrice] = useState<string>("");
 
   useEffect(() => {
     getVehicleMake();
     const updateCostInputFieldValWithCalculatedPremium = () => {
-      if (calculatedPremFromAPI) {
-        props?.setValues(
-          "cost",
-          String(formatAmount(Number(calculatedPremFromAPI)))
-        );
+      if (quotePrice) {
+        props?.setValues("cost", String(formatAmount(Number(quotePrice))));
       }
     };
     updateCostInputFieldValWithCalculatedPremium();
-  }, [calculatedPremFromAPI]);
+  }, [quotePrice]);
+
+  useEffect(() => {
+    if (motorFormData.paymentOption) {
+      props?.clearError("payment_options");
+    }
+  }, [motorFormData]);
+
+  const calcCost = () => {
+    if (motorFormData.vehicleCategory === vehicleCategory[0]) {
+      setQuotePrice("15000");
+      setMotorFormData({
+        ...motorFormData,
+        cost: "15000",
+      });
+    } else if (motorFormData.vehicleCategory === vehicleCategory[1]) {
+      setQuotePrice("20000");
+      setMotorFormData({
+        ...motorFormData,
+        cost: "20000",
+      });
+    } else if (motorFormData.vehicleCategory === vehicleCategory[2]) {
+      setQuotePrice("100000");
+      setMotorFormData({
+        ...motorFormData,
+        cost: "100000",
+      });
+    }
+  };
 
   return (
     <>
-      <ToastContainer />
       <div className='flex justify-center items-center'>
         <div className='w-[95%] bg-white rounded-md self-center p-6'>
           <FormTitle title='Motor Vehicle Insurance' />
@@ -73,10 +97,12 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
                         coverTypeName: text,
                       });
                     } else if (text === "Third Party") {
+                      props?.setValues("payment_options", "Annually");
                       setMotorFormData({
                         ...motorFormData,
                         coverTypeId: "2",
                         coverTypeName: text,
+                        paymentOption: "Annually",
                       });
                     } else if (text === "Third Party Fire and Theft") {
                       setMotorFormData({
@@ -168,12 +194,13 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
                     placeHolder='Payment option'
                     label='Payment option'
                     type='text'
+                    disabled={true}
                     value={field.value}
                     onChange={(event) => {
                       field.onChange(event.target.value);
                       setMotorFormData({
                         ...motorFormData,
-                        paymentOption: event.target.value,
+                        paymentOption: "Annually",
                       });
                     }}
                     error={props?.errors?.payment_options?.message}
@@ -386,14 +413,7 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
                   placeHolder='cost'
                   label='Cost'
                   disabled={true}
-                  value={calculatedPremFromAPI}
-                  onChange={(event) => {
-                    // field.onChange(event.target.value);
-                    setMotorFormData({
-                      ...motorFormData,
-                      cost: calculatedPremFromAPI,
-                    });
-                  }}
+                  value={motorFormData.cost}
                   error={
                     !field.value ? props?.errors?.cost?.message : undefined
                   }
@@ -403,11 +423,11 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
               defaultValue=''
             />
             <Button
-              disabled={costLoading.btnDisabled ? true : false}
+              disabled={false}
               className='py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-5 flex rounded-lg hover:bg-[#900000d7] hover:duration-700'
-              text={costLoading.requestLoading ? "Loading..." : "Calculate"}
+              text={"Calculate"}
               onPress={() => {
-                useCalculateCost();
+                calcCost();
               }}
             />
           </div>

@@ -15,7 +15,10 @@ export const CheckClaimStatusService = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { setGlobalData, globalData } = useGlobalStore();
   const [showClaimInfo, setShowClaimInfo] = useState<boolean>(false);
-  const useCheckClaimStatus = async (policyNumber: any) => {
+  const useCheckClaimStatus = async (
+    policyNumber: any,
+    vehicleRegNumber?: string
+  ) => {
     setLoading(true);
     try {
       const formattedPolicyNumber = convertToEncodedFormat(policyNumber);
@@ -29,6 +32,7 @@ export const CheckClaimStatusService = () => {
       setLoading(true);
       setShowClaimInfo(false);
       if (data) {
+        // console.log("data", data);
         setLoading(false);
         setMakeAClaimFormData({
           ...makeAClaimFormData,
@@ -36,6 +40,7 @@ export const CheckClaimStatusService = () => {
           officeName: data.data.officeName,
           subRisk: data.data.subRisk,
           creationDate: data.data.creationDate,
+          vehicleRegNumber: String(vehicleRegNumber),
         });
         setGlobalData({
           ...globalData,
@@ -52,6 +57,7 @@ export const CheckClaimStatusService = () => {
           officeName: "",
           subRisk: "",
           creationDate: "",
+          vehicleRegNumber: "",
         });
         setGlobalData({
           ...globalData,
@@ -70,12 +76,13 @@ export const CheckClaimStatusService = () => {
         officeName: "",
         subRisk: "",
         creationDate: "",
+        vehicleRegNumber: "",
       });
       setGlobalData({
         ...globalData,
         policyNumber: "",
       });
-      console.log(err);
+      // console.log(err);
       setLoading(false);
       setShowClaimInfo(false);
     } finally {
@@ -106,7 +113,7 @@ export const CheckClaimStatusService = () => {
         });
         setShowClaimInfo(true);
       } else {
-        console.log("Error getting claims information");
+        // console.log("Error getting claims information");
         setClaimStatusFormData({
           ...claimStatusFormData,
           policyNumber: "",
@@ -126,7 +133,7 @@ export const CheckClaimStatusService = () => {
         policyType: "",
         status: "",
       });
-      console.log("Error", err);
+      // console.log("Error", err);
       setShowClaimInfo(false);
     } finally {
       setLoading(false);

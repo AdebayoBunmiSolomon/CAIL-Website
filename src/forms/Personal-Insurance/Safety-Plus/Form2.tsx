@@ -333,7 +333,7 @@ export const SafetyPlusForm2: React.FC<formProps> = ({ useFormProps }) => {
                     const target = event.target as HTMLInputElement;
                     if (target) {
                       const selectedFile = target.files?.[0];
-                      console.log(selectedFile);
+                      // console.log(selectedFile);
                       setSafetyPlusFormData({
                         ...safetyPlusFormData,
                         means_of_id2: selectedFile,

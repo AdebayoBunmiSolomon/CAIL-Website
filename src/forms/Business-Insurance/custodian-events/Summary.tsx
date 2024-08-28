@@ -1,6 +1,5 @@
 import React from "react";
 import { formatAmount } from "../../../helper/helper";
-import { ToastContainer } from "react-toastify";
 import { FormTitle } from "../../../components";
 import { useEventForm } from "../../../hooks/store/event";
 
@@ -9,7 +8,6 @@ export const EventSummary: React.FC<{}> = () => {
 
   return (
     <div className='px-20 pt-[200px] pb-5'>
-      <ToastContainer />
       <div className='flex justify-center items-center'>
         <div className='w-[95%] bg-white rounded-md self-center p-6'>
           <FormTitle title='Custodian Events Insurance Summary' />

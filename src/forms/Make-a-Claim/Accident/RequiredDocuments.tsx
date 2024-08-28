@@ -19,7 +19,7 @@ export const AccidentClaimRequiredDocuments: React.FC<useFormProps> = ({
   const { accidentClaimFormData, setAccidentClaimFormData } =
     useAccidentClaimForm();
   const { globalFileData, setGlobalFileData } = useGlobalFileStore();
-  console.log(props);
+  // console.log(props);
 
   useEffect(() => {
     if (accidentClaimFormData.doYouHaveAWitness === "Yes") {

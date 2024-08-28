@@ -117,6 +117,7 @@ export const MotorClaimStepper: React.FC<{}> = () => {
       vehicleRearView: motorClaimFormData.vehicleRearView,
       vehicleLeftView: motorClaimFormData.vehicleLeftView,
       vehicleRightView: motorClaimFormData.vehicleRightView,
+      driversLicense: motorClaimFormData.driversLicense,
     };
     let isValid = false;
     if (activeStep === 0) {
@@ -127,6 +128,9 @@ export const MotorClaimStepper: React.FC<{}> = () => {
       if (isValid) nextStep();
     } else if (activeStep === 2) {
       isValid = await motorClaimReqDocTrigger();
+      if (isValid) nextStep();
+    } else if (activeStep === 3) {
+      isValid = true;
       if (isValid) {
         makeAClaim(formData, fileData, formData.policyNumber);
       }

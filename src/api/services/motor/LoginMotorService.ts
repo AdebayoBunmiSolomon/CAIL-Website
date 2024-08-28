@@ -24,7 +24,7 @@ export const LoginMotorService = () => {
       },
       headers
     );
-    console.log(status);
+    // console.log(status);
     setCalculateLoading(true);
     try {
       if (status === 200) {
@@ -34,11 +34,11 @@ export const LoginMotorService = () => {
         }
         setCalculateLoading(false);
       } else {
-        console.log("Error logging in");
+        // console.log("Error logging in");
         setCalculateLoading(false);
       }
     } catch (err: any) {
-      console.log(err);
+      // console.log(err);
       setCalculateLoading(false);
     }
   };

@@ -46,9 +46,27 @@ export const carDetailsValidationSchema = yup.object().shape({
   payment_options: yup.string().required("payment options is required"),
   vehicle_make: yup.string().required("vehicle make is required"),
   vehicle_model: yup.string().required("vehicle model is required"),
-  registration_number: yup.string().required("registration number is required"),
-  chasis_number: yup.string().required("chasis number is required"),
-  engine_number: yup.string().required("engine number is required"),
+  registration_number: yup
+    .string()
+    .required("registration number is required")
+    .matches(
+      /^[a-zA-Z0-9]+$/,
+      "registration number can only contain alphanumeric characters"
+    ),
+  chasis_number: yup
+    .string()
+    .required("chasis number is required")
+    .matches(
+      /^[a-zA-Z0-9]+$/,
+      "chasis number can only contain alphanumeric characters"
+    ),
+  engine_number: yup
+    .string()
+    .required("engine number is required")
+    .matches(
+      /^[a-zA-Z0-9]+$/,
+      "engine number can only contain alphanumeric characters"
+    ),
   year_of_make: yup.string().required("year of make is required"),
   body_type: yup.string().required("body type is required"),
   insurance_state_date: yup.string().required("insurance date is required"),
@@ -800,7 +818,10 @@ export const homeShieldValidationSchema2 = yup.object().shape({
 });
 
 export const businessInsuranceValidationSchema = yup.object().shape({
-  full_name: yup.string().required("full name is required"),
+  full_name: yup
+    .string()
+    .required("full name is required")
+    .matches(/^[a-zA-Z\s.,]*$/, "Only letters are allowed"),
   email: yup
     .string()
     .required("email is required")
@@ -812,8 +833,14 @@ export const businessInsuranceValidationSchema = yup.object().shape({
     .string()
     .required("mobile number required")
     .matches(/^[0-9]{11}$/, "invalid mobile number format"),
-  subject: yup.string().required("subject is required"),
-  message: yup.string().required("message is required"),
+  subject: yup
+    .string()
+    .required("subject is required")
+    .matches(/^[a-zA-Z\s.,]*$/, "Only letters are allowed"),
+  message: yup
+    .string()
+    .required("message is required")
+    .matches(/^[a-zA-Z0-9\s.,]*$/, "Only letters are allowed"),
 });
 
 export const requestCallBackValidationSchema = yup.object().shape({
@@ -829,7 +856,7 @@ export const requestCallBackValidationSchema = yup.object().shape({
 
 export const claimStatusValidationSchema = yup.object().shape({
   policyNumber: yup.string().required("policy number required"),
-  // vehicleRegNumber: yup.string().required("vehicle reg number required"),
+  vehicleRegNumber: yup.string().required("vehicle reg number required"),
 });
 
 export const claimStatusValidationSchema2 = yup.object().shape({
@@ -837,10 +864,10 @@ export const claimStatusValidationSchema2 = yup.object().shape({
 });
 
 export const motorClaimDetailsValidationSchema = yup.object().shape({
-  vehicleRegNumber: yup
-    .string()
-    .required("vehicle reg number is required")
-    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
+  // vehicleRegNumber: yup
+  //   .string()
+  //   .required("vehicle reg number is required")
+  //   .matches(/^[a-zA-Z0-9\s]*$/, "Only letters are allowed"),
   email: yup
     .string()
     .required("email is required")
@@ -1359,6 +1386,7 @@ export const motorClaimReqDocValidationSchema = yup.object().shape({
   vehicleRearView: yup.string().required("This file is required"),
   vehicleLeftView: yup.string().required("This file is required"),
   vehicleRightView: yup.string().required("This file is required"),
+  driversLicense: yup.string().required("This file is required"),
 });
 
 export const newsLetterValidationSchema = yup.object().shape({

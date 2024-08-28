@@ -4,20 +4,22 @@ import { createEnquiryTypes } from "../../form-types/Types";
 import { TextInput } from "../../components/shared/TextInput";
 import { Button } from "../../components/shared/Button";
 import { GoArrowRight } from "react-icons/go";
-import { FaPhoneVolume } from "react-icons/fa6";
-import { CallBackForm, ContactMessage } from "../../components";
+import {
+  CallBackForm,
+  //ContactMessage
+} from "../../components";
 import { useEnquiryForm } from "../../hooks/store/enquiry";
 import { MakeEnquiry } from "../../api/services/enquiry/MakeEnquiry";
-import { ToastContainer } from "react-toastify";
 import { validatePolicyNumber } from "../../helper/helper";
 
 export const ContactForm: React.FC<{}> = () => {
   const { loading, useMakeEnquiry } = MakeEnquiry();
   const { setEnquiryFormData, enquiryFormData } = useEnquiryForm();
-  const [showMessage, setShowMessage] = useState<boolean>(false);
+  // const [showMessage, setShowMessage] = useState<boolean>(false);
   const [callBckForm, setCallBackForm] = useState<boolean>(false);
   const [policyHolderChecked, setPolicyHolderChecked] =
     useState<boolean>(false);
+  const [callMeBackChecked, setCallMeBackChecked] = useState<boolean>(false);
   const {
     control,
     handleSubmit,
@@ -27,20 +29,24 @@ export const ContactForm: React.FC<{}> = () => {
   } = useForm<createEnquiryTypes>({ mode: "onChange" });
 
   const onSubmit = (data: createEnquiryTypes) => {
-    console.log(data);
     const { isPolicyValid } = validatePolicyNumber(data.policy_number);
-    if (policyHolderChecked && !isPolicyValid) {
-      setError("policy_number", { message: "Invalid policy number" });
+    if (policyHolderChecked) {
+      // console.log(data);
+      if (!isPolicyValid) {
+        setError("policy_number", { message: "Invalid policy number" });
+      } else {
+        useMakeEnquiry(true);
+      }
     } else {
-      useMakeEnquiry();
+      useMakeEnquiry(false);
     }
   };
 
-  useEffect(() => {
-    if (loading) {
-      setShowMessage(true);
-    }
-  }, [loading]);
+  // useEffect(() => {
+  //   if (loading) {
+  //     setShowMessage(true);
+  //   }
+  // }, [loading]);
 
   useEffect(() => {
     if (!policyHolderChecked) {
@@ -50,9 +56,16 @@ export const ContactForm: React.FC<{}> = () => {
     }
   }, [policyHolderChecked]);
 
+  useEffect(() => {
+    if (callMeBackChecked) {
+      setValue("phone_number", "");
+    } else {
+      setValue("phone_number", "0000000");
+    }
+  }, [callMeBackChecked]);
+
   return (
     <>
-      <ToastContainer />
       <p className=' font-normal text-2xl text-[#900000]'>
         Share your ideas, inquiries and provide feedback
       </p>
@@ -165,38 +178,40 @@ export const ContactForm: React.FC<{}> = () => {
           <label
             htmlFor='policyHolder'
             className='ml-2 block text-sm text-gray-900'>
-            Are you a policy holder?
+            I am a policy holder?
           </label>
         </div>
-        <div>
-          <Controller
-            control={control}
-            render={({ field }) => (
-              <TextInput
-                placeHolder=''
-                value={field.value}
-                onChange={(event) => {
-                  field.onChange(event.target.value);
-                  setEnquiryFormData({
-                    ...enquiryFormData,
-                    policyNumber: event.target.value,
-                  });
-                }}
-                error={errors.policy_number?.message}
-                type='text'
-                disabled={!policyHolderChecked ? true : false}
-              />
-            )}
-            rules={{
-              required: {
-                value: true,
-                message: "Policy number is required",
-              },
-            }}
-            name='policy_number'
-            defaultValue=''
-          />
-        </div>
+        {policyHolderChecked && (
+          <div>
+            <Controller
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  placeHolder=''
+                  value={field.value}
+                  onChange={(event) => {
+                    field.onChange(event.target.value);
+                    setEnquiryFormData({
+                      ...enquiryFormData,
+                      policyNumber: event.target.value,
+                    });
+                  }}
+                  error={errors.policy_number?.message}
+                  type='text'
+                  disabled={!policyHolderChecked ? true : false}
+                />
+              )}
+              rules={{
+                required: {
+                  value: true,
+                  message: "Policy number is required",
+                },
+              }}
+              name='policy_number'
+              defaultValue=''
+            />
+          </div>
+        )}
       </div>
       <Controller
         control={control}
@@ -229,6 +244,61 @@ export const ContactForm: React.FC<{}> = () => {
         name='message'
         defaultValue=''
       />
+      <div className='flex items-center'>
+        <input
+          type='checkbox'
+          id='callMeBack'
+          name='callMeBack'
+          className='h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded'
+          checked={callMeBackChecked}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            setCallMeBackChecked(event.target.checked);
+            setEnquiryFormData({
+              ...enquiryFormData,
+              callMe_Back: callMeBackChecked,
+            });
+          }}
+        />
+        <label
+          htmlFor='callMeBack'
+          className='ml-2 block text-sm text-gray-900'>
+          Request custodian to call me back?
+        </label>
+      </div>
+
+      {callMeBackChecked && (
+        <Controller
+          control={control}
+          render={({ field }) => (
+            <TextInput
+              placeHolder='Phone number for call-back'
+              value={field.value}
+              onChange={(event) => {
+                field.onChange(event.target.value);
+                setEnquiryFormData({
+                  ...enquiryFormData,
+                  phone_number: event.target.value,
+                });
+              }}
+              error={errors.phone_number?.message}
+              type='text'
+            />
+          )}
+          rules={{
+            required: {
+              value: true,
+              message: "Call-back phone number is required",
+            },
+            pattern: {
+              value: /^[0-9]{11}$/,
+              message: "Only numbers are required",
+            },
+          }}
+          name='phone_number'
+          defaultValue=''
+        />
+      )}
+
       <div className='flex flex-col md:flex-col lg:flex-row  gap-3 my-5'>
         <Button
           text={
@@ -257,19 +327,19 @@ export const ContactForm: React.FC<{}> = () => {
           rightIcon={<GoArrowRight size={25} />}
           disabled={loading ? true : false}
         />
-        <Button
+        {/* <Button
           text='Request call-back'
           onPress={() => setCallBackForm(!callBckForm)}
           className='py-[4px] md:py-[7px] lg:py-[10px] text-[#900000] px-10 flex bg-[white] drop-shadow-xl'
           rightIcon={<FaPhoneVolume size={20} />}
           disabled={loading ? true : false}
-        />
+        /> */}
       </div>
-      <ContactMessage
+      {/* <ContactMessage
         showMessage={showMessage}
         closeModal={(value) => setShowMessage(value)}
         loading={loading}
-      />
+      /> */}
       <CallBackForm
         showCallBackFrm={callBckForm}
         closeModal={(value) => setCallBackForm(value)}

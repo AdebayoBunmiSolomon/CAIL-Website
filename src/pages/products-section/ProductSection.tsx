@@ -48,7 +48,6 @@ export const ProductSection: React.FC<{}> = () => {
         (items) => items.tabHeader === tabHeader
       );
       if (filteredProducts) {
-        // console.log(filteredProducts[0].tabData);
         setProductsData(filteredProducts[0].tabData);
       }
     };

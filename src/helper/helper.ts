@@ -46,7 +46,7 @@ export const getYears = () => {
 export const convertToDateTimeISO = (value: any) => {
   const date = new Date(value);
   const dateIso = date.toISOString();
-  console.log(dateIso);
+  // console.log(dateIso);
   return dateIso;
 };
 
@@ -79,8 +79,8 @@ export const getButtonBtnState = (
   lastBtnTextValue?: string
 ) => {
   if (activeStepNumb !== arrLengthVal) {
-    console.log(activeStepNumb);
-    console.log(arrLengthVal);
+    // console.log(activeStepNumb);
+    // console.log(arrLengthVal);
     return "Next";
   } else if (activeStepNumb === arrLengthVal) {
     return lastBtnTextValue ? lastBtnTextValue : "Submit";
@@ -94,7 +94,7 @@ export const getButtonBtnState = (
  */
 export const convertToEncodedFormat = (value: string) => {
   const encodedString = value.replace(/\//g, "%2F");
-  console.log(encodedString);
+  // console.log(encodedString);
   return encodedString;
 };
 

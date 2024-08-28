@@ -1,5 +1,4 @@
 import React from "react";
-import { ToastContainer } from "react-toastify";
 import { FormTitle } from "../../../components";
 import { useSafetyPlusForm } from "../../../hooks/store/safety-plus/useSafetyPlusForm";
 import { formatAmount } from "../../../helper/helper";
@@ -9,7 +8,6 @@ export const SafetyPlusSummary: React.FC<{}> = () => {
   return (
     <>
       <div>
-        <ToastContainer />
         <div className='flex justify-center items-center'>
           <div className='w-[95%] bg-white rounded-md self-center p-6'>
             <FormTitle title='Safety Plus Summary' />

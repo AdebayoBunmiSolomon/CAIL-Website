@@ -1,5 +1,4 @@
 import React from "react";
-import { ToastContainer } from "react-toastify";
 import { FormTitle } from "../../../components";
 import {
   useAccidentClaimForm,
@@ -12,7 +11,6 @@ export const AccidentClaimSummary: React.FC<{}> = () => {
   const { makeAClaimFormData } = useMakeAClaimForm();
   return (
     <div>
-      <ToastContainer />
       <div className='flex justify-center items-center'>
         <div className='w-[95%] bg-white rounded-md self-center p-6'>
           <FormTitle title='Accident Claims Summary' />

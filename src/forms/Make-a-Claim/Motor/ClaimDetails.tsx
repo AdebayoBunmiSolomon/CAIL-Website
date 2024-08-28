@@ -74,7 +74,14 @@ export const MotorClaimDetails: React.FC<useFormProps> = ({ useFormProps }) => {
             />
           </div>
           <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
-            <Controller
+            <TextInput
+              placeHolder='Vehicle Reg Number'
+              label='Vehicle Reg Number'
+              type='text'
+              value={makeAClaimFormData.vehicleRegNumber}
+              disabled={true}
+            />
+            {/* <Controller
               control={props?.control}
               render={({ field }) => (
                 <TextInput
@@ -94,7 +101,7 @@ export const MotorClaimDetails: React.FC<useFormProps> = ({ useFormProps }) => {
               )}
               name='vehicleRegNumber'
               defaultValue=''
-            />
+            /> */}
 
             <Controller
               control={props?.control}

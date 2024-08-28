@@ -17,7 +17,7 @@ export const PaymentServices = (email: string, amount: string) => {
   // you can call this function anything
   const onSuccess = (reference: any) => {
     // Implementation for whatever you want to do with reference and after success call.
-    console.log(reference);
+    // console.log(reference);
     toast("Payment successful", {
       type: "success",
       theme: "colored",
@@ -35,7 +35,7 @@ export const PaymentServices = (email: string, amount: string) => {
   };
 
   const useMakePaymentWithPaystack = () => {
-    console.log("Make payment with paystack");
+    // console.log("Make payment with paystack");
     initializePaysStackPayment({ onSuccess, onClose });
   };
 

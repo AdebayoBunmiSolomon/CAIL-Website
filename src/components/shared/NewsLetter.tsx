@@ -5,7 +5,6 @@ import { newsLetter } from "../../form-types/Types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { newsLetterValidationSchema } from "../../form-types/validationSchema";
 import { useNewsLetter } from "../../api/services/Newsletter";
-import { ToastContainer } from "react-toastify";
 
 export const NewLetter: React.FC<{}> = () => {
   const { subscribeToNewsLetter, loading, isError } = useNewsLetter();
@@ -25,7 +24,6 @@ export const NewLetter: React.FC<{}> = () => {
   };
   return (
     <>
-      <ToastContainer />
       <div className='flex flex-col w-full '>
         <div className='  font-bold flex  justify-center text-6xl my-2'>
           <p>Subscribe to our Newsletter</p>

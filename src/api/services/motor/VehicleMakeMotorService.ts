@@ -29,11 +29,11 @@ export const VehicleMakeMotorService = () => {
         setVehicleMake(distinctCarMakeArr);
         setLoading(loading);
       } else {
-        console.log("Error loading data");
+        // console.log("Error loading data");
         setLoading(loading);
       }
     } catch (err: any) {
-      console.log(err);
+      // console.log(err);
       setLoading(loading);
     }
   };

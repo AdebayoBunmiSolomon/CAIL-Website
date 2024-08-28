@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
-import { Button } from "../../ui/button";
+// import { Button } from "../../ui/button";
 import { RiMenuLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import ClaLogo from "../../../assets/svg/ClaLogo";
+import ClaLogo from "../../../assets/svg/CAI_Logo.svg";
 import { header } from "../../../assets/data/header";
 import { useSelectedHeader } from "../../../hooks/useSelectedHeader";
 import { MdKeyboardArrowDown } from "react-icons/md";
@@ -18,10 +18,10 @@ export const FullHeader = () => {
   const { setGlobalData, globalData } = useGlobalStore();
   const navigate = useNavigate();
 
-  const openSelfService = () => {
-    const externalUrl = "https://ssp.custodianplc.com.ng/";
-    window.open(externalUrl, "_blank");
-  };
+  // const openSelfService = () => {
+  //   const externalUrl = "https://ssp.custodianplc.com.ng/";
+  //   window.open(externalUrl, "_blank");
+  // };
 
   useEffect(() => {
     checkForPathName(pathname);
@@ -30,11 +30,15 @@ export const FullHeader = () => {
   return (
     <div className='flex flex-row items-center justify-between pt-[30px] px-20 z-20 fixed w-full backdrop-blur-[5px]'>
       <div
-        className='w-[150px] cursor-pointer'
+        className='w-[100px] md:w-[150px] lg:w-[200px] cursor-pointer'
         onClick={() => {
           navigate("/");
         }}>
-        <ClaLogo />
+        <img
+          src={ClaLogo}
+          alt='Hero'
+          className='w-full h-auto object-cover rounded-xl'
+        />
       </div>
       <ul
         className='flex items-center gap-5 drop-shadow-xl bg-white px-3 py-2 rounded-full'
@@ -87,9 +91,9 @@ export const FullHeader = () => {
           ))}
       </ul>
       <div className='hidden md:flex justify-items-center align-middle '>
-        <Button onClick={openSelfService} className='py-6 px-[20px]'>
+        {/* <Button onClick={openSelfService} className='py-6 px-[20px]'>
           Access Self-Service
-        </Button>
+        </Button> */}
       </div>
       <RiMenuLine size={20} className='md:hidden' />
     </div>

@@ -18,7 +18,7 @@ export const AviationClaimDetails: React.FC<useFormProps> = ({
   useFormProps,
 }) => {
   const props = useFormProps;
-  console.log(props);
+  // console.log(props);
   const { makeAClaimFormData } = useMakeAClaimForm();
   const { setAviationClaimFormData, aviationClaimFormData } =
     useAviationClaimForm();

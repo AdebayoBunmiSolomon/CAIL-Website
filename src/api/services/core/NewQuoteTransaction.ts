@@ -17,7 +17,7 @@ export const NewQuoteTransaction = (
 
   //perform quote operations with saving form data & initializing payment
   const useGetAQuote = async () => {
-    console.log(payload);
+    // console.log(payload);
     setLoading(true);
     try {
       //save form data
@@ -31,7 +31,7 @@ export const NewQuoteTransaction = (
         });
         setLoading(false);
       } else {
-        console.log("Error saving form data");
+        // console.log("Error saving form data");
         toast(data.message, {
           type: "error",
           theme: "colored",
@@ -39,7 +39,7 @@ export const NewQuoteTransaction = (
         setLoading(false);
       }
     } catch (err: any) {
-      console.log(err);
+      // console.log(err);
     } finally {
       setLoading(false);
     }

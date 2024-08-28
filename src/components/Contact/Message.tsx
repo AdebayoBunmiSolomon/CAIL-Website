@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
-import { Button } from "../shared/Button";
+// import { Button } from "../shared/Button";
 import balloon from "../../assets/images/balloon.png";
 
 type messageProps = {
@@ -71,11 +71,10 @@ export const ContactMessage: React.FC<messageProps> = ({
                   </div>
                   <div className='py-5'>
                     <p className='text-slate-600 font-normal text-center text-xs md:text-sm lg:text-base'>
-                      Your message has been successfully sent to us via mail. Do
-                      you want to request a call back?
+                      Your message has been successfully sent to us via mail.
                     </p>
                   </div>
-                  <div className='flex flex-row justify-evenly items-center'>
+                  {/* <div className='flex flex-row justify-evenly items-center'>
                     <Button
                       text='No'
                       onPress={() => {
@@ -89,7 +88,7 @@ export const ContactMessage: React.FC<messageProps> = ({
                       onPress={() => setRequestCallBack(true)}
                       className='py-2 md:py-3 lg:py-4 text-white px-5 md:px-8 lg:px-10 bg-primaryColor'
                     />
-                  </div>
+                  </div> */}
                 </div>
               )}
             </div>

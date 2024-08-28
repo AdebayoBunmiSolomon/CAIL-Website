@@ -25,7 +25,7 @@ export const CallBackForm: React.FC<callBackFormProps> = ({
   });
 
   const onSubmit = (data: requestCallBackFormType) => {
-    console.log(data);
+    // console.log(data);
     closeModal(!showCallBackFrm);
   };
 

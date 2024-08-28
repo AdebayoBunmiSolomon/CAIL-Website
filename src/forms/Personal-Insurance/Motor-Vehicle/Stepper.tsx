@@ -19,23 +19,32 @@ import { useFormStepper } from "../../../hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { PaymentServices } from "../../../api/services/payments/payments";
 import { useCalcPremFromAPI, useMotorForm } from "../../../hooks/store/motor";
+import { NewQuoteTransaction } from "../../../api/services/core/NewQuoteTransaction";
+import { endpoints } from "../../../api/enpoints";
 
 export const PersonalInsuranceMotorStepper: React.FC<{}> = () => {
   const { calculatedPremFromAPI } = useCalcPremFromAPI();
-  const { motorFormData } = useMotorForm();
   const { activeStep, nextStep, prevStep } = useFormStepper(
     motorVehicleFormSteps
   );
+  const { motorFormData } = useMotorForm();
   const { useMakePaymentWithPaystack } = PaymentServices(
     motorFormData.email,
     calculatedPremFromAPI
   );
+  const { useGetAQuote } = NewQuoteTransaction(
+    motorFormData,
+    endpoints.POST_MOTOR_FORM_DATA,
+    {}
+  );
 
   const {
     control: personalControl,
+    // handleSubmit: handlePersonalSubmit,
     formState: { errors: personalErrors },
     trigger: personalTrigger,
     setValue: setPersonalInfoValues,
+    clearErrors: clearPersonalError,
   } = useForm<personalInformationLookUpTypes>({
     mode: "onChange",
     resolver: yupResolver(personalInformationValidationSchema),
@@ -43,9 +52,11 @@ export const PersonalInsuranceMotorStepper: React.FC<{}> = () => {
 
   const {
     control: carControl,
+    // handleSubmit: handleCarSubmit,
     formState: { errors: carErrors },
     trigger: carTrigger,
     setValue: setCarDetailsValues,
+    clearErrors: clearCarError,
   } = useForm<carDetailsLookUpTypes>({
     mode: "onChange",
     resolver: yupResolver(carDetailsValidationSchema),
@@ -63,6 +74,7 @@ export const PersonalInsuranceMotorStepper: React.FC<{}> = () => {
       isValid = true;
       if (isValid) {
         useMakePaymentWithPaystack();
+        // useGetAQuote();
       }
     }
   };
@@ -76,6 +88,7 @@ export const PersonalInsuranceMotorStepper: React.FC<{}> = () => {
               control: personalControl,
               errors: personalErrors,
               setValues: setPersonalInfoValues,
+              clearError: clearPersonalError,
             }}
           />
         );
@@ -86,6 +99,7 @@ export const PersonalInsuranceMotorStepper: React.FC<{}> = () => {
               control: carControl,
               errors: carErrors,
               setValues: setCarDetailsValues,
+              clearError: clearCarError,
             }}
           />
         );
@@ -97,10 +111,10 @@ export const PersonalInsuranceMotorStepper: React.FC<{}> = () => {
   };
 
   return (
-    <div className='pt-[200px] pb-20 px-20'>
+    <div className='pt-[200px] pb-20 px-5 md:px-10 lg:px-20'>
       <Stepper steps={motorVehicleFormSteps} activeStep={activeStep} />
       {getActiveStepComponent()}
-      <div className='flex items-center gap-5 justify-end pr-7 mt-5'>
+      <div className='flex items-center gap-5 justify-end pr-0 mt-5'>
         {activeStep > 0 && (
           <Button
             text='Prev'

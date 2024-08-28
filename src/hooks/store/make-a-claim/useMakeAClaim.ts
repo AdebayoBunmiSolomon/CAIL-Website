@@ -5,6 +5,7 @@ type makeAClaimFormType = {
   policyId: string;
   subRisk: string;
   creationDate: string;
+  vehicleRegNumber: string;
 };
 
 interface IMakeAClaimProps {
@@ -18,6 +19,7 @@ export const useMakeAClaimForm = create<IMakeAClaimProps>()((set) => ({
     policyId: "",
     subRisk: "",
     creationDate: "",
+    vehicleRegNumber: "",
   },
   setMakeAClaimFormData: (makeAClaimFormData) =>
     set({ makeAClaimFormData: makeAClaimFormData }),

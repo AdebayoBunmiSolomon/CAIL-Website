@@ -26,7 +26,7 @@ export const MotorClaimCircumstances: React.FC<useFormProps> = ({
   const props: any = useFormProps;
   const { setGlobalData, globalData } = useGlobalStore();
   const { motorClaimFormData, setMotorClaimFormData } = useMotorClaimForm();
-  console.log(props);
+  // console.log(props);
 
   useEffect(() => {
     if (globalData.doYouHaveAWitness === false) {

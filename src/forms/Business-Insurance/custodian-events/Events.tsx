@@ -18,7 +18,6 @@ import {
   noOfGuests,
 } from "../../../assets/data/formOptionsData";
 import { eventInsuranceFormType } from "../../../form-types/Types";
-import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useEventForm } from "../../../hooks/store/event/useEventForm";
 import { EventSummary } from "./Summary";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
@@ -33,18 +32,19 @@ export const Events: React.FC<{}> = () => {
     mode: "onChange",
     resolver: yupResolver(eventsInsuranceValidationSchema),
   });
-  const navigate: NavigateFunction = useNavigate();
   const { eventFormData, setEventFormData } = useEventForm();
 
   const onSubmit = (data: eventInsuranceFormType) => {
-    console.log("Hello");
-    console.log(data);
-    setIsShowQuoteDetails(!isShowQuoteDetails);
+    // console.log("Hello");
+    // console.log(data);
+    if (data) {
+      setIsShowQuoteDetails(true);
+    }
   };
 
   const previous = () => {
     if (isShowQuoteDetails === true) {
-      setIsShowQuoteDetails(!isShowQuoteDetails);
+      setIsShowQuoteDetails(false);
     }
   };
 

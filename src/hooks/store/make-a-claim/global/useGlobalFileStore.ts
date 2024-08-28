@@ -24,6 +24,7 @@ type globalFileType = {
   vehicleRearView: any;
   vehicleLeftView: any;
   vehicleRightView: any;
+  driversLicense: any;
 };
 
 interface IGlobalFileProps {
@@ -56,6 +57,7 @@ export const useGlobalFileStore = create<IGlobalFileProps>()((set) => ({
     vehicleRearView: null,
     vehicleLeftView: null,
     vehicleRightView: null,
+    driversLicense: null,
   },
   setGlobalFileData: (globalFileData) =>
     set({ globalFileData: globalFileData }),

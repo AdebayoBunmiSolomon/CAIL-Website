@@ -13,7 +13,7 @@ export const ContactOffices: React.FC<{}> = () => {
             const lastTwoItem = officesData
               .map((items) => items.name)
               .slice(-2);
-            console.log(lastTwoItem);
+            // console.log(lastTwoItem);
             return (
               <div
                 className='bg-[#e5e5e5e5] py-6 px-5 rounded-xl flex flex-col'

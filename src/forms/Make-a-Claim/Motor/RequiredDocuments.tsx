@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FormTitle } from "../../../components";
 import { Controller } from "react-hook-form";
 import { FileInput } from "../../../components/shared/FileInput";
@@ -18,6 +18,68 @@ export const MotorClaimRequiredDocuments: React.FC<useFormProps> = ({
   const props = useFormProps;
   const { motorClaimFormData, setMotorClaimFormData } = useMotorClaimForm();
   const { globalFileData, setGlobalFileData } = useGlobalFileStore();
+  // console.log(props);
+
+  useEffect(() => {
+    if (motorClaimFormData.doYouHaveAWitness === "Yes") {
+      props?.setValues("eyeWitnessReport", null);
+    } else {
+      props?.setValues("eyeWitnessReport", "NULL");
+    }
+  }, [motorClaimFormData.doYouHaveAWitness]);
+
+  useEffect(() => {
+    if (motorClaimFormData.hasThePoliceBeenInformed === "Yes") {
+      props?.setValues("policeReport", null);
+    } else {
+      props?.setValues("policeReport", "NULL");
+    }
+  }, [motorClaimFormData.hasThePoliceBeenInformed]);
+
+  useEffect(() => {
+    if (motorClaimFormData.claimType === "Theft") {
+      props?.setValues("purchaseOrReplacementInvoice", null);
+      props?.setValues("uploadScannedVehicleLicense", null);
+      props?.setValues("uploadInsuranceCertificate", null);
+    } else {
+      props?.setValues("purchaseOrReplacementInvoice", "NULL");
+      props?.setValues("uploadScannedVehicleLicense", "NULL");
+      props?.setValues("uploadInsuranceCertificate", "NULL");
+    }
+  }, [motorClaimFormData.claimType]);
+
+  useEffect(() => {
+    if (
+      motorClaimFormData.claimType === "Accident" &&
+      motorClaimFormData.damageType === "Partial Loss" &&
+      motorClaimFormData.isThirdPartyInvolved === "Yes (Insured Liable)"
+    ) {
+      props?.setValues("thirdPartyEvidenceOfInsuranceCover", null);
+      props?.setValues("thirdPartyRepairEstimate", null);
+      props?.setValues("thirdPartyDamageEvidence1", null);
+      props?.setValues("thirdPartyDamageEvidence2", null);
+      props?.setValues("repairEstimateInvoice", null);
+      props?.setValues("vehicleRearView", null);
+      props?.setValues("vehicleFrontView", null);
+      props?.setValues("vehicleLeftView", null);
+      props?.setValues("vehicleRightView", null);
+    } else {
+      props?.setValues("thirdPartyEvidenceOfInsuranceCover", "NULL");
+      props?.setValues("thirdPartyRepairEstimate", "NULL");
+      props?.setValues("thirdPartyDamageEvidence1", "NULL");
+      props?.setValues("thirdPartyDamageEvidence2", "NULL");
+      props?.setValues("repairEstimateInvoice", "NULL");
+      props?.setValues("vehicleRearView", "NULL");
+      props?.setValues("vehicleFrontView", "NULL");
+      props?.setValues("vehicleLeftView", "NULL");
+      props?.setValues("vehicleRightView", "NULL");
+    }
+  }, [
+    motorClaimFormData.claimType,
+    motorClaimFormData.damageType,
+    motorClaimFormData.isThirdPartyInvolved,
+  ]);
+
   return (
     <>
       <div className='flex justify-center items-center'>
@@ -596,6 +658,49 @@ export const MotorClaimRequiredDocuments: React.FC<useFormProps> = ({
           ) : null}
 
           <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
+            <Controller
+              control={props?.control}
+              render={({ field }) => (
+                <FileInput
+                  label='Driver License - (ONLY JPG : PNG : PDF)'
+                  placeHolder='Choose File'
+                  onChange={(event) => {
+                    const target = event.target as HTMLInputElement;
+                    if (target) {
+                      const selectedFile = target.files?.[0];
+                      const isSize2Mb = getFileSize(selectedFile?.size);
+                      if (selectedFile?.name) {
+                        if (isSize2Mb) {
+                          field.onChange(selectedFile?.name);
+                          setMotorClaimFormData({
+                            ...motorClaimFormData,
+                            driversLicense: selectedFile,
+                          });
+                          setGlobalFileData({
+                            ...globalFileData,
+                            driversLicense: selectedFile?.name,
+                          });
+                        } else {
+                          props?.setValues("driversLicense", "");
+                          props?.setError("driversLicense", {
+                            type: "custom",
+                            message: "File size is more than 2MB.",
+                          });
+                        }
+                      } else {
+                        props?.setError("driversLicense", {
+                          type: "custom",
+                          message: "This file is required",
+                        });
+                      }
+                    }
+                  }}
+                  error={props?.errors?.driversLicense?.message}
+                />
+              )}
+              name='driversLicense'
+              defaultValue={globalFileData.driversLicense}
+            />
             {motorClaimFormData.doYouHaveAWitness === "Yes" && (
               <Controller
                 control={props?.control}
@@ -634,11 +739,11 @@ export const MotorClaimRequiredDocuments: React.FC<useFormProps> = ({
                         }
                       }
                     }}
-                    error={props?.errors?.vehicleRightView?.message}
+                    error={props?.errors?.eyeWitnessReport?.message}
                   />
                 )}
-                name='vehicleRightView'
-                defaultValue={globalFileData.vehicleRightView}
+                name='eyeWitnessReport'
+                defaultValue={globalFileData.eyeWitnessReport}
               />
             )}
 

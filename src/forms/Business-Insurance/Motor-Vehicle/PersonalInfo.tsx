@@ -290,14 +290,14 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
           control={props?.control}
           render={({ field }) => (
             <FileInput
-              label='Upload File'
+              label='Upload Means of Identification'
               placeHolder='Choose File'
               defaultValue={fileName && fileName}
               onChange={(event) => {
                 const target = event.target as HTMLInputElement;
                 if (target) {
                   const selectedFile = target.files?.[0];
-                  console.log(selectedFile);
+                  // console.log(selectedFile);
                   setMotorFormData({
                     ...motorFormData,
                     file: selectedFile,

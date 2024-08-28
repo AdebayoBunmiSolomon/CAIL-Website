@@ -20,6 +20,7 @@
     "formik": "^2.4.5",
     "html-react-parser": "^5.0.6",
     "lucide-react": "^0.292.0",
+    "md5": "^2.3.0",
     "react": "^18.2.0",
     "react-cookie-consent": "^9.0.0",
     "react-dom": "^18.2.0",
@@ -39,6 +40,7 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@types/md5": "^2.3.5",
     "@types/node": "^20.9.2",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",

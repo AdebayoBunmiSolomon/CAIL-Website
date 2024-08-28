@@ -12,7 +12,7 @@ export const Executives: React.FC<executiveProps> = ({ data }) => {
       setDesc(executives[0].tabData[0].description);
     };
     loadData();
-  }, []);
+  }, [data]);
   return (
     <div className='bg-[#efefef] flex justify-center pt-[50px] pb-[80px]'>
       <div className='w-[90%]'>

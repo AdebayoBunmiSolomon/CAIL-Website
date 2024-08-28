@@ -18,7 +18,7 @@ export const MarineClaimRequiredDocumentsDetails: React.FC<useFormProps> = ({
   const props = useFormProps;
   const { globalFileData, setGlobalFileData } = useGlobalFileStore();
   const { setMarineClaimFormData, marineClaimFormData } = useMarineClaimForm();
-  console.log(props);
+  // console.log(props);
 
   useEffect(() => {
     if (marineClaimFormData.doYouHaveAWitness === "Yes") {

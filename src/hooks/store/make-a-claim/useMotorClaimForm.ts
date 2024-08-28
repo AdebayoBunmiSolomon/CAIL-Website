@@ -36,6 +36,7 @@ type motorClaimFormType = {
   vehicleRearView: any;
   vehicleLeftView: any;
   vehicleRightView: any;
+  driversLicense: any;
 };
 
 interface IMotorClaimFormProps {
@@ -80,6 +81,7 @@ export const useMotorClaimForm = create<IMotorClaimFormProps>()((set) => ({
     vehicleRearView: null,
     vehicleLeftView: null,
     vehicleRightView: null,
+    driversLicense: null,
   },
   setMotorClaimFormData: (motorClaimFormData) =>
     set({

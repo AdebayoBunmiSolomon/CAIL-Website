@@ -1,37 +1,40 @@
 import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import type { ProxyOptions } from "vite";
+import fs from "fs";
+import path from "path";
+import child_process from "child_process";
+import { env } from "process";
 
-const proxyErrorHandler = (err: Error, req: any, res: any) => {
-  console.error(`Error in proxy: ${err.message}`);
-  res.writeHead(500, {
-    "Content-Type": "text/plain",
-  });
-  res.end("Proxy error");
-};
+const baseFolder =
+  env.APPDATA !== undefined && env.APPDATA !== ""
+    ? `${env.APPDATA}/ASP.NET/https`
+    : `${env.HOME}/.aspnet/https`;
 
-const proxyClientErrorHandler = (err: Error, socket: any) => {
-  console.error(`Client error: ${err.message}`);
-  socket.destroy();
-};
+const certificateName = "cail_website.client";
+const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
+const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
 
-const createProxyConfig = (target: string): ProxyOptions => ({
-  target,
-  changeOrigin: true,
-  secure: false,
-  rewrite: (path) => path,
-  configure: (proxy) => {
-    proxy.on("proxyReq", (proxyReq, req, res) => {
-      console.log(`Proxying request to: ${target}${req.url}`);
-    });
-    proxy.on("proxyRes", (proxyRes, req, res) => {
-      console.log(`Received response from: ${target}${req.url}`);
-    });
-    proxy.on("error", proxyErrorHandler);
-    proxy.on("clientError", proxyClientErrorHandler);
-  },
-});
+if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
+  if (
+    0 !==
+    child_process.spawnSync(
+      "dotnet",
+      [
+        "dev-certs",
+        "https",
+        "--export-path",
+        certFilePath,
+        "--format",
+        "Pem",
+        "--no-password",
+      ],
+      { stdio: "inherit" }
+    ).status
+  ) {
+    throw new Error("Could not create certificate.");
+  }
+}
 
 export default defineConfig({
   plugins: [react()],
@@ -42,9 +45,47 @@ export default defineConfig({
   },
   server: {
     port: 5173,
+    https: {
+      key: fs.readFileSync(keyFilePath),
+      cert: fs.readFileSync(certFilePath),
+    },
     proxy: {
-      "/api/Claims": createProxyConfig("http://claimsapi.cip-tech.org"),
-      "/api": createProxyConfig("https://clawebsitetest.custodianplc.com.ng"),
+      "/api/Claims": {
+        target: "http://claimsapi.cip-tech.org",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api\/Claims/, "/api/Claims"),
+        configure: (proxy) => {
+          proxy.on("proxyReq", (proxyReq, req, res) => {
+            console.log(
+              `Proxying request to: http://claimsapi.cip-tech.org${req.url}`
+            );
+          });
+          proxy.on("proxyRes", (proxyRes, req, res) => {
+            console.log(
+              `Received response from: http://claimsapi.cip-tech.org${req.url}`
+            );
+          });
+        },
+      },
+      "/api": {
+        target: "https://clawebsitetest.custodianplc.com.ng",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path, // Ensures the /api prefix is maintained
+        configure: (proxy) => {
+          proxy.on("proxyReq", (proxyReq, req, res) => {
+            console.log(
+              `Proxying request to: https://clawebsitetest.custodianplc.com.ng${req.url}`
+            );
+          });
+          proxy.on("proxyRes", (proxyRes, req, res) => {
+            console.log(
+              `Received response from: https://clawebsitetest.custodianplc.com.ng${req.url}`
+            );
+          });
+        },
+      },
     },
   },
 });

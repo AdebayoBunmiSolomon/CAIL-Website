@@ -52,7 +52,7 @@ export const CalculateCostMotorService = () => {
       btnDisabled: true,
       requestLoading: true,
     });
-    console.log(toCalculateCostFormData);
+    // console.log(toCalculateCostFormData);
     const { data, status } = await PostRequest(
       `${endpoints.GET_MOTOR_POLICY_QUOTE}`,
       toCalculateCostFormData,
@@ -65,7 +65,7 @@ export const CalculateCostMotorService = () => {
     });
     try {
       if (data.statusCode === 200) {
-        console.log(data.data.premium);
+        // console.log(data.data.premium);
         setCalculatedPremFromAPI(data.data.premium);
         setCostLoading({
           ...costLoading,
@@ -77,7 +77,7 @@ export const CalculateCostMotorService = () => {
           theme: "colored",
         });
       } else {
-        console.log("Error submitting data");
+        // console.log("Error submitting data");
         setCostLoading({
           ...costLoading,
           btnDisabled: false,
@@ -91,7 +91,7 @@ export const CalculateCostMotorService = () => {
       }
       // }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setCostLoading({
         ...costLoading,
         btnDisabled: false,

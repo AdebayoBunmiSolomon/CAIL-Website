@@ -34,7 +34,7 @@ export const RegisterClaimService = () => {
       );
       setLoading(true);
       if (data) {
-        console.log(data);
+        // console.log(data);
         toast(data.message, {
           type: "success",
           theme: "colored",
@@ -57,7 +57,7 @@ export const RegisterClaimService = () => {
         });
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setShowClaims({
         ...showClaims,
         visible: false,

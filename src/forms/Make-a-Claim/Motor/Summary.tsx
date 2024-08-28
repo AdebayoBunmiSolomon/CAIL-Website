@@ -1,15 +1,13 @@
 import React from "react";
-import { ToastContainer } from "react-toastify";
 import { FormTitle } from "../../../components";
 import { useMotorClaimForm } from "../../../hooks/store/make-a-claim";
 
 export const MotorClaimSummary: React.FC<{}> = () => {
   const { motorClaimFormData } = useMotorClaimForm();
 
-  console.log(motorClaimFormData.policyHolderName);
+  // console.log(motorClaimFormData.policyHolderName);
   return (
     <div>
-      <ToastContainer />
       <div className='flex justify-center items-center'>
         <div className='w-[95%] bg-white rounded-md self-center p-6'>
           <FormTitle title='Motor Claims Summary' />

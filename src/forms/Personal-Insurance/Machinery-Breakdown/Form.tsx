@@ -7,7 +7,6 @@ import { Button, FormTitle, TextInput } from "../../../components";
 import { GoArrowRight } from "react-icons/go";
 import { useBusinessInsuranceForm } from "../../../hooks/store/personal-accident/useBusinessInsuranceForm";
 import { sendQuoteMsg } from "../../../api/services/Business-Insurance/SendMessageService";
-import { ToastContainer } from "react-toastify";
 
 export const PersonalInsuranceMachineryBreakDownForm: React.FC<{}> = () => {
   const { businessInsuranceFormData, setBusinessInsuranceFormData } =
@@ -32,12 +31,11 @@ export const PersonalInsuranceMachineryBreakDownForm: React.FC<{}> = () => {
       product_class: "10",
     };
     sendMsg(formData);
-    console.log(data);
+    // console.log(data);
   };
 
   return (
     <>
-      <ToastContainer />
       <div className='flex justify-center items-center pt-[200px] px-20'>
         <div className='w-[95%] bg-white rounded-md self-center p-6'>
           <FormTitle title='Machinery Breakdown Insurance' />

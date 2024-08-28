@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Tab } from "../../components";
 import { claimsEntryTabHeader } from "../../assets/data/tabData";
 import { ClaimStatus, MakeAClaim } from "./forms";
-import { ToastContainer } from "react-toastify";
 
 export const ClaimsEntry: React.FC<{}> = () => {
   const [selectedTabHeader, setSelectedTabHeader] = useState<string>(
@@ -10,12 +9,11 @@ export const ClaimsEntry: React.FC<{}> = () => {
   );
   return (
     <>
-      <ToastContainer />
       <div className='pt-[200px] px-2 md:px-10 lg:px-20'>
         <Tab
           data={claimsEntryTabHeader}
           tabClick={(tabData, tabHeader) => {
-            console.log(tabData);
+            // console.log(tabData);
             setSelectedTabHeader(tabHeader);
           }}
           style='bg-transparent'

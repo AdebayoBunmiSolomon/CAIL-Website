@@ -4,6 +4,8 @@ export type createEnquiryTypes = {
   subject: string;
   message: string;
   policy_number: string;
+  callMe_Back: boolean;
+  phone_number: string;
 };
 
 export type motorVehicleFormTypes = {
@@ -247,6 +249,7 @@ export type requestCallBackFormType = {
 
 export type claimStatusTypes = {
   policyNumber: string;
+  vehicleRegNumber: string;
 };
 
 export type claimStatusTypes2 = {
@@ -254,7 +257,7 @@ export type claimStatusTypes2 = {
 };
 
 export type motorClaimDetailsTypes = {
-  vehicleRegNumber: string;
+  // vehicleRegNumber: string;
   email: string;
   mobileNumber: string;
   claimType: string;
@@ -292,6 +295,7 @@ export type motorClaimReqDoc = {
   vehicleRearView: any;
   vehicleLeftView: any;
   vehicleRightView: any;
+  driversLicense: any;
 };
 
 export type accidentClaimDetailsTypes = {

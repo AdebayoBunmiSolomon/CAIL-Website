@@ -35,7 +35,7 @@ export const CreateQuoteService = () => {
 
   const useCreateQuote = async () => {
     setLoading(true);
-    console.log(formData);
+    // console.log(formData);
     const { data } = await PostRequest(
       `${endpoints.GET_SAFETY_PLUS_QUOTE}`,
       formData,
@@ -44,7 +44,7 @@ export const CreateQuoteService = () => {
     setLoading(true);
     try {
       if (data.statusCode === 200) {
-        console.log("Form data submitted successfully");
+        // console.log("Form data submitted successfully");
         setLoading(false);
         useMakePaymentWithPaystack();
         toast(data.message, {
@@ -52,7 +52,7 @@ export const CreateQuoteService = () => {
           theme: "colored",
         });
       } else {
-        console.log("Error submitting data");
+        // console.log("Error submitting data");
         setLoading(false);
         toast(data.message, {
           type: "error",
@@ -61,7 +61,7 @@ export const CreateQuoteService = () => {
       }
       // }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setLoading(false);
     }
   };

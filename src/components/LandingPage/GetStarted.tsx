@@ -1,7 +1,7 @@
 import React from "react";
 import { PageContainer } from "../../pages/PageContainer";
 import { Button } from "../shared/Button";
-import heroImg from "../../assets/images/CAIL_Logo.png";
+import heroImg from "../../assets/svg/heroImg.svg";
 
 type getStartedProps = {
   getAQuote: () => void;

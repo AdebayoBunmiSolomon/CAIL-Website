@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, FormTitle, TextInput } from "../../../components";
 import { Controller, useForm } from "react-hook-form";
 import { claimStatusTypes } from "../../../form-types/Types";
@@ -7,15 +7,20 @@ import { claimStatusValidationSchema } from "../../../form-types/validationSchem
 import { GoArrowRight } from "react-icons/go";
 import { ClaimsInfo } from "../ClaimsInfo";
 import { CheckClaimStatusService } from "../../../api/services/make-a-claim";
-import { validatePolicyNumber } from "../../../helper/helper";
+import {
+  validateCharacterAfterFirstSlash,
+  validatePolicyNumber,
+} from "../../../helper/helper";
 
 export const MakeAClaim: React.FC<{}> = () => {
   const [policyValid, setPolicyValid] = useState<boolean>(false);
+  const [motorPolicy, setMotorPolicy] = useState<boolean>(false);
   const { useCheckClaimStatus, loading, showClaimInfo, setShowClaimInfo } =
     CheckClaimStatusService();
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<claimStatusTypes>({
     mode: "onChange",
@@ -24,17 +29,17 @@ export const MakeAClaim: React.FC<{}> = () => {
 
   const onSubmit = (data: claimStatusTypes) => {
     if (data) {
-      useCheckClaimStatus(data.policyNumber);
+      useCheckClaimStatus(data.policyNumber, data.vehicleRegNumber);
     }
   };
 
-  // useEffect(() => {
-  //   if (motorPolicy === true) {
-  //     setValue("vehicleRegNumber", "");
-  //   } else {
-  //     setValue("vehicleRegNumber", "NIL");
-  //   }
-  // }, [motorPolicy]);
+  useEffect(() => {
+    if (motorPolicy === true) {
+      setValue("vehicleRegNumber", "");
+    } else {
+      setValue("vehicleRegNumber", "NULL");
+    }
+  }, [motorPolicy]);
 
   return (
     <>
@@ -52,11 +57,17 @@ export const MakeAClaim: React.FC<{}> = () => {
                     type='text'
                     value={field.value}
                     onChange={(event) => {
+                      //validate if policy is valid
                       const { isPolicyValid } = validatePolicyNumber(
+                        event.target.value
+                      );
+                      //validate if it is a motor policy
+                      const { isValid } = validateCharacterAfterFirstSlash(
                         event.target.value
                       );
                       field.onChange(event.target.value);
                       setPolicyValid(isPolicyValid);
+                      setMotorPolicy(isValid);
                     }}
                     error={errors?.policyNumber?.message}
                   />
@@ -65,7 +76,7 @@ export const MakeAClaim: React.FC<{}> = () => {
                 defaultValue=''
               />
             </div>
-            {/* {policyValid && motorPolicy && (
+            {policyValid && motorPolicy && (
               <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
                 <Controller
                   control={control}
@@ -85,7 +96,7 @@ export const MakeAClaim: React.FC<{}> = () => {
                   defaultValue=''
                 />
               </div>
-            )} */}
+            )}
           </div>
         </div>
         <div className='flex justify-end items-center w-[79%] px-2 md:px-5 lg:px-10 pt-5 pb-20'>

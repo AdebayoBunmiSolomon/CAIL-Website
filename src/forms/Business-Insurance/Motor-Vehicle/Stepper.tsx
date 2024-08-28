@@ -44,6 +44,7 @@ export const MotorStepper: React.FC<{}> = () => {
     formState: { errors: personalErrors },
     trigger: personalTrigger,
     setValue: setPersonalInfoValues,
+    clearErrors: clearPersonalError,
   } = useForm<personalInformationLookUpTypes>({
     mode: "onChange",
     resolver: yupResolver(personalInformationValidationSchema),
@@ -55,6 +56,7 @@ export const MotorStepper: React.FC<{}> = () => {
     formState: { errors: carErrors },
     trigger: carTrigger,
     setValue: setCarDetailsValues,
+    clearErrors: clearCarError,
   } = useForm<carDetailsLookUpTypes>({
     mode: "onChange",
     resolver: yupResolver(carDetailsValidationSchema),
@@ -86,6 +88,7 @@ export const MotorStepper: React.FC<{}> = () => {
               control: personalControl,
               errors: personalErrors,
               setValues: setPersonalInfoValues,
+              clearError: clearPersonalError,
             }}
           />
         );
@@ -96,6 +99,7 @@ export const MotorStepper: React.FC<{}> = () => {
               control: carControl,
               errors: carErrors,
               setValues: setCarDetailsValues,
+              clearError: clearCarError,
             }}
           />
         );

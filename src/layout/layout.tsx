@@ -4,7 +4,7 @@ import { Footer, MenuNavigation } from "../components";
 import { useLocation } from "react-router-dom";
 const Layout = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
+  // console.log(pathname);
 
   const executeScrollToTop = () => {
     if (pathname !== "/resources") {

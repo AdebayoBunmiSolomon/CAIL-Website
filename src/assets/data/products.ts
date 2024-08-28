@@ -719,7 +719,7 @@ export const products: tabContentsType[] = [
         description:
           "Our Travel Insurance provides cover for emergency medical expenses, financial and other losses incurred and other unforeseen events as listed below while travelling outside the country of residence",
         position: "",
-        getQuote: formRoutes.custodian_travel,
+        getQuote: "", //formRoutes.custodian_travel,
         benefits: [
           {
             title: "",

@@ -8,7 +8,7 @@ import { GrLinkDown } from "react-icons/gr";
 
 export const Resources: React.FunctionComponent<{}> = () => {
   const { id } = useParams<string>();
-  console.log(id);
+  // console.log(id);
   const [archiveView, setArchiveView] = useState<boolean>(false);
 
   //reference to a particular section of a page

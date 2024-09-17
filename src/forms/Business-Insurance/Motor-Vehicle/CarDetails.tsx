@@ -10,16 +10,16 @@ import {
   arrOfYears,
   bodyType,
   coverType,
-  paymentOptions,
   vehicleCategory,
   vehicleColor,
+  vehicleUsage,
 } from "../../../assets/data/formOptionsData";
 import {
-  CalculateCostMotorService,
+  useGenerateQuote,
   VehicleMakeMotorService,
 } from "../../../api/services/motor";
 import { useMotorForm } from "../../../hooks/store/motor/useMotorForm";
-import { convertToDateTimeISO, formatAmount } from "../../../helper/helper";
+import { convertToDateTimeISO } from "../../../helper/helper";
 
 type carDetailsType = {
   useFormProps: any;
@@ -29,22 +29,14 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
   const props: any = useFormProps;
   const [selectedCoverType, setSelectedCoverType] = useState<string>(""); // helps to store selected vehicle type of the selected vehicle make.
   const { setMotorFormData, motorFormData } = useMotorForm(); // store to update form data
-  // const { costLoading, useCalculateCost, calculatedPremFromAPI } =
-  //   CalculateCostMotorService(); // API service to calculate cost
   const { vehicleMake, loading, getVehicleMake, getVehicleType } =
     VehicleMakeMotorService(); // function to perform vehicle make selection and vehicle type selection
   const [selectedVehicleMake, setSelectedVehicleMake] = useState<string>(""); // helps to store selected vehicle make for filtering vehicle type of the selected vehicle make
-  const [quotePrice, setQuotePrice] = useState<string>("");
+  const { generateQuote, costLoading, quotation } = useGenerateQuote();
 
   useEffect(() => {
     getVehicleMake();
-    const updateCostInputFieldValWithCalculatedPremium = () => {
-      if (quotePrice) {
-        props?.setValues("cost", String(formatAmount(Number(quotePrice))));
-      }
-    };
-    updateCostInputFieldValWithCalculatedPremium();
-  }, [quotePrice]);
+  }, []);
 
   useEffect(() => {
     if (motorFormData.paymentOption) {
@@ -52,27 +44,15 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
     }
   }, [motorFormData]);
 
-  const calcCost = () => {
-    if (motorFormData.vehicleCategory === vehicleCategory[0]) {
-      setQuotePrice("15000");
+  useEffect(() => {
+    if (quotation) {
+      props?.setValues("cost", quotation);
       setMotorFormData({
         ...motorFormData,
-        cost: "15000",
-      });
-    } else if (motorFormData.vehicleCategory === vehicleCategory[1]) {
-      setQuotePrice("20000");
-      setMotorFormData({
-        ...motorFormData,
-        cost: "20000",
-      });
-    } else if (motorFormData.vehicleCategory === vehicleCategory[2]) {
-      setQuotePrice("100000");
-      setMotorFormData({
-        ...motorFormData,
-        cost: "100000",
+        cost: quotation,
       });
     }
-  };
+  }, [quotation]);
 
   return (
     <>
@@ -91,29 +71,33 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
                     field.onChange(text);
                     setSelectedCoverType(text);
                     if (text === "Comprehensive") {
+                      props?.setValues("payment_options", "Annually");
                       setMotorFormData({
                         ...motorFormData,
-                        coverTypeId: "1",
+                        coverTypeId: 2,
                         coverTypeName: text,
+                        paymentOption: "Annually",
                       });
                     } else if (text === "Third Party") {
                       props?.setValues("payment_options", "Annually");
                       setMotorFormData({
                         ...motorFormData,
-                        coverTypeId: "2",
+                        coverTypeId: 1,
                         coverTypeName: text,
                         paymentOption: "Annually",
                       });
                     } else if (text === "Third Party Fire and Theft") {
+                      props?.setValues("payment_options", "Annually");
                       setMotorFormData({
                         ...motorFormData,
-                        coverTypeId: "3",
+                        coverTypeId: 3,
                         coverTypeName: text,
+                        paymentOption: "Annually",
                       });
                     } else if (text === "Select cover type") {
                       setMotorFormData({
                         ...motorFormData,
-                        coverTypeId: "1",
+                        coverTypeId: 1,
                         coverTypeName: "Comprehensive",
                       });
                     }
@@ -133,11 +117,48 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
                   data={vehicleCategory}
                   selectedOption={field.value}
                   onChangeSelectedOption={(text) => {
+                    field.onChange(text);
                     if (text !== "Select Vehicle category") {
-                      field.onChange(text);
                       setMotorFormData({
                         ...motorFormData,
-                        vehicleCategory: text,
+                        vehicleCategory: 0,
+                        vehicleCategoryName: text,
+                      });
+                    } else if (text === vehicleCategory[0]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicleCategory: 1,
+                        vehicleCategoryName: text,
+                      });
+                    } else if (text === vehicleCategory[1]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicleCategory: 2,
+                        vehicleCategoryName: text,
+                      });
+                    } else if (text === vehicleCategory[2]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicleCategory: 3,
+                        vehicleCategoryName: text,
+                      });
+                    } else if (text === vehicleCategory[3]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicleCategory: 4,
+                        vehicleCategoryName: text,
+                      });
+                    } else if (text === vehicleCategory[4]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicleCategory: 5,
+                        vehicleCategoryName: text,
+                      });
+                    } else if (text === vehicleCategory[5]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicleCategory: 6,
+                        vehicleCategoryName: text,
                       });
                     }
                   }}
@@ -148,6 +169,42 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
               name='vehicle_category'
               defaultValue=''
             />
+
+            <Controller
+              control={props?.control}
+              render={({ field }) => (
+                <SelectOptions
+                  label='Vehicle usage'
+                  data={vehicleUsage}
+                  selectedOption={field.value}
+                  onChangeSelectedOption={(text) => {
+                    field.onChange(text);
+                    if (text === "Select Vehicle usage") {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicle_usage_id: 0,
+                      });
+                    } else if (text === vehicleUsage[0]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicle_usage_id: 1,
+                      });
+                    } else if (text === vehicleUsage[1]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicle_usage_id: 2,
+                      });
+                    }
+                  }}
+                  placeholder='Select Vehicle usage'
+                  error={props?.errors?.vehicle_usage?.message}
+                />
+              )}
+              name='vehicle_usage'
+              defaultValue=''
+            />
+          </div>
+          <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
             <Controller
               control={props?.control}
               render={({ field }) => (
@@ -169,44 +226,25 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
               name='vehicle_value'
               defaultValue=''
             />
-          </div>
-          <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
             <Controller
               control={props?.control}
-              render={({ field }) =>
-                selectedCoverType === "Comprehensive" ? (
-                  <SelectOptions
-                    label='Payment options'
-                    data={paymentOptions}
-                    selectedOption={field.value}
-                    onChangeSelectedOption={(text) => {
-                      field.onChange(text);
-                      setMotorFormData({
-                        ...motorFormData,
-                        paymentOption: text,
-                      });
-                    }}
-                    placeholder='Select payment options'
-                    error={props?.errors?.payment_options?.message}
-                  />
-                ) : (
-                  <TextInput
-                    placeHolder='Payment option'
-                    label='Payment option'
-                    type='text'
-                    disabled={true}
-                    value={field.value}
-                    onChange={(event) => {
-                      field.onChange(event.target.value);
-                      setMotorFormData({
-                        ...motorFormData,
-                        paymentOption: "Annually",
-                      });
-                    }}
-                    error={props?.errors?.payment_options?.message}
-                  />
-                )
-              }
+              render={({ field }) => (
+                <TextInput
+                  placeHolder='Payment option'
+                  label='Payment option'
+                  type='text'
+                  disabled={true}
+                  value={field.value}
+                  onChange={(event) => {
+                    field.onChange(event.target.value);
+                    setMotorFormData({
+                      ...motorFormData,
+                      paymentOption: "Annually",
+                    });
+                  }}
+                  error={props?.errors?.payment_options?.message}
+                />
+              )}
               name='payment_options'
               defaultValue=''
             />
@@ -230,6 +268,8 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
               name='vehicle_make'
               defaultValue=''
             />
+          </div>
+          <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
             <Controller
               control={props?.control}
               render={({ field }) => (
@@ -248,8 +288,6 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
               name='vehicle_model'
               defaultValue=''
             />
-          </div>
-          <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
             <Controller
               control={props?.control}
               render={({ field }) => (
@@ -292,6 +330,8 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
               name='chasis_number'
               defaultValue=''
             />
+          </div>
+          <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
             <Controller
               control={props?.control}
               render={({ field }) => (
@@ -313,8 +353,6 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
               name='engine_number'
               defaultValue=''
             />
-          </div>
-          <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
             <Controller
               control={props?.control}
               render={({ field }) => (
@@ -344,10 +382,57 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
                   onChangeSelectedOption={(text) => {
                     field.onChange(text);
                     setSelectedCoverType(text);
-                    setMotorFormData({
-                      ...motorFormData,
-                      vehicleBodyType: text,
-                    });
+                    if (text === bodyType[0]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicleBodyType: "1",
+                      });
+                    } else if (text === bodyType[1]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicleBodyType: "2",
+                      });
+                    } else if (text === bodyType[2]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicleBodyType: "3",
+                      });
+                    } else if (text === bodyType[3]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicleBodyType: "4",
+                      });
+                    } else if (text === bodyType[4]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicleBodyType: "5",
+                      });
+                    } else if (text === bodyType[5]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicleBodyType: "6",
+                      });
+                    } else if (text === bodyType[6]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicleBodyType: "7",
+                      });
+                    } else if (text === bodyType[7]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicleBodyType: "8",
+                      });
+                    } else if (text === bodyType[8]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicleBodyType: "9",
+                      });
+                    } else if (text === bodyType[9]) {
+                      setMotorFormData({
+                        ...motorFormData,
+                        vehicleBodyType: "10",
+                      });
+                    }
                   }}
                   placeholder='Select body type'
                   error={
@@ -358,6 +443,8 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
               name='body_type'
               defaultValue=''
             />
+          </div>
+          <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
             <Controller
               control={props?.control}
               render={({ field }) => (
@@ -381,8 +468,6 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
               name='insurance_state_date'
               defaultValue=''
             />
-          </div>
-          <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
             <Controller
               control={props?.control}
               render={({ field }) => (
@@ -423,11 +508,11 @@ export const CarDetails: React.FC<carDetailsType> = ({ useFormProps }) => {
               defaultValue=''
             />
             <Button
-              disabled={false}
+              disabled={motorFormData.vehicleValue ? costLoading : true}
               className='py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-5 flex rounded-lg hover:bg-[#900000d7] hover:duration-700'
-              text={"Calculate"}
+              text={costLoading ? "loading..." : "calculate"}
               onPress={() => {
-                calcCost();
+                generateQuote();
               }}
             />
           </div>

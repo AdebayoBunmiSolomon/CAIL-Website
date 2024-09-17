@@ -12,10 +12,13 @@ type motorFormType = {
   address: string;
   state: string;
   identification_number: string;
-  identification_type: string;
-  coverTypeId: string;
+  identification_type: number;
+  identification_name: string;
+  coverTypeId: number;
   coverTypeName: string;
-  vehicleCategory: string;
+  vehicleCategory: number;
+  vehicleCategoryName: string;
+  vehicle_usage_id: number;
   vehicleValue: string;
   paymentOption: string;
   vehicleMake: string;
@@ -29,7 +32,8 @@ type motorFormType = {
   endDate: any; // insurance end date
   vehicleColor: string;
   cost: string;
-  file: any;
+  file: any; //means of identification
+  base64File: string;
 };
 
 interface IMotorFormProps {
@@ -50,10 +54,13 @@ export const useMotorForm = create<IMotorFormProps>()((set) => ({
     address: "",
     state: "",
     identification_number: "",
-    identification_type: "",
+    identification_type: 0,
+    identification_name: "",
     coverTypeName: "",
-    coverTypeId: "",
-    vehicleCategory: "",
+    coverTypeId: 0,
+    vehicleCategory: 0,
+    vehicleCategoryName: "",
+    vehicle_usage_id: 0,
     vehicleValue: "",
     paymentOption: "",
     vehicleMake: "",
@@ -68,6 +75,7 @@ export const useMotorForm = create<IMotorFormProps>()((set) => ({
     vehicleColor: "",
     cost: "",
     file: null,
+    base64File: "",
   },
   setMotorFormData: (motorFormData) => set({ motorFormData: motorFormData }),
 }));

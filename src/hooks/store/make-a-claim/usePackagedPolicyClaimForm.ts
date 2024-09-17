@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type packagedPolicyClaimFormType = {
+export type packagedPolicyClaimFormType = {
   claimType: string;
   email: string;
   phoneNumber: string;

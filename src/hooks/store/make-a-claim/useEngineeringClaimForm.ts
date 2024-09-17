@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type engineeringClaimFormType = {
+export type engineeringClaimFormType = {
   claimType: string;
   email: string;
   phoneNumber: string;

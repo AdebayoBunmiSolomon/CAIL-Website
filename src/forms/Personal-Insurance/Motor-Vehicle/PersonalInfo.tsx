@@ -271,10 +271,27 @@ export const PersonalInsurancePersonalInfo: React.FC<personalInfoType> = ({
                 selectedOption={field.value}
                 onChangeSelectedOption={(text) => {
                   field.onChange(text);
-                  setMotorFormData({
-                    ...motorFormData,
-                    identification_type: text,
-                  });
+                  if (text === identificationType[0]) {
+                    setMotorFormData({
+                      ...motorFormData,
+                      identification_type: 1,
+                    });
+                  } else if (text === identificationType[1]) {
+                    setMotorFormData({
+                      ...motorFormData,
+                      identification_type: 2,
+                    });
+                  } else if (text === identificationType[2]) {
+                    setMotorFormData({
+                      ...motorFormData,
+                      identification_type: 3,
+                    });
+                  } else if (text === identificationType[3]) {
+                    setMotorFormData({
+                      ...motorFormData,
+                      identification_type: 4,
+                    });
+                  }
                 }}
                 placeholder='Select identification type'
                 error={

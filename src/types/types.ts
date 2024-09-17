@@ -1,4 +1,15 @@
 import React from "react";
+import {
+  accidentClaimFormType,
+  aviationClaimFormType,
+  bondClaimFormType,
+  engineeringClaimFormType,
+  fireClaimFormType,
+  marineClaimFormType,
+  motorClaimFormType,
+  oilAndGasClaimFormType,
+  packagedPolicyClaimFormType,
+} from "../hooks/store/make-a-claim";
 
 export interface PrevNextButtonProps {
   className?: string;
@@ -184,3 +195,25 @@ export type officesDataType = {
   address: string;
   phone: string;
 };
+
+export type claimFormType =
+  | "accident"
+  | "aviation"
+  | "bond"
+  | "engineering"
+  | "fire"
+  | "marine"
+  | "motor"
+  | "oil and gas"
+  | "packaged";
+
+export type makeAClaimFormType =
+  | accidentClaimFormType
+  | aviationClaimFormType
+  | bondClaimFormType
+  | engineeringClaimFormType
+  | fireClaimFormType
+  | marineClaimFormType
+  | motorClaimFormType
+  | oilAndGasClaimFormType
+  | packagedPolicyClaimFormType;

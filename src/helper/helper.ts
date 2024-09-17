@@ -1,4 +1,16 @@
 import { statusColors } from "../assets/data/statusColor";
+import {
+  accidentClaimFormType,
+  aviationClaimFormType,
+  bondClaimFormType,
+  engineeringClaimFormType,
+  fireClaimFormType,
+  marineClaimFormType,
+  motorClaimFormType,
+  oilAndGasClaimFormType,
+  packagedPolicyClaimFormType,
+} from "../hooks/store/make-a-claim";
+import { claimFormType, makeAClaimFormType } from "../types/types";
 
 export const truncateText = (str: string) => {
   return str.length > 15 ? str.substring(0, 10) + "...." : str;
@@ -231,4 +243,22 @@ export const getDateTimeLocalMaxVal = () => {
  */
 export const getStatusColors = (status: string) => {
   return status ? statusColors[status] : statusColors.info;
+};
+
+/**
+ *
+ * @param file as base64 string
+ */
+export const convertFileToBase64String = (file: any): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      // Extract only the base64 portion (after the comma)
+      const base64String = result.split(",")[1];
+      resolve(base64String);
+    };
+    reader.onerror = (error) => reject(error);
+    reader.readAsDataURL(file); // This will convert to base64
+  });
 };

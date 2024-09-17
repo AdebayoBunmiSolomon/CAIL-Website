@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type motorClaimFormType = {
+export type motorClaimFormType = {
   policyHolderName: string;
   policyNumber: string;
   policyType: string;

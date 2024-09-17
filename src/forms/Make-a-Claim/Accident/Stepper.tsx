@@ -22,10 +22,6 @@ import { RegisterClaimService } from "../../../api/services/make-a-claim";
 import { getButtonBtnState } from "../../../helper/helper";
 import { AccidentClaimsCircumstances } from "./Circumstances";
 import { AccidentClaimRequiredDocuments } from "./RequiredDocuments";
-import {
-  useAccidentClaimForm,
-  useMakeAClaimForm,
-} from "../../../hooks/store/make-a-claim";
 import { ClaimsNumber } from "../../../common/Claims-Number";
 
 export const AccidentClaimStepper: React.FC<{}> = () => {
@@ -38,8 +34,6 @@ export const AccidentClaimStepper: React.FC<{}> = () => {
     activeStep,
     accidentClaimsFormStepper.length - 1
   );
-  const { accidentClaimFormData } = useAccidentClaimForm();
-  const { makeAClaimFormData } = useMakeAClaimForm();
 
   const {
     control: accidentClaimDetailsControl,
@@ -73,36 +67,6 @@ export const AccidentClaimStepper: React.FC<{}> = () => {
   });
 
   const onSubmitNextStep = async () => {
-    const formData = {
-      policyHolderName: makeAClaimFormData.officeName,
-      policyNumber: makeAClaimFormData.policyId,
-      subRisk: makeAClaimFormData.subRisk,
-      creationDate: makeAClaimFormData.creationDate,
-      claimType: accidentClaimFormData.claimType,
-      email: accidentClaimFormData.email,
-      phoneNumber: accidentClaimFormData.phoneNumber,
-      dateTimeOfLoss: accidentClaimFormData.dateTimeOfLoss,
-      wasThePremiseOccupiedAtTheTime:
-        accidentClaimFormData.wasThePremiseOccupiedAtTheTime,
-      dateLastOccupied: accidentClaimFormData.dateLastOccupied,
-      descriptionOfIncident: accidentClaimFormData.descriptionOfIncident,
-      listOfStolenItems: accidentClaimFormData.listOfStolenItems,
-      doYouHaveAWitness: accidentClaimFormData.doYouHaveAWitness,
-      nameOfWitness: accidentClaimFormData.nameOfWitness,
-      witnessContactInfo: accidentClaimFormData.witnessContactInfo,
-      hasThePoliceBeenInformed: accidentClaimFormData.hasThePoliceBeenInformed,
-      whenWasThePoliceInformed: accidentClaimFormData.whenWasThePoliceInformed,
-      policeStationAddress: accidentClaimFormData.policeStationAddress,
-      claimsAmount: accidentClaimFormData.claimsAmount,
-    };
-    const fileData = {
-      purchaseOrReplacementInvoice:
-        accidentClaimFormData.purchaseOrReplacementInvoice,
-      evidenceUpload1: accidentClaimFormData.evidenceUpload1,
-      evidenceUpload2: accidentClaimFormData.evidenceUpload2,
-      eyeWitnessReport: accidentClaimFormData.eyeWitnessReport,
-      policeReport: accidentClaimFormData.policeReport,
-    };
     let isValid = false;
     if (activeStep === 0) {
       isValid = await accidentClaimDetailsTrigger();
@@ -116,7 +80,7 @@ export const AccidentClaimStepper: React.FC<{}> = () => {
     } else if (activeStep === 3) {
       isValid = true;
       if (isValid) {
-        makeAClaim(formData, fileData, formData.policyNumber);
+        await makeAClaim("accident");
       }
     }
   };

@@ -8,12 +8,28 @@ export const coverType = [
 export const vehicleMake = [""];
 export const vehicleType = [""];
 export const vehicleCategory = [
-  "Private",
-  "Commercial",
-  "Commercial (Truck/General Cartage)",
+  "MOTORCYCLE INSURANCE",
+  "COMMERCIAL VEHICLE (GENERAL CARTAGE)",
+  "COMMERCIAL VEHICLE (SPECIAL TYPE)",
+  "COMMERCIAL VEHICLE (STAFF BUS)",
+  "PRIVATE CARE INSURANCE",
+  "COMMERCIAL VEHICLE (OWN GOODS)",
 ];
+export const vehicleUsage = ["Private", "Commercial"];
 export const paymentOptions = ["Annually", "Bi-Annually", "Quartely"];
-export const bodyType = ["Saloon Car", "SUV (Jeep)"];
+export const bodyType = [
+  "HATCHBACK",
+  "SEDAN",
+  "SUV",
+  "COUPE",
+  "CONVERTIBLE",
+  "WAGON",
+  "VAN",
+  "JEEP",
+  "TRUCK",
+  "MOTOR-CYCLE",
+  "TRI-CYCLE",
+];
 export const arrOfYears = getYears();
 export const vehicleColor = [
   "Black",
@@ -72,7 +88,8 @@ export const nigerianStates = [
 export const identificationType = [
   "Driver's License",
   "International Passport",
-  "National ID Card",
+  "National Identification Number(NIN)",
+  "Permanent Voters Card",
 ];
 export const title = [
   "Miss",

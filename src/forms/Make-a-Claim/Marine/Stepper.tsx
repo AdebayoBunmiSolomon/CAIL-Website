@@ -22,10 +22,6 @@ import { RegisterClaimService } from "../../../api/services/make-a-claim";
 import { getButtonBtnState } from "../../../helper/helper";
 import { MarineClaimCircumstances } from "./Circumstances";
 import { MarineClaimRequiredDocumentsDetails } from "./RequiredDocuments";
-import {
-  useMakeAClaimForm,
-  useMarineClaimForm,
-} from "../../../hooks/store/make-a-claim";
 import { ClaimsNumber } from "../../../common/Claims-Number";
 
 export const MarineClaimStepper: React.FC<{}> = () => {
@@ -36,8 +32,6 @@ export const MarineClaimStepper: React.FC<{}> = () => {
     activeStep,
     marineFormStepper.length - 1
   );
-  const { makeAClaimFormData } = useMakeAClaimForm();
-  const { marineClaimFormData } = useMarineClaimForm();
 
   const {
     control: marineClaimDetailsControl,
@@ -71,33 +65,6 @@ export const MarineClaimStepper: React.FC<{}> = () => {
   });
 
   const onSubmitNextStep = async () => {
-    const formData = {
-      policyHolderName: makeAClaimFormData.officeName,
-      policyNumber: makeAClaimFormData.policyId,
-      subRisk: makeAClaimFormData.subRisk,
-      creationDate: makeAClaimFormData.creationDate,
-      claimType: marineClaimFormData.claimType,
-      email: marineClaimFormData.email,
-      phoneNumber: marineClaimFormData.phoneNumber,
-      dateTimeOfIncident: marineClaimFormData.dateTimeOfIncident,
-      descriptionOfIncident: marineClaimFormData.descriptionOfIncident,
-      listOfStolenItems: marineClaimFormData.listOfStolenItems,
-      doYouHaveAWitness: marineClaimFormData.doYouHaveAWitness,
-      nameOfWitness: marineClaimFormData.nameOfWitness,
-      witnessContactInfo: marineClaimFormData.witnessContactInfo,
-      hasThePoliceBeenInformed: marineClaimFormData.hasThePoliceBeenInformed,
-      whenWasThePoliceInformed: marineClaimFormData.whenWasThePoliceInformed,
-      policeStationAddress: marineClaimFormData.policeStationAddress,
-      claimsAmount: marineClaimFormData.claimsAmount,
-    };
-    const fileData = {
-      evidenceUpload1: marineClaimFormData.evidenceUpload1,
-      evidenceUpload2: marineClaimFormData.evidenceUpload2,
-      evidenceUpload3: marineClaimFormData.evidenceUpload3,
-      evidenceUpload4: marineClaimFormData.evidenceUpload4,
-      eyeWitnessReport: marineClaimFormData.eyeWitnessReport,
-      policeReport: marineClaimFormData.policeReport,
-    };
     let isValid = false;
     if (activeStep === 0) {
       isValid = await marineClaimDetailsTrigger();
@@ -111,7 +78,7 @@ export const MarineClaimStepper: React.FC<{}> = () => {
     } else if (activeStep === 3) {
       isValid = true;
       if (isValid) {
-        makeAClaim(formData, fileData, formData.policyNumber);
+        makeAClaim("marine");
       }
     }
   };

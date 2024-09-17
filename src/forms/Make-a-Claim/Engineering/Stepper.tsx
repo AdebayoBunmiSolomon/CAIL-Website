@@ -22,10 +22,6 @@ import { RegisterClaimService } from "../../../api/services/make-a-claim";
 import { getButtonBtnState } from "../../../helper/helper";
 import { EngineeringClaimCircumstances } from "./Circumstances";
 import { EngineeringClaimRequiredDocumentsDetails } from "./RequiredDocuments";
-import {
-  useEngineeringClaimForm,
-  useMakeAClaimForm,
-} from "../../../hooks/store/make-a-claim";
 import { ClaimsNumber } from "../../../common/Claims-Number";
 
 export const EngineeringClaimStepper: React.FC<{}> = () => {
@@ -38,8 +34,6 @@ export const EngineeringClaimStepper: React.FC<{}> = () => {
     activeStep,
     engineeringClaimsFormStepper.length - 1
   );
-  const { makeAClaimFormData } = useMakeAClaimForm();
-  const { engineeringClaimFormData } = useEngineeringClaimForm();
 
   const {
     control: engineeringClaimDetailsControl,
@@ -73,35 +67,6 @@ export const EngineeringClaimStepper: React.FC<{}> = () => {
   });
 
   const onSubmitNextStep = async () => {
-    const formData = {
-      policyHolderName: makeAClaimFormData.officeName,
-      policyNumber: makeAClaimFormData.policyId,
-      subRisk: makeAClaimFormData.subRisk,
-      creationDate: makeAClaimFormData.creationDate,
-      claimType: engineeringClaimFormData,
-      email: engineeringClaimFormData.email,
-      phoneNumber: engineeringClaimFormData.phoneNumber,
-      dateTimeOfIncident: engineeringClaimFormData.dateTimeOfIncident,
-      descriptionOfIncident: engineeringClaimFormData.descriptionOfIncident,
-      listOfStolenItems: engineeringClaimFormData.listOfStolenItems,
-      doYouHaveAWitness: engineeringClaimFormData.doYouHaveAWitness,
-      nameOfWitness: engineeringClaimFormData.nameOfWitness,
-      witnessContactInfo: engineeringClaimFormData.witnessContactInfo,
-      hasThePoliceBeenInformed:
-        engineeringClaimFormData.hasThePoliceBeenInformed,
-      whenWasThePoliceInformed:
-        engineeringClaimFormData.whenWasThePoliceInformed,
-      policeStationAddress: engineeringClaimFormData.policeStationAddress,
-      claimsAmount: engineeringClaimFormData.claimsAmount,
-    };
-    const fileData = {
-      evidenceUpload1: engineeringClaimFormData.evidenceUpload1,
-      evidenceUpload2: engineeringClaimFormData.evidenceUpload2,
-      evidenceUpload3: engineeringClaimFormData.evidenceUpload3,
-      evidenceUpload4: engineeringClaimFormData.evidenceUpload4,
-      eyeWitnessReport: engineeringClaimFormData.eyeWitnessReport,
-      policeReport: engineeringClaimFormData.policeReport,
-    };
     let isValid = false;
     if (activeStep === 0) {
       isValid = await engineeringClaimDetailsTrigger();
@@ -115,7 +80,7 @@ export const EngineeringClaimStepper: React.FC<{}> = () => {
     } else if (activeStep === 3) {
       isValid = true;
       if (isValid) {
-        makeAClaim(formData, fileData, formData.policyNumber);
+        makeAClaim("engineering");
       }
     }
   };

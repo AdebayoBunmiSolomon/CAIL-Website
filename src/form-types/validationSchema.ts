@@ -39,6 +39,7 @@ export const personalInformationValidationSchema = yup.object().shape({
 export const carDetailsValidationSchema = yup.object().shape({
   cover_type: yup.string().required("cover type is required"),
   vehicle_category: yup.string().required("vehicle category is required"),
+  vehicle_usage: yup.string().required("vehicle usage is required"),
   vehicle_value: yup
     .string()
     .required("vehicle value is required")
@@ -1297,96 +1298,94 @@ export const packagedPolicyCircumstancesValidationSchema = yup.object().shape({
 });
 
 export const accidentClaimReqDocValidationSchema = yup.object().shape({
-  purchaseOrReplacementInvoice: yup.string().required("This file is required"),
-  evidenceUpload1: yup.string().required("This file is required"),
-  evidenceUpload2: yup.string().required("This file is required"),
-  eyeWitnessReport: yup.string().required("This file is required"),
-  policeReport: yup.string().required("This file is required"),
+  purchaseOrReplacementInvoice: yup.string().notRequired(),
+  evidenceUpload1: yup.string().notRequired(),
+  evidenceUpload2: yup.string().notRequired(),
+  eyeWitnessReport: yup.string().notRequired(),
+  policeReport: yup.string().notRequired(),
 });
 
 export const bondClaimReqDocValidationSchema = yup.object().shape({
-  evidenceUpload1: yup.string().required("This file is required"),
-  evidenceUpload2: yup.string().required("This file is required"),
-  evidenceUpload3: yup.string().required("This file is required"),
-  evidenceUpload4: yup.string().required("This file is required"),
-  eyeWitnessReport: yup.string().required("This file is required"),
-  policeReport: yup.string().required("This file is required"),
+  evidenceUpload1: yup.string().notRequired(),
+  evidenceUpload2: yup.string().notRequired(),
+  evidenceUpload3: yup.string().notRequired(),
+  evidenceUpload4: yup.string().notRequired(),
+  eyeWitnessReport: yup.string().notRequired(),
+  policeReport: yup.string().notRequired(),
 });
 
 export const aviationClaimReqDocValidationSchema = yup.object().shape({
-  evidenceUpload1: yup.string().required("This file is required"),
-  evidenceUpload2: yup.string().required("This file is required"),
-  evidenceUpload3: yup.string().required("This file is required"),
-  evidenceUpload4: yup.string().required("This file is required"),
-  eyeWitnessReport: yup.string().required("This file is required"),
-  policeReport: yup.string().required("This file is required"),
+  evidenceUpload1: yup.string().notRequired(),
+  evidenceUpload2: yup.string().notRequired(),
+  evidenceUpload3: yup.string().notRequired(),
+  evidenceUpload4: yup.string().notRequired(),
+  eyeWitnessReport: yup.string().notRequired(),
+  policeReport: yup.string().notRequired(),
 });
 
 export const engineeringClaimReqDocValidationSchema = yup.object().shape({
-  evidenceUpload1: yup.string().required("This file is required"),
-  evidenceUpload2: yup.string().required("This file is required"),
-  evidenceUpload3: yup.string().required("This file is required"),
-  evidenceUpload4: yup.string().required("This file is required"),
-  eyeWitnessReport: yup.string().required("This file is required"),
-  policeReport: yup.string().required("This file is required"),
+  evidenceUpload1: yup.string().notRequired(),
+  evidenceUpload2: yup.string().notRequired(),
+  evidenceUpload3: yup.string().notRequired(),
+  evidenceUpload4: yup.string().notRequired(),
+  eyeWitnessReport: yup.string().notRequired(),
+  policeReport: yup.string().notRequired(),
 });
 
 export const marineClaimReqDocValidationSchema = yup.object().shape({
-  evidenceUpload1: yup.string().required("This file is required"),
-  evidenceUpload2: yup.string().required("This file is required"),
-  evidenceUpload3: yup.string().required("This file is required"),
-  evidenceUpload4: yup.string().required("This file is required"),
-  eyeWitnessReport: yup.string().required("This file is required"),
-  policeReport: yup.string().required("This file is required"),
+  evidenceUpload1: yup.string().notRequired(),
+  evidenceUpload2: yup.string().notRequired(),
+  evidenceUpload3: yup.string().notRequired(),
+  evidenceUpload4: yup.string().notRequired(),
+  eyeWitnessReport: yup.string().notRequired(),
+  policeReport: yup.string().notRequired(),
 });
 
 export const oliAndGasClaimReqDocValidationSchema = yup.object().shape({
-  evidenceUpload1: yup.string().required("This file is required"),
-  evidenceUpload2: yup.string().required("This file is required"),
-  evidenceUpload3: yup.string().required("This file is required"),
-  evidenceUpload4: yup.string().required("This file is required"),
-  eyeWitnessReport: yup.string().required("This file is required"),
-  policeReport: yup.string().required("This file is required"),
+  evidenceUpload1: yup.string().notRequired(),
+  evidenceUpload2: yup.string().notRequired(),
+  evidenceUpload3: yup.string().notRequired(),
+  evidenceUpload4: yup.string().notRequired(),
+  eyeWitnessReport: yup.string().notRequired(),
+  policeReport: yup.string().notRequired(),
 });
 
 export const packagedPolicyClaimReqDocValidationSchema = yup.object().shape({
-  evidenceUpload1: yup.string().required("This file is required"),
-  evidenceUpload2: yup.string().required("This file is required"),
-  evidenceUpload3: yup.string().required("This file is required"),
-  evidenceUpload4: yup.string().required("This file is required"),
-  eyeWitnessReport: yup.string().required("This file is required"),
-  policeReport: yup.string().required("This file is required"),
+  evidenceUpload1: yup.string().notRequired(),
+  evidenceUpload2: yup.string().notRequired(),
+  evidenceUpload3: yup.string().notRequired(),
+  evidenceUpload4: yup.string().notRequired(),
+  eyeWitnessReport: yup.string().notRequired(),
+  policeReport: yup.string().notRequired(),
 });
 
 export const fireClaimReqDocValidationSchema = yup.object().shape({
-  purchaseOrReplacementInvoice: yup.string().required("This file is required"),
-  uploadDamagePic1: yup.string().required("This file is required"),
-  uploadDamagePic2: yup.string().required("This file is required"),
-  uploadDamagePic3: yup.string().required("This file is required"),
-  uploadDamagePic4: yup.string().required("This file is required"),
-  eyeWitnessReport: yup.string().required("This file is required"),
-  policeReport: yup.string().required("This file is required"),
-  fireServiceReport: yup.string().required("This file is required"),
+  purchaseOrReplacementInvoice: yup.string().notRequired(),
+  uploadDamagePic1: yup.string().notRequired(),
+  uploadDamagePic2: yup.string().notRequired(),
+  uploadDamagePic3: yup.string().notRequired(),
+  uploadDamagePic4: yup.string().notRequired(),
+  eyeWitnessReport: yup.string().notRequired(),
+  policeReport: yup.string().notRequired(),
+  fireServiceReport: yup.string().notRequired(),
 });
 
 export const motorClaimReqDocValidationSchema = yup.object().shape({
-  purchaseOrReplacementInvoice: yup.string().required("This file is required"),
-  uploadScannedVehicleLicense: yup.string().required("This file is required"),
-  uploadInsuranceCertificate: yup.string().required("This file is required"),
-  policeReport: yup.string().required("This file is required"),
-  eyeWitnessReport: yup.string().required("This file is required"),
-  thirdPartyEvidenceOfInsuranceCover: yup
-    .string()
-    .required("This file is required"),
-  thirdPartyRepairEstimate: yup.string().required("This file is required"),
-  thirdPartyDamageEvidence1: yup.string().required("This file is required"),
-  thirdPartyDamageEvidence2: yup.string().required("This file is required"),
-  repairEstimateInvoice: yup.string().required("This file is required"),
-  vehicleFrontView: yup.string().required("This file is required"),
-  vehicleRearView: yup.string().required("This file is required"),
-  vehicleLeftView: yup.string().required("This file is required"),
-  vehicleRightView: yup.string().required("This file is required"),
-  driversLicense: yup.string().required("This file is required"),
+  purchaseOrReplacementInvoice: yup.string().notRequired(),
+  uploadScannedVehicleLicense: yup.string().notRequired(),
+  uploadInsuranceCertificate: yup.string().notRequired(),
+  policeReport: yup.string().notRequired(),
+  eyeWitnessReport: yup.string().notRequired(),
+  thirdPartyEvidenceOfInsuranceCover: yup.string().notRequired(),
+  thirdPartyRepairEstimate: yup.string().notRequired(),
+  thirdPartyDamageEvidence1: yup.string().notRequired(),
+  thirdPartyDamageEvidence2: yup.string().notRequired(),
+  repairEstimateInvoice: yup.string().notRequired(),
+  vehicleFrontView: yup.string().notRequired(),
+  vehicleRearView: yup.string().notRequired(),
+  vehicleLeftView: yup.string().notRequired(),
+  vehicleRightView: yup.string().notRequired(),
+  driversLicense: yup.string().notRequired(),
 });
 
 export const newsLetterValidationSchema = yup.object().shape({

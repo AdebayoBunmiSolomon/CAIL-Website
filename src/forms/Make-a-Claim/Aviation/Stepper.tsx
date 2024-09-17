@@ -22,10 +22,6 @@ import { RegisterClaimService } from "../../../api/services/make-a-claim";
 import { getButtonBtnState } from "../../../helper/helper";
 import { AviationClaimCircumstances } from "./Circumstances";
 import { AviationClaimRequiredDocumentsDetails } from "./RequiredDocuments";
-import {
-  useAviationClaimForm,
-  useMakeAClaimForm,
-} from "../../../hooks/store/make-a-claim";
 import { ClaimsNumber } from "../../../common/Claims-Number";
 
 export const AviationClaimStepper: React.FC<{}> = () => {
@@ -37,8 +33,6 @@ export const AviationClaimStepper: React.FC<{}> = () => {
     activeStep,
     aviationFormStepper.length - 1
   );
-  const { makeAClaimFormData } = useMakeAClaimForm();
-  const { aviationClaimFormData } = useAviationClaimForm();
 
   const {
     control: aviationClaimDetailsControl,
@@ -72,33 +66,6 @@ export const AviationClaimStepper: React.FC<{}> = () => {
   });
 
   const onSubmitNextStep = async () => {
-    const formData = {
-      policyHolderName: makeAClaimFormData.officeName,
-      policyNumber: makeAClaimFormData.policyId,
-      subRisk: makeAClaimFormData.subRisk,
-      creationDate: makeAClaimFormData.creationDate,
-      claimType: aviationClaimFormData.claimType,
-      email: aviationClaimFormData.email,
-      phoneNumber: aviationClaimFormData.phoneNumber,
-      dateTimeOfIncident: aviationClaimFormData.dateTimeOfIncident,
-      descriptionOfIncident: aviationClaimFormData.descriptionOfIncident,
-      listOfStolenItems: aviationClaimFormData.listOfStolenItems,
-      doYouHaveAWitness: aviationClaimFormData.doYouHaveAWitness,
-      nameOfWitness: aviationClaimFormData.nameOfWitness,
-      witnessContactInfo: aviationClaimFormData.witnessContactInfo,
-      hasThePoliceBeenInformed: aviationClaimFormData.hasThePoliceBeenInformed,
-      whenWasThePoliceInformed: aviationClaimFormData.whenWasThePoliceInformed,
-      policeStationAddress: aviationClaimFormData.policeStationAddress,
-      claimsAmount: aviationClaimFormData.claimsAmount,
-    };
-    const fileData = {
-      evidenceUpload1: aviationClaimFormData.evidenceUpload1,
-      evidenceUpload2: aviationClaimFormData.evidenceUpload2,
-      evidenceUpload3: aviationClaimFormData.evidenceUpload3,
-      evidenceUpload4: aviationClaimFormData.evidenceUpload4,
-      eyeWitnessReport: aviationClaimFormData.eyeWitnessReport,
-      policeReport: aviationClaimFormData.policeReport,
-    };
     let isValid = false;
     if (activeStep === 0) {
       isValid = await aviationClaimDetailsTrigger();
@@ -112,7 +79,7 @@ export const AviationClaimStepper: React.FC<{}> = () => {
     } else if (activeStep === 3) {
       isValid = true;
       if (isValid) {
-        makeAClaim(formData, fileData, formData.policyNumber);
+        makeAClaim("aviation");
       }
     }
   };

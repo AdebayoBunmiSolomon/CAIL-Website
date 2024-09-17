@@ -22,10 +22,6 @@ import { RegisterClaimService } from "../../../api/services/make-a-claim";
 import { getButtonBtnState } from "../../../helper/helper";
 import { FireClaimCircumstances } from "./Circumstances";
 import { FireClaimRequiredDocumentsDetails } from "./RequiredDocuments";
-import {
-  useFireClaimForm,
-  useMakeAClaimForm,
-} from "../../../hooks/store/make-a-claim";
 import { ClaimsNumber } from "../../../common/Claims-Number";
 
 export const FireClaimStepper: React.FC<{}> = () => {
@@ -38,8 +34,6 @@ export const FireClaimStepper: React.FC<{}> = () => {
     activeStep,
     fireClaimsFormStepper.length - 1
   );
-  const { makeAClaimFormData } = useMakeAClaimForm();
-  const { fireClaimFormData } = useFireClaimForm();
 
   const {
     control: fireClaimDetailsControl,
@@ -73,41 +67,6 @@ export const FireClaimStepper: React.FC<{}> = () => {
   });
 
   const onSubmitNextStep = async () => {
-    const formData = {
-      policyHolderName: makeAClaimFormData.officeName,
-      policyNumber: makeAClaimFormData.policyId,
-      subRisk: makeAClaimFormData.subRisk,
-      creationDate: makeAClaimFormData.creationDate,
-      claimType: fireClaimFormData.claimType,
-      email: fireClaimFormData.email,
-      phoneNumber: fireClaimFormData.phoneNumber,
-      dateTimeOfLoss: fireClaimFormData.dateTimeOfLoss,
-      descriptionOfIncident: fireClaimFormData.descriptionOfIncident,
-      listOfStolenItems: fireClaimFormData.listOfStolenItems,
-      doYouHaveAWitness: fireClaimFormData.doYouHaveAWitness,
-      nameOfWitness: fireClaimFormData.nameOfWitness,
-      witnessContactInfo: fireClaimFormData.witnessContactInfo,
-      hasTheFireServiceBeenInformed:
-        fireClaimFormData.hasTheFireServiceBeenInformed,
-      fireServiceStationAddress: fireClaimFormData.fireServiceStationAddress,
-      doYouHaveAFireServiceReport:
-        fireClaimFormData.doYouHaveAFireServiceReport,
-      hasThePoliceBeenInformed: fireClaimFormData.hasThePoliceBeenInformed,
-      whenWasThePoliceInformed: fireClaimFormData.whenWasThePoliceInformed,
-      policeStationAddress: fireClaimFormData.policeStationAddress,
-      claimsAmount: fireClaimFormData.claimsAmount,
-    };
-    const fileData = {
-      purchaseOrReplacementInvoice:
-        fireClaimFormData.purchaseOrReplacementInvoice,
-      uploadDamagePic1: fireClaimFormData.uploadDamagePic1,
-      uploadDamagePic2: fireClaimFormData.uploadDamagePic2,
-      uploadDamagePic3: fireClaimFormData.uploadDamagePic3,
-      uploadDamagePic4: fireClaimFormData.uploadDamagePic4,
-      eyeWitnessReport: fireClaimFormData.eyeWitnessReport,
-      policeReport: fireClaimFormData.policeReport,
-      fireServiceReport: fireClaimFormData.fireServiceReport,
-    };
     let isValid = false;
     if (activeStep === 0) {
       isValid = await fireClaimDetailsTrigger();
@@ -121,7 +80,7 @@ export const FireClaimStepper: React.FC<{}> = () => {
     } else if (activeStep === 3) {
       isValid = true;
       if (isValid) {
-        makeAClaim(formData, fileData, formData.policyNumber);
+        makeAClaim("fire");
       }
     }
   };

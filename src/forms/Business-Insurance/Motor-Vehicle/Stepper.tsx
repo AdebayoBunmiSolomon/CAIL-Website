@@ -17,26 +17,18 @@ import {
 } from "../../../form-types/validationSchema";
 import { useFormStepper } from "../../../hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { PaymentServices } from "../../../api/services/payments/payments";
-import { useCalcPremFromAPI, useMotorForm } from "../../../hooks/store/motor";
-import { NewQuoteTransaction } from "../../../api/services/core/NewQuoteTransaction";
-import { endpoints } from "../../../api/enpoints";
+import { useSubmitMotorQuote } from "../../../api/services/motor";
+import { getButtonBtnState } from "../../../helper/helper";
 
 export const MotorStepper: React.FC<{}> = () => {
-  const { calculatedPremFromAPI } = useCalcPremFromAPI();
   const { activeStep, nextStep, prevStep } = useFormStepper(
     motorVehicleFormSteps
   );
-  const { motorFormData } = useMotorForm();
-  const { useMakePaymentWithPaystack } = PaymentServices(
-    motorFormData.email,
-    calculatedPremFromAPI
+  const buttonText = getButtonBtnState(
+    activeStep,
+    motorVehicleFormSteps.length - 1
   );
-  const { useGetAQuote } = NewQuoteTransaction(
-    motorFormData,
-    endpoints.POST_MOTOR_FORM_DATA,
-    {}
-  );
+  const { submitMotorQuote, submitting } = useSubmitMotorQuote();
 
   const {
     control: personalControl,
@@ -73,8 +65,8 @@ export const MotorStepper: React.FC<{}> = () => {
     } else if (activeStep === 2) {
       isValid = true;
       if (isValid) {
-        useMakePaymentWithPaystack();
-        // useGetAQuote();
+        //Final Step to make payment
+        await submitMotorQuote();
       }
     }
   };
@@ -124,10 +116,11 @@ export const MotorStepper: React.FC<{}> = () => {
           />
         )}
         <Button
-          text={activeStep === 2 ? "Buy Now" : "Next"}
+          text={submitting === true ? "loading..." : buttonText}
           onPress={onSubmitNextStep}
           className='py-[4px] md:py-[7px] lg:py-[7px] text-[white] px-5 flex rounded-lg hover:bg-[#900000d7] hover:duration-700'
           rightIcon={<GoArrowRight size={25} />}
+          disabled={submitting}
         />
       </div>
     </div>

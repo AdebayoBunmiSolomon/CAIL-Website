@@ -22,10 +22,6 @@ import { RegisterClaimService } from "../../../api/services/make-a-claim";
 import { getButtonBtnState } from "../../../helper/helper";
 import { OilAndGasClaimCircumstances } from "./Circumstances";
 import { OilAndGasClaimRequiredDocumentsDetails } from "./RequiredDocuments";
-import {
-  useMakeAClaimForm,
-  useOilAndGasClaimForm,
-} from "../../../hooks/store/make-a-claim";
 import { ClaimsNumber } from "../../../common/Claims-Number";
 
 export const OilAndGasClaimStepper: React.FC<{}> = () => {
@@ -37,8 +33,6 @@ export const OilAndGasClaimStepper: React.FC<{}> = () => {
     activeStep,
     oilAndGasFormStepper.length - 1
   );
-  const { makeAClaimFormData } = useMakeAClaimForm();
-  const { oilAndGasClaimFormData } = useOilAndGasClaimForm();
 
   const {
     control: oilAndGasClaimDetailsControl,
@@ -72,33 +66,6 @@ export const OilAndGasClaimStepper: React.FC<{}> = () => {
   });
 
   const onSubmitNextStep = async () => {
-    const formData = {
-      policyHolderName: makeAClaimFormData.officeName,
-      policyNumber: makeAClaimFormData.policyId,
-      subRisk: makeAClaimFormData.subRisk,
-      creationDate: makeAClaimFormData.creationDate,
-      claimType: oilAndGasClaimFormData.claimType,
-      email: oilAndGasClaimFormData.email,
-      phoneNumber: oilAndGasClaimFormData.phoneNumber,
-      dateTimeOfIncident: oilAndGasClaimFormData.dateTimeOfIncident,
-      descriptionOfIncident: oilAndGasClaimFormData.descriptionOfIncident,
-      listOfStolenItems: oilAndGasClaimFormData.listOfStolenItems,
-      doYouHaveAWitness: oilAndGasClaimFormData.doYouHaveAWitness,
-      nameOfWitness: oilAndGasClaimFormData.nameOfWitness,
-      witnessContactInfo: oilAndGasClaimFormData.witnessContactInfo,
-      hasThePoliceBeenInformed: oilAndGasClaimFormData.hasThePoliceBeenInformed,
-      whenWasThePoliceInformed: oilAndGasClaimFormData.whenWasThePoliceInformed,
-      policeStationAddress: oilAndGasClaimFormData.policeStationAddress,
-      claimsAmount: oilAndGasClaimFormData.claimsAmount,
-    };
-    const fileData = {
-      evidenceUpload1: oilAndGasClaimFormData.evidenceUpload1,
-      evidenceUpload2: oilAndGasClaimFormData.evidenceUpload2,
-      evidenceUpload3: oilAndGasClaimFormData.evidenceUpload3,
-      evidenceUpload4: oilAndGasClaimFormData.evidenceUpload4,
-      eyeWitnessReport: oilAndGasClaimFormData.eyeWitnessReport,
-      policeReport: oilAndGasClaimFormData.policeReport,
-    };
     let isValid = false;
     if (activeStep === 0) {
       isValid = await oilAndGasClaimDetailsTrigger();
@@ -112,7 +79,7 @@ export const OilAndGasClaimStepper: React.FC<{}> = () => {
     } else if (activeStep === 3) {
       isValid = true;
       if (isValid) {
-        makeAClaim(formData, fileData, formData.policyNumber);
+        makeAClaim("oil and gas");
       }
     }
   };

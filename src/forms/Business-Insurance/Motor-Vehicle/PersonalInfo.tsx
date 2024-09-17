@@ -8,7 +8,10 @@ import {
   title,
 } from "../../../assets/data/formOptionsData";
 import { useMotorForm } from "../../../hooks/store/motor/useMotorForm";
-import { convertToDateTimeISO } from "../../../helper/helper";
+import {
+  convertFileToBase64String,
+  convertToDateTimeISO,
+} from "../../../helper/helper";
 import { FileInput } from "../../../components/shared/FileInput";
 
 type personalInfoType = {
@@ -21,9 +24,14 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
   const [fileName, setFileName] = useState<string>();
 
   useEffect(() => {
-    const updateValueOfFileInputToRemoveErrorMsg = () => {
+    const updateValueOfFileInputToRemoveErrorMsg = async () => {
+      const base64File = await convertFileToBase64String(motorFormData.file);
       props?.setValues("file", motorFormData.file);
-      setFileName(motorFormData.file);
+      setFileName(motorFormData.file?.name);
+      setMotorFormData({
+        ...motorFormData,
+        base64File: base64File,
+      });
     };
     updateValueOfFileInputToRemoveErrorMsg();
   }, [motorFormData.file, fileName]);
@@ -269,10 +277,31 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
                 selectedOption={field.value}
                 onChangeSelectedOption={(text) => {
                   field.onChange(text);
-                  setMotorFormData({
-                    ...motorFormData,
-                    identification_type: text,
-                  });
+                  if (text === identificationType[0]) {
+                    setMotorFormData({
+                      ...motorFormData,
+                      identification_type: 1,
+                      identification_name: text,
+                    });
+                  } else if (text === identificationType[1]) {
+                    setMotorFormData({
+                      ...motorFormData,
+                      identification_type: 2,
+                      identification_name: text,
+                    });
+                  } else if (text === identificationType[2]) {
+                    setMotorFormData({
+                      ...motorFormData,
+                      identification_type: 3,
+                      identification_name: text,
+                    });
+                  } else if (text === identificationType[3]) {
+                    setMotorFormData({
+                      ...motorFormData,
+                      identification_type: 4,
+                      identification_name: text,
+                    });
+                  }
                 }}
                 placeholder='Select identification type'
                 error={
@@ -297,7 +326,6 @@ export const PersonalInfo: React.FC<personalInfoType> = ({ useFormProps }) => {
                 const target = event.target as HTMLInputElement;
                 if (target) {
                   const selectedFile = target.files?.[0];
-                  // console.log(selectedFile);
                   setMotorFormData({
                     ...motorFormData,
                     file: selectedFile,

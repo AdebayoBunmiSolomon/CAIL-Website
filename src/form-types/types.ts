@@ -281,21 +281,21 @@ export type motorClaimCircumstances = {
 };
 
 export type motorClaimReqDoc = {
-  purchaseOrReplacementInvoice: any;
-  uploadScannedVehicleLicense: any;
-  uploadInsuranceCertificate: any;
-  policeReport: any;
-  eyeWitnessReport: any;
-  thirdPartyEvidenceOfInsuranceCover: any;
-  thirdPartyRepairEstimate: any;
-  thirdPartyDamageEvidence1: any;
-  thirdPartyDamageEvidence2: any;
-  repairEstimateInvoice: any;
-  vehicleFrontView: any;
-  vehicleRearView: any;
-  vehicleLeftView: any;
-  vehicleRightView: any;
-  driversLicense: any;
+  purchaseOrReplacementInvoice?: any;
+  uploadScannedVehicleLicense?: any;
+  uploadInsuranceCertificate?: any;
+  policeReport?: any;
+  eyeWitnessReport?: any;
+  thirdPartyEvidenceOfInsuranceCover?: any;
+  thirdPartyRepairEstimate?: any;
+  thirdPartyDamageEvidence1?: any;
+  thirdPartyDamageEvidence2?: any;
+  repairEstimateInvoice?: any;
+  vehicleFrontView?: any;
+  vehicleRearView?: any;
+  vehicleLeftView?: any;
+  vehicleRightView?: any;
+  driversLicense?: any;
 };
 
 export type accidentClaimDetailsTypes = {
@@ -320,11 +320,11 @@ export type accidentClaimCircumstances = {
 };
 
 export type accidentReqDoc = {
-  purchaseOrReplacementInvoice: any;
-  evidenceUpload1: any;
-  evidenceUpload2: any;
-  eyeWitnessReport: any;
-  policeReport: any;
+  purchaseOrReplacementInvoice?: any;
+  evidenceUpload1?: any;
+  evidenceUpload2?: any;
+  eyeWitnessReport?: any;
+  policeReport?: any;
 };
 
 export type bondClaimDetailsTypes = {
@@ -347,12 +347,12 @@ export type bondClaimCircumstances = {
 };
 
 export type bondClaimReqDoc = {
-  evidenceUpload1: any;
-  evidenceUpload2: any;
-  evidenceUpload3: any;
-  evidenceUpload4: any;
-  eyeWitnessReport: any;
-  policeReport: any;
+  evidenceUpload1?: any;
+  evidenceUpload2?: any;
+  evidenceUpload3?: any;
+  evidenceUpload4?: any;
+  eyeWitnessReport?: any;
+  policeReport?: any;
 };
 
 export type engineeringClaimDetailsTypes = {
@@ -375,12 +375,12 @@ export type engineeringClaimCircumstances = {
 };
 
 export type engineeringClaimReqDoc = {
-  evidenceUpload1: any;
-  evidenceUpload2: any;
-  evidenceUpload3: any;
-  evidenceUpload4: any;
-  eyeWitnessReport: any;
-  policeReport: any;
+  evidenceUpload1?: any;
+  evidenceUpload2?: any;
+  evidenceUpload3?: any;
+  evidenceUpload4?: any;
+  eyeWitnessReport?: any;
+  policeReport?: any;
 };
 
 export type fireClaimDetailsTypes = {
@@ -406,14 +406,14 @@ export type fireClaimCircumstances = {
 };
 
 export type fireClaimReqDoc = {
-  purchaseOrReplacementInvoice: any;
-  uploadDamagePic1: any;
-  uploadDamagePic2: any;
-  uploadDamagePic3: any;
-  uploadDamagePic4: any;
-  eyeWitnessReport: any;
-  policeReport: any;
-  fireServiceReport: any;
+  purchaseOrReplacementInvoice?: any;
+  uploadDamagePic1?: any;
+  uploadDamagePic2?: any;
+  uploadDamagePic3?: any;
+  uploadDamagePic4?: any;
+  eyeWitnessReport?: any;
+  policeReport?: any;
+  fireServiceReport?: any;
 };
 
 export type aviationClaimDetailsTypes = {
@@ -436,12 +436,12 @@ export type aviationClaimCircumstances = {
 };
 
 export type aviationClaimReqDoc = {
-  evidenceUpload1: any;
-  evidenceUpload2: any;
-  evidenceUpload3: any;
-  evidenceUpload4: any;
-  eyeWitnessReport: any;
-  policeReport: any;
+  evidenceUpload1?: any;
+  evidenceUpload2?: any;
+  evidenceUpload3?: any;
+  evidenceUpload4?: any;
+  eyeWitnessReport?: any;
+  policeReport?: any;
 };
 
 export type marineClaimDetailsTypes = {
@@ -464,12 +464,12 @@ export type marineClaimCircumstances = {
 };
 
 export type marineClaimReqDoc = {
-  evidenceUpload1: any;
-  evidenceUpload2: any;
-  evidenceUpload3: any;
-  evidenceUpload4: any;
-  eyeWitnessReport: any;
-  policeReport: any;
+  evidenceUpload1?: any;
+  evidenceUpload2?: any;
+  evidenceUpload3?: any;
+  evidenceUpload4?: any;
+  eyeWitnessReport?: any;
+  policeReport?: any;
 };
 
 export type oilAndGasClaimDetailsTypes = {
@@ -492,12 +492,12 @@ export type oilAndGasClaimCircumstances = {
 };
 
 export type oilAndGasClaimReqDoc = {
-  evidenceUpload1: any;
-  evidenceUpload2: any;
-  evidenceUpload3: any;
-  evidenceUpload4: any;
-  eyeWitnessReport: any;
-  policeReport: any;
+  evidenceUpload1?: any;
+  evidenceUpload2?: any;
+  evidenceUpload3?: any;
+  evidenceUpload4?: any;
+  eyeWitnessReport?: any;
+  policeReport?: any;
 };
 
 export type packagedPolicyClaimDetailsTypes = {
@@ -520,12 +520,12 @@ export type packagedPolicyClaimCircumstances = {
 };
 
 export type packagedPolicyClaimReqDoc = {
-  evidenceUpload1: any;
-  evidenceUpload2: any;
-  evidenceUpload3: any;
-  evidenceUpload4: any;
-  eyeWitnessReport: any;
-  policeReport: any;
+  evidenceUpload1?: any;
+  evidenceUpload2?: any;
+  evidenceUpload3?: any;
+  evidenceUpload4?: any;
+  eyeWitnessReport?: any;
+  policeReport?: any;
 };
 
 export type newsLetter = {

@@ -19,8 +19,6 @@ import { useFormStepper } from "../../../hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { PaymentServices } from "../../../api/services/payments/payments";
 import { useCalcPremFromAPI, useMotorForm } from "../../../hooks/store/motor";
-import { NewQuoteTransaction } from "../../../api/services/core/NewQuoteTransaction";
-import { endpoints } from "../../../api/enpoints";
 
 export const PersonalInsuranceMotorStepper: React.FC<{}> = () => {
   const { calculatedPremFromAPI } = useCalcPremFromAPI();
@@ -31,11 +29,6 @@ export const PersonalInsuranceMotorStepper: React.FC<{}> = () => {
   const { useMakePaymentWithPaystack } = PaymentServices(
     motorFormData.email,
     calculatedPremFromAPI
-  );
-  const { useGetAQuote } = NewQuoteTransaction(
-    motorFormData,
-    endpoints.POST_MOTOR_FORM_DATA,
-    {}
   );
 
   const {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { PostRequest } from "../../requests";
 import { endpoints } from "../../enpoints";
 import { toast } from "react-toastify";
@@ -21,7 +21,7 @@ export const useNewsLetter = () => {
       // console.log(data);
       if (data) {
         if (data.statusCode === 200) {
-          toast(data.message, {
+          toast(data?.message, {
             type: "success",
             theme: "colored",
           });

@@ -16,6 +16,7 @@ export type personalInformationLookUpTypes = {
 
 export type carDetailsLookUpTypes = {
   cover_type: string;
+  vehicle_usage: string;
   vehicle_category: string;
   vehicle_value: string;
   payment_options: string;

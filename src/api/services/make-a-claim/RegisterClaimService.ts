@@ -1,10 +1,16 @@
 import { useState } from "react";
-import { PostRequest } from "../../requests";
-import { endpoints } from "../../enpoints";
-import { toast } from "react-toastify";
-import { claimsHeaderConfiguration } from "../../configuration/header";
+import { claimFormType } from "../../../types/types";
+import { useSubmitAccidentClaim } from "./services/SubmitAccident";
+import { useSubmitMotorClaim } from "./services/SubmitMotor";
+import { useSubmitBondClaim } from "./services/SubmitBond";
+import { useSubmitAviationClaim } from "./services/SubmitAviation";
+import { useSubmitEngineeringClaim } from "./services/SubmitEngineering";
+import { useSubmitFireClaim } from "./services/SubmitFire";
+import { useSubmitMarineClaim } from "./services/SubmitMarine";
+import { useSubmitOilAndGasClaim } from "./services/SubmitOilAndGas";
+import { useSubmitPkgedPolicyClaim } from "./services/SubmitPackagedPolicy";
 
-type showClaimDataType = {
+export type showClaimDataType = {
   visible: boolean;
   claimsNumber: string;
 };
@@ -15,49 +21,43 @@ export const RegisterClaimService = () => {
     visible: false,
     claimsNumber: "",
   });
+  const { submitAccidentClaim } = useSubmitAccidentClaim();
+  const { submitMotorClaim } = useSubmitMotorClaim();
+  const { submitBondClaim } = useSubmitBondClaim();
+  const { submitAviationClaim } = useSubmitAviationClaim();
+  const { submitEngineeringClaim } = useSubmitEngineeringClaim();
+  const { submitFireClaim } = useSubmitFireClaim();
+  const { submitMarineClaim } = useSubmitMarineClaim();
+  const { submitOilAndGasClaim } = useSubmitOilAndGasClaim();
+  const { submitPackagedPolicyClaim } = useSubmitPkgedPolicyClaim();
 
-  const makeAClaim = async (
-    formData: object,
-    fileData: object,
-    policyNumber: string
-  ) => {
+  const makeAClaim = async (claimType: claimFormType) => {
     setLoading(true);
-    const formValue = new FormData();
-    formValue.append("data", JSON.stringify(formData));
-    formValue.append("file", JSON.stringify(fileData));
-    formValue.append("policyNumber", JSON.stringify(policyNumber));
     try {
-      const { status, data } = await PostRequest(
-        `${endpoints.POST_CLAIM}`,
-        formValue,
-        claimsHeaderConfiguration
-      );
-      setLoading(true);
-      if (data) {
-        // console.log(data);
-        toast(data.message, {
-          type: "success",
-          theme: "colored",
-        });
-        setShowClaims({
-          ...showClaims,
-          visible: true,
-          claimsNumber: data.data.claimsNumber,
-        });
-      } else {
-        toast("Error saving claims data", {
-          type: "error",
-          theme: "colored",
-        });
-
-        setShowClaims({
-          ...showClaims,
-          visible: false,
-          claimsNumber: "",
-        });
+      switch (claimType) {
+        case "accident":
+          await submitAccidentClaim();
+        case "aviation":
+          await submitAviationClaim();
+        case "bond":
+          await submitBondClaim();
+        case "engineering":
+          await submitEngineeringClaim();
+        case "fire":
+          await submitFireClaim();
+        case "marine":
+          await submitMarineClaim();
+        case "motor":
+          await submitMotorClaim();
+        case "oil and gas":
+          await submitOilAndGasClaim();
+        case "packaged":
+          await submitPackagedPolicyClaim();
+        default:
+          null || undefined;
+          break;
       }
-    } catch (err) {
-      // console.log(err);
+    } catch (err: any) {
       setShowClaims({
         ...showClaims,
         visible: false,

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type oilAndGasClaimFormType = {
+export type oilAndGasClaimFormType = {
   claimType: string;
   email: string;
   phoneNumber: string;

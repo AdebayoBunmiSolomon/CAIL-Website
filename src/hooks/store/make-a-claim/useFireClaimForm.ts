@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type fireClaimFormType = {
+export type fireClaimFormType = {
   claimType: string;
   email: string;
   phoneNumber: string;

@@ -236,10 +236,6 @@ export const ContactForm: React.FC<{}> = () => {
             value: true,
             message: "Message is required",
           },
-          pattern: {
-            value: /^[a-zA-Z\s]*$/,
-            message: "Only letters and spaces are allowed",
-          },
         }}
         name='message'
         defaultValue=''

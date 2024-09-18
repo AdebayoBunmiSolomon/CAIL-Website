@@ -91,7 +91,7 @@ export const FullHeader = () => {
           ))}
       </ul>
       <div className='hidden md:flex justify-items-center align-middle '>
-        {/* <Button onClick={openSelfService} className='py-6 px-[20px]'>
+        {/*<Button onClick={openSelfService} className='py-6 px-[20px]'>
           Access Self-Service
         </Button> */}
       </div>

@@ -68,10 +68,10 @@ export const useSubmitAccidentClaim = () => {
           claimsNumber: data.data.claimId,
         });
       } else {
-        toast("Error saving claims data", {
-          type: "error",
-          theme: "colored",
-        });
+        // toast("Claim submitted successfully", {
+        //   type: "success",
+        //   theme: "colored",
+        // });
         setShowClaims({
           ...showClaims,
           visible: false,

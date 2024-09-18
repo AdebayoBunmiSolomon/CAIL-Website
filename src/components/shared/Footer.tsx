@@ -4,16 +4,16 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import fbIcon from "../../assets/images/fb_icon.png";
 import igIcon from "../../assets/images/IG_icon.png";
 import linkedInIcon from "../../assets/images/LinkedIn_icon.png";
-import { NewLetter } from "./Newsletter";
+// import { NewLetter } from "./Newsletter";
 
 export const Footer = () => {
   const navigate: NavigateFunction = useNavigate();
   return (
     <div className='bg-[#061D30]'>
       <div className='flex flex-col px-10 md:px-24 pt-5 text-white'>
-        <div className=' flex w-[100%] md:pt-5'>
+        {/* <div className=' flex w-[100%] md:pt-5'>
           <NewLetter />
-        </div>
+        </div> */}
         <div className='flex flex-col md:flex-row items-start justify-between py-10 text-[18px]'>
           <div className=''>
             <h3 className='text-[#9DADB9]'>QUICK LINKS</h3>

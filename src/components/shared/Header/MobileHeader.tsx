@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { header } from "../../../assets/data/header";
 import { useSelectedHeader } from "../../../hooks/useSelectedHeader";
-import ClaLogo from "../../../assets/svg/ClaLogo";
+import ClaLogo from "../../../assets/svg/CAI_Logo.svg";
 import { useNavigate } from "react-router-dom";
-import { IoMenu } from "react-icons/io5";
+import { IoClose, IoMenu } from "react-icons/io5";
 import { useGlobalStore } from "../../../hooks/store/make-a-claim";
 
 export const MobileHeader: React.FC<{}> = () => {
@@ -15,17 +15,23 @@ export const MobileHeader: React.FC<{}> = () => {
     <div className='w-[100%] py-3 fixed top-0 right-0 left-0 z-10 backdrop-blur-[5px]'>
       <div className='flex flex-row items-center justify-between w-full'>
         <div
-          className='w-[150px] cursor-pointer'
+          className='w-[100px] md:w-[150px] lg:w-[200px] cursor-pointer'
           onClick={() => {
             navigate("/");
           }}>
-          <ClaLogo />
+          <img
+            src={ClaLogo}
+            alt='Hero'
+            className='w-full h-auto object-cover rounded-xl'
+          />
         </div>
-        <div>
-          <button onClick={() => setShowDropDown(!showDropDown)}>
-            <IoMenu className='w-[40px] h-[40px]' />
-          </button>
-        </div>
+        <button onClick={() => setShowDropDown(!showDropDown)}>
+          {showDropDown ? (
+            <IoClose className='w-[30px] h-[30px]' />
+          ) : (
+            <IoMenu className='w-[30px] h-[30px]' />
+          )}
+        </button>
       </div>
       {showDropDown && (
         <ul className='flex flex-col gap-0 items-center justify-center'>

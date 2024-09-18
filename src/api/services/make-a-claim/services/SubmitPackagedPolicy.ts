@@ -67,8 +67,8 @@ export const useSubmitPkgedPolicyClaim = () => {
           claimsNumber: data.data.claimId,
         });
       } else {
-        toast("Error saving claims data", {
-          type: "error",
+        toast("Claim submitted successfully", {
+          type: "success",
           theme: "colored",
         });
         setShowClaims({

@@ -44,37 +44,37 @@ export const products: tabContentsType[] = [
           },
         ],
       },
-      {
-        id: 2,
-        title: "Motor Vehicle Insurance",
-        description:
-          "Our Motor Vehicle Insurance Our Motor Vehicle Insurance covers Nigerian registered private motor vehicles, commercial vehicles, motorcycles, trucks and trailers.It offers the following cover:Comprehensive Cover: covers against unforeseen accidents, loss, theft and fire damage to vehicles. It also provides cover for accidental injury or death to third party as well as damage to third party property.Third Party Fire & Theft Cover: covers against theft and fire damage to vehicles. It also provides cover for accidental injury or death to third party as well as damage to third party property. It however, does not cover accidental damage to the Insured vehicle.Third Party Cover: covers the Insured against accidental injury or death to third party as well as damage to third party property.Optional Cover Vehicle sound/radio and accessories must be specified and are covered for loss or damage. Out-of-Nigeria covers your vehicle where it is temporarily used either for business or private outside NIGERIA BUT WITHIN THE WEST AFRICAN shores provided notice is given to us and the necessary document obtained i.e. The Brown Card. It covers you for your liability to other people where an accident causes death or injury to them or damage to their property and attracts additional premium",
-        position: "",
-        getQuote: formRoutes.motor_vehicle,
-        keyFeatures: [
-          {
-            title: "",
-            description: "",
-            list: [
-              "Vehicle sound/radio and accessories must be specified and are covered for loss or damage.",
-              "Out-of-Nigeria covers your vehicle where it is temporarily used either for business or private outside NIGERIA BUT WITHIN THE WEST AFRICAN shores provided notice is given to us and the necessary document obtained i.e. The Brown Card.",
-              "It covers you for your liability to other people where an accident causes death or injury to them or damage to their property and attracts additional premium",
-            ],
-          },
-        ],
-        benefits: [
-          {
-            title: "Benefits",
-            description: "",
-            list: [
-              "Discount is given depending on the number of vehicles",
-              "Towing Fee is covered up to a maximum limit provided your car is towed to a nearest and reasonable place for safekeeping or repair.",
-              "Cover for Personal effects in the vehicle following an accident and/or theft up to a maximum limit.",
-              "Flood, Risk of Strikes, Riots and Civil Commotion – payment of additional premium",
-            ],
-          },
-        ],
-      },
+      // {
+      //   id: 2,
+      //   title: "Motor Vehicle Insurance",
+      //   description:
+      //     "Our Motor Vehicle Insurance Our Motor Vehicle Insurance covers Nigerian registered private motor vehicles, commercial vehicles, motorcycles, trucks and trailers.It offers the following cover:Comprehensive Cover: covers against unforeseen accidents, loss, theft and fire damage to vehicles. It also provides cover for accidental injury or death to third party as well as damage to third party property.Third Party Fire & Theft Cover: covers against theft and fire damage to vehicles. It also provides cover for accidental injury or death to third party as well as damage to third party property. It however, does not cover accidental damage to the Insured vehicle.Third Party Cover: covers the Insured against accidental injury or death to third party as well as damage to third party property.Optional Cover Vehicle sound/radio and accessories must be specified and are covered for loss or damage. Out-of-Nigeria covers your vehicle where it is temporarily used either for business or private outside NIGERIA BUT WITHIN THE WEST AFRICAN shores provided notice is given to us and the necessary document obtained i.e. The Brown Card. It covers you for your liability to other people where an accident causes death or injury to them or damage to their property and attracts additional premium",
+      //   position: "",
+      //   getQuote: formRoutes.motor_vehicle,
+      //   keyFeatures: [
+      //     {
+      //       title: "",
+      //       description: "",
+      //       list: [
+      //         "Vehicle sound/radio and accessories must be specified and are covered for loss or damage.",
+      //         "Out-of-Nigeria covers your vehicle where it is temporarily used either for business or private outside NIGERIA BUT WITHIN THE WEST AFRICAN shores provided notice is given to us and the necessary document obtained i.e. The Brown Card.",
+      //         "It covers you for your liability to other people where an accident causes death or injury to them or damage to their property and attracts additional premium",
+      //       ],
+      //     },
+      //   ],
+      //   benefits: [
+      //     {
+      //       title: "Benefits",
+      //       description: "",
+      //       list: [
+      //         "Discount is given depending on the number of vehicles",
+      //         "Towing Fee is covered up to a maximum limit provided your car is towed to a nearest and reasonable place for safekeeping or repair.",
+      //         "Cover for Personal effects in the vehicle following an accident and/or theft up to a maximum limit.",
+      //         "Flood, Risk of Strikes, Riots and Civil Commotion – payment of additional premium",
+      //       ],
+      //     },
+      //   ],
+      // },
       {
         id: 3,
         title: "Machinery Breakdown Insurance",
@@ -665,87 +665,87 @@ export const products: tabContentsType[] = [
           },
         ],
       },
-      {
-        id: 2,
-        title: "Motor Vehicle Insurance",
-        description:
-          "Our Motor Vehicle Insurance covers Nigerian registered private motor vehicles, commercial vehicles, motorcycles, mechanically propelled plant or trailers. It offers the following cover:Comprehensive Cover which covers your vehicle for accidental damage, theft and hijack as well injury to other people or damage to their property",
-        position: "",
-        getQuote: formRoutes.motor_vehicle,
-        benefits: [
-          {
-            title: "Limited Cover",
-            description: "",
-            list: [
-              "Accidental Damage & Third Party Cover – cover your vehicle against accidental damage as wellas death or injury to other people or damage to their property. Loss as a result of Fire and Theft is not covered.",
-              "Third Party Fire & Theft Cover– covers your vehicle for damage caused by fire, theft, hijack as well injury to other people or damage to their property. Accidental damage to your vehicle is not covered",
-              "Liability to other people (Third Party Cover) which covers your liability to other people where an accident cause death or injury to them or damage to their property. This is a compulsory cover for every motor user in Nigeria",
-            ],
-          },
-          {
-            title: "Optional Cover",
-            description: "",
-            list: [
-              "Vehicle sound/radio and accessories must be specified and are covered for loss or damage.",
-              "Out-of-Nigeria covers your vehicle where it is temporarily used either for business or private outside NIGERIA BUT WITHIN THE WEST AFRICAN shores provided notice is given to us and the necessary document obtained i.e The Brown Card. It covers you for your liability to other people where an accident causes death or injury to them or damage to their property.",
-            ],
-          },
-          {
-            title: "Extension / Benefits",
-            description: "",
-            list: [
-              "Discount is given depending on the number of vehicles",
-              "Free cover for vehicle accessories subject to forcible entry into the car",
-              "Towing Fee is covered up to a maximum of =N=20,000 provided your car is towed to a nearest and reasonable place for safekeeping or repair.",
-              "Third Party Property Damage (TPPD) of =N=1million is increased to =N=2million at no additional cost.",
-              "Cover for Personal effects in the vehicle following an accident and/or theft =N=20,000",
-              "Free cover for accidental breakage and/or theft of windscreen",
-              "The Food, Risk of Strikes, Riots and Civil Commotion – payment of additional premium",
-              "Limit of Medical expenses is increased to =N=20,000 in event of an accident",
-            ],
-          },
-        ],
-        keyFeatures: [
-          {
-            title: "",
-            description: "",
-            list: [],
-          },
-        ],
-      },
-      {
-        id: 3,
-        title: "Custodian Travel Insurance Policy",
-        description:
-          "Our Travel Insurance provides cover for emergency medical expenses, financial and other losses incurred and other unforeseen events as listed below while travelling outside the country of residence",
-        position: "",
-        getQuote: "", //formRoutes.custodian_travel,
-        benefits: [
-          {
-            title: "",
-            description: "",
-            list: [
-              "Accidental Damage & Third Party Cover – cover your vehicle against accidental damage as wellas death or injury to other people or damage to their property. Loss as a result of Fire and Theft is not covered.",
-              "Third Party Fire & Theft Cover– covers your vehicle for damage caused by fire, theft, hijack as well injury to other people or damage to their property. Accidental damage to your vehicle is not covered",
+      // {
+      //   id: 2,
+      //   title: "Motor Vehicle Insurance",
+      //   description:
+      //     "Our Motor Vehicle Insurance covers Nigerian registered private motor vehicles, commercial vehicles, motorcycles, mechanically propelled plant or trailers. It offers the following cover:Comprehensive Cover which covers your vehicle for accidental damage, theft and hijack as well injury to other people or damage to their property",
+      //   position: "",
+      //   getQuote: formRoutes.motor_vehicle,
+      //   benefits: [
+      //     {
+      //       title: "Limited Cover",
+      //       description: "",
+      //       list: [
+      //         "Accidental Damage & Third Party Cover – cover your vehicle against accidental damage as wellas death or injury to other people or damage to their property. Loss as a result of Fire and Theft is not covered.",
+      //         "Third Party Fire & Theft Cover– covers your vehicle for damage caused by fire, theft, hijack as well injury to other people or damage to their property. Accidental damage to your vehicle is not covered",
+      //         "Liability to other people (Third Party Cover) which covers your liability to other people where an accident cause death or injury to them or damage to their property. This is a compulsory cover for every motor user in Nigeria",
+      //       ],
+      //     },
+      //     {
+      //       title: "Optional Cover",
+      //       description: "",
+      //       list: [
+      //         "Vehicle sound/radio and accessories must be specified and are covered for loss or damage.",
+      //         "Out-of-Nigeria covers your vehicle where it is temporarily used either for business or private outside NIGERIA BUT WITHIN THE WEST AFRICAN shores provided notice is given to us and the necessary document obtained i.e The Brown Card. It covers you for your liability to other people where an accident causes death or injury to them or damage to their property.",
+      //       ],
+      //     },
+      //     {
+      //       title: "Extension / Benefits",
+      //       description: "",
+      //       list: [
+      //         "Discount is given depending on the number of vehicles",
+      //         "Free cover for vehicle accessories subject to forcible entry into the car",
+      //         "Towing Fee is covered up to a maximum of =N=20,000 provided your car is towed to a nearest and reasonable place for safekeeping or repair.",
+      //         "Third Party Property Damage (TPPD) of =N=1million is increased to =N=2million at no additional cost.",
+      //         "Cover for Personal effects in the vehicle following an accident and/or theft =N=20,000",
+      //         "Free cover for accidental breakage and/or theft of windscreen",
+      //         "The Food, Risk of Strikes, Riots and Civil Commotion – payment of additional premium",
+      //         "Limit of Medical expenses is increased to =N=20,000 in event of an accident",
+      //       ],
+      //     },
+      //   ],
+      //   keyFeatures: [
+      //     {
+      //       title: "",
+      //       description: "",
+      //       list: [],
+      //     },
+      //   ],
+      // },
+      // {
+      //   id: 3,
+      //   title: "Custodian Travel Insurance Policy",
+      //   description:
+      //     "Our Travel Insurance provides cover for emergency medical expenses, financial and other losses incurred and other unforeseen events as listed below while travelling outside the country of residence",
+      //   position: "",
+      //   getQuote: "", //formRoutes.custodian_travel,
+      //   benefits: [
+      //     {
+      //       title: "",
+      //       description: "",
+      //       list: [
+      //         "Accidental Damage & Third Party Cover – cover your vehicle against accidental damage as wellas death or injury to other people or damage to their property. Loss as a result of Fire and Theft is not covered.",
+      //         "Third Party Fire & Theft Cover– covers your vehicle for damage caused by fire, theft, hijack as well injury to other people or damage to their property. Accidental damage to your vehicle is not covered",
 
-              "Liability to other people (Third Party Cover) which covers your liability to other people where an accident cause death or injury to them or damage to their property. This is a compulsory cover for every motor user in Nigeria",
-              "Repatriation of mortal remains - 1,000 Euros.",
-              "Cost legal defence - 400 Euros.",
-              "Advance for bail - 2,000 Euros.",
-              "Loss of luggage - 610 Euros.",
-              "Flight delay - 200 Euros.",
-              "Escort of the beneficiary who is less than 15years - 80 Euros per night for a maximum of two (2) nights",
-            ],
-          },
-        ],
-        keyFeatures: [
-          {
-            title: "",
-            description: "",
-            list: [],
-          },
-        ],
-      },
+      //         "Liability to other people (Third Party Cover) which covers your liability to other people where an accident cause death or injury to them or damage to their property. This is a compulsory cover for every motor user in Nigeria",
+      //         "Repatriation of mortal remains - 1,000 Euros.",
+      //         "Cost legal defence - 400 Euros.",
+      //         "Advance for bail - 2,000 Euros.",
+      //         "Loss of luggage - 610 Euros.",
+      //         "Flight delay - 200 Euros.",
+      //         "Escort of the beneficiary who is less than 15years - 80 Euros per night for a maximum of two (2) nights",
+      //       ],
+      //     },
+      //   ],
+      //   keyFeatures: [
+      //     {
+      //       title: "",
+      //       description: "",
+      //       list: [],
+      //     },
+      //   ],
+      // },
       {
         id: 4,
         title: "Marine (Boat) Owner/ Yacht Insurance",
@@ -776,70 +776,70 @@ export const products: tabContentsType[] = [
           },
         ],
       },
-      {
-        id: 5,
-        title: "Home Shield",
-        description:
-          "Custodian Home Shield protects policyholders against loss or damage to their home contents or properties, which includes household contents and personal effects. The cover also extends to the properties or personal effects of any member of the family normally living with the Insured.",
-        position: "",
-        getQuote: formRoutes.home_shield,
-        benefits: [
-          {
-            title: "",
-            description:
-              "This policy covers loss or damage caused by any of the perils mentioned below:",
-            list: [],
-          },
-          {
-            title: "",
-            description:
-              "Fire & Special Perils Insurance: covers damage to insured’s building and content due to fire, storm damage, overflow of tanks etc.",
-            list: [],
-          },
-          {
-            title: "",
-            description:
-              "Burglary Insurance: covers housebreaking (theft of any item within the building)",
-            list: [],
-          },
-          {
-            title: "",
-            description:
-              "Public Liability Insurance: covers you against your liability to third parties in the event of accidental injuries of your visitors within your building",
-            list: [],
-          },
-          {
-            title: "",
-            description:
-              "Personal Accident Insurance: Indemnifies you in the event of domestic accidents sustained in your hom",
-            list: [],
-          },
-          {
-            title: "Features",
-            description: "",
-            list: [
-              "Annually renewable policy•",
-              "Premium is N10,000•",
-              "Fire & Special benefit- N2,000,000•",
-              "Burglary benefit- N1,000,000•",
-              "Public Liability benefit•",
-              "Third Party Injury- N1,000,000•",
-              "Third Party property damage- N1,000,000•",
-              "Personal Accident benefit•",
-              "Permanent disability benefit- N200,000•",
-              "Death benefit- N200,000•",
-              "Medical expenses- N100,000",
-            ],
-          },
-        ],
-        keyFeatures: [
-          {
-            title: "",
-            description: "",
-            list: [],
-          },
-        ],
-      },
+      // {
+      //   id: 5,
+      //   title: "Home Shield",
+      //   description:
+      //     "Custodian Home Shield protects policyholders against loss or damage to their home contents or properties, which includes household contents and personal effects. The cover also extends to the properties or personal effects of any member of the family normally living with the Insured.",
+      //   position: "",
+      //   getQuote: formRoutes.home_shield,
+      //   benefits: [
+      //     {
+      //       title: "",
+      //       description:
+      //         "This policy covers loss or damage caused by any of the perils mentioned below:",
+      //       list: [],
+      //     },
+      //     {
+      //       title: "",
+      //       description:
+      //         "Fire & Special Perils Insurance: covers damage to insured’s building and content due to fire, storm damage, overflow of tanks etc.",
+      //       list: [],
+      //     },
+      //     {
+      //       title: "",
+      //       description:
+      //         "Burglary Insurance: covers housebreaking (theft of any item within the building)",
+      //       list: [],
+      //     },
+      //     {
+      //       title: "",
+      //       description:
+      //         "Public Liability Insurance: covers you against your liability to third parties in the event of accidental injuries of your visitors within your building",
+      //       list: [],
+      //     },
+      //     {
+      //       title: "",
+      //       description:
+      //         "Personal Accident Insurance: Indemnifies you in the event of domestic accidents sustained in your hom",
+      //       list: [],
+      //     },
+      //     {
+      //       title: "Features",
+      //       description: "",
+      //       list: [
+      //         "Annually renewable policy•",
+      //         "Premium is N10,000•",
+      //         "Fire & Special benefit- N2,000,000•",
+      //         "Burglary benefit- N1,000,000•",
+      //         "Public Liability benefit•",
+      //         "Third Party Injury- N1,000,000•",
+      //         "Third Party property damage- N1,000,000•",
+      //         "Personal Accident benefit•",
+      //         "Permanent disability benefit- N200,000•",
+      //         "Death benefit- N200,000•",
+      //         "Medical expenses- N100,000",
+      //       ],
+      //     },
+      //   ],
+      //   keyFeatures: [
+      //     {
+      //       title: "",
+      //       description: "",
+      //       list: [],
+      //     },
+      //   ],
+      // },
       {
         id: 6,
         title: "Personal Accident Insurance",
@@ -928,36 +928,36 @@ export const products: tabContentsType[] = [
       //     },
       //   ],
       // },
-      {
-        id: 8,
-        title: "Safety Plus Plan",
-        description:
-          "Accidents do happen; when they do the victims are less burdened when they do not have to worry about the medical expenses that come as a result of such.",
-        position: "",
-        getQuote: formRoutes.safety_plus,
-        benefits: [
-          {
-            title: "",
-            description:
-              "Custodian Safety Plus Plan is a Personal Accident Insurance policy that provides financial assistance to the Insured in the event of an accident. The policy covers death, permanent disablement and medical expenses as a result of an accident.",
-            list: [],
-          },
-        ],
-        keyFeatures: [
-          {
-            title: "Key Features",
-            description: "",
-            list: [
-              "• Annually renewable policy•",
-              "Premium per unit is N1,000.00•",
-              "Minimum unit of one and maximum of five•",
-              "Permanent disability benefit per unit is N400,000.00•",
-              "Death benefit per unit is N200,000.00•",
-              "Limit of Medical expenses is N30,000",
-            ],
-          },
-        ],
-      },
+      // {
+      //   id: 8,
+      //   title: "Safety Plus Plan",
+      //   description:
+      //     "Accidents do happen; when they do the victims are less burdened when they do not have to worry about the medical expenses that come as a result of such.",
+      //   position: "",
+      //   getQuote: formRoutes.safety_plus,
+      //   benefits: [
+      //     {
+      //       title: "",
+      //       description:
+      //         "Custodian Safety Plus Plan is a Personal Accident Insurance policy that provides financial assistance to the Insured in the event of an accident. The policy covers death, permanent disablement and medical expenses as a result of an accident.",
+      //       list: [],
+      //     },
+      //   ],
+      //   keyFeatures: [
+      //     {
+      //       title: "Key Features",
+      //       description: "",
+      //       list: [
+      //         "• Annually renewable policy•",
+      //         "Premium per unit is N1,000.00•",
+      //         "Minimum unit of one and maximum of five•",
+      //         "Permanent disability benefit per unit is N400,000.00•",
+      //         "Death benefit per unit is N200,000.00•",
+      //         "Limit of Medical expenses is N30,000",
+      //       ],
+      //     },
+      //   ],
+      // },
     ],
   },
 ];

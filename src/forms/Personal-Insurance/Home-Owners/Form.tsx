@@ -36,7 +36,7 @@ export const HomeOwnersForm: React.FC<{}> = () => {
 
   return (
     <>
-      <div className='flex justify-center items-center pt-[200px] px-20'>
+      <div className='flex justify-center items-center pt-[200px] px-5 md:px-10 lg:px-20'>
         <div className='w-[95%] bg-white rounded-md self-center p-6'>
           <FormTitle title='Home Owners Insurance' />
           <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>

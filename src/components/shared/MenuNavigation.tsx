@@ -4,7 +4,9 @@ import { useIsMobile } from "../../hooks/useIsMobile";
 import { FullHeader } from "./Header/FullHeader";
 
 export const MenuNavigation: React.FC<{}> = () => {
-  const { isMobile } = useIsMobile();
+  const { isSmallDevice, isMediumDevice } = useIsMobile();
 
-  return <>{isMobile ? <MobileHeader /> : <FullHeader />}</>;
+  return (
+    <>{isSmallDevice || isMediumDevice ? <MobileHeader /> : <FullHeader />}</>
+  );
 };

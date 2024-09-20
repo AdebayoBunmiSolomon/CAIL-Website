@@ -74,7 +74,7 @@ export const ProductSection: React.FC<{}> = () => {
   return (
     <>
       {selectedProdSection ? (
-        <section className='pt-[150px] bg-[#FBF9F9] px-20'>
+        <section className='pt-[150px] bg-[#FBF9F9] px-5 md:px-10 lg:px-20'>
           <Button
             leftIcon={<GoArrowLeft size={20} />}
             text='Back'
@@ -117,7 +117,7 @@ export const ProductSection: React.FC<{}> = () => {
           </div>
         </section>
       ) : (
-        <section className='pt-[150px] bg-[#FBF9F9] px-20'>
+        <section className='pt-[150px] bg-[#FBF9F9] px-5 md:px-10 lg:px-20'>
           <Button
             leftIcon={<GoArrowLeft size={20} />}
             text='Back'

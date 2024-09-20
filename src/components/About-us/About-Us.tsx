@@ -11,7 +11,7 @@ export const AboutUs: React.FC<{}> = () => {
             About Us
           </p>
           <p className='text-gray-500 font-medium text-left'>
-            Custodian & Allied Insurance is a wholly owned Nigerian Company.
+            Custodian and Allied Insurance is a wholly owned Nigerian Company.
             CAIL's sole purpose is to develop, package and deliver innovative
             insurance products that best satisfy customer needs, whilst
             operating a highly profitable, efficient, resourceful, and ethical

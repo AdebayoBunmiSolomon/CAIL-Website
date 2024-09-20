@@ -33,7 +33,7 @@ export const PersonalInsurancePersonalInfo: React.FC<personalInfoType> = ({
   return (
     <div className='flex justify-center items-center'>
       <div className='w-full bg-white p-6 shadow-xl rounded-lg'>
-        <FormTitle title='Motor Vehicle Insurance' />
+        <FormTitle title='Motor Insurance' />
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-3'>
           <Controller
             control={props?.control}

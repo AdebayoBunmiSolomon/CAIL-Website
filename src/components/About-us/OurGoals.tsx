@@ -22,7 +22,7 @@ export const OurGoals: React.FC<{}> = () => {
                   Our Mission
                 </span>
                 <p className='text-lg md:text-xl lg:text-2xl leading-relaxed font-normal text-[#3F3F3F] mt-6'>
-                  CLA’s mission is to develop and deliver innovative insurance
+                  CAIL’s mission is to develop and deliver innovative insurance
                   products that best satisfy customer needs, whilst operating a
                   highly profitable, efficient, resourceful and ethical
                   organisation.

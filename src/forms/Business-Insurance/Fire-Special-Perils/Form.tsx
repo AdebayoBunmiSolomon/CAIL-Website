@@ -8,7 +8,7 @@ import { GoArrowRight } from "react-icons/go";
 import { useBusinessInsuranceForm } from "../../../hooks/store/personal-accident/useBusinessInsuranceForm";
 import { sendQuoteMsg } from "../../../api/services/Business-Insurance/SendMessageService";
 
-export const HomeOwnersForm: React.FC<{}> = () => {
+export const FireSpecialPerilsForm: React.FC<{}> = () => {
   const { businessInsuranceFormData, setBusinessInsuranceFormData } =
     useBusinessInsuranceForm();
   const { sendMsg, loading } = sendQuoteMsg();
@@ -38,7 +38,7 @@ export const HomeOwnersForm: React.FC<{}> = () => {
     <>
       <div className='flex justify-center items-center pt-[200px] px-5 md:px-10 lg:px-20'>
         <div className='w-[95%] bg-white rounded-md self-center p-6'>
-          <FormTitle title='Home Insurance' />
+          <FormTitle title='Fire and Special Perils Insurance' />
           <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
             <Controller
               control={control}

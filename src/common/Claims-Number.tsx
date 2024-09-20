@@ -28,7 +28,7 @@ export const ClaimsNumber: React.FC<claimsNumberProps> = ({
                 <img src={balloon} alt='' className='w-24 h-24 mb-4' />
               </figure> */}
               <p className='text-lg font-semibold text-gradient'>
-                Your generated claims number is:
+                Your generated Claim number is:
               </p>
               <p className='text-lg font-semibold text-slate-400'>
                 {claimNumber}

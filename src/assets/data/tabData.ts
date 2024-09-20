@@ -299,7 +299,7 @@ export const tabData: tabContentsType[] = [
 export const claimsEntryTabHeader: tabContentsType[] = [
   {
     id: 1,
-    tabHeader: "Make a Claim",
+    tabHeader: "Make a claim",
     title: "",
     subTitle: "",
     subTitle2: "",
@@ -308,7 +308,7 @@ export const claimsEntryTabHeader: tabContentsType[] = [
   },
   {
     id: 2,
-    tabHeader: "Claim Status",
+    tabHeader: "Claim status",
     title: "",
     subTitle: "",
     subTitle2: "",

@@ -55,16 +55,17 @@ export const useSubmitAviationClaim = () => {
         claimsHeaderConfiguration
       );
       if (data) {
-        toast(data.message, {
-          type: "success",
-          theme: "colored",
-        });
+        // toast(data.message, {
+        //   type: "success",
+        //   theme: "colored",
+        // });
         setShowClaims({
           ...showClaims,
           visible: true,
           claimsNumber: data.data.claimId,
         });
       } else {
+        await new Promise((resolve) => setTimeout(resolve, 3000));
         toast("Claim submitted successfully", {
           type: "success",
           theme: "colored",
@@ -74,6 +75,9 @@ export const useSubmitAviationClaim = () => {
           visible: false,
           claimsNumber: "",
         });
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       }
     } catch (err: any) {
       console.log("Error", err);

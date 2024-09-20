@@ -7,12 +7,12 @@ export const resourcesData: resourcesProps[] = [
       {
         id: 1,
         list: "Is anyone who drives my car insured?",
-        info: "YES provided the person is driving with your permission/consent and the person has a valid driver’s license",
+        info: "Yes, provided the person is driving with your permission/consent and the person has a valid driver’s license.",
       },
       {
         id: 2,
         list: "What are the best liability policy limits?",
-        info: "Liability policy limits must be fixed by you and it depends on the nature of your work vis a vis the likely exposure to risk the people around you are; your customers and your staff by your activities. For Workmen’s Compensation, your exposure is based on the annual earnings of your staff multiplied by 3, 5. This is made compulsory by law",
+        info: "Liability policy limits must be fixed by you and it depends on the nature of your work vis-a-vis the likely exposure to risk the people around you are; your customers and your staff by your activities. For Workmen’s Compensation, your exposure is based on the annual earnings of your staff multiplied by 3, 5. This is made compulsory by law.",
       },
       {
         id: 3,
@@ -29,11 +29,11 @@ export const resourcesData: resourcesProps[] = [
         list: "Why does my insurance cost more than my agent said it would?",
         info: "Your agent is vast in insurance and will be able to negotiate for some special terms and conditions that may affect your rate of premium",
       },
-      {
-        id: 7,
-        list: "Why did I not get my total sum insured when my car was written off?",
-        info: "The reason might be one of the following: 1). That excess has been deducted. An excess is the amount of your claim that you will bear in the event of a loss. It is usually stated in the policy and must be communicated to you. This is to make you vey careful whenever you are driving. 2). The other reason may be that you under-insured your car. This is when you state an amount lower than the cost of the car in the market.",
-      },
+      // {
+      //   id: 7,
+      //   list: "Why did I not get my total sum insured when my car was written off?",
+      //   info: "The reason might be one of the following: 1). That excess has been deducted. An excess is the amount of your claim that you will bear in the event of a loss. It is usually stated in the policy and must be communicated to you. This is to make you vey careful whenever you are driving. 2). The other reason may be that you under-insured your car. This is when you state an amount lower than the cost of the car in the market.",
+      // },
       {
         id: 8,
         list: "How does my driving record affect my insurance?",
@@ -42,12 +42,12 @@ export const resourcesData: resourcesProps[] = [
       {
         id: 9,
         list: "My Teenager just got his License. Does the need to be insured?",
-        info: "Yes, he needs to be insured if he is up to 18yrs old.",
+        info: "Yes, he needs to be insured if he is up to 18 years old.",
       },
       {
         id: 10,
-        list: "What do insurance companies condider when deciding cancellations",
-        info: "Cancellation can come from either the insured or the insurer. Insurers can decide to cancel due to the frequency of your claims, non-payment of premium, non-disclosure of material facts i.e facts that are material/important to the risk etc. However the insured can also cancel for similar reasons. GOODS-IN-TRANSIT Insurance: Covers your stock/or movable property while it is being transported by road/rail anywhere in Nigeria.",
+        list: "What do insurance companies consider when deciding cancellations?",
+        info: "Cancellation can come from either the insured or the insurer. Insurers can decide to cancel due to the frequency of your claims, non-payment of premium, non-disclosure of material facts i.e facts that are material/important to the risk etc. However, the insured can also cancel for similar reasons.",
       },
     ],
   },

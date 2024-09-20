@@ -58,7 +58,9 @@ export const MakeEnquiry = () => {
               type: "success",
               theme: "colored",
             });
-            // navigate("/contact-us");
+            setTimeout(() => {
+              window.location.reload();
+            }, 3000);
           } else {
             toast(data.message, {
               type: "error",
@@ -88,7 +90,9 @@ export const MakeEnquiry = () => {
             type: "success",
             theme: "colored",
           });
-          // navigate("/contact-us");
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
         } else {
           toast(data.message, {
             type: "error",

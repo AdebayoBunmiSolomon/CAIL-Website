@@ -25,13 +25,13 @@ export const GetStarted: React.FC<getStartedProps> = ({
                     Insurance solutions
                   </span>
                   <h1 className='text-[38px] md:text-[48px] lg:text-[58px] leading-tight text-black font-bold'>
-                    crafted to fit your special needs
+                    designed to meet your needs.
                   </h1>
                 </div>
                 <p className='text-[16px] md:text-[20px] lg:text-[24px] leading-relaxed font-medium text-justify'>
-                  Discover how our insurance product can provide you with peace
-                  of mind and security, all while contributing to a profitable
-                  and sustainable future.
+                  Discover how our insurance product can provide you peace of
+                  mind and security, all while contributing to a profitable and
+                  sustainable future.
                 </p>
                 <div className='flex flex-col lg:flex-row gap-5'>
                   <Button

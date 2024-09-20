@@ -9,7 +9,7 @@ export const OurStyle: React.FC<{}> = () => {
         increasingly competitive environment.
       </p>
       <p className='text-gray-500 font-medium text-left'>
-        At CAI however, the techniques of our service delivery lie in our
+        At CAIL however, the techniques of our service delivery lie in our
         ability to provide fast, efficient, and highly professional service to
         the market in which we operate. This we are able to achieve through the
         automation of our various lines of operation, thereby reducing

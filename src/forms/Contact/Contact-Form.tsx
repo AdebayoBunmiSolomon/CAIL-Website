@@ -67,7 +67,7 @@ export const ContactForm: React.FC<{}> = () => {
   return (
     <>
       <p className=' font-normal text-2xl text-[#900000]'>
-        Share your ideas, inquiries and provide feedback
+        Share your inquiries or feedback with us.
       </p>
       <div className='flex flex-col md:flex-col lg:flex-row justify-between items-center gap-3 w-[100%]'>
         <Controller
@@ -178,7 +178,7 @@ export const ContactForm: React.FC<{}> = () => {
           <label
             htmlFor='policyHolder'
             className='ml-2 block text-sm text-gray-900'>
-            I am a policy holder?
+            I'm a policyholder
           </label>
         </div>
         {policyHolderChecked && (
@@ -187,7 +187,7 @@ export const ContactForm: React.FC<{}> = () => {
               control={control}
               render={({ field }) => (
                 <TextInput
-                  placeHolder=''
+                  placeHolder='enter correct policy number'
                   value={field.value}
                   onChange={(event) => {
                     field.onChange(event.target.value);
@@ -258,7 +258,7 @@ export const ContactForm: React.FC<{}> = () => {
         <label
           htmlFor='callMeBack'
           className='ml-2 block text-sm text-gray-900'>
-          Request custodian to call me back?
+          Request a Call Back
         </label>
       </div>
 

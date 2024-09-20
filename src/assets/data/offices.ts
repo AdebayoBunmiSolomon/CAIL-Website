@@ -8,7 +8,7 @@ export const officesData: officesDataType[] = [
   },
   {
     name: "Owerri",
-    address: "103, Wetheral Road, Owerri, Imo State",
+    address: "37, Ekwena Crescent, Ikwe Negbu Layout Owerri, Imo State",
     phone: "083-431158",
   },
   {
@@ -19,25 +19,23 @@ export const officesData: officesDataType[] = [
   {
     name: "Abuja",
     address:
-      "lot 1012, Adetokunbo Ademola Crescent Opposite Rockview, Wuse 2, Abuja",
+      "Third Floor Oaklandland Centre, Plot 2940, Aguiyi Ironsi Street, Maitama, AbujaCrescent Opposite Rockview, Wuse 2, Abuja",
     phone: "09-2900465",
   },
   {
-    name: "Port-Harcourt",
-    address:
-      "37B, Gbongan-Ibadan Road, Opposite Fakunle Comprehensive High School Osogbo, Osun State",
-    phone: "08055394748",
+    name: "Port Harcourt",
+    address: "180 Aba Road, Port Harcourt, Rivers State",
+    phone: "07085000046",
   },
   {
     name: "Onitsha",
-    address: "60A, Old Market Road,Onitsha, Anambra State",
-    phone: "08064445956",
+    address: "16, Awka Road, Onitsha, Anambra State.",
+    phone: "09032537339",
   },
   {
     name: "Ibadan",
-    address:
-      "6th Floor,Broking House, 1 Alhaji Jimoh Odutola Street, Ibadan, Oyo State.",
-    phone: "05-2292480",
+    address: "9, Onireke Residential Layout Ibadan Oyo State",
+    phone: "022-918538",
   },
   {
     name: "Kaduna",
@@ -46,9 +44,8 @@ export const officesData: officesDataType[] = [
   },
   {
     name: "Abeokuta",
-    address:
-      "20A, Olusegun Osoba Way,Oke Ilewo, Omida-Ibara, Abeokuta, Ogun State",
-    phone: "08023860547",
+    address: "Abeokuta 34/36 Totoro Road, Totoro, Abeokuta, Ogun State.",
+    phone: "0816690460",
   },
   {
     name: "Kano",

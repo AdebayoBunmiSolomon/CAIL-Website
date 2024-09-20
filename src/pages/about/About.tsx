@@ -20,8 +20,8 @@ export const About: React.FC<{}> = () => {
     <>
       <Hero
         title='All you need to know about'
-        description="Your dedicated ally in ensuring life's uncertainities and achieving Financial aspirations. Explore & Allied Insurance today"
-        subtitle='Custodian & Allied Insurance '
+        description='Your trusted partner in navigating life’s uncertainties and securing your financial future.'
+        subtitle='Custodian and Allied Insurance Ltd.'
       />
       <AboutUs />
       <OurGoals />

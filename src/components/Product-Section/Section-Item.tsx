@@ -5,6 +5,22 @@ export const TopSectionItem: React.FC<sectionItemProps> = ({
   keyIndex,
   items,
 }) => {
+  const BoldText = ({ text }) => {
+    const boldBeforeColon = (text: string) => {
+      const parts = text.split(":");
+      if (parts.length > 1) {
+        return (
+          <>
+            <b>{parts[0]}</b>: {parts.slice(1).join(":")}
+          </>
+        );
+      }
+      return text; // Return the original text if there's no colon
+    };
+
+    return <div>{boldBeforeColon(text)}</div>;
+  };
+
   return (
     <div key={keyIndex} className='flex flex-col gap-2'>
       <p className='text-[#606060] text-[12px] md:text-[16px] lg:text-[16px] font-bold'>
@@ -17,7 +33,7 @@ export const TopSectionItem: React.FC<sectionItemProps> = ({
         {items.list &&
           items.list.map((listItems, index) => (
             <li key={index} className='pb-2 leading-loose'>
-              {listItems}
+              <BoldText text={listItems} />
             </li>
           ))}
       </ul>
@@ -29,6 +45,21 @@ export const BottomSectionItem: React.FC<sectionItemProps> = ({
   keyIndex,
   items,
 }) => {
+  const BoldText = ({ text }) => {
+    const boldBeforeColon = (text: string) => {
+      const parts = text.split(":");
+      if (parts.length > 1) {
+        return (
+          <>
+            <b>{parts[0]}</b>: {parts.slice(1).join(":")}
+          </>
+        );
+      }
+      return text; // Return the original text if there's no colon
+    };
+
+    return <div>{boldBeforeColon(text)}</div>;
+  };
   return (
     <div key={keyIndex} className='flex flex-col gap-2'>
       <p className='text-[#606060] text-[12px] md:text-[16px] lg:text-[16px] font-bold'>
@@ -41,7 +72,7 @@ export const BottomSectionItem: React.FC<sectionItemProps> = ({
         {items.list &&
           items.list.map((listItems, index) => (
             <li key={index} className='pb-2 leading-loose'>
-              {listItems}
+              <BoldText text={listItems} />
             </li>
           ))}
       </ul>

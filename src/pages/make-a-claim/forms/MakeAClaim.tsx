@@ -46,14 +46,14 @@ export const MakeAClaim: React.FC<{}> = () => {
       <div className='px-2 md:px-10 lg:px-20'>
         <div className='flex justify-center items-center'>
           <div className='w-[90%] md:w-[70%] lg:w-[50%] bg-white rounded-lg self-center p-6 shadow-xl'>
-            <FormTitle title='Make Claim' />
+            <FormTitle title='Make a claim' />
             <div className='flex flex-col md:flex-col lg:flex-row items-center gap-4 mb-3'>
               <Controller
                 control={control}
                 render={({ field }) => (
                   <TextInput
                     label='Policy number'
-                    placeHolder='enter policy number here...'
+                    placeHolder='Enter your policy number here.'
                     type='text'
                     value={field.value}
                     onChange={(event) => {

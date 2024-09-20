@@ -219,7 +219,7 @@ export const PrivatePolicy = () => {
                 (1) month. If you would like to exercise any of these rights,
                 please contact us at our email:
                 dataprotection@custodianplc.com.ng or Call us on: Phone:
-                (+234)12774000-9
+                (+234)2012774000-9
               </p>
             </div>
             {/* end */}
@@ -328,7 +328,7 @@ export const PrivatePolicy = () => {
                 <br />
                 Call us:{" "}
                 <a href='tel:+23412774000-9' className='text-[#900000]'>
-                  (+234)12774000-9
+                  (+234)2012774000-9
                 </a>
               </p>
             </div>

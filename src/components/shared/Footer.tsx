@@ -4,6 +4,7 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import fbIcon from "../../assets/images/fb_icon.png";
 import igIcon from "../../assets/images/IG_icon.png";
 import linkedInIcon from "../../assets/images/LinkedIn_icon.png";
+import twitter from "../../assets/images/twitter_icon.png";
 // import { NewLetter } from "./Newsletter";
 
 export const Footer = () => {
@@ -22,7 +23,7 @@ export const Footer = () => {
                 href={"https://custodianplc.com.ng"}
                 target='_blank'
                 rel='noopener noreferrer'>
-                <p className='  '>Custodian Investment Plc</p>
+                <p className='  '>Custodian Investment Plc.</p>
               </a>
               <a
                 href={
@@ -30,25 +31,25 @@ export const Footer = () => {
                 }
                 target='_blank'
                 rel='noopener noreferrer'>
-                <p className='  '>Custodian and Allied Insurance Ltd</p>
+                <p className='  '>Custodian and Allied Insurance Ltd.</p>
               </a>
               <a
                 href={"https://custodianplc.com.ng/trustees-limited"}
                 target='_blank'
                 rel='noopener noreferrer'>
-                <p className=' '>Custodian Trustees Ltd</p>
+                <p className=' '>Custodian Trustees Ltd.</p>
               </a>
               <a
                 href={"https://crusaderpensions.com/"}
                 target='_blank'
                 rel='noopener noreferrer'>
-                <p className='  '>Crusader Sterling Pensions Ltd</p>
+                <p className='  '>CrusaderSterling Pensions Ltd.</p>
               </a>
               <a
                 href={"https://updcplc.com/"}
                 target='_blank'
                 rel='noopener noreferrer'>
-                <p className='  '> UPDC Plc</p>
+                <p className='  '> UPDC Plc.</p>
               </a>
               <a
                 href={"https://updcfm.com/"}
@@ -60,7 +61,7 @@ export const Footer = () => {
                 href={"https://www.interstatesecurities.com/"}
                 target='_blank'
                 rel='noopener noreferrer'>
-                <p>Interstate Securities Ltd</p>
+                <p>Interstate Securities Ltd.</p>
               </a>
               <a
                 href={"https://festivalhotellagos.com/"}
@@ -83,13 +84,13 @@ export const Footer = () => {
                 }
                 target='_blank'
                 rel='noopener noreferrer'>
-                <p className=' '>Whistle Bowing Policy</p>
+                <p className=' '>Whistleblowing Policy</p>
               </a>
               <a
                 href={" https://www.custodianplc.com.ng/whistleblower"}
                 target='_blank'
                 rel='noopener noreferrer'>
-                <p className=' '>Whistle Blower</p>
+                <p className=' '>Whistleblower</p>
               </a>
               <span onClick={() => navigate("/terms&conditions")}>
                 <p className='cursor-pointer'>Terms and Conditions</p>
@@ -129,6 +130,12 @@ export const Footer = () => {
             <p className='text-[#9DADB9]'>FOLLOW US</p>
             <div className='flex gap-[30px] mt-7'>
               <a
+                href={"https://twitter.com/CustodianPLC"}
+                target='_blank'
+                rel='noopener noreferrer'>
+                <img src={twitter} alt='twitter' />
+              </a>
+              <a
                 href={"https://www.facebook.com/CustodianPLC/"}
                 target='_blank'
                 rel='noopener noreferrer'>
@@ -147,22 +154,15 @@ export const Footer = () => {
                 rel='noopener noreferrer'>
                 <img src={linkedInIcon} alt='LinkedIn' />
               </a>
-              {/* <a
-                href={"https://twitter.com/CustodianPLC"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={images.twitter} alt="twitter" />
-              </a> */}
             </div>
           </div>
         </div>
         <div className='flex items-center justify-center gap-5 mt-10 font-[400] mb-2 text-[6px] md:text-[16px] leading-[30px]'>
-          <p>© 2023 Custodian Investment Plc</p>
+          <p>© 2024 Custodian and Allied Insurance Ltd.</p>
           <p className='flex'>
             <GoDot />
             Authorised and Regulated by the National Insurance Commission -{" "}
-            <span className='font-[500]'>RIC No. 010 (L)</span>
+            <span className='font-[500]'>RIC No. 010 (G)</span>
           </p>
         </div>
       </div>

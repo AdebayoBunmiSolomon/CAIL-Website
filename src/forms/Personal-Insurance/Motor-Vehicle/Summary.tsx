@@ -10,7 +10,7 @@ export const PersonalInsuranceSummary: React.FC<{}> = () => {
     <div>
       <div className='flex justify-center items-center'>
         <div className='w-full bg-white rounded-md self-center p-6 overflow-x-auto'>
-          <FormTitle title='Motor Vehicle Summary' />
+          <FormTitle title='Motor Summary' />
           <div className='shadow overflow-hidden border-b border-gray-200 sm:rounded-lg'>
             <table className='min-w-full divide-y divide-gray-200'>
               <thead className='bg-gray-50'>

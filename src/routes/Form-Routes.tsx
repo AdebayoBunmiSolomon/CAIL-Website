@@ -37,6 +37,9 @@ import { OilAndGasClaimStepper } from "../forms/Make-a-Claim/Oil-and-Gas/Stepper
 import { PackagedPolicyClaimStepper } from "../forms/Make-a-Claim/Packaged/Stepper";
 import { CustodianSMEForm } from "../forms/Business-Insurance/Custodian-SME/Form";
 import { HomeOwnersForm } from "../forms/Personal-Insurance/Home-Owners/Form";
+import { FireSpecialPerilsForm } from "../forms/Business-Insurance/Fire-Special-Perils/Form";
+import { GroupLifePersonalAccidentForm } from "../forms/Business-Insurance/Group-Life-Personal-Accident/Form";
+import { MotorInsurancePrivateCarForm } from "../forms/Business-Insurance/Motor-Insurance-Private-Car/Form";
 
 type formRouteProps = {
   path: string;
@@ -161,6 +164,18 @@ export const policyFormRoutes: formRouteProps[] = [
   {
     path: formRoutes.marine_boat_owner,
     element: MarineBoatOwnerForm,
+  },
+  {
+    path: formRoutes.fire_special_perils,
+    element: FireSpecialPerilsForm,
+  },
+  {
+    path: formRoutes.group_life_personal_accident,
+    element: GroupLifePersonalAccidentForm,
+  },
+  {
+    path: formRoutes.motor_insurance_private_car,
+    element: MotorInsurancePrivateCarForm,
   },
   // {
   //   path: formRoutes.makeAClaim,

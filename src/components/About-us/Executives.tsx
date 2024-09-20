@@ -33,6 +33,9 @@ export const Executives: React.FC<executiveProps> = ({ data }) => {
                     <p className='p-5 w-[80%] text-[17px] font-medium'>
                       {item.title}
                     </p>
+                    <p className='p-5 w-[80%] text-[17px] font-normal text-gray-400'>
+                      {item.position}
+                    </p>
                     <p className='p-5'>
                       {active === index && (
                         <FaCircle className={"text-[#900000]"} size={22} />

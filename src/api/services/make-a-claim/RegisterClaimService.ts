@@ -37,22 +37,31 @@ export const RegisterClaimService = () => {
       switch (claimType) {
         case "accident":
           await submitAccidentClaim();
+          break;
         case "aviation":
           await submitAviationClaim();
+          break;
         case "bond":
           await submitBondClaim();
+          break;
         case "engineering":
           await submitEngineeringClaim();
+          break;
         case "fire":
           await submitFireClaim();
+          break;
         case "marine":
           await submitMarineClaim();
+          break;
         case "motor":
           await submitMotorClaim();
+          break;
         case "oil and gas":
           await submitOilAndGasClaim();
+          break;
         case "packaged":
           await submitPackagedPolicyClaim();
+          break;
         default:
           null || undefined;
           break;

@@ -9,9 +9,9 @@ export const ContactUs: React.FC<{}> = () => {
   return (
     <>
       <Hero
-        title='Do You Have Questions,'
+        title='Do You Have Questions?'
         description=''
-        subtitle="Let's Hear From You"
+        subtitle="Let's Hear from You"
       />
 
       <div className='flex flex-col items-start justify-start md:flex-col md:items-start md:justify-start lg:flex-row lg:items-center lg:justify-between px-4 md:px-6 lg:px-20 w-full bg-white py-10'>
@@ -25,14 +25,14 @@ export const ContactUs: React.FC<{}> = () => {
               <p className='text-sm'>
                 Address: 16A, Commercial Avenue, Sabo, Yaba, Lagos
               </p>
-              <p className='text-sm'>Phone: (+234)12774000-9</p>
+              <p className='text-sm'>Phone: (+234)2012774000-9</p>
               <p className='text-sm'>
                 Email: carecentre@custodianinsurance.com
               </p>
             </div>
             <div>
               <h1 className='font-semibold text-lg'>Business Hours</h1>
-              <p className='text-sm'>Monday - Friday: 9am to 5pm</p>
+              <p className='text-sm'>Monday - Friday: 8am to 5:30pm</p>
               <p className='text-sm'>Saturday: Closed</p>
               <p className='text-sm'>Sunday: Closed</p>
             </div>

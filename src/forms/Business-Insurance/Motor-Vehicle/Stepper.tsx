@@ -26,7 +26,8 @@ export const MotorStepper: React.FC<{}> = () => {
   );
   const buttonText = getButtonBtnState(
     activeStep,
-    motorVehicleFormSteps.length - 1
+    motorVehicleFormSteps.length - 1,
+    "Pay now"
   );
   const { submitMotorQuote, submitting } = useSubmitMotorQuote();
 

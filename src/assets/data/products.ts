@@ -45,74 +45,74 @@ export const products: tabContentsType[] = [
           },
         ],
       },
-      // {
-      //   id: 2,
-      //   title: "Custodian Motor Insurance",
-      //   description:
-      //     "Our Motor Insurance covers Nigerian-registered private motor vehicles, commercial vehicles, motorcycles, mechanically propelled plant, or trailers. It offers the following coverage:",
-      //   position: "",
-      //   getQuote: formRoutes.motor_vehicle,
-      //   keyFeatures: [
-      //     {
-      //       title: "Extensions/Benefits",
-      //       description: "",
-      //       list: [
-      //         "A discount is given depending on the number of vehicles.",
-      //         "Free cover for vehicle accessories subject to forcible entry into the car.",
-      //         "Towing fee is covered up to a maximum of ₦20,000, provided your car is towed to a nearest and reasonable place for safekeeping or repair.",
-      //         "Third Party Property Damage (TPPD) cover of ₦1 million is increased to ₦2 million at no additional cost.",
-      //         "Cover for personal effects in the vehicle following an accident and/or theft up to ₦20,000.",
-      //         "Free cover for accidental breakage and/or theft of the windscreen.",
-      //         "Cover for the risk of strikes, riots, and civil commotion requires payment of an additional premium.",
-      //         "Limit of medical expenses is increased to ₦20,000 in the event of an accident.",
-      //       ],
-      //     },
-      //     {
-      //       title: "Optional Cover",
-      //       description: "",
-      //       list: [
-      //         "Vehicle Sound/Radio and Accessories: Must be specified and are covered for loss or damage.",
-      //         "Out-of-Nigeria Coverage: Covers your vehicle when it is temporarily used for business or private purposes outside Nigeria but within the West African shores, provided notice is given to us and the necessary document is obtained (i.e., The Brown Card). It covers your liability to other people where an accident causes death or injury to them or damage to their property and attracts an additional premium.",
-      //       ],
-      //     },
-      //     {
-      //       title: "Additional Benefits",
-      //       description: "",
-      //       list: [
-      //         "Emergency medical expenses in the event of an accident.",
-      //         "Towing fee is covered up to a maximum limit, provided your car is towed to the nearest and most reasonable place for safekeeping or repair.",
-      //         "Cover for personal effects in the vehicle following an accident and/or theft up to a maximum limit.",
-      //         "Flood, risk of strikes, riots, and civil commotion—payment of an additional premium required.",
-      //       ],
-      //     },
-      //   ],
-      //   benefits: [
-      //     {
-      //       title: "Comprehensive Cover",
-      //       description: "",
-      //       list: [
-      //         "Covers your vehicle for accidental damage, theft, and hijack, as well as injury to other people or damage to their property.",
-      //       ],
-      //     },
-      //     {
-      //       title: "Limited Cover",
-      //       description: "",
-      //       list: [
-      //         "Accidental Damage & Third Party Cover: Covers your vehicle against accidental damage, as well as death or injury to other people or damage to their property. Loss resulting from fire and theft is not covered.",
-      //         "Third Party Fire & Theft Cover: Covers your vehicle for damage caused by fire, theft, or hijack, as well as injury to other people or damage to their property. Accidental damage to your vehicle is not covered.",
-      //         "Liability to Other People (Third Party Cover): Covers your liability to other people where an accident causes death or injury to them or damage to their property. This is a compulsory cover for every motor user in Nigeria.",
-      //       ],
-      //     },
-      //     {
-      //       title: "Optional Cover",
-      //       description: "",
-      //       list: [
-      //         "Vehicle Sound/Radio and Accessories: Must be specified and are covered for loss or damage.",
-      //         "Out-of-Nigeria Coverage: Covers your vehicle when it is temporarily used either for business or private purposes outside Nigeria but within the West African shores, provided notice is given to us and the necessary document is obtained (i.e., The Brown Card). It covers you for liability to other people where an accident causes death or injury to them or damage to their property.",
-      //       ],
-      //     },
-      //   ],
-      // },
+      {
+        id: 2,
+        title: "Custodian Motor Insurance",
+        description:
+          "Our Motor Insurance covers Nigerian-registered private motor vehicles, commercial vehicles, motorcycles, mechanically propelled plant, or trailers. It offers the following coverage:",
+        position: "",
+        getQuote: formRoutes.motor_vehicle,
+        keyFeatures: [
+          {
+            title: "Extensions/Benefits",
+            description: "",
+            list: [
+              "A discount is given depending on the number of vehicles.",
+              "Free cover for vehicle accessories subject to forcible entry into the car.",
+              "Towing fee is covered up to a maximum of ₦20,000, provided your car is towed to a nearest and reasonable place for safekeeping or repair.",
+              "Third Party Property Damage (TPPD) cover of ₦1 million is increased to ₦2 million at no additional cost.",
+              "Cover for personal effects in the vehicle following an accident and/or theft up to ₦20,000.",
+              "Free cover for accidental breakage and/or theft of the windscreen.",
+              "Cover for the risk of strikes, riots, and civil commotion requires payment of an additional premium.",
+              "Limit of medical expenses is increased to ₦20,000 in the event of an accident.",
+            ],
+          },
+          {
+            title: "Optional Cover",
+            description: "",
+            list: [
+              "Vehicle Sound/Radio and Accessories: Must be specified and are covered for loss or damage.",
+              "Out-of-Nigeria Coverage: Covers your vehicle when it is temporarily used for business or private purposes outside Nigeria but within the West African shores, provided notice is given to us and the necessary document is obtained (i.e., The Brown Card). It covers your liability to other people where an accident causes death or injury to them or damage to their property and attracts an additional premium.",
+            ],
+          },
+          {
+            title: "Additional Benefits",
+            description: "",
+            list: [
+              "Emergency medical expenses in the event of an accident.",
+              "Towing fee is covered up to a maximum limit, provided your car is towed to the nearest and most reasonable place for safekeeping or repair.",
+              "Cover for personal effects in the vehicle following an accident and/or theft up to a maximum limit.",
+              "Flood, risk of strikes, riots, and civil commotion—payment of an additional premium required.",
+            ],
+          },
+        ],
+        benefits: [
+          {
+            title: "Comprehensive Cover",
+            description: "",
+            list: [
+              "Covers your vehicle for accidental damage, theft, and hijack, as well as injury to other people or damage to their property.",
+            ],
+          },
+          {
+            title: "Limited Cover",
+            description: "",
+            list: [
+              "Accidental Damage & Third Party Cover: Covers your vehicle against accidental damage, as well as death or injury to other people or damage to their property. Loss resulting from fire and theft is not covered.",
+              "Third Party Fire & Theft Cover: Covers your vehicle for damage caused by fire, theft, or hijack, as well as injury to other people or damage to their property. Accidental damage to your vehicle is not covered.",
+              "Liability to Other People (Third Party Cover): Covers your liability to other people where an accident causes death or injury to them or damage to their property. This is a compulsory cover for every motor user in Nigeria.",
+            ],
+          },
+          {
+            title: "Optional Cover",
+            description: "",
+            list: [
+              "Vehicle Sound/Radio and Accessories: Must be specified and are covered for loss or damage.",
+              "Out-of-Nigeria Coverage: Covers your vehicle when it is temporarily used either for business or private purposes outside Nigeria but within the West African shores, provided notice is given to us and the necessary document is obtained (i.e., The Brown Card). It covers you for liability to other people where an accident causes death or injury to them or damage to their property.",
+            ],
+          },
+        ],
+      },
       {
         id: 3,
         title: "Machinery Breakdown Insurance",

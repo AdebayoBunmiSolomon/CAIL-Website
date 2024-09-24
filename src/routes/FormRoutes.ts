@@ -5,7 +5,7 @@
 
 export const enum formRoutes {
   custodian_events = "/products/forms/custodian-events",
-  motor_vehicle = "", //"/products/forms/motor-vehicle",
+  motor_vehicle = "/products/forms/motor-vehicle",
   motor_insurance_private_car = "/products/forms/motor-insurance-private-car",
   custodian_travel = "", // /products/forms/custodian-travel
   marine_boat_owner = "/products/forms/marine-boat",

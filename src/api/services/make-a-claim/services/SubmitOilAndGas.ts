@@ -6,36 +6,37 @@ import {
 import { claimsHeaderConfiguration } from "../../../configuration/header";
 import { endpoints } from "../../../enpoints";
 import { PostRequest } from "../../../requests";
-import { useState } from "react";
-import { showClaimDataType } from "../RegisterClaimService";
+import { getBooleanFromYesOrNo } from "../../../../helper/helper";
 
 export const useSubmitOilAndGasClaim = () => {
   const { makeAClaimFormData } = useMakeAClaimForm();
   const { oilAndGasClaimFormData } = useOilAndGasClaimForm();
-  const [showClaims, setShowClaims] = useState<showClaimDataType>({
-    visible: false,
-    claimsNumber: "",
-  });
 
   const submitOilAndGasClaim = async () => {
+    const formValue = new FormData();
     const oilAndGasForm = {
       policyHolderName: makeAClaimFormData.officeName,
       policyNumber: makeAClaimFormData.policyId,
       subRisk: makeAClaimFormData.subRisk,
-      creationDate: makeAClaimFormData.creationDate,
-      claimType: "oil and gas",
+      creationDate: oilAndGasClaimFormData.dateTimeOfIncident,
+      claimType: oilAndGasClaimFormData.claimType,
+      claimClass: "oilandgas",
       email: oilAndGasClaimFormData.email,
       phoneNumber: oilAndGasClaimFormData.phoneNumber,
-      dateTimeOfIncident: oilAndGasClaimFormData.dateTimeOfIncident,
+      dateTimeOfIncident: "", //oilAndGasClaimFormData.dateTimeOfIncident,
       descriptionOfIncident: oilAndGasClaimFormData.descriptionOfIncident,
       listOfStolenItems: oilAndGasClaimFormData.listOfStolenItems,
-      doYouHaveAWitness: oilAndGasClaimFormData.doYouHaveAWitness,
+      doYouHaveAWitness: getBooleanFromYesOrNo(
+        oilAndGasClaimFormData.doYouHaveAWitness
+      ),
       nameOfWitness: oilAndGasClaimFormData.nameOfWitness,
       witnessContactInfo: oilAndGasClaimFormData.witnessContactInfo,
-      hasThePoliceBeenInformed: oilAndGasClaimFormData.hasThePoliceBeenInformed,
-      whenWasThePoliceInformed: oilAndGasClaimFormData.whenWasThePoliceInformed,
+      hasThePoliceBeenInformed: getBooleanFromYesOrNo(
+        oilAndGasClaimFormData.hasThePoliceBeenInformed
+      ),
+      whenWasThePoliceInformed: "", //oilAndGasClaimFormData.whenWasThePoliceInformed,
       policeStationAddress: oilAndGasClaimFormData.policeStationAddress,
-      claimsAmount: oilAndGasClaimFormData.claimsAmount,
+      //claimsAmount: oilAndGasClaimFormData.claimsAmount,
       evidenceUpload1: oilAndGasClaimFormData.evidenceUpload1,
       evidenceUpload2: oilAndGasClaimFormData.evidenceUpload2,
       evidenceUpload3: oilAndGasClaimFormData.evidenceUpload3,
@@ -43,44 +44,41 @@ export const useSubmitOilAndGasClaim = () => {
       eyeWitnessReport: oilAndGasClaimFormData.eyeWitnessReport,
       policeReport: oilAndGasClaimFormData.policeReport,
     };
-    const formValue = new FormData();
     Object.keys(oilAndGasForm).forEach((key) => {
-      formValue.append(key, JSON.stringify(oilAndGasForm[key]));
+      formValue.append(key, oilAndGasForm[key]);
     });
-    console.log(oilAndGasForm);
     try {
       const { data } = await PostRequest(
-        `${endpoints.POST_CLAIM}`,
+        `/api/claims`,
         formValue,
         claimsHeaderConfiguration
       );
       if (data) {
-        // toast(data.message, {
-        //   type: "success",
-        //   theme: "colored",
-        // });
-        setShowClaims({
-          ...showClaims,
-          visible: true,
-          claimsNumber: data.data.claimId,
-        });
-      } else {
-        await new Promise((resolve) => setTimeout(resolve, 3000));
-        toast("Claim submitted successfully", {
+        toast("oil and gas claim successfully submitted", {
           type: "success",
           theme: "colored",
         });
-        setShowClaims({
-          ...showClaims,
+        return {
+          visible: true,
+          claimsNumber: data.claimId,
+        };
+      } else {
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        toast("Error submitting claim", {
+          type: "error",
+          theme: "colored",
+        });
+        return {
           visible: false,
           claimsNumber: "",
-        });
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        };
       }
     } catch (err: any) {
       console.log("Error", err);
+      return {
+        visible: false,
+        claimsNumber: "",
+      };
     }
   };
 

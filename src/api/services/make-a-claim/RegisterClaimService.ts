@@ -36,31 +36,76 @@ export const RegisterClaimService = () => {
     try {
       switch (claimType) {
         case "accident":
-          await submitAccidentClaim();
+          const accData = await submitAccidentClaim();
+          setShowClaims({
+            ...showClaims,
+            visible: accData?.visible,
+            claimsNumber: accData?.claimsNumber,
+          });
           break;
         case "aviation":
-          await submitAviationClaim();
+          const avtnData = await submitAviationClaim();
+          setShowClaims({
+            ...showClaims,
+            visible: avtnData?.visible,
+            claimsNumber: avtnData?.claimsNumber,
+          });
           break;
         case "bond":
-          await submitBondClaim();
+          const bndData = await submitBondClaim();
+          setShowClaims({
+            ...showClaims,
+            visible: bndData?.visible,
+            claimsNumber: bndData?.claimsNumber,
+          });
           break;
         case "engineering":
-          await submitEngineeringClaim();
+          const engData = await submitEngineeringClaim();
+          setShowClaims({
+            ...showClaims,
+            visible: engData?.visible,
+            claimsNumber: engData?.claimsNumber,
+          });
           break;
         case "fire":
-          await submitFireClaim();
+          const fireData = await submitFireClaim();
+          setShowClaims({
+            ...showClaims,
+            visible: fireData?.visible,
+            claimsNumber: fireData?.claimsNumber,
+          });
           break;
         case "marine":
-          await submitMarineClaim();
+          const marData = await submitMarineClaim();
+          setShowClaims({
+            ...showClaims,
+            visible: marData?.visible,
+            claimsNumber: marData?.claimsNumber,
+          });
           break;
         case "motor":
-          await submitMotorClaim();
+          const motData = await submitMotorClaim();
+          setShowClaims({
+            ...showClaims,
+            visible: motData?.visible,
+            claimsNumber: motData?.claimsNumber,
+          });
           break;
         case "oil and gas":
-          await submitOilAndGasClaim();
+          const oilnGasData = await submitOilAndGasClaim();
+          setShowClaims({
+            ...showClaims,
+            visible: oilnGasData?.visible,
+            claimsNumber: oilnGasData?.claimsNumber,
+          });
           break;
         case "packaged":
-          await submitPackagedPolicyClaim();
+          const pkgPolData = await submitPackagedPolicyClaim();
+          setShowClaims({
+            ...showClaims,
+            visible: pkgPolData?.visible,
+            claimsNumber: pkgPolData?.claimsNumber,
+          });
           break;
         default:
           null || undefined;

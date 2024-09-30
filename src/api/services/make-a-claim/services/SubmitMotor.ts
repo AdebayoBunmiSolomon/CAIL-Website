@@ -6,43 +6,41 @@ import {
 import { claimsHeaderConfiguration } from "../../../configuration/header";
 import { endpoints } from "../../../enpoints";
 import { PostRequest } from "../../../requests";
-import { useState } from "react";
-import { showClaimDataType } from "../RegisterClaimService";
+import { getFirstWord } from "../../../../helper/helper";
 
 export const useSubmitMotorClaim = () => {
   const { makeAClaimFormData } = useMakeAClaimForm();
   const { motorClaimFormData } = useMotorClaimForm();
-  const [showClaims, setShowClaims] = useState<showClaimDataType>({
-    visible: false,
-    claimsNumber: "",
-  });
 
   const submitMotorClaim = async () => {
     const motorFormData = {
       policyHolderName: makeAClaimFormData.officeName,
       policyNumber: makeAClaimFormData.policyId,
       subRisk: makeAClaimFormData.subRisk,
-      creationDate: makeAClaimFormData.creationDate,
+      creationDate: motorClaimFormData.dateTimeOfLoss,
       policyType: motorClaimFormData.policyType,
-      vehicleRegNumber: motorClaimFormData.vehicleRegNumber,
+      vehicleRegNumber: makeAClaimFormData.vehicleRegNumber,
       email: motorClaimFormData.email,
       mobileNumber: motorClaimFormData.mobileNumber,
-      claimType: "motor",
+      claimType: motorClaimFormData.claimType,
+      claimClass: "motor",
       damageType: motorClaimFormData.damageType,
-      dateTimeOfLoss: motorClaimFormData.dateTimeOfLoss,
+      dateTimeOfLoss: "", //motorClaimFormData.dateTimeOfLoss,
       descriptionOfIncident: motorClaimFormData.descriptionOfIncident,
       doYouHaveAWitness: motorClaimFormData.doYouHaveAWitness,
       nameOfWitness: motorClaimFormData.nameOfWitness,
       witnessContactInfo: motorClaimFormData.witnessContactInfo,
       whereCanTheVehicleBeInspected:
         motorClaimFormData.whereCanTheVehicleBeInspected,
-      isThirdPartyInvolved: motorClaimFormData.isThirdPartyInvolved,
+      isThirdPartyInvolved: getFirstWord(
+        motorClaimFormData.isThirdPartyInvolved
+      ),
       hasThePoliceBeenInformed: motorClaimFormData.hasThePoliceBeenInformed,
-      whenWasThePoliceInformed: motorClaimFormData.whenWasThePoliceInformed,
+      whenWasThePoliceInformed: "", //motorClaimFormData.whenWasThePoliceInformed,
       policeStationAddress: motorClaimFormData.policeStationAddress,
       thirdPartyInformation: motorClaimFormData.thirdPartyInformation,
-      estimateOfRepairs: motorClaimFormData.estimateOfRepairs,
-      claimsAmount: motorClaimFormData.claimsAmount,
+      //estimateOfRepairs: motorClaimFormData.estimateOfRepairs,
+      //claimsAmount: motorClaimFormData.claimsAmount
       purchaseOrReplacementInvoice:
         motorClaimFormData.purchaseOrReplacementInvoice,
       uploadScannedVehicleLicense:
@@ -64,42 +62,40 @@ export const useSubmitMotorClaim = () => {
     };
     const formValue = new FormData();
     Object.keys(motorFormData).forEach((key) => {
-      formValue.append(key, JSON.stringify(motorFormData[key]));
+      formValue.append(key, motorFormData[key]);
     });
-    console.log(motorFormData);
     try {
       const { data } = await PostRequest(
-        `${endpoints.POST_CLAIM}`,
+        `/api/claims`,
         formValue,
         claimsHeaderConfiguration
       );
       if (data) {
-        // toast(data.message, {
-        //   type: "success",
-        //   theme: "colored",
-        // });
-        setShowClaims({
-          ...showClaims,
-          visible: true,
-          claimsNumber: data.data.claimId,
-        });
-      } else {
-        await new Promise((resolve) => setTimeout(resolve, 3000));
-        toast("Claim submitted successfully", {
+        toast("motor claim successfully submitted", {
           type: "success",
           theme: "colored",
         });
-        setShowClaims({
-          ...showClaims,
+        return {
+          visible: true,
+          claimsNumber: data.claimId,
+        };
+      } else {
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        toast("Error submitting claim", {
+          type: "error",
+          theme: "colored",
+        });
+        return {
           visible: false,
           claimsNumber: "",
-        });
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        };
       }
     } catch (err: any) {
       console.log("Error", err);
+      return {
+        visible: false,
+        claimsNumber: "",
+      };
     }
   };
 

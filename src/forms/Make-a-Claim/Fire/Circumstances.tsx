@@ -26,6 +26,7 @@ export const FireClaimCircumstances: React.FC<useFormProps> = ({
   const { setFireClaimFormData, fireClaimFormData } = useFireClaimForm();
   const { setGlobalData, globalData } = useGlobalStore();
   const props = useFormProps;
+  // console.log(props);
 
   useEffect(() => {
     if (globalData.doYouHaveAWitness === true) {

@@ -262,3 +262,13 @@ export const convertFileToBase64String = (file: any): Promise<string> => {
     reader.readAsDataURL(file); // This will convert to base64
   });
 };
+
+/**
+ *
+ * @param str takes argument of any word e.g Hello World
+ * @returns the first word after the first initial whitespace in the word e.g Hello
+ */
+export const getFirstWord = (str: string) => {
+  // Split the string by spaces and return the first element
+  return str.split(" ")[0];
+};

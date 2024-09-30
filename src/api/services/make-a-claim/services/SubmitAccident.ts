@@ -6,39 +6,35 @@ import {
 import { claimsHeaderConfiguration } from "../../../configuration/header";
 import { endpoints } from "../../../enpoints";
 import { PostRequest } from "../../../requests";
-import { useState } from "react";
-import { showClaimDataType } from "../RegisterClaimService";
 
 export const useSubmitAccidentClaim = () => {
   const { makeAClaimFormData } = useMakeAClaimForm();
   const { accidentClaimFormData } = useAccidentClaimForm();
-  const [showClaims, setShowClaims] = useState<showClaimDataType>({
-    visible: false,
-    claimsNumber: "",
-  });
 
   const submitAccidentClaim = async () => {
+    const formData = new FormData();
     const accidentFormData = {
       policyHolderName: makeAClaimFormData.officeName,
       policyNumber: makeAClaimFormData.policyId,
       subRisk: makeAClaimFormData.subRisk,
-      creationDate: makeAClaimFormData.creationDate,
-      claimType: "accident",
+      creationDate: accidentClaimFormData.dateTimeOfLoss,
+      claimType: accidentClaimFormData.claimType,
+      claimClass: "accident",
       email: accidentClaimFormData.email,
       phoneNumber: accidentClaimFormData.phoneNumber,
-      dateTimeOfLoss: accidentClaimFormData.dateTimeOfLoss,
+      dateTimeOfLoss: "", //accidentClaimFormData.dateTimeOfLoss,
       wasThePremiseOccupiedAtTheTime:
         accidentClaimFormData.wasThePremiseOccupiedAtTheTime,
-      dateLastOccupied: accidentClaimFormData.dateLastOccupied,
+      dateLastOccupied: "", //accidentClaimFormData.dateLastOccupied,
       descriptionOfIncident: accidentClaimFormData.descriptionOfIncident,
       listOfStolenItems: accidentClaimFormData.listOfStolenItems,
       doYouHaveAWitness: accidentClaimFormData.doYouHaveAWitness,
       nameOfWitness: accidentClaimFormData.nameOfWitness,
       witnessContactInfo: accidentClaimFormData.witnessContactInfo,
       hasThePoliceBeenInformed: accidentClaimFormData.hasThePoliceBeenInformed,
-      whenWasThePoliceInformed: accidentClaimFormData.whenWasThePoliceInformed,
+      whenWasThePoliceInformed: "", //accidentClaimFormData.whenWasThePoliceInformed,
       policeStationAddress: accidentClaimFormData.policeStationAddress,
-      claimsAmount: accidentClaimFormData.claimsAmount,
+      //claimsAmount: 7000,
       purchaseOrReplacementInvoice:
         accidentClaimFormData.purchaseOrReplacementInvoice,
       evidenceUpload1: accidentClaimFormData.evidenceUpload1,
@@ -46,44 +42,42 @@ export const useSubmitAccidentClaim = () => {
       eyeWitnessReport: accidentClaimFormData.eyeWitnessReport,
       policeReport: accidentClaimFormData.policeReport,
     };
-    const formValue = new FormData();
+
     Object.keys(accidentFormData).forEach((key) => {
-      formValue.append(key, JSON.stringify(accidentFormData[key]));
+      formData.append(key, accidentFormData[key]);
     });
-    console.log(accidentClaimFormData);
+
     try {
       const { data } = await PostRequest(
-        `${endpoints.POST_CLAIM}`,
-        formValue,
+        `/api/claims`,
+        formData,
         claimsHeaderConfiguration
       );
       if (data) {
-        // toast(data.message, {
-        //   type: "success",
-        //   theme: "colored",
-        // });
-        setShowClaims({
-          ...showClaims,
-          visible: true,
-          claimsNumber: data.data.claimId,
-        });
-      } else {
-        await new Promise((resolve) => setTimeout(resolve, 3000));
-        toast("Claim submitted successfully", {
+        toast("accident claims successfully submitted", {
           type: "success",
           theme: "colored",
         });
-        setShowClaims({
-          ...showClaims,
+        return {
+          visible: true,
+          claimsNumber: data.claimId,
+        };
+      } else {
+        toast("Error submitting claims", {
+          type: "error",
+          theme: "colored",
+        });
+        return {
           visible: false,
           claimsNumber: "",
-        });
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        };
       }
     } catch (err: any) {
       console.log("Error", err);
+      return {
+        visible: false,
+        claimsNumber: "",
+      };
     }
   };
 

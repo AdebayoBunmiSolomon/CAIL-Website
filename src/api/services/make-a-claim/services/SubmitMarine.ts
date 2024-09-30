@@ -6,36 +6,32 @@ import {
 import { claimsHeaderConfiguration } from "../../../configuration/header";
 import { endpoints } from "../../../enpoints";
 import { PostRequest } from "../../../requests";
-import { useState } from "react";
-import { showClaimDataType } from "../RegisterClaimService";
 
 export const useSubmitMarineClaim = () => {
   const { makeAClaimFormData } = useMakeAClaimForm();
   const { marineClaimFormData } = useMarineClaimForm();
-  const [showClaims, setShowClaims] = useState<showClaimDataType>({
-    visible: false,
-    claimsNumber: "",
-  });
 
   const submitMarineClaim = async () => {
+    const formValue = new FormData();
     const marineFormData = {
       policyHolderName: makeAClaimFormData.officeName,
       policyNumber: makeAClaimFormData.policyId,
       subRisk: makeAClaimFormData.subRisk,
-      creationDate: makeAClaimFormData.creationDate,
+      creationDate: marineClaimFormData.dateTimeOfIncident,
       claimType: marineClaimFormData.claimType,
+      claimClass: "marine",
       email: marineClaimFormData.email,
       phoneNumber: marineClaimFormData.phoneNumber,
-      dateTimeOfIncident: marineClaimFormData.dateTimeOfIncident,
+      dateTimeOfIncident: "", //marineClaimFormData.dateTimeOfIncident,
       descriptionOfIncident: marineClaimFormData.descriptionOfIncident,
       listOfStolenItems: marineClaimFormData.listOfStolenItems,
       doYouHaveAWitness: marineClaimFormData.doYouHaveAWitness,
       nameOfWitness: marineClaimFormData.nameOfWitness,
       witnessContactInfo: marineClaimFormData.witnessContactInfo,
       hasThePoliceBeenInformed: marineClaimFormData.hasThePoliceBeenInformed,
-      whenWasThePoliceInformed: marineClaimFormData.whenWasThePoliceInformed,
+      whenWasThePoliceInformed: "", //marineClaimFormData.whenWasThePoliceInformed,
       policeStationAddress: marineClaimFormData.policeStationAddress,
-      claimsAmount: marineClaimFormData.claimsAmount,
+      //claimsAmount: marineClaimFormData.claimsAmount,
       evidenceUpload1: marineClaimFormData.evidenceUpload1,
       evidenceUpload2: marineClaimFormData.evidenceUpload2,
       evidenceUpload3: marineClaimFormData.evidenceUpload3,
@@ -43,44 +39,42 @@ export const useSubmitMarineClaim = () => {
       eyeWitnessReport: marineClaimFormData.eyeWitnessReport,
       policeReport: marineClaimFormData.policeReport,
     };
-    const formValue = new FormData();
     Object.keys(marineFormData).forEach((key) => {
-      formValue.append(key, JSON.stringify(marineFormData[key]));
+      formValue.append(key, marineFormData[key]);
     });
-    console.log(marineFormData);
+
     try {
       const { data } = await PostRequest(
-        `${endpoints.POST_CLAIM}`,
+        `/api/claims`,
         formValue,
         claimsHeaderConfiguration
       );
       if (data) {
-        // toast(data.message, {
-        //   type: "success",
-        //   theme: "colored",
-        // });
-        setShowClaims({
-          ...showClaims,
-          visible: true,
-          claimsNumber: data.data.claimId,
-        });
-      } else {
-        await new Promise((resolve) => setTimeout(resolve, 3000));
-        toast("Claim submitted successfully", {
+        toast("marine claim successfully submitted", {
           type: "success",
           theme: "colored",
         });
-        setShowClaims({
-          ...showClaims,
+        return {
+          visible: true,
+          claimsNumber: data.claimId,
+        };
+      } else {
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        toast("Error submitting claim", {
+          type: "error",
+          theme: "colored",
+        });
+        return {
           visible: false,
           claimsNumber: "",
-        });
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        };
       }
     } catch (err: any) {
       console.log("Error", err);
+      return {
+        visible: false,
+        claimsNumber: "",
+      };
     }
   };
 

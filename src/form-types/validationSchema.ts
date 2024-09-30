@@ -1069,10 +1069,7 @@ export const engineeringClaimCircumstancesValidationSchema = yup
   });
 
 export const fireClaimDetailsValidationSchema = yup.object().shape({
-  claimType: yup
-    .string()
-    .required("claim type is required")
-    .matches(/^[a-zA-Z\s]*$/, "Only letters are allowed"),
+  claimType: yup.string().required("claim type is required"),
   email: yup
     .string()
     .required("email is required")

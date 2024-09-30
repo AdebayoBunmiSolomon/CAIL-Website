@@ -50,20 +50,20 @@ export default defineConfig({
       cert: fs.readFileSync(certFilePath),
     },
     proxy: {
-      "/api/Claims": {
-        target: "http://claimsapi.cip-tech.org",
+      "/api/claims": {
+        target: "https://claimsapi.cip-tech.org",
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api\/Claims/, "/api/Claims"),
+        rewrite: (path) => path.replace(/^\/api\/claims/, "/api/claims"),
         configure: (proxy) => {
           proxy.on("proxyReq", (proxyReq, req, res) => {
             console.log(
-              `Proxying request to: http://claimsapi.cip-tech.org${req.url}`
+              `Proxying request to: https://claimsapi.cip-tech.org${req.url}`
             );
           });
           proxy.on("proxyRes", (proxyRes, req, res) => {
             console.log(
-              `Received response from: http://claimsapi.cip-tech.org${req.url}`
+              `Received response from: https://claimsapi.cip-tech.org${req.url}`
             );
           });
         },

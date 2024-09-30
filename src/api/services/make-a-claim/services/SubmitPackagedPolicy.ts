@@ -6,24 +6,20 @@ import {
 import { claimsHeaderConfiguration } from "../../../configuration/header";
 import { endpoints } from "../../../enpoints";
 import { PostRequest } from "../../../requests";
-import { useState } from "react";
-import { showClaimDataType } from "../RegisterClaimService";
 
 export const useSubmitPkgedPolicyClaim = () => {
   const { makeAClaimFormData } = useMakeAClaimForm();
   const { packagedPolicyClaimFormData } = usePackagedPolicyClaimForm();
-  const [showClaims, setShowClaims] = useState<showClaimDataType>({
-    visible: false,
-    claimsNumber: "",
-  });
 
   const submitPackagedPolicyClaim = async () => {
+    const formValue = new FormData();
     const pkgedPolicyForm = {
       policyHolderName: makeAClaimFormData.officeName,
       policyNumber: makeAClaimFormData.policyId,
       subRisk: makeAClaimFormData.subRisk,
-      creationDate: makeAClaimFormData.creationDate,
-      claimType: "packaged policy",
+      creationDate: packagedPolicyClaimFormData.dateTimeOfIncident,
+      claimType: packagedPolicyClaimFormData.claimType,
+      claimClass: "combinepackage",
       email: packagedPolicyClaimFormData.email,
       phoneNumber: packagedPolicyClaimFormData.phoneNumber,
       dateTimeOfIncident: packagedPolicyClaimFormData.dateTimeOfIncident,
@@ -34,10 +30,9 @@ export const useSubmitPkgedPolicyClaim = () => {
       witnessContactInfo: packagedPolicyClaimFormData.witnessContactInfo,
       hasThePoliceBeenInformed:
         packagedPolicyClaimFormData.hasThePoliceBeenInformed,
-      whenWasThePoliceInformed:
-        packagedPolicyClaimFormData.whenWasThePoliceInformed,
+      whenWasThePoliceInformed: "",
       policeStationAddress: packagedPolicyClaimFormData.policeStationAddress,
-      claimsAmount: packagedPolicyClaimFormData.claimsAmount,
+      //claimsAmount: packagedPolicyClaimFormData.claimsAmount,
       evidenceUpload1: packagedPolicyClaimFormData.evidenceUpload1,
       evidenceUpload2: packagedPolicyClaimFormData.evidenceUpload2,
       evidenceUpload3: packagedPolicyClaimFormData.evidenceUpload3,
@@ -45,44 +40,41 @@ export const useSubmitPkgedPolicyClaim = () => {
       eyeWitnessReport: packagedPolicyClaimFormData.eyeWitnessReport,
       policeReport: packagedPolicyClaimFormData.policeReport,
     };
-    const formValue = new FormData();
     Object.keys(pkgedPolicyForm).forEach((key) => {
-      formValue.append(key, JSON.stringify(pkgedPolicyForm[key]));
+      formValue.append(key, pkgedPolicyForm[key]);
     });
-    console.log(pkgedPolicyForm);
     try {
       const { data } = await PostRequest(
-        `${endpoints.POST_CLAIM}`,
+        `/api/claims`,
         formValue,
         claimsHeaderConfiguration
       );
       if (data) {
-        // toast(data.message, {
-        //   type: "success",
-        //   theme: "colored",
-        // });
-        setShowClaims({
-          ...showClaims,
-          visible: true,
-          claimsNumber: data.data.claimId,
-        });
-      } else {
-        await new Promise((resolve) => setTimeout(resolve, 3000));
-        toast("Claim submitted successfully", {
+        toast("packaged policy claim successfully submitted", {
           type: "success",
           theme: "colored",
         });
-        setShowClaims({
-          ...showClaims,
+        return {
+          visible: true,
+          claimsNumber: data.claimId,
+        };
+      } else {
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        toast("Error submitting claim", {
+          type: "success",
+          theme: "colored",
+        });
+        return {
           visible: false,
           claimsNumber: "",
-        });
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        };
       }
     } catch (err: any) {
       console.log("Error", err);
+      return {
+        visible: false,
+        claimsNumber: "",
+      };
     }
   };
 
